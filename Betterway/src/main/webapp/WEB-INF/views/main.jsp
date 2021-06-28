@@ -9,18 +9,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" 
-		src="resources/script/common/popup.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#charge_guide").on("click", function(){
-		makePopup("Test", "테스트중입니다.");
+	$(".charge_guide").on("click", function(){
+		window.open('pop1.html','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
+
+				
+
+		
 	});
 	
-	$("#realtime_train_box").on("click", function () {
-		window.open('https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do');
-		location.href = "https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do";
+	$(".realtime_train_box").on("click", function () {
+		 window.open("https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do")
+
+		
 	});
 });
 
