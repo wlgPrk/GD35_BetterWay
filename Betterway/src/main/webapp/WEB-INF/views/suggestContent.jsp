@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +138,7 @@ section:after { /* 뒷배경 */
 }
 #main-box1 {
 	height: 216px;
-	background-image: url("./Img/handle.png");
+	background-image: url("resources/images/handle.png");
 	backdrop-filter: blur(5px);	
 	padding-top: 160px;
 }
@@ -284,7 +288,7 @@ section:after { /* 뒷배경 */
 /* 제목 이미지 */
 .tit_img{
 display:inline-block;
-background: url("./Img/suggest.png");
+background: url("resources/images/suggest.png");
 background-size: 40px;
 width : 40px;
 height : 40px;
@@ -356,7 +360,7 @@ height:50px;
 /*댓글 이미지*/
 .comm_img{
 display:inline-block;
-background: url("./Img/comment.png");
+background: url("resources/images/comment.png");
 background-size: 25px;
 width:25px;
 height:25px;
@@ -368,7 +372,7 @@ margin-left: 10px;
 /*추천 버튼 */
 .push_img{
 display:inline-block;
-background: url("./Img/good.png");
+background: url("resources/images/good.png");
 background-size: 25px;
 width:25px;
 height:25px;
@@ -567,7 +571,7 @@ margin-top:20px;
 		<div class="tit_img"></div>	건의 게시판
 		</div>
 		<div id="main-caution">
-			<div><p><img alt="경고표시" src="./Img/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
+			<div><p><img alt="경고표시" src="resources/images/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
 				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p></div>
 		</div>
 		

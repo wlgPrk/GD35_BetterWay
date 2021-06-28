@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +109,7 @@ article {
 #main-box1 {
 	height: 216px;
 	background-color: silver;
-	background-image: url("../Img/handle.png");
+	background-image: url("resources/images/handle.png");
 	backdrop-filter: blur(5px);	
 	padding-top: 160px;
 }
@@ -271,7 +273,7 @@ article {
 /* 제목 이미지 */
 .titleImg{
 display:inline-block;
-background: url("./Img/newstitle.png");
+background: url("resources/images/newstitle.png");
 background-size: 40px;
 width : 40px;
 height : 40px;
@@ -343,7 +345,7 @@ height : 40px;
 	<div id="main-b">
 	<div id="main-title"> <div class="titleImg"></div>지하철뉴스 </div>
 		<div id="main-caution">
-			<div><img alt="경고표시" src="./Img/warning.png"/><span>BetterWay에서는 교통관련 언론기사를 링크서비스 하고 있습니다.</span></div>
+			<div><img alt="경고표시" src="resources/images/warning.png"/><span>BetterWay에서는 교통관련 언론기사를 링크서비스 하고 있습니다.</span></div>
 		</div>
 		<div id="main-total">
 			<span>Total: 31695</span>
