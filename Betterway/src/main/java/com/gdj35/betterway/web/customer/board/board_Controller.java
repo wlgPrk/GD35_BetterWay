@@ -17,6 +17,7 @@ public class board_Controller {
 	}//suggestListe end
 	
 	
+	
 	//건의게시판내용
 	@RequestMapping(value="/BetterWay_suggestContent")
 	public ModelAndView suggestContent(ModelAndView mav) {
@@ -35,6 +36,8 @@ public class board_Controller {
 		
 		return mav;
 	}//suggestWrite end
+	
+
 	
 	
 	

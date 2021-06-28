@@ -1,29 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
 <title>지하철 뉴스</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+</script>
+
 <style type="text/css">
-* { 
+
+/*-------------------- 공용 시작 ---------------------*/
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0;
-  height: 100%;
 }
 
 /* Style the header */
-header {
+header { /* 상단 큰메뉴바 */
+  top: 0;
+  left: 0;
+  right: 0;
   height: 75px;
   padding: 1rem;
   color: white;
@@ -32,15 +37,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 100;
+   
 }
-.main{
-	color:white;
-	text-decoration : none;
-	font-size: 30px;
-}
-	ul li{
+ul li{
 		list-style: none;
 	}
 	a {
@@ -56,6 +55,7 @@ header {
 		color:black;
 		line-height: 50px; 
 		text-align: center;
+		z-index: 300;
 	}
 
 
@@ -71,236 +71,298 @@ header {
 		font-size:14px;
 		background: #fff;
 	}
-	#menu > ul > li:hover > ul { /* li가 hover 상태일때 ul의 display를 block으로 지정  */
-		display:block; 
+	#menu > ul > li:hover > ul {
+		display:block;
 	}
 	#menu > ul > li > ul > li:hover {
 		background: #B2A59F;
 		transition: ease 1s;
 		}
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
 
-article {
-	min-height: 100%;
-	width: 1440px;
-	margin: 0 auto;
-	background-color: white;
+nav ul {
+  list-style-type: none;
+  padding: 0;
 }
-#left-box {
-	width: 360px;
-	height: 216px;
-	display: inline-block;
-	vertical-align: top;
+.main{/* 상단 큰 메뉴바 아래 제일 큰 영역 */
+	color:white;
+	text-decoration : none;
+	font-size: 30px;
+
 }
-#side-box1 {
-	height: 216px;
-	background-color: #82B2DA;
-	color: white;
-	font-size: 30pt;
-	font-weight: bold;
-	text-align: center;
-	line-height: 200px;
-}
-#right-box {
-	width: 1080px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
-}
-#main-box1 {
-	height: 216px;
-	background-color: silver;
-	background-image: url("resources/images/handle.png");
-	backdrop-filter: blur(5px);	
-	padding-top: 160px;
-}
-#site-route {
-	font-size: 20pt;
-	background:rgba(52, 75, 22, 0.63);
-    color: #fff;
-    text-align: right;	
-}
-#main-box2 {
-	margin-top: 20px;
-	height: 600px;
-	border: 2px solid #023459;
-	margin-bottom: 30px;
-}
-#main-box2 table {
-	font-size: 10pt;
-	margin: 25px auto;
-	width: 96%;	
-	text-align: center;
-    border-collapse: collapse;
-    border-radius: 15px;
-    padding: 0;
-}
-#main-box2 th{
-	height: 37px;
-	border-bottom : 1px solid #29367c;
-	padding: 10px 0px;
-}
-#main-box2 td{
-	height: 30px;
-	border-top : 1px solid #eee;
-	padding: 5px 0px; 
-}
-#main-box2 tbody tr td:nth-child(1) {
-	font-weight: bold;
-	width: 40%;
-}
-#main-box2 tbody tr td:nth-child(2) {
-	color: #5e5c5b;
-	width: 40%;
-}
-#main-box2 tbody tr td:nth-child(3) {
-	width: 10%;
-}
-#main-box2 tbody tr td:nth-child(4) {
-	width: 10%;
-}
-#main-caution {
-	height: 100px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    font-size: 11pt;
-    text-align: center;
-    margin-top: 20px;
-}
-#main-caution > div { 
-	display: table;
-	width: 100%;
-	height: 100%;
-	position: relative;
-}
-#main-caution span { 
-	display: table-cell;
-	vertical-align: middle;
-}
-#main-caution img {
-	width: 17px;
-	position: absolute;
-	top: 40px;
-	left: 483px;
-}
-#main-total {
-	height: 40px;
-	position: relative;
+
 	
+
+article {/* 섹션 안 큰내용, 가운데정렬 */
+  background-color: #fff;
+    height: 100%;
+  margin: 0px auto;
+    width:1440px;
+    background: orange;
+  
 }
-#main-total span {
-	font-size: 17pt;
-	position: absolute;
-	top: 3px;
-	left: 12px;
+
+section:after { /* 뒷배경 */
+  content: "";
+  display: table;
+
+  clear: both;
+  background: orange;
 }
-#main-search {
+
+
+/* 
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+} */
+
+/* 사이드랑 박스  가로*/
+#sidebar {
+	float: left;
+background:#fff;
+	width: 25%;
+	/* 임의 지정 */
+}
+#sidebar_top{
+height:216px;
+background:#82B2DA;
+padding-top: 80px;
+font-size: 30pt;
+font-weight:bold;
+text-align: center;
+color: #fff;
+}
+#box_top {
+	float: right;
+	
+	width:75%;
+	height: 645px; /* 임의 지정 */
+}
+
+  .box_tit{
     position: relative;
+ background-image:url("re/images/서브타이틀_배경.png");       
+                       
+  height:216px;
+
+  }
+
+
+.img_cov{
+ backdrop-filter: blur(5px);
+ background-image: url("resources/images/sub.png");
+ background-size:cover;
+   height:216px;
+   padding-top: 160px;
+ 
+}
+.img_cov_con{/* 어디로 왔능가  */
+
+font-size: 20pt;
+
+background:rgba(52, 75, 22, 0.63);
+    color: #fff;
     text-align: right;
-    padding: 11px 14px;
-    border: 1px solid #d7d7d7;
-    background: #ebebeb;
-    display: table;
-    width: 1440px;
+   
+
 }
-#main-search select {
-	height: 32px;
-    min-width: 135px;
-    padding-left: 15px;
-    font-size: 13px;
-    border: 1px solid #d5d5d5;
-    display: table-cell;
-    vertical-align: middle;
+.img_cov_contxt{
+font-weight: bold;
+background: #1E646E;
+color:#fff;
+width:170px;
+text-align:center;
+border-radius: 15px 15px 15px 15px;
+
+
 }
-#main-search [type="text"] {
-    height: 32px;
-    padding-left: 5px;
-    border: 1px solid #d5d5d5;
-    display: table-cell;
-    vertical-align: middle;
-    margin-left: 3px;
+
+#box_con_txt{
+margin-top: 30px;
+font-weight :bold;
+font-size: 30pt;
+
 }
-#main-search [type="button"] {
-	font-size: 14px;
-    font-family: 'Noto Sans KR',Malgun Gothic,Dotum,sans-serif;
-    background-color: #555;
-    color: white;
-    height: 30px;
-    width: 58px;
-    display: table-cell;
-    vertical-align: middle;
-    margin-left: 3px;
+#box_con_cir{
+padding:5px;
+
+
+float: left;
 }
-#main-pagenation-search {
-	height: 80px;
+.line_sel_bar{
+border-bottom:2px solid #E0E0EB;
+margin-top: 50px;
+height:30px;
 }
-#main-pagenation-search [alt="왼쪽화살표"] {
-	width: 43px;
-	position: absolute;
-	left: 34%;
-	cursor: pointer;
-}	
-#main-pagenation-search [alt="오른쪽화살표"] {
-	width: 43px;
-	position: absolute;
-	right: 34%;
-	cursor: pointer;
+.line_sel_bar>.scroll:hover{
+text-decoration:underline;
 }
-#main-pagenation-search > div {
-	height: 50%;
-	text-align: center;
+
+
+
+.scroll {
+text-align:center;
+margin-left: 10px;
+
+}
+
+#side_sub_menu{
+text-align: center;
+font-size: 20pt;
+font-weight:bold;
+border-bottom:1px solid #82B2DA;
+height:100px;
+padding-top: 30px;
+}
+#side_sub_menu:hover{
+background: #B2A59F;
+
+}
+
+p{
+margin-top: 10px;
+margin-bottom:30px;
+font-weight: bold;
+}
+
+.footer{
+position: absolute;
+top:240%;
+background-color: #023459;
+width :100%;
+height : 60px;
+
+}
+
+
+.con_box{
+
+	width: 1200px;
+}
+
+
+
+
+/* 내부에 absolute 속성쓰려고 만듬 */
+.con_box_2{
+
 	position: relative;
-	font-size: 18px;
-}
-#page-number {
-	line-height: 43px;
-}
-#page-number a {
-	margin: 10px;
-	cursor: pointer;
-}
-#page-number a:link {
-	border: 1px solid black;
-	padding: 5px 10px;	
-}
-#main-pagenation-search span {
-	vertical-align: top;
+	width: 100%;
 }
 
 
 
+.hr{
+margin-top:15px;
+}
+/*------------------- 공용 끝 ------------------- */
 
 
-/* 제목 이미지 */
-.titleImg{
-display:inline-block;
-background: url("resources/images/newstitle.png");
-background-size: 40px;
-width : 40px;
+
+/* 테이블 */
+.table{
+
+border-top: 2px solid #82b2da;
+	border-collapse:collapse
+}
+
+
+/* 테이블 세로길이 */
+.table tr{
+
+ height : 50px;
+
+}
+/* 테이블 헤드 */
+.table th{
+background-color: #f0f0f5;
+}
+
+
+/* 테이블 칸속성 */
+.table td, th{
+text-align:center;
+
+ border: 1px solid #e0e0eb;
+}
+
+
+/* 화살표틀 */
+.arrow_box{
+margin-top:20px;
+display: inline-block;
+width : 1100px;
+height :50px;
+
+text-align: center;
+}
+
+
+/*화살표 */
+.arrow{
+width: 50px;
+font-size: 20px;
 height : 40px;
+border : 0;
+box-shadow: 1px 2px 3px grey;
+background-color: #e0e0eb;
+
+}
+
+/*검색창 틀*/
+.search_box{
+margin-top:10px;
+display: inline-block;
+width : 1100px;
+height :50px;
+
+text-align: center;
+}
+/*검색창*/
+.input{
+width: 300px;
+height:40px;
+outline: none;
+font-size: 20px;
+}
+
+/*검색버튼*/
+.search_btn{
+
+
+background-color:#e0e0eb;
+font-size: 20px;
+width :100px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
 }
 
 
-#main-title {
-	height: 50px;
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 30pt;
-    line-height: 64px;
-    font-weight: bold;
+/*검색분류*/
+.search_type{
+outline: none;
+width :100px;
+height:40px;
+font-size: 20px;
 }
 
 
-
-
-
-#footer {
-	height: 75px;
-	background: #023459;
-}
 
 </style>
 </head>
 <body>
+
 <header>
   <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
@@ -328,48 +390,64 @@ height : 40px;
 				<li><a href="#">건의 게시판</a></li>
 			</ul>
 		</li>
+
 	</ul>
 </div>
 </header>
-<article>
-	<div id="left-box">
-		<div id="side-box1">
-			<span>지하철뉴스</span>
+<body>
+
+<section>
+  <article>
+		<div id="sidebar">
+			<div id="sidebar_top">
+			역 내외 시설
+			</div>
+			<div id="side_menu">
+			<div id="side_sub_menu"><a href="#">지하철뉴스</a></div>
+			</div>
 		</div>
-	</div>
-	<div id="right-box">
-		<div id="main-box1">
-			<div id="site-route">홈>지하철뉴스</div>
-		</div>
-	</div>
-	<div id="main-b">
-	<div id="main-title"> <div class="titleImg"></div>지하철뉴스 </div>
-		<div id="main-caution">
-			<div><img alt="경고표시" src="resources/images/warning.png"/><span>BetterWay에서는 교통관련 언론기사를 링크서비스 하고 있습니다.</span></div>
-		</div>
-		<div id="main-total">
-			<span>Total: 31695</span>
-		</div>
-		<div id="main-search">
-			<select>
-				<option>제목</option>
-				<option>출처</option>
-				<option>제목+출처</option>
-			</select>
-			<input type="text" />
-			<input type="button" value="검색" />
-		</div>
-		<div id="main-box2">
-			<table>
-				<thead>
-					<tr>
+		<div id="box_top">
+		
+		 <div class="box_tit">
+        
+		        <div class="img_cov">
+		      
+		                  <div class="img_cov_con">
+		                  	홈 > 지하철뉴스 &nbsp;
+		                  	</div>
+		            </div>
+    	</div>
+    	
+    	
+    	<div id="box_con">
+			<div id="box_con_cir"><img alt="지하철뉴스" src="resources/images/newstitle.png" width="50px" height="50px"> </div>
+			<div id="box_con_txt">
+			지하철뉴스
+			</div>
+			
+			<hr class="hr">
+		<p>BetterWay에서는 교통관련 언론기사를 링크서비스 하고 있습니다..</p>
+			<div class="con_box">
+			
+					<div class="con_box_2">
+<table class="table" cellspacing="0px">
+<colgroup>
+		<col width="450px"/>
+		<col width="450px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+</colgroup>
+<thead>
+<tr>
 						<th>제목</th>
 						<th>내용</th>
 						<th>언론</th>
 						<th>날짜</th>
-					</tr>
-				</thead>
-				<tbody>
+</tr>
+</thead>
+
+<tbody>
+		<tbody>
 					<tr>
 						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
 						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
@@ -379,95 +457,65 @@ height : 40px;
 					<tr>
 						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
 						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
+						<td>조선일보</td>
+						<td>2020-05-12</td>
 					</tr>
 					<tr>
 						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
 						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
+						<td>조선일보</td>
+						<td>2020-05-12</td>
 					</tr>
 					<tr>
 						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
 						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
+						<td>조선일보</td>
+						<td>2020-05-12</td>
 					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>1</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="main-pagenation-search">
-			<div>
-			<img alt="왼쪽화살표" src="./Img/arrow-left.png"/>
-					<span id="page-number"><a href="#">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a></span>
-			<img alt="오른쪽화살표" src="./Img/arrow-right.png" />
-			</div>
-		</div>
+
+
+</tbody>
+
+	</table>
+	<div class="arrow_box">
+<input type="button" class="arrow" value="<">
+<input type="button" class="arrow" value="1">
+<input type="button" class="arrow" value="2">
+<input type="button" class="arrow" value="3">
+<input type="button" class="arrow" value="4">
+<input type="button" class="arrow" value="5">
+<input type="button" class="arrow" value=">">
+
 	</div>
-</article>
-<div id="footer"></div>
+<div class="search_box">
+<select class="search_type">
+					<option>제목</option>
+					<option>내용</option>
+					<option>제목+내용</option>
+</select>
+<input type="text" class="input"/>
+<input type="button" value="검색" class="search_btn" />
+</div>	
+	
+	
+				</div><!-- con_box_2 end -->
+			
+			
+			
+			
+			
+    	</div>
+    	
+    	
+    	
+    	</div>
+		
+    	</div>
+    	
+    	
+ </article>
+</section>
+
+<div class="footer"></div>
 </body>
 </html>
