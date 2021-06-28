@@ -150,7 +150,7 @@ text-decoration: underline;
 </head>
 <body>
 <header>
-<a href="airQ.html">실내 공기질 정보 안내</a>
+<a>실내 공기질 정보 안내</a>
 </header>
 
 		<div class="con">
