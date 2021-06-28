@@ -146,7 +146,7 @@ color: #fff;
 
   .box_title{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
     background-size : cover;                   
   height:216px;
 
@@ -406,7 +406,7 @@ background: #B2A59F;
 		        </div>
     	</div>
 		<div id="box_con">
-			<img id="box_con_img" src="images/휠체어검.png"/>
+			<img id="box_con_img" src="resources/images/휠체어검.png"/>
 			<div id="box_con_text">
 			휠체어 이용 승·하차 안내
 			</div>
@@ -419,7 +419,7 @@ background: #B2A59F;
 		<br/>
 		
 		<div id = "img_wheel">
-			<img src="./images/이동식 안전 발판.PNG"/>
+			<img src="resources/images/이동식 안전 발판.PNG"/>
 		</div><br/>
 		<hr/><br/>
 		

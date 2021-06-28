@@ -146,7 +146,7 @@ color: #fff;
 
   .box_title{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
     background-size : cover;                    
   height:216px;
 
@@ -389,7 +389,7 @@ background: #B2A59F;
 		            </div>
     	</div>
 		<div id="box_con">
-			<img id="box_con_img" src="images/자전거검.png"/>
+			<img id="box_con_img" src="resources/images/자전거검.png"/>
 			<div id="box_con_text">
 			자전거 보관함
 			</div>
@@ -405,14 +405,14 @@ background: #B2A59F;
 			<h4 id = "sub_title">사물함형 자전거 보관함 사용 방법</h4>
 			<br/>
 			<div id = "img_cycle">
-				<img src="./images/자전거 보관함.PNG"/>
+				<img src="resources/images/자전거 보관함.PNG"/>
 			</div><br/><br/>
 			
 			<div id = "box_con_sub_num">Ⅲ </div>
 			<h4 id = "sub_title">자전거 찾기</h4>
 			<br/>
 			<div id = "img_cycle2">
-				<img src="./images/자전거 찾기.PNG"/>
+				<img src="resources/images/자전거 찾기.PNG"/>
 			</div>
 									
 		</div>	

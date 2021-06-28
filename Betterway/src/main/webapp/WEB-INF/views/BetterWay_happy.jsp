@@ -146,7 +146,7 @@ color: #fff;
 
   .box_title{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
     background-size : cover;                  
   height:216px;
 
@@ -406,7 +406,7 @@ background: #B2A59F;
 		            </div>
     	</div>
 		<div id="box_con">
-			<img id="box_con_img" src="images/쉼터검.png"/>
+			<img id="box_con_img" src="resources/images/쉼터검.png"/>
 			<div id="box_con_text">
 			행복지대
 			</div>
@@ -455,8 +455,8 @@ background: #B2A59F;
 				
 				<div class="box_happy">
 						<div class="img_box">
-							<img src="./images/행복지대 5호선.PNG"/>
-							<img src="./images/행복지대 5~7호선.PNG"/>
+							<img src="resources/images/행복지대 5호선.PNG"/>
+							<img src="resources/images/행복지대 5~7호선.PNG"/>
 						</div>
 				</div>
 					

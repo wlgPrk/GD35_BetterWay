@@ -146,12 +146,11 @@ color: #fff;
 
   .box_title{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
     background-size : cover;                     
   height:216px;
 
   }
-
 
 .img_cov{
  backdrop-filter: blur(5px);
