@@ -22,6 +22,11 @@ $(document).ready(function(){
 	
 	});
 	
+	$(".cov_guide").on("click", function(){
+		location.href = "BetterWay_esta_main";
+	
+	});
+	
 	
 	
 	$(".realtime_train_box").on("click", function () {
@@ -535,7 +540,7 @@ font-family: inherit;
 
 
 	<header>
-		<a class="main" href="#">BetterWay</a>
+		<a class="main" href="main">BetterWay</a>
 		<div id="top_menu">
 			<ul>
 				<li><a href="#">교통안내</a>
