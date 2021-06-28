@@ -54,5 +54,20 @@ public class stationEstaInfo_Controller {
 		
 		return mav;
 	}
+	@RequestMapping(value="/BetterWay_esta_out")
+	public ModelAndView BetterWay_esta_out(ModelAndView mav) {
+		
+		mav.setViewName("/BetterWay_esta_out");
+		
+		return mav;
+	}
+	@RequestMapping(value="/BetterWay_toilet")
+	public ModelAndView BetterWay_toilet(ModelAndView mav) {
+		
+		mav.setViewName("/BetterWay_toilet");
+		
+		return mav;
+	}
+	
 	
 }

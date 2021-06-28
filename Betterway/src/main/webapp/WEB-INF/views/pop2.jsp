@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>운임 안내</title>
+<title>역 별 시간표 안내</title>
 <script type="text/javascript">
 
 
@@ -139,7 +141,7 @@ background:#B2A59F;
   .box_tit{
     position: relative;
  background-image:url("sub.png");       
- background-size:cover;                      
+ background-size : cover;                      
   height:88px;
 
   }
@@ -163,7 +165,7 @@ background:rgba(52, 75, 22, 0.63);
 
 }
 .con_side{
-	width:200px;
+	width:130px;
 	text-align: center;
 	padding-top: 20%;
 }
@@ -210,6 +212,7 @@ th,td{
 	border-collapse: collapse;
 	padding : 10px;
 	text-align: center;
+	width: 400px;
 }
 
 
@@ -227,27 +230,105 @@ th,td{
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>운임 안내 &nbsp;
+		                  	홈>시간표 안내 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
 			<div class="wrap">
+			<div style="float: right;">
+			호선을 검색하세요&nbsp;
+			<select>
+			<option value="">호선 선택</option>
+			<option value="1호선">1호선</option>
+			<option value="2호선">2호선</option>
+			<option value="3호선">3호선</option>
+			<option value="4호선">4호선</option>
+			<option value="5호선">5호선</option>
+			<option value="6호선">6호선</option>
+			<option value="7호선">7호선</option>
+			<option value="8호선">8호선</option>
+			<option value="9호선">9호선</option>
+			</select>
+			<input type="text" placeholder="개화역"/>
+			<br/>
+			<br/>
+			</div>
+			
+			
+			
 			<table style="position: relative; left: 80px;" >
-<tbody><tr><th class="table_thead" width=100>번호</th>
-<th >교통카드</th><th>1회용 교통카드</th></tr>
-<tr><th  >일반</th><td >* 기본운임 : 10km까지 : 900원<br>* 추가운임<br>- 10km초과~40km까지 : 5km 마다 100원<br>
-- 40km초과시 : 10km 마다 100원<br>
-* 다만,수도권내 구간과 수도권외 구간
-<br>(경부선~천안)을 연속하여 이용하는 경우에는
-<br>수도권내 구간의 운임을 먼저 계산한 후
-<br>수도권외 구간의 이용거리 매 4km까지마다
-<br>100원의 추가운임을 합산하여 산출한 금액 적용<br>&nbsp;</td>
-<td>교통카드 운임에 100원 추가</td></tr><tr><th >청소년</th>
-<td  >* 일반운임의 20% 할인(기본운임 720원)</td>
-<td >할인 없음(1회권 일반 운임 적용)</td>
+<thead>
+<tr>
+<th scope="col">김포공항, 중앙보훈병원 방면</th> 
+<th scope="col" rowspan="2">시각</th>
+ <th scope="col"></th>
 </tr>
-<tr><th >어린이</th><td align="left">* 일반운임의 50% 할인(기본운임 450원)</td><td>1회권 일반운임의 50%(500원)</td>
-</tr></tbody>
+<th>분<br/>(일반/*급행)</th><th>분<br/>(일반/*급행)</th>
+</thead>
+
+<tbody>
+<tr>
+<td>30 &nbsp;42&nbsp;54</td>  <td>05</td><td></td>
+</tr>
+<tr>
+<td>06&nbsp;14&nbsp;24&nbsp;30&nbsp;38&nbsp;47&nbsp;56</td> <td>06 </td> <td></td>
+</tr>
+<tr>
+<td>04&nbsp;12&nbsp;19&nbsp;26&nbsp;33&nbsp;40&nbsp;47&nbsp;54</td>  <td>07</td><td></td>
+</tr>
+<tr>
+<td>01&nbsp;09&nbsp;18&nbsp;27&nbsp;36&nbsp;47&nbsp;58</td> <td>08</td><td></td>
+</tr>
+<tr>
+<td>09&nbsp;20&nbsp;31&nbsp;42&nbsp;53</td> <td>0+</td><td></td>
+</tr>
+<tr>
+<td> 04&nbsp;15&nbsp;26&nbsp;37&nbsp;48&nbsp;59</td> <td>10</td><td></td>
+</tr>
+<tr>
+<td>10 &nbsp;21&nbsp;32&nbsp;43&nbsp;54</td> <td>11</td><td></td>
+</tr>
+<tr>
+<td>06 &nbsp;18&nbsp;29&nbsp;40&nbsp;51</td>  <td>12</td><td></td>
+</tr>
+<tr>
+<td>02&nbsp;13&nbsp;24&nbsp;35&nbsp;46&nbsp;57</td>  <td>13</td><td></td>
+</tr>
+<tr>
+<td>08 &nbsp;19&nbsp;30&nbsp;41&nbsp;53</td>  <td>14</td><td></td>
+</tr>
+<tr>
+<td>05 &nbsp;16&nbsp;27&nbsp;38&nbsp;49&nbsp;55</td>  <td>15</td><td></td>
+</tr>
+<tr>
+<td>00 &nbsp;11&nbsp;22&nbsp;29&nbsp;33&nbsp;44&nbsp;52</td>  <td>16</td><td></td>
+</tr>
+<tr>
+<td>00 &nbsp;08&nbsp;16&nbsp;24&nbsp;32&nbsp;40&nbsp;48&nbsp;56</td>  <td>17</td><td></td>
+</tr>
+<tr>
+<td>04 &nbsp;12&nbsp;20&nbsp;28&nbsp;36&nbsp;44&nbsp;52</td>  <td>18</td><td></td>
+</tr>
+<tr>
+<td>00 &nbsp;09&nbsp;17&nbsp;27&nbsp;37&nbsp;47&nbsp;57</td>  <td>19</td><td></td>
+</tr>
+<tr>
+<td>07&nbsp;17&nbsp;27&nbsp;37&nbsp;47&nbsp;57</td>  <td>20</td><td></td>
+</tr>
+<tr>
+<td>07&nbsp;17&nbsp;27&nbsp;37&nbsp;47&nbsp;58</td>  <td>21</td><td></td>
+</tr>
+<tr>
+<td>10 &nbsp;23&nbsp;36&nbsp;49(삼전)</td>  <td>22</td><td></td>
+</tr>
+<tr>
+<td>03(신논현)&nbsp;16(동작)&nbsp;29(당산)&nbsp;43(가양)</td>  <td>23</td><td></td>
+</tr>
+<tr>
+<td>08 &nbsp;19&nbsp;30&nbsp;41&nbsp;53</td>  <td>14</td><td></td>
+</tr>
+</tbody>
+
 </table>
 
 				
