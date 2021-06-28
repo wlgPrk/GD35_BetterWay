@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>자전거 보관함</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>자전거보관함</title>
+</head>
 <script type="text/javascript">
 </script>
 
@@ -421,4 +423,3 @@ background: #B2A59F;
 <footer id = "footer"></footer>
 </body>
 </html>
-
