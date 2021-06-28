@@ -340,9 +340,9 @@ background: #B2A59F;
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li><a href="zoom.html">노선도</a></li>
-				<li><a href="#">실시간 열차정보</a></li>
-				<li><a href="#">역주변 버스정류장 연계</a></li>
+				<li><a href="BetterWay_subLineSearch">노선도</a></li>
+				<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>
 		</li>
@@ -378,17 +378,15 @@ background: #B2A59F;
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                    		<a href="BetterWay_baby.html">수유실</a>
-                    		<a href="BetterWay_wheelchair.html">휠체어 이용 승·하차 안내</a>
-                    		<a href="BetterWay_cycle.html">자전거 보관함</a>
-                    		<a href="BetterWay_happy.html">행복지대</a>
+                    		<a href="BetterWay_baby">수유실</a>
+                    		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
+                    		<a href="BetterWay_cycle">자전거 보관함</a>
+                    		<a href="BetterWay_happy">행복지대</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
-                <a href="#outside_esta" class="btn">외부시설</a>
+                <a href="BetterWay_esta_out" class="btn">외부시설</a>
                 	<div class="side_menu_sub_down">
-                   		 	<a href="">제품소개1</a>
-                   	 		<a href="">제품소개2</a>
                 	</div>
             		</li>
        			 </ul>
