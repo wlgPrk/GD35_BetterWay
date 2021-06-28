@@ -10,7 +10,14 @@ function popup(){
 	window.open('BetterWay_envinfoGuide.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
 
 }
+function sublinieInfo(){
+	window.open('BetterWay_subLineSearch.html');
 
+}
+function cooling(){
+	window.open('BetterWay_cooling.html');
+
+}
 
 
 </script>
@@ -264,7 +271,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li><a href="zoom_search.html">사이버스테이션</a></li>
+				<li><a href="javascript:sublinieInfo();">사이버스테이션</a></li>
 				<li><a href="#">실시간 열차정보</a></li>
 				<li><a href="#">역주변 버스정류장 연계</a></li>
 				<li><a href="#">역 내외 시설</a></li>
@@ -273,7 +280,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 		<li><a href="#">환경정보안내</a>
 			<ul>
 				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
-				<li><a href="menu.html">차량 별 냉방상태</a></li>
+				<li><a href="javascript:cooling();">차량 별 냉방상태</a></li>
 			</ul>
 		</li>
 		<li><a href="#">지하철 뉴스</a>
