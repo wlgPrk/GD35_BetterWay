@@ -376,10 +376,10 @@ background: #B2A59F;
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                    		<a href="baby.html">수유실</a>
-                    		<a href="wheelchair.html">휠체어 이용 승·하차 안내</a>
-                    		<a href="cycle.html">자전거 보관함</a>
-                    		<a href="happy.html">행복지대</a>
+                    		<a href="BetterWay_baby.html">수유실</a>
+                    		<a href="BetterWay_wheelchair.html">휠체어 이용 승·하차 안내</a>
+                    		<a href="BetterWay_cycle.html">자전거 보관함</a>
+                    		<a href="BetterWay_happy.html">행복지대</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
