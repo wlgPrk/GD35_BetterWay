@@ -176,8 +176,6 @@ color:#fff;
 width:170px;
 text-align:center;
 border-radius: 15px 15px 15px 15px;
-
-
 }
 
 #box_con_text{
