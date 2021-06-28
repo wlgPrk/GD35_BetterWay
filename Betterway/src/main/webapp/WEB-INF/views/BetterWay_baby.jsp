@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<meta charset="UTF-8">
 <title>수유실</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <script type="text/javascript">
 </script>
 
@@ -144,7 +146,7 @@ color: #fff;
 
   .box_title{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
     background-size : cover;               
   height:216px;
 
@@ -374,10 +376,10 @@ background: #B2A59F;
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                    		<a href="baby.html">수유실</a>
-                    		<a href="wheelchair.html">휠체어 이용 승·하차 안내</a>
-                    		<a href="cycle.html">자전거 보관함</a>
-                    		<a href="happy.html">행복지대</a>
+                    		<a href="BetterWay_baby.html">수유실</a>
+                    		<a href="BetterWay_wheelchair.html">휠체어 이용 승·하차 안내</a>
+                    		<a href="BetterWay_cycle.html">자전거 보관함</a>
+                    		<a href="BetterWay_happy.html">행복지대</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
@@ -399,7 +401,7 @@ background: #B2A59F;
 		            </div>
     	</div>
 		<div id="box_con">
-			<img id ="box_con_img"src="images/수유실검.png"/>
+			<img id ="box_con_img"src="resources/images/수유실검.png"/>
 			<div id="box_con_text">
 			수유실
 			</div>
@@ -943,4 +945,3 @@ background: #B2A59F;
 <footer id = "footer"></footer>	
 </body>
 </html>
-

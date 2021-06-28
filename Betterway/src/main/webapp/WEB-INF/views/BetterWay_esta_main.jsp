@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>행복지대</title>
+<title>편의시설 메인</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript">
@@ -142,10 +144,10 @@ color: #fff;
 	height: 645px; /* 임의 지정 */
 }
 
-  .box_title{
+  .box_tit{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
-    background-size : cover;                  
+ background-image:url("./images/서브타이틀_배경.png");       
+                       
   height:216px;
 
   }
@@ -153,6 +155,8 @@ color: #fff;
 
 .img_cov{
  backdrop-filter: blur(5px);
+ background-image: url("sub.png");
+ background-size:cover;
    height:216px;
    padding-top: 160px;
  
@@ -167,7 +171,7 @@ background:rgba(52, 75, 22, 0.63);
    
 
 }
-.img_cov_context{
+.img_cov_contxt{
 font-weight: bold;
 background: #1E646E;
 color:#fff;
@@ -178,14 +182,18 @@ border-radius: 15px 15px 15px 15px;
 
 }
 
-#box_con_text{
+#box_con_txt{
 margin-top: 30px;
 font-weight :bold;
 font-size: 30pt;
-display: inline-block;
 
 }
+#box_con_cir{
+padding:5px;
 
+
+float: left;
+}
 .line_sel_bar{
 border-bottom:2px solid #E0E0EB;
 margin-top: 50px;
@@ -225,112 +233,39 @@ font-weight: bold;
 	margin-top :15px;
 }
 
-#sub_title{
+#sub_tit{
 	font-size: 15pt;
 }
 .con_box{
-	width : 1350px;
-	height :  1200px;
+	width : 1080px;
 	margin : auto;
 }
-.table_box{
+.tab_box{
 	width:100%;
 	border-top:2px solid #82b2da;
-	margin-top: 14px;
 }
-#con_table{
+#con_tab{
+	width : 100%;
 	border-collapse:collapse;
 	border-spacing:0px;
 }
 thead{
 	display: table-header-group;
 	vertical-align: middle;
+	background-color:#f0f0f5;
 }
 th,td{
-	border : 1px solid #f0f0f5;
+	border : 1px solid #e0e0eb;
 	border-collapse: collapse;
 	padding : 10px;
+	text-align: center;
 }
 
-.img_box{
-	width:100%;
-	text-align: center; /*문자의 정렬 방식을 지정.*/ 
-	margin-right: auto;
-	margin-left: auto;
-	padding:50px;
+#under_box{
+	width:1080px;
+	height:150px;
 }
 
-#footer{
-	width:100%;
-	height:75px;
-	margin-top : 630px;
-	background: #023459;
-}
-*{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-}
-.side_menu_sub{
-    display: block;
-    overflow: hidden;
-    text-align: center;
-}
-.nav{
-    overflow: hidden;
-	border-bottom:1px solid #82B2DA;
-}
-.btn{
-    display: block;
-    background-color: #fff;
-    color: black;
-    position: relative;
-    font-size: 20pt;
-    font-weight: bold;
-    height: 100px;
-    padding-top: 30px;
-
-}
-.btn:hover{
-background: #B2A59F;
-}
-.side_menu_sub_down{
-    background: #fff;
-    overflow: hidden;
-    transition: max-height 0.7s;
-    max-height: 0;
-}
-.side_menu_sub_down a{
-    display: block;
-    padding: 15px 20px;
-    color: #222;
-    font-size: 16px;
-   /* border-bottom: 1px solid #e0e0eb;*/
-    position: relative;
-    
-}
-.side_menu_sub_down a:after{
-    content: '';
-    opacity: 0;
-    transition: opacity 0.3s;
-
-}
-.side_menu_sub_down a:hover{
-    background: #B2A59F;
-   	transition: all 0.3s;
-    border-bottom: 1px solid #c8c8c8;
-}
-.side_menu_sub_down a:last-child{
-    border:none;
-}
-.nav:target .side_menu_sub_down{
-    max-height: 16em;
-}
-#box_con_img{
-	width:50px;
-	margin-bottom: -10px;
-}
 </style>
 </head>
 <body>
@@ -366,6 +301,7 @@ background: #B2A59F;
 	</ul>
 </div>
 </header>
+<body>
 
 <section>
   <article>
@@ -373,98 +309,100 @@ background: #B2A59F;
 			<div id="sidebar_top">
 			역 내외 시설
 			</div>
-			
 			<div id="side_menu">
-				 <ul class="side_menu_sub">
-           			 <li class="nav" id="inside_esta">
-               		 <a href="#inside_esta" class="btn">내부 편의시설</a>
-                		<div class="side_menu_sub_down">
-                    		<a href="baby.html">수유실</a>
-                    		<a href="wheelchair.html">휠체어 이용 승·하차 안내</a>
-                    		<a href="cycle.html">자전거 보관함</a>
-                    		<a href="happy.html">행복지대</a>
-                		</div>
-           			 </li>
-           		 <li class="nav" id="outside_esta">
-                <a href="#outside_esta" class="btn">외부시설</a>
-            		</li>
-       			 </ul>
+			<div id="side_sub_menu"><a href="#">내부 편의시설</a></div>
+			<div id="side_sub_menu"><a href="#">외부 시설</a></div>
 			</div>
-			
 		</div>
 		<div id="box_top">
 		
-		 <div class="box_title">
+		 <div class="box_tit">
         
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>내부 편의시설>행복지대 &nbsp;
+		                  	홈>역 내외 시설 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
-		<div id="box_con">
-			<img id="box_con_img" src="images/쉼터검.png"/>
-			<div id="box_con_text">
-			행복지대
+    	
+    	
+    	<div id="box_con">
+			<div id="box_con_cir"><img alt="편의시설" src="eleva.png" width="50px" height="50px"> </div>
+			<div id="box_con_txt">
+			역 내부 편의시설 현황
 			</div>
-			<div class="table_box">
-			<table id="con_table">
-				<colgroup>
-					<col width="337.5px">
-					<col width="270px;">
-					<col width="202.5px;">
-					<col width="270px;">
-					<col width="270px;">
-				</colgroup>
-				<thead>
-					<tr style=background-color:#f0f0f5;>
-						<th>역명</th>
-						<th>위치</th>
-						<th>면적(㎡)</th>
-						<th>운영기관</th>
-						<th>전화번호</th>
-					</tr>
-				</thead>
-				<tbody style = text-align:center;>
-					<tr>
-						<td>신금호역(5호선)</td>
-						<td>상선승강장</td>
-						<td>25</td>
-						<td>서울교통공사</td>
-						<td>02-6311-5381</td>
-					</tr>				
-					<tr>
-						<td>왕십리역(5호선)</td>
-						<td>상선승강장</td>
-						<td>70</td>
-						<td>서울교통공사</td>
-						<td>02-6311-5401</td>
-					</tr>				
-					<tr>
-						<td>가산디지털단지역(7호선)</td>
-						<td>상선승강장</td>
-						<td>38</td>
-						<td>서울교통공사</td>
-						<td>02-6311-7461</td>
-					</tr>				
-				</tbody>
-			</table>
+			
+			<div class="con_box">
+			<hr id = "hr"/>
+			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
+			<div style="float: right;">
+			원하시는 역의 이름을 검색하세요&nbsp;
+			<input type="text" value="역 검색">
+			</div>
+			<br/>
 				
-				<div class="box_happy">
-						<div class="img_box">
-							<img src="./images/행복지대 5호선.PNG"/>
-							<img src="./images/행복지대 5~7호선.PNG"/>
-						</div>
-				</div>
+			<div id = "sub_tit"><strong>서울 역</strong></div>
+			<div class = "tab_box">
+				<table id="con_tab">
 					
-		</div>	
-		</div>
-	   </div>
-  </article>
+					<thead>
+						<tr>
+							  <th>엘리베이터</th>
+			 <th>에스컬레이터</th> <th>수평보행기</th>
+			  <th>휠체어리프트</th> <th>이동식안전발판</th>
+			   <th>휠체어충전기</th> <th>장애인 화장실</th>
+			    <th>음성 유도기</th></tr>
+											
+					</thead>
+					<tbody>
+						<tr>
+							<tr>
+			    <td>4</td><td>5</td>
+			    <td>x</td><td>1</td><td>1</td>
+			    <td>x</td><td>1</td><td>33</td>
+			    </tr>
+						</tr>
+					</tbody>				
+				</table>
+			</div><br/>
+			
+			
+			<div class = "tab_box">
+				<table id="con_tab">
+					
+					<thead>
+						<tr>
+			     <th>물품보관함</th>
+			 <th>무인민원 발급기</th> <th>현금 지급기</th>
+			  <th>위생용품 자판기</th> <th>자동 사진기</th>
+			   <th>무인환전<br/>키오스크</th> <th>수유실</th>
+			    <th>자전거 보관함</th></tr>
+			   			
+					</thead>
+					<tbody>
+			<tr>
+			 <td>5</td><td>x</td>
+			    <td>1</td><td>1</td><td>1</td>
+			    <td>x</td><td>1</td><td>x</td>
+			    </tr>
+					</tbody>				
+				</table>
+    	
+    	</div>
+    	<br/>
+    	</div>
+    	
+    	
+    	
+    	</div>
+		
+    	</div>
+    	
+    	
+ </article>
 </section>
 
-<footer id = "footer"></footer>
+
 </body>
 </html>
-

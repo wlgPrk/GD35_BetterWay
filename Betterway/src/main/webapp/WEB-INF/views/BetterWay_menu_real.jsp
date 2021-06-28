@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>자전거 보관함</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <script type="text/javascript">
 </script>
 
@@ -94,9 +96,9 @@ nav ul {
 	
 
 article {/* 섹션 안 큰내용, 가운데정렬 */
- 	 background-color: #fff;
+  background-color: #fff;
     height: 100%;
-  	margin: 0px auto;
+  margin: 0px auto;
     width:1440px;
     background: orange;
   
@@ -144,12 +146,11 @@ color: #fff;
 
   .box_title{
     position: relative;
- 	background-image:url("./images/서브타이틀_배경.png");       
-    background-size : cover;                    
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
+    background-size : cover;                     
   height:216px;
 
   }
-
 
 .img_cov{
  backdrop-filter: blur(5px);
@@ -167,7 +168,7 @@ background:rgba(52, 75, 22, 0.63);
    
 
 }
-.img_cov_contxt{
+.img_cov_context{
 font-weight: bold;
 background: #1E646E;
 color:#fff;
@@ -189,11 +190,6 @@ padding:5px;
 font-size: 25pt;
 float: left;
 }
-#box_con_sub_num{
-margin-top:-1px;
-font-size: 15pt;
-float: left;
-}
 .line_sel_bar{
 border-bottom:2px solid #E0E0EB;
 margin-top: 50px;
@@ -211,7 +207,7 @@ margin-left: 10px;
 
 }
 
-#side_sub_menu{
+/*#side_menu_sub{
 text-align: center;
 font-size: 20pt;
 font-weight:bold;
@@ -221,35 +217,52 @@ padding-top: 30px;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
-
-}
+}*/
 
 p{
 margin-top: 10px;
 margin-bottom:30px;
 font-weight: bold;
-margin-left: 20px
 }
 #hr{
 	margin-top :15px;
 }
+
 #sub_title{
 	font-size: 15pt;
 }
-#img_cycle,#img_cycle2{
-	text-align: center;
-}
 .con_box{
 	width : 1080px;
-	height : 1000px;
 	margin : auto;
 }
+.table_box{
+	width:100%;
+	border-top:2px solid #82b2da;
+}
+#con_table{
+	width : 100%;
+	border-collapse:collapse;
+	border-spacing:0px;
+}
+thead{
+	display: table-header-group;
+	vertical-align: middle;
+	background-color:#f0f0f5;
+}
+th,td{
+	border : 1px solid #e0e0eb;
+	border-collapse: collapse;
+	padding : 10px;
+	text-align: center;
+}
+
 #footer{
 	width:100%;
 	height:75px;
-	margin-top : 530px;
+	margin-top : 500px;
 	background: #023459;
 }
+
 *{
     margin: 0;
     padding: 0;
@@ -311,16 +324,15 @@ background: #B2A59F;
 .nav:target .side_menu_sub_down{
     max-height: 16em;
 }
-#box_con_img{
-	width:65px;
-}
+
+
 </style>
 </head>
 <body>
 
 <header>
   <a class="main" href="menu.html">BetterWay</a>
-<div id="menu">
+	<div id="menu">
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
@@ -362,14 +374,18 @@ background: #B2A59F;
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                    		<a href="baby.html">수유실</a>
-                    		<a href="wheelchair.html">휠체어 이용 승·하차 안내</a>
-                    		<a href="cycle.html">자전거 보관함</a>
-                    		<a href="happy.html">행복지대</a>
+                    		<a href="BetterWay_baby.html">수유실</a>
+                    		<a href="BetterWay_wheelchair.html">휠체어 이용 승·하차 안내</a>
+                    		<a href="BetterWay_cycle.html">자전거 보관함</a>
+                    		<a href="BetterWay_happy.html">행복지대</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
                 <a href="#outside_esta" class="btn">외부시설</a>
+                	<div class="side_menu_sub_down">
+                   		 	<a href="">제품소개1</a>
+                   	 		<a href="">제품소개2</a>
+                	</div>
             		</li>
        			 </ul>
 			</div>
@@ -380,45 +396,22 @@ background: #B2A59F;
 		 <div class="box_title">
         
 		        <div class="img_cov">
-		      
-		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>내부 편의시설>자전거 보관함 &nbsp;
-		                  	</div>
-		            </div>
+		             <div class="img_cov_con">
+		                 	홈>역 내외 시설>내부 편의시설> &nbsp;
+		             </div>
+		       </div>
     	</div>
 		<div id="box_con">
-			<img id="box_con_img" src="images/자전거검.png"/>
+			<img id="box_con_img" />
 			<div id="box_con_text">
-			자전거 보관함
+			수유실
 			</div>
-			<hr id = "hr"/><br/>
-			
-			<div id = "box_con_sub_num">Ⅰ </div>
-			<h4 id = "sub_title">사물함형 자전거 보관함 설치 역</h4>
-				<p>6호선 - 고려대역 / 화랑대역 / 봉화산역
-				<br/>7호선 - 역골역 / 신풍역</p>
-			<br/>
-			
-			<div id = "box_con_sub_num">Ⅱ </div>
-			<h4 id = "sub_title">사물함형 자전거 보관함 사용 방법</h4>
-			<br/>
-			<div id = "img_cycle">
-				<img src="./images/자전거 보관함.PNG"/>
-			</div><br/><br/>
-			
-			<div id = "box_con_sub_num">Ⅲ </div>
-			<h4 id = "sub_title">자전거 찾기</h4>
-			<br/>
-			<div id = "img_cycle2">
-				<img src="./images/자전거 찾기.PNG"/>
-			</div>
-									
-		</div>	
+						
+			</div>	
 	   </div>
   </article>
 </section>
 
-<footer id = "footer"></footer>
+<footer id = "footer"></footer>	
 </body>
 </html>
-

@@ -1,12 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>실내 공기 질 정보 안내</title>
-<script type="text/javascript">
-
-
-</script>
+<title>Insert title here</title>
 <style type="text/css">
 body {
 	   
@@ -149,7 +147,6 @@ margin-top: 60px;
 text-decoration: underline;
 }
 </style>
-
 </head>
 <body>
 <header>
@@ -185,7 +182,8 @@ text-decoration: underline;
 		
 			<div class="sub_con" >
 			    <div class="con_side" style="border:1px solid #B2A59F; border-right: #fff;">
-							<img src="underground.png" style="width:100px;"/>
+							<img src="resources/images/
+							underground.png" style="width:100px;"/>
 							<div class="station" id="result_val">
 							역이름
 							</div>
@@ -218,5 +216,4 @@ text-decoration: underline;
 		</div><!--wrap end  -->			
 	</div>
 </body>
-
 </html>

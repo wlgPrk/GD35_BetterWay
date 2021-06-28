@@ -1,19 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>CSS Template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <script type="text/javascript">
 function popup(){
-	window.open('airQ.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
+	window.open('BetterWay_envinfoGuide.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
 
 }
 
 
 
 </script>
-
 
 <style>
 * {
@@ -133,14 +133,13 @@ color: #fff;
 }
 #box_top {
 	float: right;
-	
 	width:75%;
 	height: 645px; /* 임의 지정 */
 }
 
   .box_title{
     position: relative;
- 	background-image:url("./handleimg.png");       
+ 	background-image:url("resources/images/handleimg.png");       
                 background-size:cover;       
   height:216px;
 
@@ -316,7 +315,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 		            </div>
     	</div>
 		<div id="box_con">
-			<div id="box_con_cir"><img id="cooling_Icon"src="./airconditioner.png"/></div>
+			<div id="box_con_cir"><img id="cooling_Icon"src="resources/images/airconditioner.png"/></div>
 			
 			<div id="box_con_txt">
 				차량별 냉방상태
@@ -339,28 +338,9 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 					
 					    <span id="target134">1호선 / 3호선 / 4호선</span>		 
 				    <div >
-						<img id="img"alt="134line" src="134line.png" >
+						<img id="img"alt="134line" src="resources/images/134line.png" >
 					</div>	
-				    	<span  id="target567">5호선 / 6호선 / 7호선</span>			
-					<div>
-						<img id="img"alt="567line" src="567line.png" >
-					</div>	
-				    	<span id="target8">8호선</span>			
-					<div >
-						<img id="img"alt="8line" src="8line.png">
-					</div>	
-					    <span  id="targetKJ">경의중앙선</span>		
-					<div>
-						<img id="img"alt="KJline" src="KJline.png"  >
-					</div>	
-				    	<span id="targetBW">분당선 왕십리행</span>			
-					<div >
-						<img id="img"alt="BWline" src="BWline.png" >
-					</div>	
-				    	<span id="targetBS">분당선 수원행</span>			
-					<div >
-						<img id="img"alt="BSline" src="BSline.png"  >
-					</div>	
+				    	
   			</div>
 	   </div>
   </div>
@@ -377,4 +357,3 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 </body>
 
 </html>
-

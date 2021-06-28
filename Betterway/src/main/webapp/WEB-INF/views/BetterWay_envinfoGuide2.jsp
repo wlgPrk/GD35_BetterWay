@@ -1,12 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>실내 공기 질 정보 안내</title>
-<script type="text/javascript">
-
-
-</script>
+<title>Insert title here</title>
 <style type="text/css">
 body {	   
 	font-size: 18px;
@@ -53,7 +51,8 @@ a {
 
 .box_title{
 	position: relative;
-	background-image:url("./handleimg.png");             
+	background-image:url("resources/images/
+	/handleimg.png");             
 	height:88px;
 
   }
@@ -103,7 +102,6 @@ font-size: 13px;
 text-align: left;
 }
 </style>
-
 </head>
 <body>
 <header>
