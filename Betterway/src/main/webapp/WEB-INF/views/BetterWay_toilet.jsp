@@ -155,7 +155,7 @@ color: #fff;
 
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("sub.png");
+ background-image: url("resources/images/sub.png");
  background-size:cover;
    height:216px;
    padding-top: 160px;
@@ -345,7 +345,7 @@ font-weight: bold;
 			<div id = "sub_tit">&nbsp;&nbsp;&nbsp;<strong>5호선</strong></div>
 			<div>
 			
-			<img alt="화장실 노선도" src="toilet_5.png">
+			<img alt="화장실 노선도" src="resources/images/toilet_5.png">
 			
 			</div>
 			

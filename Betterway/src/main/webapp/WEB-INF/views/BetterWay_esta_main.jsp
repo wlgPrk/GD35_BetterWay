@@ -155,7 +155,7 @@ color: #fff;
 
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("sub.png");
+ background-image: url("resources/images/sub.png");
  background-size:cover;
    height:216px;
    padding-top: 160px;
