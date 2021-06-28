@@ -209,7 +209,7 @@ text-decoration: underline;
 							<td style="background: #CC3D3D; color:#fff;">매우나쁨</td>
 						</tr>
 						<tr><th colspan="4" style="font-weight:normal; font-size:8px; padding-top:5px;">	
-						*0~30㎍/m³'좋음' 31~80㎍/m³'보통'<br/> 81~150㎍/m³'나쁨' 151㎍/㎥ 초과 '매우 나쁨'<br/><br/><a id="air_guide_btn"href="airQGuide.html" style="font-size: 15px; color:#000;">▷ 실내 공기질 유지 기준 안내 보러가기</a></th></tr>
+						*0~30㎍/m³'좋음' 31~80㎍/m³'보통'<br/> 81~150㎍/m³'나쁨' 151㎍/㎥ 초과 '매우 나쁨'<br/><br/><a id="air_guide_btn"href="BetterWay_envinfoGuide2" style="font-size: 15px; color:#000;">▷ 실내 공기질 유지 기준 안내 보러가기</a></th></tr>
 					</table>			
 			    </div>
 			</div><!-- sub_con end -->
