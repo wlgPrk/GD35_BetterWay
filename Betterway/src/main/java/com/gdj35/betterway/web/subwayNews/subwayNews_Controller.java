@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class subwayNews_Controller {
 	
 	//지하철뉴스
-	@RequestMapping(value="/subwayNews")
+	@RequestMapping(value="/BetterWay_subwayNews")
 	public ModelAndView subwayNews(ModelAndView mav) {
 		
-		mav.setViewName("/subwayNews");
+		mav.setViewName("/BetterWay_subwayNews");
 		
 		return mav;
 	}//subwaynews end

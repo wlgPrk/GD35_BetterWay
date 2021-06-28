@@ -8,30 +8,30 @@ import org.springframework.web.servlet.ModelAndView;
 public class board_Controller {
 
 	//건의게시판목록
-	@RequestMapping(value="/suggestList")
+	@RequestMapping(value="/BetterWay_suggestList")
 	public ModelAndView suggestList(ModelAndView mav) {
 		
-		mav.setViewName("/suggestList");
+		mav.setViewName("/BetterWay_suggestList");
 		
 		return mav;
 	}//suggestListe end
 	
 	
 	//건의게시판내용
-	@RequestMapping(value="/suggestContent")
+	@RequestMapping(value="/BetterWay_suggestContent")
 	public ModelAndView suggestContent(ModelAndView mav) {
 		
-		mav.setViewName("/suggestContent");
+		mav.setViewName("/BetterWay_suggestContent");
 		
 		return mav;
 	}//suggestContent end
 	
 	
 	//건의게시판쓰기
-	@RequestMapping(value="/suggestWrite")
+	@RequestMapping(value="/BetterWay_suggestWrite")
 	public ModelAndView suggestWrite(ModelAndView mav) {
 		
-		mav.setViewName("/suggestWrite");
+		mav.setViewName("/BetterWay_suggestWrite");
 		
 		return mav;
 	}//suggestWrite end

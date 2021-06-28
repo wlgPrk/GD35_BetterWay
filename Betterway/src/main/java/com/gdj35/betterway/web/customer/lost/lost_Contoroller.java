@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class lost_Contoroller {
 	
 	//유실물조회
-	@RequestMapping(value="/lostAndFound")
+	@RequestMapping(value="/BetterWay_lostAndFound")
 	public ModelAndView lostAndFound(ModelAndView mav) {
 		
-		mav.setViewName("/lostAndFound");
+		mav.setViewName("/BetterWay_lostAndFound");
 		
 		return mav;
 	}//lostAndFound end
