@@ -155,7 +155,7 @@ color: #fff;
 
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("sub.png");
+ background-image: url("resources/images/sub.png");
  background-size:cover;
    height:216px;
    padding-top: 160px;
@@ -271,7 +271,7 @@ th,td{
 <body>
 
 <header>
-  <a class="main" href="menu.html">BetterWay</a>
+  <a class="main" href="main">BetterWay</a>
 <div id="menu">
 	<ul>
 		<li><a href="#">교통안내</a>

@@ -14,6 +14,12 @@ public class main_Controller {
 		
 		return mav;
 	}
-
+	@RequestMapping(value="/pop1")
+	public ModelAndView pop1(ModelAndView mav) {
+		
+		mav.setViewName("/pop1");
+		
+		return mav;
+	}
 
 }

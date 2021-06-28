@@ -9,18 +9,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" 
-		src="resources/script/common/popup.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#charge_guide").on("click", function(){
-		makePopup("Test", "테스트중입니다.");
+	$(".charge_guide").on("click", function(){
+		window.open('pop1.html','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
+	
 	});
 	
-	$("#realtime_train_box").on("click", function () {
-		window.open('https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do');
-		location.href = "https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do";
+	$(".map_guide").on("click", function(){
+		location.href = "BetterWay_subLineSearch";
+	
+	});
+	
+	$(".cov_guide").on("click", function(){
+		location.href = "BetterWay_esta_main";
+	
+	});
+	
+	
+	
+	$(".realtime_train_box").on("click", function () {
+		 window.open("https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do")
+
+		
 	});
 });
 
@@ -528,26 +540,26 @@ font-family: inherit;
 
 
 	<header>
-		<a class="main" href="#">BetterWay</a>
+		<a class="main" href="main">BetterWay</a>
 		<div id="top_menu">
 			<ul>
 				<li><a href="#">교통안내</a>
 					<ul>
-						<li><a href="#">사이버스테이션</a></li>
-						<li><a href="#">실시간 열차정보</a></li>
-						<li><a href="#">역주변 버스정류장 연계</a></li>
-						<li><a href="#">역 내외 시설</a></li>
+						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
+						<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
+						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 					</ul></li>
 				<li><a href="#">환경정보안내</a>
 					<ul>
-						<li><a href="#">실내 공기질 정보 제공</a></li>
-						<li><a href="#">차량 별 냉방상태</a></li>
+						<li><a href="BetterWay_eveinfoGuide">실내 공기질 정보 제공</a></li>
+						<li><a href="BetterWay_eveinfoGuide2">차량 별 냉방상태</a></li>
 					</ul></li>
-				<li><a href="#">지하철 뉴스</a></li>
-				<li><a href="#">고객의 소리</a>
+				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
+				<li><a href="BetterWay_suggestList">고객의 소리</a>
 					<ul>
-						<li><a href="#">유실물 조회</a></li>
-						<li><a href="#">건의 게시판</a></li>
+						<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
+						<li><a href="BetterWay_suggestList">건의 게시판</a></li>
 					</ul></li>
 			</ul>
 		</div>

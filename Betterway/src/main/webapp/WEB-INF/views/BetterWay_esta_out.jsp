@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,7 +155,7 @@ color: #fff;
 
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("sub.png");
+ background-image: url("resources/images/sub.png");
  background-size:cover;
    height:216px;
    padding-top: 160px;

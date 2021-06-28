@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,7 +235,7 @@ th,td{
     	</div>
 			<div class="wrap">
 			<table style="position: relative; left: 80px;" >
-<tbody><tr><th class="table_thead" width=100>번호</th>
+<tbody><tr><th class="table_thead" width=100>분류</th>
 <th >교통카드</th><th>1회용 교통카드</th></tr>
 <tr><th  >일반</th><td >* 기본운임 : 10km까지 : 900원<br>* 추가운임<br>- 10km초과~40km까지 : 5km 마다 100원<br>
 - 40km초과시 : 10km 마다 100원<br>

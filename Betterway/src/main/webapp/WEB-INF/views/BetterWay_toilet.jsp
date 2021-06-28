@@ -1,21 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Template</title>
+<title>화장실 위치</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript">
-function popup(){
-	window.open('airQ.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
-
-}
-
-
-
 </script>
 
-
-<style>
+<style type="text/css">
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,14 +35,12 @@ header { /* 상단 큰메뉴바 */
   align-items: center;
    
 }
-
 ul li{
 		list-style: none;
 	}
 	a {
 		text-decoration: none;
 		color:#333;
-		width:250px;
 	}
 
 	#menu {
@@ -112,17 +104,31 @@ article {/* 섹션 안 큰내용, 가운데정렬 */
   
 }
 
+section:after { /* 뒷배경 */
+  content: "";
+  display: table;
+
+  clear: both;
+  background: orange;
+}
 
 
+/* 
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+} */
 
 /* 사이드랑 박스  가로*/
-#side {
+#sidebar {
 	float: left;
 background:#fff;
 	width: 25%;
 	/* 임의 지정 */
 }
-#side_top{
+#sidebar_top{
 height:216px;
 background:#82B2DA;
 padding-top: 80px;
@@ -138,22 +144,24 @@ color: #fff;
 	height: 645px; /* 임의 지정 */
 }
 
-  .box_title{
+  .box_tit{
     position: relative;
- 	background-image:url("./handleimg.png");       
-                background-size:cover;       
+ background-image:url("./images/서브타이틀_배경.png");       
+                       
   height:216px;
 
   }
 
 
-.img_cover{
+.img_cov{
  backdrop-filter: blur(5px);
+ background-image: url("resources/images/sub.png");
+ background-size:cover;
    height:216px;
    padding-top: 160px;
  
 }
-.img_cover_con{/* 어디로 왔능가  */
+.img_cov_con{/* 어디로 왔능가  */
 
 font-size: 20pt;
 
@@ -163,7 +171,7 @@ background:rgba(52, 75, 22, 0.63);
    
 
 }
-.img_cover_contxt{
+.img_cov_contxt{
 font-weight: bold;
 background: #1E646E;
 color:#fff;
@@ -176,21 +184,21 @@ border-radius: 15px 15px 15px 15px;
 
 #box_con_txt{
 margin-top: 30px;
-
+font-weight :bold;
 font-size: 30pt;
 
 }
-#box_con_cir{
+#box_con_img{
 padding:5px;
 font-size: 25pt;
 float: left;
 }
-.cooling_line_search{
+.line_sel_bar{
 border-bottom:2px solid #E0E0EB;
 margin-top: 50px;
 height:30px;
 }
-.cooling_line_search>.scroll:hover{
+.line_sel_bar>.scroll:hover{
 text-decoration:underline;
 }
 
@@ -216,48 +224,40 @@ background: #B2A59F;
 }
 
 p{
-margin-top: 30px;
+margin-top: 10px;
 margin-bottom:30px;
-text-align: center;
 font-weight: bold;
 }
-#footer{
-font:bold 16px "malgun gothic";
-		width: 100vw;
-		height:75px;
-	  background: #023459;
-		color:black;
-		line-height: 50px; 
-		text-align: center;
- margin-top:850px;
+#hr{
+	margin-top :15px;
 }
-#cooling_Icon{
-width:60px;
-height:60px;
-margin-right:5px;
+
+#sub_tit{
+	font-size: 15pt;
 }
+.con_box{
+	width : 1080px;
+	margin : auto;
+}
+.tab_box{
+	width:100%;
+	border-top:2px solid #82b2da;
+}
+#con_tab{
+	width : 100%;
+	border-collapse:collapse;
+	border-spacing:0px;
+}
+
+
+#under_box{
+	width:1080px;
+	height:150px;
+}
+
 </style>
 </head>
 <body>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
-
-<script>/* 그림 두개로,,,,,,하라고 하심 */
-
-jQuery(document).ready(function($) {
-
-$(".scroll").click(function(event){            
-
-event.preventDefault();
-
-$('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-
-});
-
-});
-
-</script>
-
-
 
 <header>
   <a class="main" href="menu.html">BetterWay</a>
@@ -265,7 +265,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li><a href="zoom_search.html">사이버스테이션</a></li>
+				<li><a href="zoom.html">사이버스테이션</a></li>
 				<li><a href="#">실시간 열차정보</a></li>
 				<li><a href="#">역주변 버스정류장 연계</a></li>
 				<li><a href="#">역 내외 시설</a></li>
@@ -274,7 +274,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 		<li><a href="#">환경정보안내</a>
 			<ul>
 				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
-				<li><a href="menu.html">차량 별 냉방상태</a></li>
+				<li><a href="conditionInfo.html">차량 별 냉방상태</a></li>
 			</ul>
 		</li>
 		<li><a href="#">지하철 뉴스</a>
@@ -290,90 +290,74 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 	</ul>
 </div>
 </header>
+<body>
 
 <section>
-  
   <article>
-		<div id="side">
-			<div id="side_top">
-			환경정보 안내
+		<div id="sidebar">
+			<div id="sidebar_top">
+			역 내외 시설
 			</div>
 			<div id="side_menu">
-			<div id="side_sub_menu"><a href="javascript:popup();">실내 공기질 정보안내</a></div>
-			<div id="side_sub_menu"><a href="#">차량별 냉방상태</a></div>
+			<div id="side_sub_menu"><a href="#">내부 편의시설</a></div>
+			<div id="side_sub_menu"><a href="#">외부 시설</a></div>
 			</div>
 		</div>
 		<div id="box_top">
 		
-		 <div class="box_title">
+		 <div class="box_tit">
         
-		        <div class="img_cover">
+		        <div class="img_cov">
 		      
-		                  <div class="img_cover_con">
-		                  	홈>환경정보 안내>차량별 냉방상태 &nbsp;
+		                  <div class="img_cov_con">
+		                  	홈>역 내외 시설>내부 편의시설>화장실 안내 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
-		<div id="box_con">
-			<div id="box_con_cir"><img id="cooling_Icon"src="./airconditioner.png"/></div>
-			
+    	
+    	
+    	<div id="box_con">
+			<div id="box_con_img">●</div>
 			<div id="box_con_txt">
-				차량별 냉방상태
-			</div>	
-			
-			<div class="cooling_line_search">
-				<a >▷</a>
-				<a href="#target134" class="scroll">1호선 / 3호선 / 4호선</a>
-				<a href="#target567" class="scroll">5호선 / 6호선 / 7호선</a>
-				<a href="#target8" class="scroll">8호선</a>
-				<a href="#targetKJ" class="scroll">경의중앙선</a>
-				<a href="#targetBW" class="scroll">분당선(왕십리)</a>
-				<a href="#targetBS" class="scroll">분당선(수원)</a>
+			호선별 화장실 현황
 			</div>
 			
-			<p>사람마다 춥고 더움의 기준이 다르다 보니, 지하철이 춥다는 민원이 들어오기도 합니다. <br/>이러한 민원을 받아들여 만들어진 칸이 바로 ‘약냉방칸’입니다.<br/>
-			더위를 잘 타는 사람들은 피해야 하고, 추위를 잘 타는 사람들에게는 필요한 약냉방칸.<br/>
-			상황에 맞게 적절히 지하철에 탑승할 수 있도록 주요 지하철 노선마다 배치된 약냉방칸을 알려드릴게요.</p>
-			<div class="line_con">
-					
-					    <span id="target134">1호선 / 3호선 / 4호선</span>		 
-				    <div >
-						<img id="img"alt="134line" src="134line.png" >
-					</div>	
-				    	<span  id="target567">5호선 / 6호선 / 7호선</span>			
-					<div>
-						<img id="img"alt="567line" src="567line.png" >
-					</div>	
-				    	<span id="target8">8호선</span>			
-					<div >
-						<img id="img"alt="8line" src="8line.png">
-					</div>	
-					    <span  id="targetKJ">경의중앙선</span>		
-					<div>
-						<img id="img"alt="KJline" src="KJline.png"  >
-					</div>	
-				    	<span id="targetBW">분당선 왕십리행</span>			
-					<div >
-						<img id="img"alt="BWline" src="BWline.png" >
-					</div>	
-				    	<span id="targetBS">분당선 수원행</span>			
-					<div >
-						<img id="img"alt="BSline" src="BSline.png"  >
-					</div>	
-  			</div>
-	   </div>
-  </div>
-
-  </article>
-   
+			<div class="con_box">
+			<hr id = "hr"/>
+			<p>화장실의 위치를 표시했습니다.</p> 
+			<div style="float: right;">
+			호선을 검색하세요&nbsp;
+			<select>
+			<option value="">호선 선택</option>
+			<option value="1호선">1호선</option>
+			<option value="2호선">2호선</option>
+			<option value="3호선">3호선</option>
+			<option value="4호선">4호선</option>
+			<option value="5호선">5호선</option>
+			<option value="6호선">6호선</option>
+			<option value="7호선">7호선</option>
+			<option value="8호선">8호선</option>
+			<option value="9호선">9호선</option>
+			</select>
+			</div>
+			<br/>
+				
+			<div id = "sub_tit">&nbsp;&nbsp;&nbsp;<strong>5호선</strong></div>
+			<div>
+			
+			<img alt="화장실 노선도" src="resources/images/toilet_5.png">
+			
+			</div>
+			
+			
+    	</div>
+    	</div>
+    	</div>
+    	
+    	
+ </article>
 </section>
 
-	   <div id="footer">
-
-		</div>
-		
 
 </body>
-
 </html>
-
