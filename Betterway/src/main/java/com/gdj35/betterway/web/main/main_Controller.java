@@ -1,8 +1,8 @@
-package web.customer.board;
+package com.gdj35.betterway.web.main;
 
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class board_Contoroller {
+public class main_Controller {
 
 }

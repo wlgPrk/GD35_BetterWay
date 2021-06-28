@@ -1,4 +1,4 @@
-package web.envginfoGuide.airInfo;
+package com.gdj35.betterway.web.evginfoGuide.airInfo;
 
 import org.springframework.stereotype.Controller;
 

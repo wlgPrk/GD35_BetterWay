@@ -1,4 +1,4 @@
-package web.subwayNews;
+package com.gdj35.betterway.web.subwayNews;
 
 import org.springframework.stereotype.Controller;
 

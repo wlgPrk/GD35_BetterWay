@@ -1,4 +1,4 @@
-package web.customer.lost;
+package com.gdj35.betterway.web.customer.lost;
 
 import org.springframework.stereotype.Controller;
 

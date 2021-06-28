@@ -1,4 +1,4 @@
-package web.trafficGuide;
+package com.gdj35.betterway.web.trafficGuide;
 
 import org.springframework.stereotype.Controller;
 

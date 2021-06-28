@@ -1,4 +1,4 @@
-package web.envginfoGuide.cooling;
+package com.gdj35.betterway.web.evginfoGuide.cooling;
 
 import org.springframework.stereotype.Controller;
 
