@@ -1,11 +1,11 @@
-
-   
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset='utf-8'/>
-	<title>출발 도착 역검색</title>
-	<style>*{
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>*{
 overflow: hidden;
 }
 	div{
@@ -250,7 +250,8 @@ margin-top:13px;
 			    <div id="charge_P">요금출력</div>
 			    <div class="table_img" >
 				    <div class="table_img1">
-					<img alt="subimg" src="underground.png" style="width:80px; hieght:80px"></div>
+					<img alt="subimg" src="resources/images/
+					underground.png" style="width:80px; hieght:80px"></div>
 				   
 				    <div class="table_img2">
 					<div id="train_for">OO행</div>
@@ -269,11 +270,12 @@ margin-top:13px;
 
 </div>
 <div class="subline_img"><span class='zoom' id='zooming'>
-		<img src='naver_subway.jpg' width='100%' height='100%'/>
+		<img src='resources/images/
+		naver_subway.jpg' width='100%' height='100%'/>
 		<p>마우스를 올려 확대해보세요.</p>
 	</span>
 </div>
 
 </body>
+
 </html>
-   

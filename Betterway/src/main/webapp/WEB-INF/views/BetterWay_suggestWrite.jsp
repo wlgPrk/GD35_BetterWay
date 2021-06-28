@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +118,7 @@ article {
 }
 #main-box1 {
 	height: 216px;
-	background-image: url("./Img/handle.png");
+	background-image: url("resources/images/handle.png");
 	backdrop-filter: blur(5px);	
 	padding-top: 160px;
 }
@@ -137,7 +139,7 @@ article {
 #main-caution {
 	height: 100px;
     border: 1px solid #ddd;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 11pt;
     text-align: center;
 }
@@ -149,7 +151,7 @@ article {
 #main-caution p { 
 	display: table-cell;
 	vertical-align: middle;
-	margin: 0 auto;
+
 }
 #main-caution img {
 	width: 17px;
@@ -266,7 +268,7 @@ article {
 /* 제목 이미지 */
 .tit_img{
 display:inline-block;
-background: url("./Img/suggest.png");
+background: url("resources/images/suggest.png");
 background-size: 40px;
 width : 40px;
 height : 40px;
@@ -275,10 +277,72 @@ height : 40px;
 
 /* 본문*/
 .con_box {
+
 	width: 900px;
 	margin: 0px auto;
 }
 
+
+/*아이디비밀번호속성 */
+.id_pw{
+outline: none;
+border : 1px solid #e0e0eb;
+	width: 250px;
+    height: 40px;
+    font-size: 20px;
+    margin-right:10px;
+
+}
+
+
+
+
+/*제목속성 */
+.con_title{
+outline: none;
+	border : 1px solid #e0e0eb;
+	width: 900px;
+    height: 40px;
+    font-size: 20px;
+	margin:20px 0 20px 0;
+}
+/*내용속성 */
+.con{
+outline: none;
+
+border : 1px solid #e0e0eb;
+  font-size: 20px;
+}
+
+
+/* 버튼틀 */
+.btn_box{
+margin-top :10px;
+text-align: right;
+}
+
+/*취소버튼 */
+.cancel_btn{
+background-color:#e0e0eb;
+font-size: 20px;
+margin-right:10px;
+width :100px;
+height :50px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+}
+/*등록버튼*/
+.con_add{
+background-color:#82b2da;
+font-size: 20px;
+width :100px;
+height :50px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+
+}
 .footer{
 background-color: #023459;
 width :100%;
@@ -341,155 +405,24 @@ margin-top:20px;
 		<div class="tit_img"></div>	건의 게시판
 		</div>
 		<div id="main-caution">
-			<div><p><img alt="경고표시" src="./Img/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
+			<div><p><img alt="경고표시" src="resources/images/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
 				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p></div>
 		</div>
-		<div id="main-table">
-			<table>
-			<colgroup>
-			<col width="30px"/>
-			<col width="60px"/>
-			<col width="500px"/>
-			<col width="60px"/>
-			<col width="60px"/>
-			<col width="60px"/>
-			<col width="60px"/>
-			</colgroup>
-					<tr>
-						<th>번호</th>
-						<th>글의종류</th>
-						<th>제목</th>
-						<th>글쓴이</th>
-						<th>작성일</th>
-						<th>조회</th>
-						<th>추천</th>
-					</tr>
-					<tr>
-						<td>공지</td>
-						<td><img alt="공지" src="./Img/warning-red2.png"/></td>
-						<td>게시판 이용안내</td>
-						<td>관리자</td>
-						<td>21/05/13</td>
-						<td>530</td>
-						<td>22</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지" src="./Img/has-img.png"/></td>
-						<td><a href="Bboard2.html">건의합니다[2]</a></td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr id="table-last">
-						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-			</table>
-		</div>
-		<div id="main-write">
-			<a href="Bboard4.html"><input type="button" value="글쓰기" /></a>
-		</div>
-		<div id="main-pagenation-search">
-			<div>
-				<img alt="왼쪽화살표" src="./Img/arrow-left.png"/>
-					<span id="page-number"><a href="./Bboard3.html">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a></span>
-				<img alt="오른쪽화살표" src="./Img/arrow-right.png" />
-			</div>
-				<div id="search-box">
-					<span>
-						<select>
-							<option>선택</option>
-							<option>제목</option>
-							<option>작성자</option>
-						</select>
-					</span>	
-					<span>
-						<input type="text" />
-					</span>
-					<span>	
-						<input type="button" value="검색" />
-					</span>
-			</div>
-		</div>
+		
+		
+ 		<input type="text" class="id_pw" placeholder="아이디를 입력해주세요.">
+ 		<input type="password" class="id_pw" placeholder="패스워드를 입력해주세요."><br/>
+ 		※쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.<br/>
+ 		<input type="text" class="con_title" placeholder="제목을 입력해주세요."><br/>
+ 		
+ 		
+ 		
+ 		<textarea rows="15" cols="88" placeholder="내용을 입력해주세요." class="con"></textarea>
+ 	<div class="btn_box">
+	<input type="button" value="취소" class="cancel_btn">
+	<input type="button" value="등록" class="con_add">
+	</div>
+				
 	</div> <!-- con_box end -->
 	</div> <!-- right-box end -->
 	

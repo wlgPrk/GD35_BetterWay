@@ -1,26 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Better Way Main</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" 
+		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" 
+		src="resources/script/common/popup.js"></script>
+
 <script type="text/javascript">
-function popup1(){
-	window.open('popup1.html','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
-
-}
-function popup2(){
-	window.open('popup2.html','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
-
-}
-function startM(){
+$(document).ready(function(){
+	$("#charge_guide").on("click", function(){
+		makePopup("Test", "테스트중입니다.");
+	});
 	
-	
-}
+	$("#realtime_train_box").on("click", function () {
+		window.open('https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do');
+		location.href = "https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do";
+	});
+});
+
+
+
+
 </script>
-<style>
+<style type="text/css">
 * {
 	box-sizing: border-box;
 }
@@ -131,7 +139,7 @@ section:after {
 	
 }
 section{
-background-image :url("main.jpg");
+background-image :url("resources/images/main.jpg");
  border: 0;
     padding: 0; 
 min-height: 100%;
@@ -341,7 +349,7 @@ position:relative;
 display:inline-block;
 margin-left:10px;
 margin-top:25px;
-background-image :url("clock.png");
+background-image :url("resources/images/clock.png");
 background-position: center;
 
   background-size: cover;
@@ -355,7 +363,7 @@ position:relative;
 display:inline-block;
 margin-left:10px;
 margin-top:25px;
-background-image :url("ticket.png");
+background-image :url("resources/images/ticket.png");
 background-position: center;
   background-size: cover;
 width : 100px;
@@ -368,7 +376,7 @@ position:relative;
 display:inline-block;
 margin-left:10px;
 margin-top:25px;
-background-image :url("escalator.png");
+background-image :url("resources/images/escalator.png");
 background-position: center;
   background-size: cover;
 width : 100px;
@@ -381,7 +389,7 @@ position:relative;
 display:inline-block;
 margin-left:10px;
 margin-top:25px;
-background-image :url("map.png");
+background-image :url("resources/images/map.png");
 background-position: center;
   background-size: cover;
 width : 100px;
@@ -435,7 +443,7 @@ border: 1px solid silver;
 .box_realtime_train_con_img{
 position:relative;
 display:inline-block;
-background-image :url("train.png");
+background-image :url("resources/images/train.png");
 top: 10px;
 width : 100px;
 height: 100px;
@@ -565,7 +573,7 @@ font-family: inherit;
 			</div><br/>
 			<div class="realtime_train"
 			>
-				<div class="realtime_train_box">
+				<div name = "realtime_train_box" class="realtime_train_box">
 					<div class = "box_realtime_train_con_img"> </div>
 			<div class = "box_realtime_train_con_txt">
 			<div class = "box_con_head">실시간 열차 정보</div>
@@ -585,7 +593,7 @@ font-family: inherit;
 			<br/> <div>호선,역별 시간표를 알려드립니다.</div>
 			</div>
 			</div>
-			<div class = "charge_guide">
+			<div name = "charge_guide"class = "charge_guide">
 			<div class = "con_img_ticket"> </div>
 			<div class = "con_charge_txt">
 			<div class = "box_con_head">운임 안내</div>

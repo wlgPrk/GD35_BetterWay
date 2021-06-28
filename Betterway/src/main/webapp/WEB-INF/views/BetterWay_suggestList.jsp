@@ -1,6 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+
+
 <meta charset="UTF-8">
 <title>건의게시판 - 메인</title>
 <style type="text/css">
@@ -116,7 +120,7 @@ article {
 }
 #main-box1 {
 	height: 216px;
-	background-image: url("./Img/handle.png");
+	background-image: url("resources/images/handle.png");
 	backdrop-filter: blur(5px);	
 	padding-top: 160px;
 }
@@ -266,7 +270,7 @@ article {
 /* 제목 이미지 */
 .tit_img{
 display:inline-block;
-background: url("./Img/suggest.png");
+background: url("resources/images/suggest.png");
 background-size: 40px;
 width : 40px;
 height : 40px;
@@ -341,7 +345,7 @@ margin-top:20px;
 		<div class="tit_img"></div>	건의 게시판
 		</div>
 		<div id="main-caution">
-			<div><p><img alt="경고표시" src="./Img/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
+			<div><p><img alt="경고표시" src="resources/images/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
 				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p></div>
 		</div>
 		<div id="main-table">
@@ -366,7 +370,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>공지</td>
-						<td><img alt="공지" src="./Img/warning-red2.png"/></td>
+						<td><img alt="공지" src="resources/images/notice.png"/></td>
 						<td>게시판 이용안내</td>
 						<td>관리자</td>
 						<td>21/05/13</td>
@@ -375,7 +379,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지" src="./Img/has-img.png"/></td>
+						<td><img alt="이미지" src="resources/images/question.png"/></td>
 						<td><a href="Bboard2.html">건의합니다[2]</a></td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -384,7 +388,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -393,7 +397,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -402,7 +406,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -411,7 +415,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -420,7 +424,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -429,7 +433,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -438,7 +442,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -447,7 +451,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -456,7 +460,7 @@ margin-top:20px;
 					</tr>
 					<tr id="table-last">
 						<td>210513</td>
-						<td><img alt="이미지없음" src="./Img/chat.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
