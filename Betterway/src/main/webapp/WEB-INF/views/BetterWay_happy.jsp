@@ -343,7 +343,7 @@ background: #B2A59F;
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li><a href="zoom.html">사이버스테이션</a></li>
+				<li><a href="zoom.html">노선도</a></li>
 				<li><a href="#">실시간 열차정보</a></li>
 				<li><a href="#">역주변 버스정류장 연계</a></li>
 				<li><a href="#">역 내외 시설</a></li>
