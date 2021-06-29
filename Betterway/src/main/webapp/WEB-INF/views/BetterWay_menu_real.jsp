@@ -335,7 +335,7 @@ background: #B2A59F;
 <body>
 
 <header>
-  <a class="main" href="#">BetterWay</a>
+  <a class="main" href="BetterWay_main">BetterWay</a>
 	<div id="menu">
 	<ul>
 		<li><a href="#">교통정보안내</a>
