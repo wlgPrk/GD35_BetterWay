@@ -1,31 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<title>건의게시판</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+</script>
 
-
-<meta charset="UTF-8">
-<title>건의게시판 - 메인</title>
 <style type="text/css">
-* { 
+
+/*-------------------- 공용 시작 ---------------------*/
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0;
-  height: 100%;
-}	
+}
 
 /* Style the header */
-header {
+header { /* 상단 큰메뉴바 */
+  top: 0;
+  left: 0;
+  right: 0;
   height: 75px;
   padding: 1rem;
   color: white;
@@ -34,15 +37,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 100;
+   
 }
-.main{
-	color:white;
-	text-decoration : none;
-	font-size: 30px;
-}
-	ul li{
+ul li{
 		list-style: none;
 	}
 	a {
@@ -58,6 +55,7 @@ header {
 		color:black;
 		line-height: 50px; 
 		text-align: center;
+		z-index: 300;
 	}
 
 
@@ -73,226 +71,321 @@ header {
 		font-size:14px;
 		background: #fff;
 	}
-	#menu > ul > li:hover > ul { /* li가 hover 상태일때 ul의 display를 block으로 지정  */
-		display:block; 
+	#menu > ul > li:hover > ul {
+		display:block;
 	}
 	#menu > ul > li > ul > li:hover {
 		background: #B2A59F;
 		transition: ease 1s;
 		}
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
 
-article {
-	min-height: 100%;
-	width: 1440px;
-	margin: 0 auto;
-	background-color: white;
+nav ul {
+  list-style-type: none;
+  padding: 0;
 }
-#sidebar {
-	width: 360px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
+.main{/* 상단 큰 메뉴바 아래 제일 큰 영역 */
+	color:white;
+	text-decoration : none;
+	font-size: 30px;
+
 }
-#side-box1 {
-	height: 216px;
-	background-color: #82B2DA;
-	color: white;
-	font-size: 30pt;
-	font-weight: bold;
-	text-align: center;
-	line-height: 200px;
+
+	
+
+article {/* 섹션 안 큰내용, 가운데정렬 */
+  background-color: #fff;
+    height: 100%;
+  margin: 0px auto;
+    width:1440px;
+    background: orange;
+  
 }
-#side-box2, #side-box3 {
-	height: 100px;
-    border-bottom: 1px solid #82B2DA;
-    text-align: center;
-    font-size: 20pt;
-    font-weight: bold;
-    line-height: 96px;
+
+section:after { /* 뒷배경 */
+  content: "";
+  display: table;
+
+  clear: both;
+  background: orange;
 }
-#right-box {
-	width: 1080px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
-	/*padding: 0px 15px;*/
-	font-size: 14pt;
-}
-#main-box1 {
-	height: 216px;
-	background-image: url("resources/images/handle.png");
-	backdrop-filter: blur(5px);	
-	padding-top: 160px;
-}
-#site-route {
-	font-size: 20pt;
-	background:rgba(52, 75, 22, 0.63);
-    color: #fff;
-    text-align: right;	
-}
-#main-title {
-	height: 50px;
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 30pt;
-    line-height: 64px;
-    font-weight: bold;
-}
-#main-caution {
-	height: 100px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    font-size: 11pt;
-    text-align: center;
-}
-#main-caution > div { 
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-#main-caution p { 
-	display: table-cell;
-	vertical-align: middle;
-	margin: 0 auto;
-}
-#main-caution img {
-	width: 17px;
-}
-[alt="공지"], [alt="이미지"], [alt="이미지없음"] {
-	width: 30px;
-}
-#main-table {
-	height: 527px;
-    margin-bottom: 10px;
-}
-#main-table table {
-    border-collapse: collapse;
+
+
+/* 
+@media (max-width: 600px) {
+  nav, article {
     width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 10pt;
+    height: auto;
+  }
+} */
+
+/* 사이드랑 박스  가로*/
+#sidebar {
+	float: left;
+background:#fff;
+	width: 25%;
+	/* 임의 지정 */
 }
-#main-table th{
-	height: 37px;
-	border-top : 2px solid #29367c;
-	border-bottom : 1px solid #29367c;
-	padding: 10px 0px;
+#sidebar_top{
+height:216px;
+background:#82B2DA;
+padding-top: 80px;
+font-size: 30pt;
+font-weight:bold;
+text-align: center;
+color: #fff;
 }
-#main-table td{
-	height: 30px;
-	border-top : 1px solid #eee;
-	padding: 5px 0px; 
+#box_top {
+	float: right;
+	
+	width:75%;
+	height: 645px; /* 임의 지정 */
 }
-#table-last {
-	border-bottom: 1px solid #29367c;
+
+  .box_tit{
+    position: relative;
+ background-image:url("re/images/서브타이틀_배경.png");       
+                       
+  height:216px;
+
+  }
+
+
+.img_cov{
+ backdrop-filter: blur(5px);
+ background-image: url("resources/images/sub.png");
+ background-size:cover;
+   height:216px;
+   padding-top: 160px;
+ 
 }
-#main-write {
-	height: 50px;
-	position: relative;
-}	
-#main-write input {
-	position: absolute;
-	right: 0;
-	background-color: #29367c;
-	color: white;
-	padding: 10px 30px;
-	font-size: 11pt;
-	cursor: pointer;
-	box-shadow: 1px 2px 3px gray;
+.img_cov_con{/* 어디로 왔능가  */
+
+font-size: 20pt;
+
+background:rgba(52, 75, 22, 0.63);
+    color: #fff;
+    text-align: right;
+   
+
 }
-#main-pagenation-search {
-	height: 80px;
+.img_cov_contxt{
+font-weight: bold;
+background: #1E646E;
+color:#fff;
+width:170px;
+text-align:center;
+border-radius: 15px 15px 15px 15px;
+
+
 }
-#main-pagenation-search [alt="왼쪽화살표"] {
-	width: 43px;
-	position: absolute;
-	left: 28%;
-	cursor: pointer;
-}	
-#main-pagenation-search [alt="오른쪽화살표"] {
-	width: 43px;
-	position: absolute;
-	right: 28%;
-	cursor: pointer;
+
+#box_con_txt{
+margin-top: 30px;
+font-weight :bold;
+font-size: 30pt;
+
 }
-#main-pagenation-search > div {
-	height: 50%;
-	text-align: center;
-	position: relative;
+#box_con_cir{
+padding:5px;
+
+
+float: left;
 }
-#page-number {
-	line-height: 43px;
+.line_sel_bar{
+border-bottom:2px solid #E0E0EB;
+margin-top: 50px;
+height:30px;
 }
-#page-number a {
-	margin: 10px;
-	cursor: pointer;
-}
-#page-number a:link {
-	border: 1px solid black;
-	padding: 5px 10px;	
-}
-#main-pagenation-search span {
-	vertical-align: top;
-}
-#search-box {
-	margin: 10px auto;
-	height: 100%;
-}
-#search-box select {
-	width: 115px;
-	height: 40px;
-	-webkit-appearance: none;
-	-moz-appearance: none; 
-	appearance: none;
-	background: url("./Img/arrow-bottom.png");
-	background-repeat: no-repeat;
-	background-position: 150% 67%;
-	background-size: 77px;
-	border: 3px solid  #29367c;
-	text-indent: 15px;
-	padding: 5px 5px;
-}
-#search-box [type="text"] {
-	width: 300px;
-	height: 40px;
-	border: 3px solid  #29367c;
-}
-#search-box [type="button"] {
-	width: 92px;
-	height: 40px;
-	border: 3px solid  #29367c;
-	font-size: 10pt;
-	background-color: white;
-	cursor: pointer;
+.line_sel_bar>.scroll:hover{
+text-decoration:underline;
 }
 
 
-/* 제목 이미지 */
-.tit_img{
-display:inline-block;
-background: url("resources/images/suggest.png");
-background-size: 40px;
-width : 40px;
-height : 40px;
+
+.scroll {
+text-align:center;
+margin-left: 10px;
+
 }
 
+#side_sub_menu{
+text-align: center;
+font-size: 20pt;
+font-weight:bold;
+border-bottom:1px solid #82B2DA;
+height:100px;
+padding-top: 30px;
+}
+#side_sub_menu:hover{
+background: #B2A59F;
 
-/* 본문*/
-.con_box {
-	width: 900px;
-	margin: 0px auto;
+}
+
+p{
+margin-top: 10px;
+margin-bottom:45px;
+font-weight: bold;
 }
 
 .footer{
+position: absolute;
+top:240%;
 background-color: #023459;
 width :100%;
-height : 100px;
+height : 60px;
+
+}
+
+
+.con_box{
+
+	width: 1100px;
+}
+
+
+
+
+/* 내부에 absolute 속성쓰려고 만듬 */
+.con_box_2{
+
+	position: relative;
+	width: 100%;
+}
+
+
+
+.hr{
+margin-top:15px;
+}
+/*------------------- 공용 끝 ------------------- */
+
+
+
+
+/* 테이블 */
+.table{
+
+border-top: 2px solid #82b2da;
+	border-collapse:collapse
+}
+
+
+/* 테이블 세로길이 */
+.table tr{
+
+ height : 50px;
+
+}
+/* 테이블 헤드 */
+.table th{
+background-color: #f0f0f5;
+}
+
+
+/* 테이블 칸속성 */
+.table td, th{
+text-align:center;
+
+ border: 1px solid #e0e0eb;
+}
+
+
+
+/* 이미지속성 */
+.img_1{
+width:25px;
+}
+
+/* 이미지속성 */
+.img_2{
+width:35px;
+}
+
+/*작성버튼*/
+.write_btn{
+position:relative;
+left: 250px;
+background-color:#82b2da;
+font-size: 20px;
+width :100px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+}
+
+/* 화살표틀 */
+.arrow_box{
 margin-top:20px;
+display: inline-block;
+width : 1200px;
+height :50px;
+
+text-align: center;
+}
+
+
+/*화살표 */
+.arrow{
+width: 50px;
+font-size: 20px;
+height : 40px;
+border : 0;
+box-shadow: 1px 2px 3px grey;
+background-color: #e0e0eb;
+
+}
+
+/*검색창 틀*/
+.search_box{
+margin-top:10px;
+display: inline-block;
+width : 1100px;
+height :50px;
+
+text-align: center;
+}
+/*검색창*/
+.input{
+width: 300px;
+height:40px;
+outline: none;
+font-size: 20px;
+}
+
+/*검색버튼*/
+.search_btn{
+
+
+background-color:#e0e0eb;
+font-size: 20px;
+width :100px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+}
+
+
+/*검색분류*/
+.search_type{
+outline: none;
+width :100px;
+height:40px;
+font-size: 20px;
 }
 
 </style>
 </head>
 <body>
+
 <header>
   <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
@@ -320,66 +413,84 @@ margin-top:20px;
 				<li><a href="#">건의 게시판</a></li>
 			</ul>
 		</li>
+
 	</ul>
 </div>
 </header>
-<article>
-	<div id="sidebar">
-		<div id="side-box1">
-			<span>고객의소리</span>
+<body>
+
+<section>
+  <article>
+		<div id="sidebar">
+			<div id="sidebar_top">
+			고객의 소리
+			</div>
+			<div id="side_menu">
+			<div id="side_sub_menu"><a href="#">건의 게시판</a></div>
+			<div id="side_sub_menu"><a href="#">유실물 조회</a></div>
+			</div>
 		</div>
-		<div id="side-box2">
-			<a href="Lost-Property.html"><span>유실물 조회</span></a>
-		</div>
-		<div id="side-box3">
-			<a href="Bboard1.html"><span>건의 게시판</span></a>
-		</div>
-	</div>
-	<div id="right-box">
-		<div id="main-box1">
-			<div id="site-route">홈>고객의소리>건의게시판</div>
-		</div>
+		<div id="box_top">
 		
-		<div class="con_box">
-		<div id="main-title">
-		<div class="tit_img"></div>	건의 게시판
-		</div>
-		<div id="main-caution">
-			<div><p><img alt="경고표시" src="resources/images/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
-				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p></div>
-		</div>
-		<div id="main-table">
-			<table>
-			<colgroup>
-			<col width="30px"/>
-			<col width="60px"/>
-			<col width="500px"/>
-			<col width="60px"/>
-			<col width="60px"/>
-			<col width="60px"/>
-			<col width="60px"/>
-			</colgroup>
-					<tr>
+		 <div class="box_tit">
+        
+		        <div class="img_cov">
+		      
+		                  <div class="img_cov_con">
+		                  	홈 > 건의게시판 &nbsp;
+		                  	</div>
+		            </div>
+    	</div>
+    	
+    	
+    	<div id="box_con">
+			<div id="box_con_cir"><img alt="건의사항" src="resources/images/suggest.png" width="50px" height="50px"> </div>
+			<div id="box_con_txt">
+			건의 게시판
+			</div>
+			
+			<hr class="hr">
+		<p>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
+				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p>
+			<div class="con_box">
+			
+					<div class="con_box_2">
+
+<table class="table" cellspacing="0px">
+<colgroup>
+		<col width="80px"/>
+		<col width="80px"/>
+		<col width="700px"/>
+		<col width="80px"/>
+		<col width="80px"/>
+		<col width="80px"/>
+		<col width="80px"/>
+</colgroup>
+<thead>
+<tr>
 						<th>번호</th>
-						<th>글의종류</th>
+						<th>분류</th>
 						<th>제목</th>
 						<th>글쓴이</th>
 						<th>작성일</th>
 						<th>조회</th>
 						<th>추천</th>
-					</tr>
-					<tr>
+</tr>
+</thead>
+<tbody>
+						<tr>
 						<td>공지</td>
-						<td><img alt="공지" src="resources/images/notice.png"/></td>
+						<td><img alt="공지" src="resources/images/notice.png" class="img_1"></td>
 						<td>게시판 이용안내</td>
 						<td>관리자</td>
 						<td>21/05/13</td>
 						<td>530</td>
 						<td>22</td>
 					</tr>
-					<tr>
+					
+							<tr>
 						<td>210513</td>
-						<td><img alt="이미지" src="resources/images/question.png"/></td>
+						<td><img alt="이미지" src="resources/images/question.png" class="img_2"/></td>
 						<td><a href="Bboard2.html">건의합니다[2]</a></td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -388,7 +499,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png" class="img_2"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -397,7 +508,7 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png" class="img_2"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -406,98 +517,61 @@ margin-top:20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
+						<td><img alt="이미지없음" src="resources/images/question.png" class="img_2"/></td>
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
 						<td>25</td>
 						<td>3</td>
 					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-					<tr id="table-last">
-						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png"/></td>
-						<td>건의합니다[2]</td>
-						<td>익명</td>
-						<td>21/12/12</td>
-						<td>25</td>
-						<td>3</td>
-					</tr>
-			</table>
-		</div>
-		<div id="main-write">
-			<a href="Bboard4.html"><input type="button" value="글쓰기" /></a>
-		</div>
-		<div id="main-pagenation-search">
-			<div>
-				<img alt="왼쪽화살표" src="./Img/arrow-left.png"/>
-					<span id="page-number"><a href="./Bboard3.html">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a></span>
-				<img alt="오른쪽화살표" src="./Img/arrow-right.png" />
-			</div>
-				<div id="search-box">
-					<span>
-						<select>
-							<option>선택</option>
-							<option>제목</option>
-							<option>작성자</option>
-						</select>
-					</span>	
-					<span>
-						<input type="text" />
-					</span>
-					<span>	
-						<input type="button" value="검색" />
-					</span>
-			</div>
-		</div>
-	</div> <!-- con_box end -->
-	</div> <!-- right-box end -->
+
+</tbody>
+
+
+</table>
+
+<div class="arrow_box">
+<input type="button" class="arrow" value="<">
+<input type="button" class="arrow" value="1">
+<input type="button" class="arrow" value="2">
+<input type="button" class="arrow" value="3">
+<input type="button" class="arrow" value="4">
+<input type="button" class="arrow" value="5">
+<input type="button" class="arrow" value=">">
+
+
+
+<input type="button" value="글쓰기" class="write_btn">
+
+	</div>
+<div class="search_box">
+<select class="search_type">
+					<option>제목</option>
+					<option>작성자</option>
+					<option>내용</option>
+</select>
+<input type="text" class="input"/>
+<input type="button" value="검색" class="search_btn" />
+</div>
 	
-	<div class="footer"></div>
-</article>
+				</div><!-- con_box_2 end -->
+			
+			
+			
+			
+			
+    	</div>
+    	
+    	
+    	
+    	</div>
+		
+    	</div>
+    	
+    	
+ </article>
+</section>
+
+<div class="footer"></div>
 </body>
 </html>

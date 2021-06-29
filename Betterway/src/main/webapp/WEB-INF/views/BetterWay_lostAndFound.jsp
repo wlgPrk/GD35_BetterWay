@@ -1,29 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>유실물조회</title>
+<title>유실물 조회</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+</script>
+
 <style type="text/css">
-* { 
+
+/*-------------------- 공용 시작 ---------------------*/
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0;
-  height: 100%;
 }
 
 /* Style the header */
-header {
+header { /* 상단 큰메뉴바 */
+  top: 0;
+  left: 0;
+  right: 0;
   height: 75px;
   padding: 1rem;
   color: white;
@@ -32,15 +37,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 100;
+   
 }
-.main{
-	color:white;
-	text-decoration : none;
-	font-size: 30px;
-}
-	ul li{
+ul li{
 		list-style: none;
 	}
 	a {
@@ -56,6 +55,7 @@ header {
 		color:black;
 		line-height: 50px; 
 		text-align: center;
+		z-index: 300;
 	}
 
 
@@ -71,146 +71,244 @@ header {
 		font-size:14px;
 		background: #fff;
 	}
-	#menu > ul > li:hover > ul { /* li가 hover 상태일때 ul의 display를 block으로 지정  */
-		display:block; 
+	#menu > ul > li:hover > ul {
+		display:block;
 	}
 	#menu > ul > li > ul > li:hover {
 		background: #B2A59F;
 		transition: ease 1s;
 		}
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
 
-article {
-	min-height: 100%;
-	width: 1440px;
-	margin: 0 auto;
-	background-color: white;
+nav ul {
+  list-style-type: none;
+  padding: 0;
 }
-#left-box {
-	width: 360px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
+.main{/* 상단 큰 메뉴바 아래 제일 큰 영역 */
+	color:white;
+	text-decoration : none;
+	font-size: 30px;
+
 }
-#side-box1 {
-	height: 216px;
-	background-color: #82B2DA;
-	color: white;
-	font-size: 30pt;
-	font-weight: bold;
-	text-align: center;
-	line-height: 200px;
+
+	
+
+article {/* 섹션 안 큰내용, 가운데정렬 */
+  background-color: #fff;
+    height: 100%;
+  margin: 0px auto;
+    width:1440px;
+    background: orange;
+  
 }
-#side-box2, #side-box3 {
-	height: 100px;
-    border-bottom: 1px solid #82B2DA;
-    text-align: center;
-    font-size: 20pt;
-    font-weight: bold;
-    line-height: 96px;
+
+section:after { /* 뒷배경 */
+  content: "";
+  display: table;
+
+  clear: both;
+  background: orange;
 }
-#right-box {
-	width: 1080px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
+
+
+/* 
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+} */
+
+/* 사이드랑 박스  가로*/
+#sidebar {
+	float: left;
+background:#fff;
+	width: 25%;
+	/* 임의 지정 */
 }
-#main-box1 {
-	height: 216px;
-	background-color: silver;
-	background-image: url("resources/images/handle.png");
-	backdrop-filter: blur(5px);	
-	padding-top: 160px;
+#sidebar_top{
+height:216px;
+background:#82B2DA;
+padding-top: 80px;
+font-size: 30pt;
+font-weight:bold;
+text-align: center;
+color: #fff;
 }
-#site-route {
-	font-size: 20pt;
-	background:rgba(52, 75, 22, 0.63);
+#box_top {
+	float: right;
+	
+	width:75%;
+	height: 645px; /* 임의 지정 */
+}
+
+  .box_tit{
+    position: relative;
+ background-image:url("re/images/서브타이틀_배경.png");       
+                       
+  height:216px;
+
+  }
+
+
+.img_cov{
+ backdrop-filter: blur(5px);
+ background-image: url("resources/images/sub.png");
+ background-size:cover;
+   height:216px;
+   padding-top: 160px;
+ 
+}
+.img_cov_con{/* 어디로 왔능가  */
+
+font-size: 20pt;
+
+background:rgba(52, 75, 22, 0.63);
     color: #fff;
-    text-align: right;	
+    text-align: right;
+   
+
 }
-#main-title {
-	height: 50px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 30pt;
-    line-height: 64px;
-}
-#main-caution {
-	height: 100px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    font-size: 11pt;
-    text-align: center;
-}
-#main-caution > div { 
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-#main-caution p { 
-	display: table-cell;
-	vertical-align: middle;
-	margin: 0 auto;
-}
-#main-caution img {
-	width: 17px;
-}
-#main-lost-box {
-	height: 200px;
-	font-size: 20pt;
-	text-align: center;
-	color: white;
-}
-#main-lost-box > div {
-	width: 465px;
-	height: 100%;
-	margin: 0 auto;
-	background-color: #3de3c7;
-}
-#main-lost-box .theme, input {
-	height: 50%;
-	line-height: 102px;
-}
-#main-lost-box input {
-	width: 130px;
-	height: 50px;
-	border: 1px solid white;
-	color: white;
-	background-color:  #3de3c7;
-	line-height: 53px;
-	font-size: 12pt;
-	cursor: pointer;
-	box-shadow: 1px 2px 3px grey;
+.img_cov_contxt{
+font-weight: bold;
+background: #1E646E;
+color:#fff;
+width:170px;
+text-align:center;
+border-radius: 15px 15px 15px 15px;
+
+
 }
 
-/* 이건 메인안에 컨텐츠 크기 고정해주고 게속 브라우저 x축 줄였다 늘렸다 반복해도  메인안컨텐츠가 계속 중앙에오게하는 역할*/
-.pix {
-	width: 900px;
-	margin: 0px auto;
+#box_con_txt{
+margin-top: 30px;
+font-weight :bold;
+font-size: 30pt;
+
+}
+#box_con_cir{
+padding:5px;
+
+
+float: left;
+}
+.line_sel_bar{
+border-bottom:2px solid #E0E0EB;
+margin-top: 50px;
+height:30px;
+}
+.line_sel_bar>.scroll:hover{
+text-decoration:underline;
 }
 
-/* 제목 이미지 */
-.titleImg{
-display:inline-block;
-background: url("resources/images/lost.png");
-background-size: 40px;
-width : 40px;
-height : 40px;
+
+
+.scroll {
+text-align:center;
+margin-left: 10px;
+
 }
 
-/*부제목정렬*/
-.title{
-text-align: left;
+#side_sub_menu{
+text-align: center;
+font-size: 20pt;
+font-weight:bold;
+border-bottom:1px solid #82B2DA;
+height:100px;
+padding-top: 30px;
+}
+#side_sub_menu:hover{
+background: #B2A59F;
+
+}
+
+p{
+margin-top: 10px;
+margin-bottom:30px;
+font-weight: bold;
 }
 
 .footer{
+position: absolute;
+top:240%;
 background-color: #023459;
 width :100%;
-height : 100px;
-margin-top:20px;
+height : 60px;
+
 }
+
+
+.con_box{
+
+	width: 900px;
+}
+
+
+
+
+/* 내부에 absolute 속성쓰려고 만듬 */
+.con_box_2{
+
+	position: relative;
+	width: 100%;
+}
+
+
+
+.hr{
+margin-top:15px;
+}
+/*------------------- 공용 끝 ------------------- */
+
+
+.btn_box{
+display:inline-block;
+position:relative;
+left:350px;
+top:20px;
+padding: 20px 10px 0px 10px;
+width:400px;
+height:300px;
+background-color: #f0f0f5;
+box-shadow: 1px 2px 3px grey;
+text-align: center;
+font-size: 30px;
+font-weight: bold;
+}
+
+/*수정버튼*/
+.btn{
+position:relative;
+top:150px;
+left:50px;
+background-color:#e0e0eb;
+font-size: 30px;
+width :200px;
+height :100px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
+
 <header>
   <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
@@ -238,45 +336,85 @@ margin-top:20px;
 				<li><a href="#">건의 게시판</a></li>
 			</ul>
 		</li>
+
 	</ul>
 </div>
 </header>
-<article>
-	<div id="left-box">
-		<div id="side-box1">
-			<span>고객의소리</span>
-		</div>
-		<div id="side-box2">
-			<span>유실물 조회</span>
-		</div>
-		<div id="side-box3">
-			<span>건의 게시판</span>
-		</div>
-	</div>
-	<div id="right-box">
-		<div id="main-box1">
-			<div id="site-route">홈>고객의소리>유실물조회</div>
-		</div>
-		
-		
-		<div id="main-title">
-		
-		<div class="pix">
-			<div class="title"><div class="titleImg"></div>유실물 조회</div>
-	
-		<div id="main-caution">
-			<div><p><img alt="경고표시" src="resources/images/warning.png"/>경찰청 홈페이지를 통해 유실물을 조회하실 수 있습니다.</p></div>
-		</div>
-		<div id="main-lost-box">
-			<div>
-				<div class="theme">경찰청 유실물 종합포털</div>
-				<div class="theme"><a href="https://www.lost112.go.kr/" target="_blank"><input type="button" value="바로가기"/></a></div>
+<body>
+
+<section>
+  <article>
+		<div id="sidebar">
+			<div id="sidebar_top">
+			고객의소리
+			</div>
+			<div id="side_menu">
+			<div id="side_sub_menu"><a href="#">건의 게시판</a></div>
+			<div id="side_sub_menu"><a href="#">유실물조회</a></div>
 			</div>
 		</div>
-			</div><!-- pix end -->
+		<div id="box_top">
+		
+		 <div class="box_tit">
+        
+		        <div class="img_cov">
+		      
+		                  <div class="img_cov_con">
+		                  	홈 > 건의게시판 > 유실물조회 &nbsp;
+		                  	</div>
+		            </div>
+    	</div>
+    	
+    	
+    	<div id="box_con">
+			<div id="box_con_cir"><img alt="유실물조회" src="resources/images/lost.png" width="50px" height="50px"> </div>
+			<div id="box_con_txt">
+			유실물 조회
+			</div>
+			
+			<hr class="hr">
+		<p>경찰청 홈페이지를 통해 유실물을 조회하실 수 있습니다.</p>
+			<div class="con_box">
+			
+					<div class="con_box_2">
+	<div class="btn_box">경찰청 유실물 종합포털</div>
+	
+	<a href="https://www.lost112.go.kr/" target="_blank"><input type="button" value="바로가기" class="btn"></a>
+		
+		
+		
+	
+		
 		</div>
-	</div>
-</article>
+		
+		
+		</div>
+		
+		
+		
+		
+		
+
+	
+	
+	
+				</div><!-- con_box_2 end -->
+			
+			
+			
+			
+			
+    	</div>
+    	
+    	
+    	
+    	</div>
+		
+    	</div>
+    	
+    	
+ </article>
+</section>
 
 <div class="footer"></div>
 </body>
