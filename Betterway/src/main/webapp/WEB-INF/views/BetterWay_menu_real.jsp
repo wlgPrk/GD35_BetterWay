@@ -338,7 +338,7 @@ background: #B2A59F;
   <a class="main" href="#">BetterWay</a>
 	<div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
+		<li><a href="#">교통정보안내</a>
 			<ul>
 				<li><a href="BetterWay_subLineSearch">노선도</a></li>
 				<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
