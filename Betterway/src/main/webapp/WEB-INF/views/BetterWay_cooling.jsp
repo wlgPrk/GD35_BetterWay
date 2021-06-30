@@ -263,12 +263,11 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 
 </script>
 
-
 <header>
-  <a class="main" href="main">BetterWay</a>
+  <a class="main" href="BetterWay_main">BetterWay</a>
 	<div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
+		<li><a href="#">교통정보안내</a>
 			<ul>
 				<li><a href="BetterWay_subLineSearch">노선도</a></li>
 				<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>

@@ -144,19 +144,16 @@ color: #fff;
 	height: 645px; /* 임의 지정 */
 }
 
-  .box_tit{
+  .box_title{
     position: relative;
- background-image:url("./images/서브타이틀_배경.png");       
-                       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
+    background-size : cover;                     
   height:216px;
 
   }
 
-
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("resources/images/sub.png");
- background-size:cover;
    height:216px;
    padding-top: 160px;
  
@@ -171,7 +168,7 @@ background:rgba(52, 75, 22, 0.63);
    
 
 }
-.img_cov_contxt{
+.img_cov_context{
 font-weight: bold;
 background: #1E646E;
 color:#fff;
@@ -182,16 +179,15 @@ border-radius: 15px 15px 15px 15px;
 
 }
 
-#box_con_txt{
+#box_con_text{
 margin-top: 30px;
 font-weight :bold;
 font-size: 30pt;
 
 }
-#box_con_cir{
+#box_con_img{
 padding:5px;
-
-
+font-size: 25pt;
 float: left;
 }
 .line_sel_bar{
@@ -211,7 +207,7 @@ margin-left: 10px;
 
 }
 
-#side_sub_menu{
+/*#side_menu_sub{
 text-align: center;
 font-size: 20pt;
 font-weight:bold;
@@ -221,8 +217,7 @@ padding-top: 30px;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
-
-}
+}*/
 
 p{
 margin-top: 10px;
@@ -232,6 +227,104 @@ font-weight: bold;
 #hr{
 	margin-top :15px;
 }
+
+#sub_title{
+	font-size: 15pt;
+}
+.con_box{
+	width : 1080px;
+	margin : auto;
+}
+.table_box{
+	width:100%;
+	border-top:2px solid #82b2da;
+}
+#con_table{
+	width : 100%;
+	border-collapse:collapse;
+	border-spacing:0px;
+}
+thead{
+	display: table-header-group;
+	vertical-align: middle;
+	background-color:#f0f0f5;
+}
+th,td{
+	border : 1px solid #e0e0eb;
+	border-collapse: collapse;
+	padding : 10px;
+	text-align: center;
+}
+
+#footer{
+	width:100%;
+	height:75px;
+	margin-top : 500px;
+	background: #023459;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.side_menu_sub{
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+.nav{
+    overflow: hidden;
+	border-bottom:1px solid #82B2DA;
+}
+.btn{
+    display: block;
+    background-color: #fff;
+    color: black;
+    position: relative;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 100px;
+    padding-top: 30px;
+
+}
+.btn:hover{
+background: #B2A59F;
+}
+.side_menu_sub_down{
+    background: #fff;
+    overflow: hidden;
+    transition: max-height 0.7s;
+    max-height: 0;
+}
+.side_menu_sub_down a{
+    display: block;
+    padding: 15px 20px;
+    color: #222;
+    font-size: 16px;
+   /* border-bottom: 1px solid #e0e0eb;*/
+    position: relative;
+    
+}
+.side_menu_sub_down a:after{
+    content: '';
+    opacity: 0;
+    transition: opacity 0.3s;
+
+}
+.side_menu_sub_down a:hover{
+    background: #B2A59F;
+   	transition: all 0.3s;
+    border-bottom: 1px solid #c8c8c8;
+}
+.side_menu_sub_down a:last-child{
+    border:none;
+}
+.nav:target .side_menu_sub_down{
+    max-height: 16em;
+}
+
 
 #sub_tit{
 	font-size: 15pt;
@@ -271,7 +364,7 @@ th,td{
 <body>
 
 <header>
-  <a class="main" href="main">BetterWay</a>
+  <a class="main" href="BetterWay_main">BetterWay</a>
 <div id="menu">
 	<ul>
 		<li><a href="#">교통안내</a>
@@ -309,10 +402,26 @@ th,td{
 			<div id="sidebar_top">
 			역 내외 시설
 			</div>
+			
 			<div id="side_menu">
-			<div id="side_sub_menu"><a href="#">내부 편의시설</a></div>
-			<div id="side_sub_menu"><a href="#">외부 시설</a></div>
+				 <ul class="side_menu_sub">
+           			 <li class="nav" id="inside_esta">
+               		 <a href="#inside_esta" class="btn">내부 편의시설</a>
+                		<div class="side_menu_sub_down">
+                    		<a href="BetterWay_baby">수유실</a>
+                    		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
+                    		<a href="BetterWay_cycle">자전거 보관함</a>
+                    		<a href="BetterWay_happy">행복지대</a>
+                		</div>
+           			 </li>
+           		 <li class="nav" id="outside_esta">
+                <a href="BetterWay_esta_out" class="btn">외부시설</a>
+                	<div class="side_menu_sub_down">
+                	</div>
+            		</li>
+       			 </ul>
 			</div>
+			
 		</div>
 		<div id="box_top">
 		
