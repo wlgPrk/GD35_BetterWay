@@ -144,16 +144,17 @@ color: #fff;
 	height: 645px; /* 임의 지정 */
 }
 
-  .box_title{
+ /* .box_title{
     position: relative;
- 	background-image:url("resources/images/서브타이틀_배경.png");       
+ 	background-image:url("resources/images/sub.png");       
     background-size : cover;                     
   height:216px;
 
-  }
+  }*/
 
 .img_cov{
  backdrop-filter: blur(5px);
+background-image:url("resources/images/sub.png");       
    height:216px;
    padding-top: 160px;
  
@@ -207,7 +208,7 @@ margin-left: 10px;
 
 }
 
-/*#side_menu_sub{
+#side_menu_sub{
 text-align: center;
 font-size: 20pt;
 font-weight:bold;
@@ -217,7 +218,7 @@ padding-top: 30px;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
-}*/
+}
 
 p{
 margin-top: 10px;
@@ -437,66 +438,39 @@ th,td{
     	
     	
     	<div id="box_con">
-			<div id="box_con_cir"><img alt="편의시설" src="eleva.png" width="50px" height="50px"> </div>
-			<div id="box_con_txt">
+			<span id="box_con_cir"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </span>
+			<span id="box_con_txt">
 			역 내부 편의시설 현황
-			</div>
+			</span>
 			
 			<div class="con_box">
 			<hr id = "hr"/>
 			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
-			<div style="float: right;">
-			원하시는 역의 이름을 검색하세요&nbsp;
-			<input type="text" value="역 검색">
-			</div>
+			
 			<br/>
 				
-			<div id = "sub_tit"><strong>서울 역</strong></div>
+			<div id = "sub_tit"><strong>배려시설 현황</strong></div>
 			<div class = "tab_box">
 				<table id="con_tab">
+				<div class = "subLine">
+				<span>1호선</span><span>2호선</span><span>3호선</span><span>4호선</span>
+				<span>5호선</span><span>6호선</span><span>7호선</span><span>8호선</span><span>9호선</span>
+					</div>
 					
-					<thead>
-						<tr>
-							  <th>엘리베이터</th>
-			 <th>에스컬레이터</th> <th>수평보행기</th>
-			  <th>휠체어리프트</th> <th>이동식안전발판</th>
-			   <th>휠체어충전기</th> <th>장애인 화장실</th>
-			    <th>음성 유도기</th></tr>
-											
-					</thead>
 					<tbody>
-						<tr>
-							<tr>
-			    <td>4</td><td>5</td>
-			    <td>x</td><td>1</td><td>1</td>
-			    <td>x</td><td>1</td><td>33</td>
-			    </tr>
-						</tr>
-					</tbody>				
-				</table>
-			</div><br/>
-			
-			
-			<div class = "tab_box">
-				<table id="con_tab">
-					
-					<thead>
-						<tr>
-			     <th>물품보관함</th>
-			 <th>무인민원 발급기</th> <th>현금 지급기</th>
-			  <th>위생용품 자판기</th> <th>자동 사진기</th>
-			   <th>무인환전<br/>키오스크</th> <th>수유실</th>
-			    <th>자전거 보관함</th></tr>
-			   			
-					</thead>
-					<tbody>
-			<tr>
-			 <td>5</td><td>x</td>
-			    <td>1</td><td>1</td><td>1</td>
-			    <td>x</td><td>1</td><td>x</td>
-			    </tr>
-					</tbody>				
-				</table>
+					<!--<tr class="td-total_1"><td>소계</td>	<td>36</td>	<td>31</td>	<td></td>	<td>9</td>	<td>10</td>	<td>3</td>	<td>12</td>	<td>219</td></tr>-->
+					<tr>	<td>서울역</td><td>4</td>	<td>5</td>	<td></td>	<td>1</td>	<td>1</td>	<td></td>	<td>1</td>	<td>33</td></tr>
+					<tr><td>시청역</td>	<td>3</td>	<td>3</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
+					<tr><td>종각역</td>	<td>4</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>38</td></tr>
+					<tr><td>종로3가역</td>	<td>3</td>	<td>4</td>	<td></td>	<td></td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>48</td></tr>
+					<tr><td>종로5가역</td>	<td>3</td>	<td>　</td>	 <td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
+					<tr><td>동대문역</td>	<td>3</td>	<td>1</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>4</td></tr>
+					<tr><td>동묘앞역</td>	<td>7</td>	<td>12</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>4</td>	<td>37</td></tr>
+					<tr><td>신설동역</td>	<td>5</td>	<td>　</td>		<td></td>	<td>6</td>	<td>1</td>	<td></td>	<td>1</td>	<td></td></tr>
+					<tr><td>제기동역</td>	<td>3</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td></td></tr>
+					<tr><td>청량리역</td>	<td>1</td>	<td>4</td>	<td></td>	<td>2</td>	<td>1</td>	<td></td>	<td>1</td>	<td></td></tr>
+			</tbody>
+					</table>
     	
     	</div>
     	<br/>
