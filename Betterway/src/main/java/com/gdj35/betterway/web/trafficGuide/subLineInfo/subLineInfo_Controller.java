@@ -21,5 +21,10 @@ public class subLineInfo_Controller {
 		mav.setViewName("BetterWay_subLineRealtime");
 		return mav;
 	}
+	@RequestMapping(value="/BetterWay_subLineRealtime2")
+	public ModelAndView BetterWay_subLineRealtime2(ModelAndView mav) {
+		mav.setViewName("BetterWay_subLineRealtime2");
+		return mav;
+	}
 	
 }
