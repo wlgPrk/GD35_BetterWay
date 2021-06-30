@@ -299,14 +299,12 @@ text-align:center;
 
 
 /* 이미지속성 */
-.img_1{
+.img{
+
 width:25px;
 }
 
-/* 이미지속성 */
-.img_2{
-width:35px;
-}
+
 
 /*작성버튼*/
 .write_btn{
@@ -459,7 +457,7 @@ font-size: 20px;
 <table class="table" cellspacing="0px">
 <colgroup>
 		<col width="80px"/>
-		<col width="80px"/>
+
 		<col width="700px"/>
 		<col width="80px"/>
 		<col width="80px"/>
@@ -469,7 +467,7 @@ font-size: 20px;
 <thead>
 <tr>
 						<th>번호</th>
-						<th>분류</th>
+				
 						<th>제목</th>
 						<th>글쓴이</th>
 						<th>작성일</th>
@@ -479,9 +477,9 @@ font-size: 20px;
 </thead>
 <tbody>
 						<tr>
-						<td>공지</td>
-						<td><img alt="공지" src="resources/images/notice.png" class="img_1"></td>
-						<td>게시판 이용안내</td>
+						<td><img alt="공지" src="resources/images/notice.png" class="img"></td>
+					
+						<td>	게시판 이용안내</td>
 						<td>관리자</td>
 						<td>21/05/13</td>
 						<td>530</td>
@@ -490,7 +488,7 @@ font-size: 20px;
 					
 							<tr>
 						<td>210513</td>
-						<td><img alt="이미지" src="resources/images/question.png" class="img_2"/></td>
+				
 						<td><a href="Bboard2.html">건의합니다[2]</a></td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -499,7 +497,7 @@ font-size: 20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png" class="img_2"/></td>
+			
 						<td>건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
@@ -508,8 +506,8 @@ font-size: 20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png" class="img_2"/></td>
-						<td>건의합니다[2]</td>
+			
+						<td>↳re:건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
 						<td>25</td>
@@ -517,8 +515,8 @@ font-size: 20px;
 					</tr>
 					<tr>
 						<td>210513</td>
-						<td><img alt="이미지없음" src="resources/images/question.png" class="img_2"/></td>
-						<td>건의합니다[2]</td>
+				
+						<td>↳re:건의합니다[2]</td>
 						<td>익명</td>
 						<td>21/12/12</td>
 						<td>25</td>
