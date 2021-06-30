@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+function main(){
+	/* 수정수정 */
+		location.href="BetterWay_cooling.html";
+	}
+
+function BetterWay_subLineRealtime(){
+
+	location.href="BetterWay_subLineRealtime.html";
+
+}
+function BetterWay_subLineBusstation(){
+	location.href="BetterWay_subLineBusstation.html";
+}
+</script>
 <style>
 *{
 overflow: hidden;
@@ -164,7 +180,8 @@ a{
 <body>
 <div class="side">
 	<div class="side_title">
-	<a class="main" href="menu.html">BetterWay</a>
+	<a class="main" href="javascript:main();">BetterWay</a>
+
 	</div>
 	<div id="title">실시간 위치</div>
 		<div class="wrap">
@@ -178,8 +195,8 @@ a{
 		</div>
 	</div>	  
 	<div class="subbtn_box">
-		<div class="subbtn"><a id="subbtn_realtime" href="zoom_realtime.html" >실시간 위치</a></div>
-		<div class="subbtn"><a id="subbtn_busstation" href="zoom_busstation.html">주변 버스정류장</a></div>
+		<div class="subbtn"><a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a></div>
+		<div class="subbtn"><a id="subbtn_busstation" href="javascript:BetterWay_subLineBusstation();">주변 버스정류장</a></div>
 	</div>			
 	</div><!-- wrap end -->
 	

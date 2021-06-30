@@ -364,7 +364,7 @@ th,td{
 <body>
 
 <header>
-  <a class="main" href="main">BetterWay</a>
+  <a class="main" href="BetterWay_main">BetterWay</a>
 <div id="menu">
 	<ul>
 		<li><a href="#">교통안내</a>

@@ -11,4 +11,5 @@ public class cooling_Controller {
 		mav.setViewName("BetterWay_cooling");
 		return mav;
 	}
+
 }

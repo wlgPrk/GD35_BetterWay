@@ -7,19 +7,26 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class main_Controller {
 	
-	@RequestMapping(value="/main")
-	public ModelAndView main(ModelAndView mav) {
+	@RequestMapping(value="/BetterWay_main")
+	public ModelAndView BetterWay_main(ModelAndView mav) {
 		
-		mav.setViewName("/main");
-		
-		return mav;
-	}
-	@RequestMapping(value="/pop1")
-	public ModelAndView pop1(ModelAndView mav) {
-		
-		mav.setViewName("/pop1");
+		mav.setViewName("/BetterWay_main");
 		
 		return mav;
 	}
-
+	@RequestMapping(value="/BetterWay_pop1")
+	public ModelAndView BetterWay_pop1(ModelAndView mav) {
+		
+		mav.setViewName("/BetterWay_pop1");
+		
+		return mav;
+	}
+	@RequestMapping(value="/BetterWay_pop2")
+	public ModelAndView BetterWay_pop2(ModelAndView mav) {
+		
+		mav.setViewName("/BetterWay_pop2");
+		
+		return mav;
+	}
+	
 }

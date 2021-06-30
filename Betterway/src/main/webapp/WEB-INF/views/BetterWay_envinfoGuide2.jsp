@@ -51,8 +51,7 @@ a {
 
 .box_title{
 	position: relative;
-	background-image:url("resources/images/
-	/handleimg.png");             
+	background-image:url("resources/images/handleimg.png");             
 	height:88px;
 
   }

@@ -1,31 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>건의게시판 - 메인</title>
+<title>건의게시판 - 작성</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+</script>
+
 <style type="text/css">
-* { 
+
+/*-------------------- 공용 시작 ---------------------*/
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0;
-  height: 100%;
-}	
+}
 
 /* Style the header */
-header {
+header { /* 상단 큰메뉴바 */
+  top: 0;
+  left: 0;
+  right: 0;
   height: 75px;
   padding: 1rem;
   color: white;
@@ -34,11 +37,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 100;
+   
 }
-
-	ul li{
+ul li{
 		list-style: none;
 	}
 	a {
@@ -70,15 +71,22 @@ header {
 		font-size:14px;
 		background: #fff;
 	}
-	#menu > ul > li:hover > ul { /* li가 hover 상태일때 ul의 display를 block으로 지정  */
-		display:block; 
+	#menu > ul > li:hover > ul {
+		display:block;
 	}
 	#menu > ul > li > ul > li:hover {
 		background: #B2A59F;
 		transition: ease 1s;
 		}
-		
-		nav ul {
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+nav ul {
   list-style-type: none;
   padding: 0;
 }
@@ -89,11 +97,15 @@ header {
 
 }
 
-article {
-	min-height: 100%;
-	width: 1440px;
-	margin: 0 auto;
-	background-color: white;
+	
+
+article {/* 섹션 안 큰내용, 가운데정렬 */
+  background-color: #fff;
+    height: 100%;
+  margin: 0px auto;
+    width:1440px;
+    background: orange;
+  
 }
 
 section:after { /* 뒷배경 */
@@ -103,222 +115,161 @@ section:after { /* 뒷배경 */
   clear: both;
   background: orange;
 }
-#sidebar {
-	width: 360px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
-}
 
 
-#side-box1 {
-	height: 216px;
-	background-color: #82B2DA;
-	color: white;
-	font-size: 30pt;
-	font-weight: bold;
-	text-align: center;
-	line-height: 200px;
-}
-#side-box2, #side-box3 {
-	height: 100px;
-    border-bottom: 1px solid #82B2DA;
-    text-align: center;
-    font-size: 20pt;
-    font-weight: bold;
-    line-height: 96px;
-}
-#right-box {
-	width: 1080px;
-	height: 100%;
-	display: inline-block;
-	vertical-align: top;
-	/*padding: 0px 15px;*/
-	font-size: 14pt;
-}
-#main-box1 {
-	height: 216px;
-	background-image: url("resources/images/handle.png");
-	backdrop-filter: blur(5px);	
-	padding-top: 160px;
-}
-#site-route {
-	font-size: 20pt;
-	background:rgba(52, 75, 22, 0.63);
-    color: #fff;
-    text-align: right;	
-}
-#main-title {
-	height: 50px;
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 30pt;
-    line-height: 64px;
-    font-weight: bold;
-}
-#main-caution {
-	height: 100px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    font-size: 11pt;
-    text-align: center;
-}
-#main-caution > div { 
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-#main-caution p { 
-	display: table-cell;
-	vertical-align: middle;
-
-}
-#main-caution img {
-	width: 17px;
-}
-[alt="공지"], [alt="이미지"], [alt="이미지없음"] {
-	width: 30px;
-}
-#main-table {
-	height: 527px;
-    margin-bottom: 10px;
-}
-#main-table table {
-    border-collapse: collapse;
+/* 
+@media (max-width: 600px) {
+  nav, article {
     width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 10pt;
+    height: auto;
+  }
+} */
+
+/* 사이드랑 박스  가로*/
+#sidebar {
+	float: left;
+background:#fff;
+	width: 25%;
+	/* 임의 지정 */
 }
-#main-table th{
-	height: 37px;
-	border-top : 2px solid #29367c;
-	border-bottom : 1px solid #29367c;
-	padding: 10px 0px;
+#sidebar_top{
+height:216px;
+background:#82B2DA;
+padding-top: 80px;
+font-size: 30pt;
+font-weight:bold;
+text-align: center;
+color: #fff;
 }
-#main-table td{
-	height: 30px;
-	border-top : 1px solid #eee;
-	padding: 5px 0px; 
+#box_top {
+	float: right;
+	
+	width:75%;
+	height: 645px; /* 임의 지정 */
 }
-#table-last {
-	border-bottom: 1px solid #29367c;
+
+  .box_tit{
+    position: relative;
+ background-image:url("re/images/서브타이틀_배경.png");       
+                       
+  height:216px;
+
+  }
+
+
+.img_cov{
+ backdrop-filter: blur(5px);
+ background-image: url("resources/images/sub.png");
+ background-size:cover;
+   height:216px;
+   padding-top: 160px;
+ 
 }
-#main-write {
-	height: 50px;
-	position: relative;
-}	
-#main-write input {
-	position: absolute;
-	right: 0;
-	background-color: #29367c;
-	color: white;
-	padding: 10px 30px;
-	font-size: 11pt;
-	cursor: pointer;
-	box-shadow: 1px 2px 3px gray;
+.img_cov_con{/* 어디로 왔능가  */
+
+font-size: 20pt;
+
+background:rgba(52, 75, 22, 0.63);
+    color: #fff;
+    text-align: right;
+   
+
 }
-#main-pagenation-search {
-	height: 80px;
+.img_cov_contxt{
+font-weight: bold;
+background: #1E646E;
+color:#fff;
+width:170px;
+text-align:center;
+border-radius: 15px 15px 15px 15px;
+
+
 }
-#main-pagenation-search [alt="왼쪽화살표"] {
-	width: 43px;
-	position: absolute;
-	left: 28%;
-	cursor: pointer;
-}	
-#main-pagenation-search [alt="오른쪽화살표"] {
-	width: 43px;
-	position: absolute;
-	right: 28%;
-	cursor: pointer;
+
+#box_con_txt{
+margin-top: 30px;
+font-weight :bold;
+font-size: 30pt;
+
 }
-#main-pagenation-search > div {
-	height: 50%;
-	text-align: center;
-	position: relative;
+#box_con_cir{
+padding:5px;
+
+
+float: left;
 }
-#page-number {
-	line-height: 43px;
+.line_sel_bar{
+border-bottom:2px solid #E0E0EB;
+margin-top: 50px;
+height:30px;
 }
-#page-number a {
-	margin: 10px;
-	cursor: pointer;
-}
-#page-number a:link {
-	border: 1px solid black;
-	padding: 5px 10px;	
-}
-#main-pagenation-search span {
-	vertical-align: top;
-}
-#search-box {
-	margin: 10px auto;
-	height: 100%;
-}
-#search-box select {
-	width: 115px;
-	height: 40px;
-	-webkit-appearance: none;
-	-moz-appearance: none; 
-	appearance: none;
-	background: url("./Img/arrow-bottom.png");
-	background-repeat: no-repeat;
-	background-position: 150% 67%;
-	background-size: 77px;
-	border: 3px solid  #29367c;
-	text-indent: 15px;
-	padding: 5px 5px;
-}
-#search-box [type="text"] {
-	width: 300px;
-	height: 40px;
-	border: 3px solid  #29367c;
-}
-#search-box [type="button"] {
-	width: 92px;
-	height: 40px;
-	border: 3px solid  #29367c;
-	font-size: 10pt;
-	background-color: white;
-	cursor: pointer;
+.line_sel_bar>.scroll:hover{
+text-decoration:underline;
 }
 
 
-/* 제목 이미지 */
-.tit_img{
-display:inline-block;
-background: url("resources/images/suggest.png");
-background-size: 40px;
-width : 40px;
-height : 40px;
+
+.scroll {
+text-align:center;
+margin-left: 10px;
+
 }
 
+#side_sub_menu{
+text-align: center;
+font-size: 20pt;
+font-weight:bold;
+border-bottom:1px solid #82B2DA;
+height:100px;
+padding-top: 30px;
+}
+#side_sub_menu:hover{
+background: #B2A59F;
 
-/* 본문*/
-.con_box {
+}
+
+p{
+margin-top: 10px;
+margin-bottom:45px;
+font-weight: bold;
+}
+/*------------------- 공용 끝 ------------------- */
+
+
+.con_box{
 
 	width: 900px;
-	margin: 0px auto;
 }
+
+
+
 
 /* 내부에 absolute 속성쓰려고 만듬 */
 .con_box_2{
+
 	position: relative;
 	width: 100%;
 }
 
 
 
+.hr{
+margin-top:15px;
+}
 
 
 
 
 /*제목 틀*/
 .sug_tit_box{
+
 width:100%;
 height:50px;
+border-top:1px solid #e0e0eb;
 border-bottom:1px solid #e0e0eb;
+
+border-left:1px solid #e0e0eb;
+border-right:1px solid #e0e0eb;
 line-height:2.5;
 }
 /*제목,작성자*/
@@ -426,10 +377,12 @@ border-top: 1px solid #e0e0eb;
 /*댓글 라인*/
 .comm_table td{
 border-bottom: 1px solid #e0e0eb;
+border-right: 1px solid #e0e0eb;
 }
 /*댓글 라인*/
 .comm_table tr td:nth-child(1){
-border-right: 1px solid #e0e0eb;
+
+border-left: 1px solid #e0e0eb;
 }
 
 /*댓글내용 왼쪽정렬*/
@@ -509,17 +462,23 @@ vertical-align: top;
 }
 
 .footer{
+position: absolute;
+top:240%;
 background-color: #023459;
 width :100%;
-height : 100px;
-margin-top:20px;
+height : 60px;
+
 }
+
+
+
 
 </style>
 </head>
 <body>
+
 <header>
-  <a href="menu.html">BetterWay</a>
+  <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
 	<ul>
 		<li><a href="#">교통안내</a>
@@ -545,35 +504,49 @@ margin-top:20px;
 				<li><a href="#">건의 게시판</a></li>
 			</ul>
 		</li>
+
 	</ul>
 </div>
 </header>
-<article>
-	<div id="sidebar">
-		<div id="side-box1">
-			<span>고객의소리</span>
+<body>
+
+<section>
+  <article>
+		<div id="sidebar">
+			<div id="sidebar_top">
+			고객의 소리
+			</div>
+			<div id="side_menu">
+			<div id="side_sub_menu"><a href="#">건의 게시판</a></div>
+			<div id="side_sub_menu"><a href="#">유실물 조회</a></div>
+			</div>
 		</div>
-		<div id="side-box2">
-			<a href="Lost-Property.html"><span>유실물 조회</span></a>
-		</div>
-		<div id="side-box3">
-			<a href="Bboard1.html"><span>건의 게시판</span></a>
-		</div>
-	</div>
-	<div id="right-box">
-		<div id="main-box1">
-			<div id="site-route">홈>고객의소리>건의게시판</div>
-		</div>
+		<div id="box_top">
 		
-		<div class="con_box">
-		<div class="con_box_2">
-		<div id="main-title">
-		<div class="tit_img"></div>	건의 게시판
-		</div>
-		<div id="main-caution">
-			<div><p><img alt="경고표시" src="resources/images/warning.png"/>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
-				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p></div>
-		</div>
+		 <div class="box_tit">
+        
+		        <div class="img_cov">
+		      
+		                  <div class="img_cov_con">
+		                  	홈 > 건의게시판 &nbsp;
+		                  	</div>
+		            </div>
+    	</div>
+    	
+    	
+    	<div id="box_con">
+			<div id="box_con_cir"><img alt="건의사항" src="resources/images/suggest.png" width="50px" height="50px"> </div>
+			<div id="box_con_txt">
+			건의 게시판
+			</div>
+			
+			<hr class="hr">
+			<p>사이트 이용에 있어서 불편한 점을 건의하는 게시판입니다. <br/>
+				서비스와 무관한 광고글, 욕설, 비방 등은 관리자가 임의 삭제하겠습니다.</p>
+			<div class="con_box">
+			
+					<div class="con_box_2">
+
 		
  		<div class="sug_tit_box">
  		<div class="sug_tit_writer">
@@ -646,10 +619,23 @@ margin-top:20px;
 	
 	
 				</div><!-- con_box_2 end -->
-	</div> <!-- con_box end -->
-	</div> <!-- right-box end -->
-	
-	<div class="footer"></div>
-</article>
+			
+			
+			
+			
+			
+    	</div>
+    	
+    	
+    	
+    	</div>
+		
+    	</div>
+    	
+    	
+ </article>
+</section>
+
+<div class="footer"></div>
 </body>
 </html>

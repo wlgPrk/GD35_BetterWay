@@ -263,33 +263,31 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 
 </script>
 
-
-
 <header>
-  <a class="main" href="menu.html">BetterWay</a>
-<div id="menu">
+  <a class="main" href="BetterWay_main">BetterWay</a>
+	<div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
+		<li><a href="#">교통정보안내</a>
 			<ul>
-				<li><a href="javascript:sublinieInfo();">사이버스테이션</a></li>
-				<li><a href="#">실시간 열차정보</a></li>
-				<li><a href="#">역주변 버스정류장 연계</a></li>
-				<li><a href="#">역 내외 시설</a></li>
+				<li><a href="BetterWay_subLineSearch">노선도</a></li>
+				<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
+				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>
 		</li>
 		<li><a href="#">환경정보안내</a>
 			<ul>
 				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
-				<li><a href="javascript:cooling();">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
 			</ul>
 		</li>
-		<li><a href="#">지하철 뉴스</a>
+		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
 			
 		</li>
-		<li><a href="#">고객의 소리</a>
+		<li><a href="BetterWay_suggestList">고객의 소리</a>
 			<ul>
-				<li><a href="#">유실물 조회</a></li>
-				<li><a href="#">건의 게시판</a></li>
+				<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
+				<li><a href="BetterWay_suggestList">건의 게시판</a></li>
 			</ul>
 		</li>
 

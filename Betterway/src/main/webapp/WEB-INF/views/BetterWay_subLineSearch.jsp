@@ -5,6 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+function main(){
+/* 수정수정 */
+	location.href="BetterWay_cooling.html";
+}
+
+function BetterWay_subLineRealtime(){
+
+	location.href="BetterWay_subLineRealtime.html";
+
+}
+function BetterWay_subLineBusstation(){
+	location.href="BetterWay_subLineBusstation.html";
+}
+</script>
 <style>*{
 overflow: hidden;
 }
@@ -214,7 +230,7 @@ margin-top:13px;
 <body>
 <div class="side">
 	<div class="side_title">
-	<a class="main" href="menu.html">BetterWay</a>
+	<a class="main" href="javascript:main();">BetterWay</a>
 	</div>
 	<div id="title">출발 도착 역검색</div>
 	<div class="wrap">
@@ -228,8 +244,8 @@ margin-top:13px;
 		</div>
 	</div>	  
 	<div class="subbtn_box">
-		<div class="subbtn"><a id="subbtn_realtime" href="zoom_realtime.html" >실시간 위치</a></div>
-		<div class="subbtn"><a id="subbtn_busstation" href="zoom_busstation.html">주변 버스정류장</a></div>
+		<div class="subbtn"><a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a></div>
+		<div class="subbtn"><a id="subbtn_busstation" href="javascript:BetterWay_subLineBusstation();">주변 버스정류장</a></div>
 	</div>			
 	</div><!-- wrap end -->
 		<div class="box_sub_wrap">
@@ -240,8 +256,8 @@ margin-top:13px;
 		</div>
 		<div class="box_table"> 
 		    <div class="subbtn_box">		 
-					<div class="subbtn"><a id="min_transfer" href="zoom_realtime.html" >최소환승</a></div>
-				<div class="subbtn"><a id="min_take" href="zoom_busstation.html">최단시간</a></div>
+					<div class="subbtn"><a id="min_transfer" href="#" >최소환승</a></div>
+				<div class="subbtn"><a id="min_take" href="#">최단시간</a></div>
 			</div>
 			<div id="box_table_Guide">
 				<div id="take" >소요시간</div>
@@ -250,8 +266,7 @@ margin-top:13px;
 			    <div id="charge_P">요금출력</div>
 			    <div class="table_img" >
 				    <div class="table_img1">
-					<img alt="subimg" src="resources/images/
-					underground.png" style="width:80px; hieght:80px"></div>
+					<img alt="subimg" src="resources/images/underground.png" style="width:80px; hieght:80px"></div>
 				   
 				    <div class="table_img2">
 					<div id="train_for">OO행</div>
@@ -270,8 +285,7 @@ margin-top:13px;
 
 </div>
 <div class="subline_img"><span class='zoom' id='zooming'>
-		<img src='resources/images/
-		naver_subway.jpg' width='100%' height='100%'/>
+		<img src='resources/images/naver_subway.jpg' width='100%' height='100%'/>
 		<p>마우스를 올려 확대해보세요.</p>
 	</span>
 </div>
