@@ -10,15 +10,15 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 @Service
-public class ApiNewsService {
+public class ApiNewsService   {
 
     public String newsApi() {
         String clientId = "mrLDqNvTCwR8fIu2D0b2"; //애플리케이션 클라이언트 아이디값"
         String clientSecret = "p7BZTVCNdp"; //애플리케이션 클라이언트 시크릿값"
 
-        String text = "display=100&start=1&sort=sim";
+        String text = "";
         try {
-            text = URLEncoder.encode("지하철", "UTF-8");
+            text = URLEncoder.encode("지하철", "UTF-8") +"&display=100&start=50&sort=sim";
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("검색어 인코딩 실패",e);
         }
@@ -31,7 +31,7 @@ public class ApiNewsService {
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
         String responseBody = get(apiURL,requestHeaders);
 
-        System.out.println(responseBody);
+        
         
         return responseBody;
     }
