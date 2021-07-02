@@ -539,6 +539,16 @@ $(document).ready(function(){
 		location.href="BetterWay_suggestList"
 	});
 	
+	//유실물조회
+	$(".side_lost").on("click",function(){
+		location.href="BetterWay_lostAndFound"
+	});
+	
+	//건의
+	$(".side_sug").on("click",function(){
+		location.href="BetterWay_suggestList"
+	});
+	
 	
 	
 }); // document end
@@ -585,8 +595,8 @@ $(document).ready(function(){
 			고객의 소리
 			</div>
 			<div id="side_menu">
-			<div id="side_sub_menu"><a href="#">건의 게시판</a></div>
-			<div id="side_sub_menu"><a href="#">유실물 조회</a></div>
+			<div id="side_sub_menu" class="side_sug">건의 게시판</div>
+			<div id="side_sub_menu" class="side_lost">유실물 조회</div>
 			</div>
 		</div>
 		<div id="box_top">
