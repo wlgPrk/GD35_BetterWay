@@ -453,7 +453,7 @@ th,td{
 			<div class = "tab_box">
 				<table id="con_tab">
 				<div class = "subLine">
-				<span>1호선</span><span>2호선</span><span>3호선</span><span>4호선</span>
+				<span>1호선</span><span>21호선</span><span>3호선</span><span>4호선</span>
 				<span>5호선</span><span>6호선</span><span>7호선</span><span>8호선</span><span>9호선</span>
 					</div>
 					
