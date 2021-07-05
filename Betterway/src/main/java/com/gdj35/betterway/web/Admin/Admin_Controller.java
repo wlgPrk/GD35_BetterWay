@@ -34,4 +34,28 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value ="/BetterWay_suggestListAdmin")
+	public ModelAndView BetterWay_suggestListAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_suggestListAdmin");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value ="/BetterWay_suggestWriteAdmin")
+	public ModelAndView BetterWay_suggestWriteAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_suggestWriteAdmin");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value ="/BetterWay_suggestModifyAdmin")
+	public ModelAndView BetterWay_suggestContentAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_suggestModifyAdmin");
+		
+		return mav;
+	}
 }

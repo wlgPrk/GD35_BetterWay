@@ -98,7 +98,7 @@ nav ul {
 section{
 width:100%;
 height:800px;
-background-image :url("main.jpg");
+background-image :url("resources/images/main.jpg");
 
 /* background-image :url("resources/images/main.jpg"); */
 }
