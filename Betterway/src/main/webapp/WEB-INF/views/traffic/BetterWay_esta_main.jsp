@@ -458,35 +458,35 @@ th,td{
 				1호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_2" onclick ="rd2;" checked="checked" id = cheak_line2>
+				<input type="radio" name = "line_2" onclick ="rd2;"  id = cheak_line2>
 				2호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_3" onclick ="rd3;" checked="checked" id = cheak_line3>
+				<input type="radio" name = "line_3" onclick ="rd3;"  id = cheak_line3>
 				3호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_4" onclick ="rd4;" checked="checked" id = cheak_line4>
+				<input type="radio" name = "line_4" onclick ="rd4;" id = cheak_line4>
 				4호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_5" onclick ="rd5;" checked="checked" id = cheak_line5>
+				<input type="radio" name = "line_5" onclick ="rd5;"  id = cheak_line5>
 				5호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_6" onclick ="rd6;" checked="checked" id = cheak_line6>
+				<input type="radio" name = "line_6" onclick ="rd6;"  id = cheak_line6>
 				6호선
 				</span>
 				<span class=wrap>			
-				<input type="radio" name = "line_7" onclick ="rd7;" checked="checked" id = cheak_line7>
+				<input type="radio" name = "line_7" onclick ="rd7;"  id = cheak_line7>
 				7호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_8" onclick ="rd8;" checked="checked" id = cheak_line8>
+				<input type="radio" name = "line_8" onclick ="rd8;"  id = cheak_line8>
 				8호선
 				</span>
 				<span class=wrap>
-				<input type="radio" name = "line_9" onclick ="rd9;" checked="checked" id = cheak_line9>
+				<input type="radio" name = "line_9" onclick ="rd9;"  id = cheak_line9>
 				9호선
 				</span>	
 				</div>
