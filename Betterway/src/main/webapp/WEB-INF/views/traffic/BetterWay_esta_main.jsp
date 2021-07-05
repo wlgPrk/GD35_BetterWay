@@ -500,6 +500,7 @@ th,td{
 				<img src="resources/images/line/line9.png" style="width: 22px; height: 22px;">
 				9호선
 				</span>	&nbsp; 
+				<input type="button" value="검색">
 				</div>
 				
 			<div id = "sub_tit"><strong>배려시설 현황</strong></div>
