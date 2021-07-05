@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ê±´ì˜ê²Œì‹œíŒ - ë©”ì¸</title>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
 <style type="text/css">
 * { 
   margin: 0;
@@ -69,7 +71,7 @@ header {
 		font-size:14px;
 		background: #fff;
 	}
-	#menu > ul > li:hover > ul { /* liê°€ hover ìƒíƒœì¼ë•Œ ulì˜ displayë¥¼ blockìœ¼ë¡œ ì§€ì •  */
+	#menu > ul > li:hover > ul { /* li°¡ hover »óÅÂÀÏ¶§ ulÀÇ display¸¦ blockÀ¸·Î ÁöÁ¤  */
 		display:block; 
 	}
 	#menu > ul > li > ul > li:hover {
@@ -154,7 +156,7 @@ article {
 #main-caution img {
 	width: 17px;
 }
-[alt="ê³µì§€"], [alt="ì´ë¯¸ì§€"], [alt="ì´ë¯¸ì§€ì—†ìŒ"] {
+[alt="°øÁö"], [alt="ÀÌ¹ÌÁö"], [alt="ÀÌ¹ÌÁö¾øÀ½"] {
 	width: 30px;
 }
 #main-table {
@@ -199,13 +201,13 @@ article {
 #main-pagenation-search {
 	height: 80px;
 }
-#main-pagenation-search [alt="ì™¼ìª½í™”ì‚´í‘œ"] {
+#main-pagenation-search [alt="¿ŞÂÊÈ­»ìÇ¥"] {
 	width: 43px;
 	position: absolute;
 	left: 28%;
 	cursor: pointer;
 }	
-#main-pagenation-search [alt="ì˜¤ë¥¸ìª½í™”ì‚´í‘œ"] {
+#main-pagenation-search [alt="¿À¸¥ÂÊÈ­»ìÇ¥"] {
 	width: 43px;
 	position: absolute;
 	right: 28%;
@@ -266,7 +268,7 @@ article {
 
 
 
-/* ë³¸ë¬¸í‹€*/
+/* º»¹®Æ²*/
 .con_box {
 	position :relative;
 	width: 900px;
@@ -280,7 +282,7 @@ article {
 
 
 
-/*-- ë¡œê·¸ì¸ì•ˆë‚´í‹€--*/
+/*-- ·Î±×ÀÎ¾È³»Æ²--*/
 .login_text_box{
 width: 90%;
 height :30px; 
@@ -288,7 +290,7 @@ font-size: 20px;
 padding: 5px 0px 5px 5px; 
 }
 
-/*--í…ìŠ¤íŠ¸ì¸í’‹ --*/
+/*--ÅØ½ºÆ®ÀÎÇ² --*/
 .login_text{
 width: 90%;
     height: 30px;
@@ -301,7 +303,7 @@ width: 90%;
 }
 
 
-/*--ë¡œê·¸ì¸ë²„íŠ¼--*/
+/*--·Î±×ÀÎ¹öÆ°--*/
 .login_btn{
 width:90%;
 height: 30px;
@@ -321,7 +323,7 @@ cursor: pointer;
 
 
 
-/* ì´ê±´ ë©”ì¸ì•ˆì— ì»¨í…ì¸  í¬ê¸° ê³ ì •í•´ì£¼ê³  ê²Œì† ë¸Œë¼ìš°ì € xì¶• ì¤„ì˜€ë‹¤ ëŠ˜ë ¸ë‹¤ ë°˜ë³µí•´ë„  ë©”ì¸ì•ˆì»¨í…ì¸ ê°€ ê³„ì† ì¤‘ì•™ì—ì˜¤ê²Œí•˜ëŠ” ì—­í• */
+/* ÀÌ°Ç ¸ŞÀÎ¾È¿¡ ÄÁÅÙÃ÷ Å©±â °íÁ¤ÇØÁÖ°í °Ô¼Ó ºê¶ó¿ìÀú xÃà ÁÙ¿´´Ù ´Ã·È´Ù ¹İº¹ÇØµµ  ¸ŞÀÎ¾ÈÄÁÅÙÃ÷°¡ °è¼Ó Áß¾Ó¿¡¿À°ÔÇÏ´Â ¿ªÇÒ*/
 .con_box {
 	padding-left:20px;
 	background-color: #FFFFFF;
@@ -353,27 +355,27 @@ margin-top:20px;
   <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
 	<ul>
-		<li><a href="#">êµí†µì•ˆë‚´</a>
+		<li><a href="#">±³Åë¾È³»</a>
 			<ul>
-				<li><a href="zoom.html">ì‚¬ì´ë²„ìŠ¤í…Œì´ì…˜</a></li>
-				<li><a href="#">ì‹¤ì‹œê°„ ì—´ì°¨ì •ë³´</a></li>
-				<li><a href="#">ì—­ì£¼ë³€ ë²„ìŠ¤ì •ë¥˜ì¥ ì—°ê³„</a></li>
-				<li><a href="#">ì—­ ë‚´ì™¸ ì‹œì„¤</a></li>
+				<li><a href="zoom.html">»çÀÌ¹ö½ºÅ×ÀÌ¼Ç</a></li>
+				<li><a href="#">½Ç½Ã°£ ¿­Â÷Á¤º¸</a></li>
+				<li><a href="#">¿ªÁÖº¯ ¹ö½ºÁ¤·ùÀå ¿¬°è</a></li>
+				<li><a href="#">¿ª ³»¿Ü ½Ã¼³</a></li>
 			</ul>
 		</li>
-		<li><a href="#">í™˜ê²½ì •ë³´ì•ˆë‚´</a>
+		<li><a href="#">È¯°æÁ¤º¸¾È³»</a>
 			<ul>
-				<li><a href="javascript:popup();">ì‹¤ë‚´ ê³µê¸°ì§ˆ ì •ë³´ ì œê³µ</a></li>
-				<li><a href="conditionInfo.html">ì°¨ëŸ‰ ë³„ ëƒ‰ë°©ìƒíƒœ</a></li>
+				<li><a href="javascript:popup();">½Ç³» °ø±âÁú Á¤º¸ Á¦°ø</a></li>
+				<li><a href="conditionInfo.html">Â÷·® º° ³Ã¹æ»óÅÂ</a></li>
 			</ul>
 		</li>
-		<li><a href="#">ì§€í•˜ì²  ë‰´ìŠ¤</a>
+		<li><a href="#">ÁöÇÏÃ¶ ´º½º</a>
 			
-		</li>dasdas
-		<li><a href="#">ê³ ê°ì˜ ì†Œë¦¬</a>
+		</li>
+		<li><a href="#">°í°´ÀÇ ¼Ò¸®</a>
 			<ul>
-				<li><a href="#">ìœ ì‹¤ë¬¼ ì¡°íšŒ</a></li>
-				<li><a href="#">ê±´ì˜ ê²Œì‹œíŒ</a></li>
+				<li><a href="#">À¯½Ç¹° Á¶È¸</a></li>
+				<li><a href="#">°ÇÀÇ °Ô½ÃÆÇ</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -382,12 +384,12 @@ margin-top:20px;
 <article>
 <div class="con_box">
 <div class="con_logo">BetterWay</div>
-<div class="login_text_box">ì•„ì´ë””</div>
-<input type="text" class="login_text" placeholder="ì•„ì´ë””ë¥¼ì…ë ¥í•˜ì„¸ìš”" id="id">
-<div class="login_text_box">ë¹„ë°€ë²ˆí˜¸</div>
-<input type="password" class="login_text" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ì…ë ¥í•˜ì„¸ìš”" id="pw">
+<div class="login_text_box">¾ÆÀÌµğ</div>
+<input type="text" class="login_text" placeholder="¾ÆÀÌµğ¸¦ÀÔ·ÂÇÏ¼¼¿ä" id="id">
+<div class="login_text_box">ºñ¹Ğ¹øÈ£</div>
+<input type="password" class="login_text" placeholder="ºñ¹Ğ¹øÈ£¸¦ÀÔ·ÂÇÏ¼¼¿ä" id="pw">
 
-<div class="login_btn">ë¡œê·¸ì¸</div>
+<div class="login_btn">·Î±×ÀÎ</div>
 </div>
 
 <div class="footer"></div>
