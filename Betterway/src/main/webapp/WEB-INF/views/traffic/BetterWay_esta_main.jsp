@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>편의시설 메인</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript">
-</script>
+
 
 <style type="text/css">
 * {
@@ -364,6 +364,20 @@ th,td{
 }
 
 </style>
+<script type="text/javascript" 
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	function reloadList() {
+		
+		
+		
+	}
+	
+});
+
+
+</script>
 </head>
 <body>
 
@@ -516,7 +530,7 @@ th,td{
 					</thead>
 					
 					<tbody>
-					<!--<tr class="td-total_1"><td>소계</td>	<td>36</td>	<td>31</td>	<td></td>	<td>9</td>	<td>10</td>	<td>3</td>	<td>12</td>	<td>219</td></tr>-->
+					
 					<tr>	<td>서울역</td><td>4</td>	<td>5</td>	<td></td>	<td>1</td>	<td>1</td>	<td></td>	<td>1</td>	<td>33</td></tr>
 					<tr><td>시청역</td>	<td>3</td>	<td>3</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
 					<tr><td>종각역</td>	<td>4</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>38</td></tr>
