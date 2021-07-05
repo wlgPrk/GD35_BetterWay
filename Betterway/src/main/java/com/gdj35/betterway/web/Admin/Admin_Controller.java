@@ -9,7 +9,7 @@ public class Admin_Controller {
 	@RequestMapping(value ="/BetterWay_login")
 	public ModelAndView BetterWay_login(ModelAndView mav) {
 		
-		mav.setViewName("/BetterWay_login");
+		mav.setViewName("admin/BetterWay_login");
 		
 		return mav;
 	}
