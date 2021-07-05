@@ -1,11 +1,17 @@
 package com.gdj35.betterway.web.trafficGuide.stationEstaInfo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gdj35.betterway.web.trafficGuide.stationEstaInfo.Service.IEstaService;
+
 @Controller
 public class stationEstaInfo_Controller {
+	
+	@Autowired 
+	public IEstaService iEstaService;
 	
 	@RequestMapping(value="/BetterWay_nursingRoom")
 	public ModelAndView BetterWay_baby(ModelAndView mav) {
