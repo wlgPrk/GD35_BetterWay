@@ -453,9 +453,43 @@ th,td{
 			<div class = "tab_box">
 				<table id="con_tab">
 				<div class = "subLine">
-				<span>1호선</span><span>2111호선</span><span>3호선</span><span>4호선</span>
-				<span>5호선</span><span>6호선</span><span>7호선</span><span>8호선</span><span>9호선</span>
-					</div>
+				<span class="wrap">
+				<input type="radio" name = "line_1" onclick ="rd1;" checked="checked" id = cheak_line1>
+				1호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_2" onclick ="rd2;" checked="checked" id = cheak_line2>
+				2호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_3" onclick ="rd3;" checked="checked" id = cheak_line3>
+				3호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_4" onclick ="rd4;" checked="checked" id = cheak_line4>
+				4호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_5" onclick ="rd5;" checked="checked" id = cheak_line5>
+				5호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_6" onclick ="rd6;" checked="checked" id = cheak_line6>
+				6호선
+				</span>
+				<span class=wrap>			
+				<input type="radio" name = "line_7" onclick ="rd7;" checked="checked" id = cheak_line7>
+				7호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_8" onclick ="rd8;" checked="checked" id = cheak_line8>
+				8호선
+				</span>
+				<span class=wrap>
+				<input type="radio" name = "line_9" onclick ="rd9;" checked="checked" id = cheak_line9>
+				9호선
+				</span>	
+				</div>
 					
 					<tbody>
 					<!--<tr class="td-total_1"><td>소계</td>	<td>36</td>	<td>31</td>	<td></td>	<td>9</td>	<td>10</td>	<td>3</td>	<td>12</td>	<td>219</td></tr>-->
