@@ -13,4 +13,25 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	@RequestMapping(value ="/BetterWay_happyAdmin")
+	public ModelAndView BetterWay_happyAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_happyAdmin");
+		
+		return mav;
+	}
+	@RequestMapping(value ="/BetterWay_cycleAdmin")
+	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_cycleAdmin");
+		
+		return mav;
+	}
+	@RequestMapping(value ="/BetterWay_wheelchairAdmin")
+	public ModelAndView BetterWay_wheelchairAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_wheelchairAdmin");
+		
+		return mav;
+	}
 }
