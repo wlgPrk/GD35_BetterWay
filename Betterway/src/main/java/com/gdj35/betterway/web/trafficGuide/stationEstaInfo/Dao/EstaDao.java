@@ -18,4 +18,10 @@ public class EstaDao implements IEstaDao {
 		return sqlSession.selectList("E.EstaList", params) ;
 	}
 
+	@Override
+	public List<HashMap<String, String>> happyList(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("E.happyList",params);
+	}
+
+
 }

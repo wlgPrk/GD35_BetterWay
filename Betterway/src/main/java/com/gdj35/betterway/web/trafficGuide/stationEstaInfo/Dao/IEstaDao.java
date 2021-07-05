@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface IEstaDao {
 
-	List<HashMap<String, String>> EstaList(HashMap<String, String> params) throws Throwable;
+	public List<HashMap<String, String>> EstaList(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> happyList(HashMap<String, String> params)throws Throwable;
 
 }

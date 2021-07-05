@@ -89,8 +89,51 @@ th{
 }
 
 </style>
+<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	reloadList();
+});
+function drawList(list){
+	   var html = "";
+	   
+	   for(var d of list){
+	      html += "<td>" + d.HAPPY_NO + "</td>";
+	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
+	      html += "<td>" + d.LOCATION + "</td>";
+	      html += "<td>" + d.AREA + "</td>";
+	      html += "<td>" + d.OPERATING_AGENCY + "</td>";
+	      html += "<td>" + d.PHONE_NUM + "</td>";
+	      html += "<td>" + d.DEL_STATUS + "</td>";
+	      html += "</tr>";
+	   }
+	   
+	   $(".list_wrap tbody").html(html);
+	}
+	
+function reloadList(){
+	var params = $("#actionForm").serialize();
+	
+	 $.ajax({
+         url : "happy_List",
+         type : "post",  
+         dataType :"json", 
+         data : params,
+         success : function(res){
+             drawList(res.list); 
+         },
+         error : function(request,status,error){
+            console.log(error);
+         }
+      });
+}
+</script>
 </head>
 <body>
+	<form action="#" id="actionForm" method="post"></form>
+
 	<div id="left">
 		<div id="left_sub">
 		<div>편의시설관리</div>
@@ -110,7 +153,7 @@ th{
 		<div id ="right_sub2">
 			<input type="button" value="행추가" />
 		</div>
-		<div id ="right_sub3">
+		<div class ="list_wrap">
 			<table>
 				<colgroup>
 					<col width="10%">
