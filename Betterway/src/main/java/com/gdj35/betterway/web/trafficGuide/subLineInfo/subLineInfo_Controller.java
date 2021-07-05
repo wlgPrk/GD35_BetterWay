@@ -8,22 +8,22 @@ import org.springframework.web.servlet.ModelAndView;
 public class subLineInfo_Controller {
 	@RequestMapping(value="/BetterWay_subLineSearch")
 	public ModelAndView BetterWay_subLineSearch(ModelAndView mav) {
-		mav.setViewName("BetterWay_subLineSearch");
+		mav.setViewName("traffic/BetterWay_subLineSearch");
 		return mav;
 	}
 	@RequestMapping(value="/BetterWay_subLineBusstation")
 	public ModelAndView BetterWay_subLineBusstation(ModelAndView mav) {
-		mav.setViewName("BetterWay_subLineBusstation");
+		mav.setViewName("traffic/BetterWay_subLineBusstation");
 		return mav;
 	}
 	@RequestMapping(value="/BetterWay_subLineRealtime")
 	public ModelAndView BetterWay_subLineRealtime(ModelAndView mav) {
-		mav.setViewName("BetterWay_subLineRealtime");
+		mav.setViewName("traffic/BetterWay_subLineRealtime");
 		return mav;
 	}
 	@RequestMapping(value="/BetterWay_subLineRealtime2")
 	public ModelAndView BetterWay_subLineRealtime2(ModelAndView mav) {
-		mav.setViewName("BetterWay_subLineRealtime2");
+		mav.setViewName("traffic/BetterWay_subLineRealtime2");
 		return mav;
 	}
 	

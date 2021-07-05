@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class cooling_Controller {
 	@RequestMapping(value="/BetterWay_cooling")
 	public ModelAndView BetterWay_cooling(ModelAndView mav) {
-		mav.setViewName("BetterWay_cooling");
+		mav.setViewName("environment/BetterWay_cooling");
 		return mav;
 	}
 

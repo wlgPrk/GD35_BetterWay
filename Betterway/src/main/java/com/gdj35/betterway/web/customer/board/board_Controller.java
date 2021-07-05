@@ -11,7 +11,7 @@ public class board_Controller {
 	@RequestMapping(value="/BetterWay_suggestList")
 	public ModelAndView suggestList(ModelAndView mav) {
 		
-		mav.setViewName("/BetterWay_suggestList");
+		mav.setViewName("customer/BetterWay_suggestList");
 		
 		return mav;
 	}//suggestListe end
@@ -22,7 +22,7 @@ public class board_Controller {
 	@RequestMapping(value="/BetterWay_suggestContent")
 	public ModelAndView suggestContent(ModelAndView mav) {
 		
-		mav.setViewName("/BetterWay_suggestContent");
+		mav.setViewName("customer/BetterWay_suggestContent");
 		
 		return mav;
 	}//suggestContent end
@@ -32,7 +32,7 @@ public class board_Controller {
 	@RequestMapping(value="/BetterWay_suggestWrite")
 	public ModelAndView suggestWrite(ModelAndView mav) {
 		
-		mav.setViewName("/BetterWay_suggestWrite");
+		mav.setViewName("customer/BetterWay_suggestWrite");
 		
 		return mav;
 	}//suggestWrite end
