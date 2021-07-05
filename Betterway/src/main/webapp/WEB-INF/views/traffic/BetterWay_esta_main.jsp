@@ -368,13 +368,35 @@ th,td{
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	function reloadList() {
+	drawList();
+	/*$("#searchBtn").on("click",function(){
+		
+		$("#searchOldTxt").val($("#searchTxt").val());
+		reloadList();
+	});//search btn end
+	*/
+});
+
+function drawList(list){
+	var html ="";
+	
+	for(var d of list){
+		html += "<tr 역이름=\"" + d.SUBWAY_STATION_NAME + "\">";
+		html += "<td>" + d.ELEV_COUNT + "</td>";
+		html += "<td>" + d.ESCA_COUNT + "</td>";
+		html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
+		html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
+		html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
+		html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
+		html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
+		html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
+		html += "</tr>";
 		
 		
+		$("#con_tab tbody").html(html);
 		
 	}
 	
-});
 
 
 </script>
@@ -470,7 +492,7 @@ $(document).ready(function(){
 			<strong>	호선 선택</strong>
 				</div>
 				<span class="wrap">
-				<input type="radio" name = "line" onclick ="rd1;"  id = cheak_line1>
+				<input type="radio" name = "line" onclick ="rd1;" checked="checked"  id = cheak_line1>
 				<img src="resources/images/line/line1.png" style="width: 22px; height: 22px;">
 				1호선
 				</span>&nbsp; 
@@ -531,16 +553,7 @@ $(document).ready(function(){
 					
 					<tbody>
 					
-					<tr>	<td>서울역</td><td>4</td>	<td>5</td>	<td></td>	<td>1</td>	<td>1</td>	<td></td>	<td>1</td>	<td>33</td></tr>
-					<tr><td>시청역</td>	<td>3</td>	<td>3</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
-					<tr><td>종각역</td>	<td>4</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>38</td></tr>
-					<tr><td>종로3가역</td>	<td>3</td>	<td>4</td>	<td></td>	<td></td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>48</td></tr>
-					<tr><td>종로5가역</td>	<td>3</td>	<td>　</td>	 <td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
-					<tr><td>동대문역</td>	<td>3</td>	<td>1</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>4</td></tr>
-					<tr><td>동묘앞역</td>	<td>7</td>	<td>12</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>4</td>	<td>37</td></tr>
-					<tr><td>신설동역</td>	<td>5</td>	<td>　</td>		<td></td>	<td>6</td>	<td>1</td>	<td></td>	<td>1</td>	<td></td></tr>
-					<tr><td>제기동역</td>	<td>3</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td></td></tr>
-					<tr><td>청량리역</td>	<td>1</td>	<td>4</td>	<td></td>	<td>2</td>	<td>1</td>	<td></td>	<td>1</td>	<td></td></tr>
+					
 			</tbody>
 					</table>
     	

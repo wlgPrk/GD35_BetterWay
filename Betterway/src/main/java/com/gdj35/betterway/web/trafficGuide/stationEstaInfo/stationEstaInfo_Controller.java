@@ -1,9 +1,14 @@
 package com.gdj35.betterway.web.trafficGuide.stationEstaInfo;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.gdj35.betterway.web.trafficGuide.stationEstaInfo.Service.IEstaService;
 
@@ -53,13 +58,23 @@ public class stationEstaInfo_Controller {
 		return mav;
 	}
 	
+	
+	
 	@RequestMapping(value="/BetterWay_esta_main")
-	public ModelAndView BetterWay_esta_main(ModelAndView mav) {
+	public ModelAndView BetterWay_esta_main(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
+		List<HashMap<String, String>> list
+		= iEstaService.EstaList(params);
+		
+		mav.addObject("list",list);
 		
 		mav.setViewName("traffic/BetterWay_esta_main");
 		
 		return mav;
 	}
+	
+	
 	@RequestMapping(value="/BetterWay_esta_out")
 	public ModelAndView BetterWay_esta_out(ModelAndView mav) {
 		
