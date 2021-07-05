@@ -454,7 +454,7 @@ th,td{
 				<table id="con_tab">
 				<div class = "subLine">
 				<span class="wrap">
-				<input type="radio" name = "line_1" onclick ="rd1;" checked="checked" id = cheak_line1>
+				<input type="radio" name = "line_1" onclick ="rd1;"  id = cheak_line1>
 				1호선
 				</span>
 				<span class=wrap>
