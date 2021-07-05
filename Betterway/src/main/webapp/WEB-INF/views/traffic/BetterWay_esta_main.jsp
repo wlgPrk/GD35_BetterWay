@@ -187,7 +187,7 @@ font-size: 30pt;
 
 }
 #box_con_img{
-padding:5px;
+
 font-size: 25pt;
 float: left;
 }
@@ -359,6 +359,9 @@ th,td{
 	width:1080px;
 	height:150px;
 }
+#subLine{
+ font-size: 15px;
+}
 
 </style>
 </head>
@@ -448,49 +451,68 @@ th,td{
 			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
 			
 			<br/>
+			<div class = "subLine">
+				<div id = "sub_tit">
+			<strong>	호선 선택</strong>
+				</div>
+				<span class="wrap">
+				<input type="radio" name = "line" onclick ="rd1;"  id = cheak_line1>
+				<img src="resources/images/line/line1.png" style="width: 22px; height: 22px;">
+				1호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd2;"  id = cheak_line2>
+				<img src="resources/images/line/line2.png" style="width: 22px; height: 22px;">
+				2호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd3;"  id = cheak_line3>
+				<img src="resources/images/line/line3.png" style="width: 22px; height: 22px;">
+				3호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd4;" id = cheak_line4>
+				<img src="resources/images/line/line4.png" style="width: 22px; height: 22px;">
+				4호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd5;"  id = cheak_line5>
+				<img src="resources/images/line/line5.png" style="width: 22px; height: 22px;">
+				5호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd6;"  id = cheak_line6>
+				<img src="resources/images/line/line6.png" style="width: 22px; height: 22px;">
+				6호선
+				</span>&nbsp; 
+				<span class=wrap>			
+				<input type="radio" name = "line" onclick ="rd7;"  id = cheak_line7>
+				<img src="resources/images/line/line7.png" style="width: 22px; height: 22px;">
+				7호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd8;"  id = cheak_line8>
+				<img src="resources/images/line/line8.png" style="width: 22px; height: 22px;">
+				8호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd9;"  id = cheak_line9>
+				<img src="resources/images/line/line9.png" style="width: 22px; height: 22px;">
+				9호선
+				</span>	&nbsp; 
+				</div>
 				
 			<div id = "sub_tit"><strong>배려시설 현황</strong></div>
 			<div class = "tab_box">
 				<table id="con_tab">
-				<div class = "subLine">
-				<span class="wrap">
-				<input type="radio" name = "line_1" onclick ="rd1;"  id = cheak_line1>
-				<img src="resources/images/line/line1.png">
-				1호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_2" onclick ="rd2;"  id = cheak_line2>
-				2호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_3" onclick ="rd3;"  id = cheak_line3>
-				3호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_4" onclick ="rd4;" id = cheak_line4>
-				4호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_5" onclick ="rd5;"  id = cheak_line5>
-				5호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_6" onclick ="rd6;"  id = cheak_line6>
-				6호선
-				</span>
-				<span class=wrap>			
-				<input type="radio" name = "line_7" onclick ="rd7;"  id = cheak_line7>
-				7호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_8" onclick ="rd8;"  id = cheak_line8>
-				8호선
-				</span>
-				<span class=wrap>
-				<input type="radio" name = "line_9" onclick ="rd9;"  id = cheak_line9>
-				9호선
-				</span>	
-				</div>
+					<thead>
+					<tr><th>역 이름</th>
+						<th>엘리베이터</th><th>에스컬레이터</th>
+						<th>수평보행기</th><th>휠체어리프트</th>
+						<th>이동식안전발판</th><th>전동휠체어급속충전기</th>
+						<th>장애인화장실</th><th>음성유도기</th>
+					</tr>
+					</thead>
 					
 					<tbody>
 					<!--<tr class="td-total_1"><td>소계</td>	<td>36</td>	<td>31</td>	<td></td>	<td>9</td>	<td>10</td>	<td>3</td>	<td>12</td>	<td>219</td></tr>-->
