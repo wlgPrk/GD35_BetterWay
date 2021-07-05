@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Popup CSS -->
-<link rel="stylesheet" type="text/css" href="./popup.css" />
+<link rel="stylesheet" type="text/css" href="resources/popup/popup.css" />
 <style type="text/css">
 
 /*-------------------- 공용 시작 ---------------------*/
@@ -216,9 +216,9 @@ height :50px;
 
 
 <script type="text/javascript" 
-src="./jquery-1.12.4.js"></script>
+		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
-		src="./popup.js"></script>
+		src="resources/script/popup.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -228,8 +228,28 @@ $(document).ready(function(){
 			makePopup( "아이디를입력하시오","닫기","");
 		}else if($.trim($("#pw").val())==""){
 			makePopup( "비밀번호를입력하시오","닫기","");
-		}
-	});//login btn end
+		}else{
+			//form의 data를문자열로 전환
+			var params =$("#loginForm").serialize();
+			//ajax
+			$.ajax({
+				url: "BetterWay_logins", //접속주소
+				type: "post", //전송방식 : get, post
+				dataType: "json", //받아올데이터형식
+				data: params, //보낼 데이터 (문자열형태)
+				success: function(res) { // 성공시 다음함수 실행
+					if(res.resMsg =="success"){
+						location.href = "BetterWay_happyAdmin";
+					} else{
+						alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+					}
+				},
+				error: function(request, status, error) { // 실패 시 다음 함수 실행
+					console.log(error);
+				}
+			});//ajax end
+		}//else end			
+	}); //login btn end
 
 	
 	
@@ -278,12 +298,15 @@ $(document).ready(function(){
 
 <div class="con_box">
 <div class="con_logo">BetterWay</div>
+
+<form action="#" id="loginForm" method="post">
 <div class="login_text_box">아이디</div>
-<input type="text" class="login_text" placeholder="아이디를입력하세요" id="id">
+<input type="text" class="login_text" placeholder="아이디를입력하세요" id="id" name="id">
 <div class="login_text_box">비밀번호</div>
-<input type="password" class="login_text" placeholder="비밀번호를입력하세요" id="pw">
+<input type="password" class="login_text" placeholder="비밀번호를입력하세요" id="pw" name="pw">
 
 <div class="login_btn">로그인</div>
+</form>
 </div>
 
 

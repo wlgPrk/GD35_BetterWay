@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+	<!-- parameterType :받는값 -->
+	<select id="getAdmin" parameterType="hashmap" resultType="hashmap">
+	SELECT ADMIN_ID,ADMIN_NO
+	FROM ADMIN
+	WHERE ADMIN_ID=#{id} 
+	AND ADMIN_PW=#{pw}
+	</select>
+
+
+
+
+
+</mapper>
