@@ -455,6 +455,7 @@ th,td{
 				<div class = "subLine">
 				<span class="wrap">
 				<input type="radio" name = "line_1" onclick ="rd1;"  id = cheak_line1>
+				<img src="resources/images/line/line1.png">
 				1호선
 				</span>
 				<span class=wrap>
