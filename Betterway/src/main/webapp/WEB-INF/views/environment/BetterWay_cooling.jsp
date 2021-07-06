@@ -254,16 +254,16 @@ $(document).ready(function(){
 			data:params,
 			success:function(res){
 				var html = "";
+	
 				var checkLine = document.getElementsByName("sName");
-				
 				for(var i=0;i<checkLine.length;i++){
 					if(checkLine[i].checked==true){	
 						for(j=1;j<=res.CAR_COUNT;j++){
 							if(j!=res.CAR_NO){
 								
-								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png/>"
+								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png\"/>"
 							}else{
-								html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png/>"
+								html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png\"/>"
 							}
 						}
 					}
@@ -299,9 +299,7 @@ function cooling(){
 </script>
 </head>
 <body>
-<form action="#" id="actionForm" method="post">
 
-</form>
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -369,23 +367,25 @@ function cooling(){
 			<div id="box_con_txt">
 				차량별 냉방상태
 			</div>	
-			
+			<form action="#" id="actionForm" method="post">
+
+
 			<div class="cooling_line_search">				
-			<input type="radio" name="sName" id="chkLine1" class="chkLine"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
-			<input type="radio" name="sName" id="chkLine2" class="chkLine"><img class="Lineimg" alt="Line2" src="resources/images/line/line2.png">2호선
-			<input type="radio" name="sName" id="chkLine3" class="chkLine"><img class="Lineimg" alt="Line3" src="resources/images/line/line3.png">3호선
-			<input type="radio" name="sName" id="chkLine4" class="chkLine"><img class="Lineimg" alt="Line4" src="resources/images/line/line4.png">4호선
-			<input type="radio" name="sName" id="chkLine5" class="chkLine"><img class="Lineimg" alt="Line5" src="resources/images/line/line5.png">5호선
-			<input type="radio" name="sName" id="chkLine6" class="chkLine"><img class="Lineimg" alt="Line6" src="resources/images/line/line6.png">6호선
-			<input type="radio" name="sName" id="chkLine7" class="chkLine"><img class="Lineimg" alt="Line7" src="resources/images/line/line7.png">7호선
-			<input type="radio" name="sName" id="chkLine8" class="chkLine"><img class="Lineimg" alt="Line8" src="resources/images/line/line8.png">8호선
-			<input type="radio" name="sName" id="chkLine9" class="chkLine"><img class="Lineimg" alt="Line9" src="resources/images/line/line9.png">9호선
+			<input type="radio" name="sName" id="chkLine1" value="1호선" class="chkLine"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
+			<input type="radio" name="sName" id="chkLine2" value="2호선" class="chkLine"><img class="Lineimg" alt="Line2" src="resources/images/line/line2.png">2호선
+			<input type="radio" name="sName" id="chkLine3" value="3호선" class="chkLine"><img class="Lineimg" alt="Line3" src="resources/images/line/line3.png">3호선
+			<input type="radio" name="sName" id="chkLine4" value="4호선" class="chkLine"><img class="Lineimg" alt="Line4" src="resources/images/line/line4.png">4호선
+			<input type="radio" name="sName" id="chkLine5" value="5호선" class="chkLine"><img class="Lineimg" alt="Line5" src="resources/images/line/line5.png">5호선
+			<input type="radio" name="sName" id="chkLine6" value="6호선" class="chkLine"><img class="Lineimg" alt="Line6" src="resources/images/line/line6.png">6호선
+			<input type="radio" name="sName" id="chkLine7" value="7호선" class="chkLine"><img class="Lineimg" alt="Line7" src="resources/images/line/line7.png">7호선
+			<input type="radio" name="sName" id="chkLine8" value="8호선" class="chkLine"><img class="Lineimg" alt="Line8" src="resources/images/line/line8.png">8호선
+			<input type="radio" name="sName" id="chkLine9" value="9호선" class="chkLine"><img class="Lineimg" alt="Line9" src="resources/images/line/line9.png">9호선
 		
 			<input type="button" id="DoIt" value="검색" >
 			</div>
 								
 						   
-						
+				</form>		
 						     
 						
 						  

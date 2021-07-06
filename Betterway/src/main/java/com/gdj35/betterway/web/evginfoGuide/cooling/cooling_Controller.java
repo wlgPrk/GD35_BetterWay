@@ -1,6 +1,7 @@
 package com.gdj35.betterway.web.evginfoGuide.cooling;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class cooling_Controller {
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			try {
 			
-			HashMap<String, String> data = iCoolingService.getCar(params);
+			List<HashMap<String, String>> data = iCoolingService.getCar(params);
 			modelMap.put("data",data);
 		} catch (Exception e) {
 			e.printStackTrace();

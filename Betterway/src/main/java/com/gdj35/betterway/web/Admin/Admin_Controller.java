@@ -24,17 +24,17 @@ public class Admin_Controller {
 	public IAdmin_Service iAdmin_Service;
 	
 	
-	@RequestMapping(value ="/BetterWay_login")
+	@RequestMapping(value ="/BetterWay_loginAdmin")
 	public ModelAndView BetterWay_login(ModelAndView mav) {
 		
-		mav.setViewName("admin/BetterWay_login");
+		mav.setViewName("admin/BetterWay_loginAdmin");
 		
 		return mav;
 	}
 	
 	
 
-	@RequestMapping(value = "/BetterWay_logins",
+	@RequestMapping(value = "/BetterWay_loginAdmins",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 	@ResponseBody 

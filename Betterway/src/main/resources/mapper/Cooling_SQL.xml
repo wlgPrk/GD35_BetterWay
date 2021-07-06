@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Cooling">
-<select id="getCar" parameterType="hashmap" resultType="hashmap">
-SELECT S.SUBLINE_NAME, S.CAR_COUNT , W.CAR_NO 
-FROM SUBLINE S INNER JOIN WEAK_COOLING_CAR W ON S.SUBLINE_NO= W.SUBLINE_NO
-WHERE S.SUBLINE_NAME='1호선'
+<mapper namespace="cooling">
 
+
+
+<select id="getCar" parameterType="hashmap" resultType="hashmap">
+SELECT SUBLINE_NAME, CAR_COUNT , CAR_NO 
+FROM SUBLINE S INNER JOIN WEAK_COOLING_CAR W ON S.SUBLINE_NO= W.SUBLINE_NO
+WHERE S.SUBLINE_NAME=#{sName}
 </select>
+
+
+
 </mapper>
