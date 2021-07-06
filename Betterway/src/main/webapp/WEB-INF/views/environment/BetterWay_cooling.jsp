@@ -239,6 +239,11 @@ border: #82b2da;
 color:white;
 margin-left:15px;
 }
+/* #img{
+width:150px;
+height:100px;
+
+} */
 </style>
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -254,20 +259,30 @@ $(document).ready(function(){
 			data:params,
 			success:function(res){
 				var html = "";
+
+				console.log(res);
+				console.log(res.data[0]);
+				//$("#img").attr("src","resources/images/train.png")
+				
+				for(var i=0;i<res.CAR_COUNT;i++){			
+							if(i!=res.CAR_NO){		
+
 		console.log(res);
 				var checkLine = document.getElementsByName("sName");
 				for(var i=0;i<checkLine.length;i++){
 					if(checkLine[i].checked==true){	
 						for(j=1;j<=res.CAR_COUNT;j++){
 							if(j!=res.CAR_NO){
+
 								
 								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png\"/>"
 							}else{
 								html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png\"/>"
 							}
-						}
-					}
+						
+					
 				} 
+				$("#line_con").html(html);
 				$("#img").html(html);
 			},
 			error:function(requet,status,error){
@@ -277,8 +292,7 @@ $(document).ready(function(){
 		
 	
 	});
-});
-
+}); 
 
 function popup(){
 	window.open('BetterWay_envinfoGuide.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
@@ -371,17 +385,17 @@ function cooling(){
 
 
 			<div class="cooling_line_search">				
-			<input type="radio" name="sName" id="chkLine1" value="1호선" class="chkLine"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
-			<input type="radio" name="sName" id="chkLine2" value="2호선" class="chkLine"><img class="Lineimg" alt="Line2" src="resources/images/line/line2.png">2호선
-			<input type="radio" name="sName" id="chkLine3" value="3호선" class="chkLine"><img class="Lineimg" alt="Line3" src="resources/images/line/line3.png">3호선
-			<input type="radio" name="sName" id="chkLine4" value="4호선" class="chkLine"><img class="Lineimg" alt="Line4" src="resources/images/line/line4.png">4호선
-			<input type="radio" name="sName" id="chkLine5" value="5호선" class="chkLine"><img class="Lineimg" alt="Line5" src="resources/images/line/line5.png">5호선
-			<input type="radio" name="sName" id="chkLine6" value="6호선" class="chkLine"><img class="Lineimg" alt="Line6" src="resources/images/line/line6.png">6호선
-			<input type="radio" name="sName" id="chkLine7" value="7호선" class="chkLine"><img class="Lineimg" alt="Line7" src="resources/images/line/line7.png">7호선
-			<input type="radio" name="sName" id="chkLine8" value="8호선" class="chkLine"><img class="Lineimg" alt="Line8" src="resources/images/line/line8.png">8호선
-			<input type="radio" name="sName" id="chkLine9" value="9호선" class="chkLine"><img class="Lineimg" alt="Line9" src="resources/images/line/line9.png">9호선
-		
-			<input type="button" id="DoIt" value="검색" >
+				<input type="radio" name="sName" id="chkLine1" value="1호선" class="chkLine"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
+				<input type="radio" name="sName" id="chkLine2" value="2호선" class="chkLine"><img class="Lineimg" alt="Line2" src="resources/images/line/line2.png">2호선
+				<input type="radio" name="sName" id="chkLine3" value="3호선" class="chkLine"><img class="Lineimg" alt="Line3" src="resources/images/line/line3.png">3호선
+				<input type="radio" name="sName" id="chkLine4" value="4호선" class="chkLine"><img class="Lineimg" alt="Line4" src="resources/images/line/line4.png">4호선
+				<input type="radio" name="sName" id="chkLine5" value="5호선" class="chkLine"><img class="Lineimg" alt="Line5" src="resources/images/line/line5.png">5호선
+				<input type="radio" name="sName" id="chkLine6" value="6호선" class="chkLine"><img class="Lineimg" alt="Line6" src="resources/images/line/line6.png">6호선
+				<input type="radio" name="sName" id="chkLine7" value="7호선" class="chkLine"><img class="Lineimg" alt="Line7" src="resources/images/line/line7.png">7호선
+				<input type="radio" name="sName" id="chkLine8" value="8호선" class="chkLine"><img class="Lineimg" alt="Line8" src="resources/images/line/line8.png">8호선
+				<input type="radio" name="sName" id="chkLine9" value="9호선" class="chkLine"><img class="Lineimg" alt="Line9" src="resources/images/line/line9.png">9호선
+			
+				<input type="button" id="DoIt" value="검색" >
 			</div>
 								
 						   
@@ -396,13 +410,15 @@ function cooling(){
 					
 					 
 				    <div >
-						<div id="img">그림띄울거임</div>
+						<img id="img">그림띄울거임
+						
+						</div>
 						
 					</div>	
 				    	
   			</div>
 	   </div>
-  </div>
+ 
 
   </article>
    
