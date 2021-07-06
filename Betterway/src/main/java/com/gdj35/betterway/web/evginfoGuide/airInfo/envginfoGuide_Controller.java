@@ -8,12 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class envginfoGuide_Controller {
 	@RequestMapping(value="/BetterWay_envinfoGuide")
 	public ModelAndView BetterWay_envinfoGuide(ModelAndView mav) {
-		mav.setViewName("BetterWay_envinfoGuide");
+		mav.setViewName("environment/BetterWay_envinfoGuide");
 		return mav;
 	}
 	@RequestMapping(value="/BetterWay_envinfoGuide2")
 	public ModelAndView BetterWay_envinfoGuide2(ModelAndView mav) {
-		mav.setViewName("BetterWay_envinfoGuide2");
+		mav.setViewName("environment/BetterWay_envinfoGuide2");
 		return mav;
 	}
 }

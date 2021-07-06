@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>편의시설 메인</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript">
-</script>
+
 
 <style type="text/css">
 * {
@@ -187,7 +187,7 @@ font-size: 30pt;
 
 }
 #box_con_img{
-padding:5px;
+
 font-size: 25pt;
 float: left;
 }
@@ -359,8 +359,47 @@ th,td{
 	width:1080px;
 	height:150px;
 }
+#subLine{
+ font-size: 15px;
+}
 
 </style>
+<script type="text/javascript" 
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	drawList();
+	/*$("#searchBtn").on("click",function(){
+		
+		$("#searchOldTxt").val($("#searchTxt").val());
+		reloadList();
+	});//search btn end
+	*/
+});
+
+function drawList(list){
+	var html ="";
+	
+	for(var d of list){
+		html += "<tr 역이름=\"" + d.SUBWAY_STATION_NAME + "\">";
+		html += "<td>" + d.ELEV_COUNT + "</td>";
+		html += "<td>" + d.ESCA_COUNT + "</td>";
+		html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
+		html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
+		html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
+		html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
+		html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
+		html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
+		html += "</tr>";
+		
+		
+		$("#con_tab tbody").html(html);
+		
+	}
+	
+
+
+</script>
 </head>
 <body>
 
@@ -448,27 +487,73 @@ th,td{
 			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
 			
 			<br/>
+			<div class = "subLine">
+				<div id = "sub_tit">
+			<strong>	호선 선택</strong>
+				</div>
+				<span class="wrap">
+				<input type="radio" name = "line" onclick ="rd1;" checked="checked"  id = cheak_line1>
+				<img src="resources/images/line/line1.png" style="width: 22px; height: 22px;">
+				1호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd2;"  id = cheak_line2>
+				<img src="resources/images/line/line2.png" style="width: 22px; height: 22px;">
+				2호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd3;"  id = cheak_line3>
+				<img src="resources/images/line/line3.png" style="width: 22px; height: 22px;">
+				3호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd4;" id = cheak_line4>
+				<img src="resources/images/line/line4.png" style="width: 22px; height: 22px;">
+				4호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd5;"  id = cheak_line5>
+				<img src="resources/images/line/line5.png" style="width: 22px; height: 22px;">
+				5호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd6;"  id = cheak_line6>
+				<img src="resources/images/line/line6.png" style="width: 22px; height: 22px;">
+				6호선
+				</span>&nbsp; 
+				<span class=wrap>			
+				<input type="radio" name = "line" onclick ="rd7;"  id = cheak_line7>
+				<img src="resources/images/line/line7.png" style="width: 22px; height: 22px;">
+				7호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd8;"  id = cheak_line8>
+				<img src="resources/images/line/line8.png" style="width: 22px; height: 22px;">
+				8호선
+				</span>&nbsp; 
+				<span class=wrap>
+				<input type="radio" name = "line" onclick ="rd9;"  id = cheak_line9>
+				<img src="resources/images/line/line9.png" style="width: 22px; height: 22px;">
+				9호선
+				</span>	&nbsp; 
+				<input type="button" value="검색">
+				</div>
 				
 			<div id = "sub_tit"><strong>배려시설 현황</strong></div>
 			<div class = "tab_box">
 				<table id="con_tab">
-				<div class = "subLine">
-				<span>1호선</span><span>2호선</span><span>3호선</span><span>4호선</span>
-				<span>5호선</span><span>6호선</span><span>7호선</span><span>8호선</span><span>9호선</span>
-					</div>
+					<thead>
+					<tr><th>역 이름</th>
+						<th>엘리베이터</th><th>에스컬레이터</th>
+						<th>수평보행기</th><th>휠체어리프트</th>
+						<th>이동식안전발판</th><th>전동휠체어급속충전기</th>
+						<th>장애인화장실</th><th>음성유도기</th>
+					</tr>
+					</thead>
 					
 					<tbody>
-					<!--<tr class="td-total_1"><td>소계</td>	<td>36</td>	<td>31</td>	<td></td>	<td>9</td>	<td>10</td>	<td>3</td>	<td>12</td>	<td>219</td></tr>-->
-					<tr>	<td>서울역</td><td>4</td>	<td>5</td>	<td></td>	<td>1</td>	<td>1</td>	<td></td>	<td>1</td>	<td>33</td></tr>
-					<tr><td>시청역</td>	<td>3</td>	<td>3</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
-					<tr><td>종각역</td>	<td>4</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>38</td></tr>
-					<tr><td>종로3가역</td>	<td>3</td>	<td>4</td>	<td></td>	<td></td>	<td>1</td>	<td>1</td>	<td>1</td>	<td>48</td></tr>
-					<tr><td>종로5가역</td>	<td>3</td>	<td>　</td>	 <td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>32</td></tr>
-					<tr><td>동대문역</td>	<td>3</td>	<td>1</td>	<td></td>	<td>　</td>	<td>1</td>	<td></td>	<td>1</td>	<td>4</td></tr>
-					<tr><td>동묘앞역</td>	<td>7</td>	<td>12</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>4</td>	<td>37</td></tr>
-					<tr><td>신설동역</td>	<td>5</td>	<td>　</td>		<td></td>	<td>6</td>	<td>1</td>	<td></td>	<td>1</td>	<td></td></tr>
-					<tr><td>제기동역</td>	<td>3</td>	<td>2</td>	<td></td>	<td>　</td>	<td>1</td>	<td>1</td>	<td>1</td>	<td></td></tr>
-					<tr><td>청량리역</td>	<td>1</td>	<td>4</td>	<td></td>	<td>2</td>	<td>1</td>	<td></td>	<td>1</td>	<td></td></tr>
+					
+					
 			</tbody>
 					</table>
     	

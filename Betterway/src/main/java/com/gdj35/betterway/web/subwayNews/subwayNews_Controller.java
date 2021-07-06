@@ -18,7 +18,7 @@ public class subwayNews_Controller {
 		
 		mav.addObject("news",news.newsApi());
 		
-		mav.setViewName("/BetterWay_subwayNews");
+		mav.setViewName("customer/BetterWay_subwayNews");
 		
 		return mav;
 	}//subwaynews end
