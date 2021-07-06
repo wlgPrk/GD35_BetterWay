@@ -86,17 +86,34 @@ public class stationEstaInfo_Controller {
 	
 	@RequestMapping(value="/BetterWay_esta_main")
 	public ModelAndView BetterWay_esta_main(
-			@RequestParam HashMap<String, String> params,
+			
 			ModelAndView mav) throws Throwable {
-		List<HashMap<String, String>> list
-		= iEstaService.EstaList(params);
-		
-		mav.addObject("list",list);
 		
 		mav.setViewName("traffic/BetterWay_esta_main");
 		
 		return mav;
 	}
+	@RequestMapping(value = "/esta_mains", 
+			method = RequestMethod.POST, 
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String esta_mains(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String,Object> modelMap = new HashMap<String, Object>();
+		
+		List<HashMap<String, String>> list
+		= iEstaService.EstaList(params);
+		
+		
+		
+		 modelMap.put("list", list);
+		 return mapper.writeValueAsString(modelMap);
+	
+	
+	}
+	
+	
 	
 	
 	@RequestMapping(value="/BetterWay_esta_out")

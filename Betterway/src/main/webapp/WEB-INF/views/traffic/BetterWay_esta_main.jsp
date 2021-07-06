@@ -368,7 +368,7 @@ th,td{
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	drawList();
+	reloadList();
 	/*$("#searchBtn").on("click",function(){
 		
 		$("#searchOldTxt").val($("#searchTxt").val());
@@ -377,11 +377,34 @@ $(document).ready(function(){
 	*/
 });
 
+
+function reloadList() {
+	var params =$("#actionForm").serialize();
+	 $.ajax({
+         url: "esta_mains", 
+         type: "post", 
+         dataType: "json", 
+         data: params, 
+         success: function(res){ 
+        	 drawList(res.list);
+        	
+         },
+     	error: function(request, status, error) { 
+			
+			console.log(error);
+		}
+      });
+	 
+}
+
+
+
 function drawList(list){
 	var html ="";
 	
-	for(var d of list){
-		html += "<tr 역이름=\"" + d.SUBWAY_STATION_NAME + "\">";
+	for(var d of list){ 
+		html += "<tr>"; 
+		html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
 		html += "<td>" + d.ELEV_COUNT + "</td>";
 		html += "<td>" + d.ESCA_COUNT + "</td>";
 		html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
@@ -398,11 +421,11 @@ function drawList(list){
 	}
 	
 
-
+}
 </script>
 </head>
 <body>
-
+<form action="#" id="actionForm" method="post"></form>
 <header>
   <a class="main" href="BetterWay_main">BetterWay</a>
 <div id="menu">
@@ -487,6 +510,7 @@ function drawList(list){
 			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
 			
 			<br/>
+			
 			<div class = "subLine">
 				<div id = "sub_tit">
 			<strong>	호선 선택</strong>
