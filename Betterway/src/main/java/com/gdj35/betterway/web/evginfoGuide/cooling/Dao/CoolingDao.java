@@ -1,6 +1,7 @@
 package com.gdj35.betterway.web.evginfoGuide.cooling.Dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,12 @@ public class CoolingDao implements ICoolingDao{
 	public SqlSession sqlSession;
 
 	@Override
-	public HashMap<String, String> getCar(HashMap<String, String> params) throws Throwable {
-		return sqlSession.selectOne("Cooling.getCar",params);
+	public List<HashMap<String, String>> getCar(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cooling.getCar",params);
 	}
+
+	
 	
 	
 }
