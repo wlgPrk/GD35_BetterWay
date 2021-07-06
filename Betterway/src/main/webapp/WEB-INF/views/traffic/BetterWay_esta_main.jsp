@@ -370,37 +370,7 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	
-	
-	
-	var params = $("#actionForm").serialize();
-	//ajax
-	$.ajax({
-		url: "esta_mains", 
-		type: "post", 
-		dataType: "json",
-		data: params, 
-		success: function(res) { 
-			var html ="";	
-			for(var d of res.list){ 
-				html += "<tr> ";
-				html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
-				html += "<td>" + d.ELEV_COUNT + "</td>";
-				html += "<td>" + d.ESCA_COUNT + "</td>";
-				html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
-				html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
-				html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
-				html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
-				html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
-				html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
-				html += "</tr>";
-				$("#con_tab tbody").html(html);	
-			}
-		},
-		error: function(request, status, error) {
-			console.log(error);
-		}
-	});//ajax end
+	reloadList();
 	
 	$("#search").on("click",function(){
 var params = $("#actionForm").serialize();
@@ -411,21 +381,8 @@ var params = $("#actionForm").serialize();
 			dataType: "json",
 			data: params, 
 			success: function(res) { 
-				var html ="";	
-				for(var d of res.list){ 
-					html += "<tr> ";
-					html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
-					html += "<td>" + d.ELEV_COUNT + "</td>";
-					html += "<td>" + d.ESCA_COUNT + "</td>";
-					html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
-					html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
-					html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
-					html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
-					html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
-					html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
-					html += "</tr>";
-					$("#con_tab tbody").html(html);	
-				}
+				drawList(res.list);
+				
 			},
 			error: function(request, status, error) {
 				console.log(error);
@@ -436,7 +393,44 @@ var params = $("#actionForm").serialize();
 		
 	}); //document end
 	
-
+	function reloadList() {
+		var params =$("#actionForm").serialize();
+		 $.ajax({
+          url: "esta_mains", 
+          type: "post", 
+          dataType: "json", 
+          data: params, 
+          success: function(res){ 
+         	 drawList(res.list);
+         	
+          },
+      	error: function(request, status, error) { 
+				
+				console.log(error);
+			}
+       });
+		 
+	}
+	//그리기
+	function drawList(list) {
+		var html= "";
+		
+		for(var d of list){
+			html += "<tr> ";
+			html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
+			html += "<td>" + d.ELEV_COUNT + "</td>";
+			html += "<td>" + d.ESCA_COUNT + "</td>";
+			html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
+			html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
+			html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
+			html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
+			html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
+			html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
+			html += "</tr>";
+		}
+			$("#con_tab tbody").html(html);	
+		
+	}
 
 
 
@@ -588,7 +582,7 @@ var params = $("#actionForm").serialize();
 				
 			<div id = "sub_tit"><strong>배려시설 현황</strong></div>
 			<div class = "tab_box">
-				<table id="con_tab">
+				<table id="con_tab" >
 					<thead>
 					<tr><th>역 이름</th>
 						<th>엘리베이터</th><th>에스컬레이터</th>
