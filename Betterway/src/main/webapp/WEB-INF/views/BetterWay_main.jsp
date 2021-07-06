@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".charge_guide").on("click", function(){
-		window.open('pop1.html','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
+		window.open('BetterWay_pop1.html','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
 	
 	});
 	
