@@ -334,9 +334,49 @@ background: #B2A59F;
 	margin-bottom: -10px;
 }
 </style>
+<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	reloadList();
+});
+function drawList(list){
+	   var html = "";
+	   
+	   for(var d of list){
+		  html += "<tr>";
+	      html += "<td>" + d.HAPPY_NO + "</td>";
+	      html += "<td>" + d.LOCATION + "</td>";
+	      html += "<td>" + d.AREA + "</td>";
+	      html += "<td>" + d.OPERATING_AGENCY + "</td>";
+	      html += "<td>" + d.PHONE_NUM + "</td>";
+	      html += "</tr>";
+	   }
+	   
+	   $(".table_box tbody").html(html);
+	}
+	
+function reloadList(){
+	var params = $("#actionForm").serialize();
+	
+	 $.ajax({
+         url : "happy_List",
+         type : "post",  
+         dataType :"json", 
+         data : params,
+         success : function(res){
+             drawList(res.list); 
+         },
+         error : function(request,status,error){
+            console.log(error);
+         }
+      });
+}
+</script>
 </head>
 <body>
-
+<form action="#" id="actionForm" method="post"></form>
 <header>
   <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
@@ -430,25 +470,25 @@ background: #B2A59F;
 				</thead>
 				<tbody style = text-align:center;>
 					<tr>
-						<td>신금호역(5호선)</td>
-						<td>상선승강장</td>
-						<td>25</td>
-						<td>서울교통공사</td>
-						<td>02-6311-5381</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>				
 					<tr>
-						<td>왕십리역(5호선)</td>
-						<td>상선승강장</td>
-						<td>70</td>
-						<td>서울교통공사</td>
-						<td>02-6311-5401</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>				
 					<tr>
-						<td>가산디지털단지역(7호선)</td>
-						<td>상선승강장</td>
-						<td>38</td>
-						<td>서울교통공사</td>
-						<td>02-6311-7461</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>				
 				</tbody>
 			</table>

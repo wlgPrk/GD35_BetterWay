@@ -46,7 +46,7 @@ public class stationEstaInfo_Controller {
 		
 		return mav;
 	}
-	
+
 	@RequestMapping(value="/happy_List",
 	   		   method = RequestMethod.POST,
 	   		   produces = "text/json;charset=UTF-8")
@@ -57,11 +57,11 @@ public class stationEstaInfo_Controller {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
 		//목록 취득
-		List<HashMap<String,String>> list
-		= iEstaService.happyList(params);
-		
-		modelMap.put("list", list);
-		
+			List<HashMap<String,String>> list
+			= iEstaService.happyList(params);
+			
+			modelMap.put("list", list);
+			
 		return mapper.writeValueAsString(modelMap);
 	 }
 	
