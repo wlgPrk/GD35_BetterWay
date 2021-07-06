@@ -371,8 +371,16 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 $(document).ready(function(){
 	
 	reloadList();
-	$("#search").on("click",function(){
+	
+	
+	$("#search").on("click", function() {
+		reloadList();
+      });
+
+}
 		
+	
+	});
 function reloadList() {
 	var params =$("#actionForm").serialize();
 	 $.ajax({
@@ -381,6 +389,7 @@ function reloadList() {
          dataType: "json", 
          data: params, 
          success: function(res){ 
+        	
         	 drawList(res.list);
         	
          },
@@ -388,15 +397,8 @@ function reloadList() {
 			
 			console.log(error);
 		}
-      });
-
-}
-	}
 	
-	/*$("#search").on("click", function() {
-	var sNo =	$("input[name='line']:checked").val();
-	reloadList();*/
-	});
+	reloadList();
 	
 		
 	});
