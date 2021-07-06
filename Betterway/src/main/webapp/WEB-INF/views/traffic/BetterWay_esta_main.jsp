@@ -370,66 +370,76 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	reloadList();
 	
 	
-	$("#search").on("click", function() {
-		reloadList();
-      });
-
-}
-		
 	
-	});
-function reloadList() {
-	var params =$("#actionForm").serialize();
-	 $.ajax({
-         url: "esta_mains", 
-         type: "post", 
-         dataType: "json", 
-         data: params, 
-         success: function(res){ 
-        	
-        	 drawList(res.list);
-        	
-         },
-     	error: function(request, status, error) { 
-			
+	var params = $("#actionForm").serialize();
+	//ajax
+	$.ajax({
+		url: "esta_mains", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			var html ="";	
+			for(var d of res.list){ 
+				html += "<tr> ";
+				html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
+				html += "<td>" + d.ELEV_COUNT + "</td>";
+				html += "<td>" + d.ESCA_COUNT + "</td>";
+				html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
+				html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
+				html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
+				html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
+				html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
+				html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
+				html += "</tr>";
+				$("#con_tab tbody").html(html);	
+			}
+		},
+		error: function(request, status, error) {
 			console.log(error);
 		}
+	});//ajax end
 	
-	reloadList();
+	$("#search").on("click",function(){
+var params = $("#actionForm").serialize();
+		//ajax
+		$.ajax({
+			url: "esta_mains", 
+			type: "post", 
+			dataType: "json",
+			data: params, 
+			success: function(res) { 
+				var html ="";	
+				for(var d of res.list){ 
+					html += "<tr> ";
+					html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
+					html += "<td>" + d.ELEV_COUNT + "</td>";
+					html += "<td>" + d.ESCA_COUNT + "</td>";
+					html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
+					html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
+					html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
+					html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
+					html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
+					html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
+					html += "</tr>";
+					$("#con_tab tbody").html(html);	
+				}
+			},
+			error: function(request, status, error) {
+				console.log(error);
+			}
+		});//ajax end
+	});//searchBtn
 	
 		
-	});
+	}); //document end
 	
 
 
 
 
-function drawList(list){
-	var html ="";
-	
-	for(var d of list){ 
-		html += "<tr> ";
-		html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
-		html += "<td>" + d.ELEV_COUNT + "</td>";
-		html += "<td>" + d.ESCA_COUNT + "</td>";
-		html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
-		html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
-		html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
-		html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
-		html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
-		html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
-		html += "</tr>";
-		
-		
-		$("#con_tab tbody").html(html);
-		
-	}
-	
-
-}
 </script>
 </head>
 <body>

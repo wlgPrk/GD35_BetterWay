@@ -36,8 +36,7 @@ header { /* 상단 큰메뉴바 */
   font-weight: bold;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-   
+  align-items: center;  
 }
 ul li{
 		list-style: none;

@@ -329,8 +329,48 @@ background: #B2A59F;
 	margin-bottom: -10px;
 }
 </style>
+
+<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	reloadList();
+});
+function drawList(list){
+	   var html = "";
+	   
+	   for(var d of list){
+		  //html += "<tr>";
+	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
+	      html += "<td>" + d.MAIN_PHONE_NUM + "</td>";
+	     // html += "</tr>";
+	   }
+	   
+	   $(".table_box tbody").html(html);
+	}
+	
+function reloadList(){
+	var params = $("#actionForm").serialize();
+	
+	 $.ajax({
+         url : "nursingRoom_List",
+         type : "post",  
+         dataType :"json", 
+         data : params,
+         success : function(res){
+             drawList(res.list); 
+         },
+         error : function(request,status,error){
+            console.log(error);
+         }
+      });
+}
+</script>
 </head>
 <body>
+
+<form action="#" id="actionForm" method="post"></form>
 
 <header>
   <a class="main" href="menu.html">BetterWay</a>
@@ -429,10 +469,10 @@ background: #B2A59F;
 					</thead>
 					<tbody>
 						<tr>
-							<td>종로3가(1)역</td>
-							<td>6110-1301</td>
-							<td>동대문역</td>
-							<td>6110-1281</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>				
 				</table>
@@ -457,38 +497,38 @@ background: #B2A59F;
 					</thead>
 					<tbody>
 						<tr>
-							<td>시청역</td>
-							<td>6110-2011</td>
-							<td>성수역</td>
-							<td>6110-2111</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>강변역</td>
-							<td>6110-2141</td>
-							<td>잠실역</td>
-							<td>6110-2161</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>삼성역</td>
-							<td>6110-2191</td>
-							<td>강남역</td>
-							<td>6110-2221</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>신림역</td>
-							<td>6110-2301</td>
-							<td>대림역</td>
-							<td>6110-2331</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>신촌역</td>
-							<td>6110-2401</td>
-							<td>영등포구청역</td>
-							<td>6110-2361</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
-							<td>신설동역</td>
-							<td>6110-1371</td>
+							<td></td>
+							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -515,22 +555,22 @@ background: #B2A59F;
 				</thead>
 				<tbody>
 					<tr>
-						<td>구파발역</td>
-						<td>6110-3201</td>
-						<td>독립문역</td>
-						<td>6110-3261</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td>옥수역</td>
-						<td>6110-3351</td>
-						<td>고속터미널역</td>
-						<td>6110-3391</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td>양재역</td>
-						<td>6110-3421</td>
-						<td>도곡역</td>
-						<td>6110-3441</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
