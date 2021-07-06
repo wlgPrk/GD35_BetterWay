@@ -29,17 +29,21 @@ public class cooling_Controller {
 			return mav;
 		}
 	   
-	@RequestMapping(value="/BetterWay_cooling",
+	@RequestMapping(value="/cooling",
 			method=RequestMethod.POST, produces="text/json;charset=UTF-8")
 	@ResponseBody
-	public String BetterWay_cooling(
+	public String cooling(
 			@RequestParam HashMap<String, String> params) throws Throwable{
-		ObjectMapper mapper = new ObjectMapper();
-		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
-		
-		HashMap<String, String> data = iCoolingService.getCar(params);
-		modelMap.put("data",data);
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			try {
+			
+			HashMap<String, String> data = iCoolingService.getCar(params);
+			modelMap.put("data",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return mapper.writeValueAsString(modelMap);
 	}
 

@@ -248,7 +248,7 @@ $(document).ready(function(){
 	$("#DoIt").on("click",function(){
 		var params = $("#actionForm").serialize();
 		$.ajax({
-			url:"BetterWay_cooling",
+			url:"cooling",
 			type:"post",
 			dataType:"json",
 			data:params,
@@ -258,8 +258,8 @@ $(document).ready(function(){
 				
 				for(var i=0;i<checkLine.length;i++){
 					if(checkLine[i].checked==true){	
-						for(j=1;j<=CAR_COUNT;j++){
-							if(j!=CAR_NO){
+						for(j=1;j<=res.CAR_COUNT;j++){
+							if(j!=res.CAR_NO){
 								
 								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png/>"
 							}else{
@@ -299,7 +299,9 @@ function cooling(){
 </script>
 </head>
 <body>
-<form action="#" id="actionForm" method="post"></form>
+<form action="#" id="actionForm" method="post">
+
+</form>
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
