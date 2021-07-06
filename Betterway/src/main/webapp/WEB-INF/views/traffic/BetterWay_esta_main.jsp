@@ -98,18 +98,19 @@ nav ul {
 article {/* 섹션 안 큰내용, 가운데정렬 */
   background-color: #fff;
     height: 100%;
+    min-height: 1000px;
   margin: 0px auto;
     width:1440px;
-    background: orange;
+  
   
 }
 
 section:after { /* 뒷배경 */
   content: "";
   display: table;
-
+  
   clear: both;
-  background: orange;
+  
 }
 
 
@@ -425,7 +426,7 @@ function drawList(list){
 </script>
 </head>
 <body>
-<form action="#" id="actionForm" method="post"></form>
+
 <header>
   <a class="main" href="BetterWay_main">BetterWay</a>
 <div id="menu">
@@ -516,17 +517,17 @@ function drawList(list){
 			<strong>	호선 선택</strong>
 				</div>
 				<span class="wrap">
-				<input type="radio" name = "line" onclick ="rd1;" checked="checked"  id = cheak_line1>
+				<input type="radio" name = "line"  onclick ="rd1;" checked="checked"  id = cheak_line1>
 				<img src="resources/images/line/line1.png" style="width: 22px; height: 22px;">
 				1호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd2;"  id = cheak_line2>
+				<input type="radio" name = "line"  onclick ="rd2;" id = cheak_line2>
 				<img src="resources/images/line/line2.png" style="width: 22px; height: 22px;">
 				2호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd3;"  id = cheak_line3>
+				<input type="radio" name = "line"  onclick ="rd3;"  id = cheak_line3>
 				<img src="resources/images/line/line3.png" style="width: 22px; height: 22px;">
 				3호선
 				</span>&nbsp; 
@@ -560,7 +561,9 @@ function drawList(list){
 				<img src="resources/images/line/line9.png" style="width: 22px; height: 22px;">
 				9호선
 				</span>	&nbsp; 
+				<form action="#" id="actionForm" method="post">
 				<input type="button" value="검색">
+				</form>
 				</div>
 				
 			<div id = "sub_tit"><strong>배려시설 현황</strong></div>
