@@ -239,6 +239,10 @@ border: #82b2da;
 color:white;
 margin-left:15px;
 }
+
+#img img {
+	width: 100px;
+}
 /* #img{
 width:150px;
 height:100px;
@@ -259,29 +263,24 @@ $(document).ready(function(){
 			data:params,
 			success:function(res){
 				var html = "";
-
 				console.log(res);
-				console.log(res.data[0]);
-				//$("#img").attr("src","resources/images/train.png")
+				console.log(res.data[0].CAR_COUNT);
 				
-				for(var i=0;i<res.CAR_COUNT;i++){			
-							if(i!=res.CAR_NO){		
-
-		console.log(res);
-				var checkLine = document.getElementsByName("sName");
-				for(var i=0;i<checkLine.length;i++){
-					if(checkLine[i].checked==true){	
-						for(j=1;j<=res.CAR_COUNT;j++){
-							if(j!=res.CAR_NO){
-
-								
-								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png\"/>"
-							}else{
-								html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png\"/>"
+				for(var i=0;i<res.data[0].CAR_COUNT;i++){
+					var cnt = 0;
+					for(var j = 0 ; j < res.data.length ; j++) {
+							if(i == res.data[j].CAR_NO){
+								cnt++;
+								break;
 							}
-						
-					
+					}
+					if(cnt == 0){
+						html+="<img alt=\"냉방칸\" src=\"resources/images/train.png\"/>"
+					}else{
+						html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png\"/>"
+					}
 				} 
+				console.log(html);
 				$("#line_con").html(html);
 				$("#img").html(html);
 			},
@@ -409,8 +408,8 @@ function cooling(){
 			<div class="line_con">
 					
 					 
-				    <div >
-						<img id="img">그림띄울거임
+				    <div id="img">
+						그림띄울거임
 						
 						</div>
 						
