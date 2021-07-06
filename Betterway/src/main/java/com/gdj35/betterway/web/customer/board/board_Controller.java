@@ -1,4 +1,4 @@
-package com.gdj35.betterway.web.customer.board.Controller;
+package com.gdj35.betterway.web.customer.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -254,7 +254,7 @@ $(document).ready(function(){
 			data:params,
 			success:function(res){
 				var html = "";
-	
+		console.log(res);
 				var checkLine = document.getElementsByName("sName");
 				for(var i=0;i<checkLine.length;i++){
 					if(checkLine[i].checked==true){	
