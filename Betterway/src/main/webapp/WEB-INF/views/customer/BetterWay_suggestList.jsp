@@ -534,7 +534,6 @@ $(document).ready(function(){
 <table class="table" cellspacing="0px">
 <colgroup>
 		<col width="80px"/>
-
 		<col width="700px"/>
 		<col width="80px"/>
 		<col width="80px"/>
@@ -544,7 +543,6 @@ $(document).ready(function(){
 <thead>
 <tr>
 						<th>번호</th>
-				
 						<th>제목</th>
 						<th>글쓴이</th>
 						<th>작성일</th>
