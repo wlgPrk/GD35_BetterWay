@@ -29,6 +29,28 @@ public class stationEstaInfo_Controller {
 		return mav;
 	}
 	
+	@RequestMapping(value="/nursingRoom_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String nursingRoom_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+			//목록 취득
+			List<HashMap<String,String>> list
+			= iEstaService.nursingRoomList(params);
+			
+			modelMap.put("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+	 }
+	
 	@RequestMapping(value="/BetterWay_cycle")
 	public ModelAndView BetterWay_cycle(ModelAndView mav) {
 		
