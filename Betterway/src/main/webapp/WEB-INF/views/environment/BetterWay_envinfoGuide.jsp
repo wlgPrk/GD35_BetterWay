@@ -147,6 +147,29 @@ margin-top: 60px;
 text-decoration: underline;
 }
 </style>
+<script type="text/javascript"
+		src="resources/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+function getWeather() {
+	$.ajax({
+		url: "http://api.openweathermap.org/data/2.5/weather", // 접속 주소
+		type: "get", // 전송방식 : get, post
+		dataType: "json", // 받아올 데이터 형식
+		data: "q=seoul&appid=44c6ec52a93219e25d17ecf7fed82606&lang=kr&units=metric", //보낼 데이터(문자열형태)
+		success: function(res) { // 성공 시 다음 함수 실행 res->받아오는 데이터를 인자로 받음 
+			console.log(res);
+			
+		
+		},
+		error: function(request, status, error) { // 실패 시 다음 함수 실행
+			console.log(request);
+			console.log(status);
+			console.log(error);
+		}
+	});
+}
+</script>
+
 </head>
 <body>
 <header>
@@ -193,14 +216,9 @@ text-decoration: underline;
 					<div id="val" >
 					PM10
 					</div>
-					<div class="con_val">"역명"역의 이산화탄소(CO2)수치는?</div>
-					<div id="val">
-					CO2
-					</div>
-					<div class="con_val">"역명"역의 이산화질소(NO2) 수치는?</div>
-					<div id="val">
-					NO2
-					</div>
+					<table id="weatherHistory">
+						<tbody></tbody>
+					</table>
 					<table id="val_table">
 						<tr>
 							<td style="background: #4641D9; color:#fff;">좋음</td>

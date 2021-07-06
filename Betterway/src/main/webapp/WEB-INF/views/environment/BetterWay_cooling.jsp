@@ -5,22 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-function popup(){
-	window.open('BetterWay_envinfoGuide.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
-
-}
-function sublinieInfo(){
-	window.open('BetterWay_subLineSearch.html');
-
-}
-function cooling(){
-	window.open('BetterWay_cooling.html');
-
-}
-
-
-</script>
 
 <style>
 * {
@@ -29,10 +13,10 @@ function cooling(){
   padding: 0;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
+body {
+font-family: Arial, Helvetica, sans-serif;
+}
 /* Style the header */
 header { /* 상단 큰메뉴바 */
   top: 0;
@@ -48,15 +32,15 @@ header { /* 상단 큰메뉴바 */
   align-items: center;
    
 }
-
+a {
+	text-decoration: none;
+	 color:#333;
+	width:250px;
+}
 ul li{
 		list-style: none;
 	}
-	a {
-		text-decoration: none;
-		color:#333;
-		width:250px;
-	}
+
 
 	#menu {
 		font:bold 16px "malgun gothic";
@@ -147,8 +131,8 @@ color: #fff;
   .box_title{
     position: relative;
  	background-image:url("resources/images/handleimg.png");       
-                background-size:cover;       
-  height:216px;
+    background-size:cover;       
+    height:216px;
 
   }
 
@@ -242,26 +226,84 @@ width:60px;
 height:60px;
 margin-right:5px;
 }
+
+.Lineimg{
+width:20px;
+
+}
+#DoIt{
+background-color: #82b2da;
+width:50px;
+height:30px;
+border: #82b2da;
+color:white;
+margin-left:15px;
+}
 </style>
-</head>
-<body>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<script type="text/javascript"
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
 
-<script>/* 그림 두개로,,,,,,하라고 하심 */
-
-jQuery(document).ready(function($) {
-
-$(".scroll").click(function(event){            
-
-event.preventDefault();
-
-$('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-
+$(document).ready(function(){ 
+	$("#DoIt").on("click",function(){
+		var params = $("#actionForm").serialize();
+		$.ajax({
+			url:"BetterWay_cooling",
+			type:"post",
+			dataType:"json",
+			data:params,
+			success:function(res){
+				var html = "";
+				var checkLine = document.getElementsByName("sName");
+				
+				for(var i=0;i<checkLine.length;i++){
+					if(checkLine[i].checked==true){	
+						for(j=1;j<=CAR_COUNT;j++){
+							if(j!=CAR_NO){
+								
+								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png/>"
+							}else{
+								html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png/>"
+							}
+						}
+					}
+				} 
+				$("#img").html(html);
+			},
+			error:function(requet,status,error){
+				console.log(error);
+			}
+		});
+		
+	
+	});
 });
 
-});
+
+function popup(){
+	window.open('BetterWay_envinfoGuide.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
+
+}
+function sublinieInfo(){
+	window.open('BetterWay_subLineSearch.html');
+
+}
+function cooling(){
+	window.open('BetterWay_cooling.html');
+
+}
+
+
+
 
 </script>
+</head>
+<body>
+<form action="#" id="actionForm" method="post"></form>
+
+<script type="text/javascript" 
+		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+
 
 <header>
   <a class="main" href="BetterWay_main">BetterWay</a>
@@ -326,24 +368,34 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 				차량별 냉방상태
 			</div>	
 			
-			<div class="cooling_line_search">
-				<a >▷</a>
-				<a href="#target134" class="scroll">1호선 / 3호선 / 4호선</a>
-				<a href="#target567" class="scroll">5호선 / 6호선 / 7호선</a>
-				<a href="#target8" class="scroll">8호선</a>
-				<a href="#targetKJ" class="scroll">경의중앙선</a>
-				<a href="#targetBW" class="scroll">분당선(왕십리)</a>
-				<a href="#targetBS" class="scroll">분당선(수원)</a>
+			<div class="cooling_line_search">				
+			<input type="radio" name="sName" id="chkLine1" class="chkLine"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
+			<input type="radio" name="sName" id="chkLine2" class="chkLine"><img class="Lineimg" alt="Line2" src="resources/images/line/line2.png">2호선
+			<input type="radio" name="sName" id="chkLine3" class="chkLine"><img class="Lineimg" alt="Line3" src="resources/images/line/line3.png">3호선
+			<input type="radio" name="sName" id="chkLine4" class="chkLine"><img class="Lineimg" alt="Line4" src="resources/images/line/line4.png">4호선
+			<input type="radio" name="sName" id="chkLine5" class="chkLine"><img class="Lineimg" alt="Line5" src="resources/images/line/line5.png">5호선
+			<input type="radio" name="sName" id="chkLine6" class="chkLine"><img class="Lineimg" alt="Line6" src="resources/images/line/line6.png">6호선
+			<input type="radio" name="sName" id="chkLine7" class="chkLine"><img class="Lineimg" alt="Line7" src="resources/images/line/line7.png">7호선
+			<input type="radio" name="sName" id="chkLine8" class="chkLine"><img class="Lineimg" alt="Line8" src="resources/images/line/line8.png">8호선
+			<input type="radio" name="sName" id="chkLine9" class="chkLine"><img class="Lineimg" alt="Line9" src="resources/images/line/line9.png">9호선
+		
+			<input type="button" id="DoIt" value="검색" >
 			</div>
-			
+								
+						   
+						
+						     
+						
+						  
 			<p>사람마다 춥고 더움의 기준이 다르다 보니, 지하철이 춥다는 민원이 들어오기도 합니다. <br/>이러한 민원을 받아들여 만들어진 칸이 바로 ‘약냉방칸’입니다.<br/>
 			더위를 잘 타는 사람들은 피해야 하고, 추위를 잘 타는 사람들에게는 필요한 약냉방칸.<br/>
 			상황에 맞게 적절히 지하철에 탑승할 수 있도록 주요 지하철 노선마다 배치된 약냉방칸을 알려드릴게요.</p>
 			<div class="line_con">
 					
-					    <span id="target134">1호선 / 3호선 / 4호선</span>		 
+					 
 				    <div >
-						<img id="img"alt="134line" src="resources/images/134line.png" >
+						<div id="img">그림띄울거임</div>
+						
 					</div>	
 				    	
   			</div>

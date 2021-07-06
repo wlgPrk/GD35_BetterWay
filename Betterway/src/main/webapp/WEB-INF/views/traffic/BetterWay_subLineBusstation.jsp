@@ -216,9 +216,9 @@ margin:0 auto;
 <body>
 <div class="side">
 	<div class="side_title">
-	<a class="main" href="menu.html">BetterWay</a>
+	<a class="main" href="BetterWay_main.html">BetterWay</a>
 	</div>
-	<div id="title">주변 버스정류장</div>
+	<div id="title">출발 도착 역검색</div>
 	<div class="wrap">
 	<div id="dep_arr">
 		<div id="deparr_search">

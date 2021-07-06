@@ -9,7 +9,7 @@
 
 function main(){
 /* 수정수정 */
-	location.href="BetterWay_cooling.html";
+	location.href="BetterWay_main.html";
 }
 
 function BetterWay_subLineRealtime(){
