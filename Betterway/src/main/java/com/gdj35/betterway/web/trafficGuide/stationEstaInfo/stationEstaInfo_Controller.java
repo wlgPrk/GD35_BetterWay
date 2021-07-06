@@ -22,10 +22,21 @@ public class stationEstaInfo_Controller {
 	public IEstaService iEstaService;
 	
 	@RequestMapping(value="/BetterWay_nursingRoom")
-	public ModelAndView BetterWay_baby(ModelAndView mav) {
+	public ModelAndView BetterWay_nursingRoom(ModelAndView mav) {
 		
 		mav.setViewName("traffic/BetterWay_nursingRoom");
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="/BetterWay_nursingRoom2")
+	public ModelAndView BetterWay_nursingRoom2(ModelAndView mav) {
+		try {
+			mav.setViewName("traffic/BetterWay_nursingRoom2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 		return mav;
 	}
 	
