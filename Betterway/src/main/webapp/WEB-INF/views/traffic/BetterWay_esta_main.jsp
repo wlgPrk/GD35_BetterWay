@@ -369,16 +369,10 @@ th,td{
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	reloadList();
-	/*$("#searchBtn").on("click",function(){
+	$("#search").on("click",function(){
 		
-		$("#searchOldTxt").val($("#searchTxt").val());
-		reloadList();
-	});//search btn end
-	*/
-});
-
-
 function reloadList() {
 	var params =$("#actionForm").serialize();
 	 $.ajax({
@@ -395,8 +389,19 @@ function reloadList() {
 			console.log(error);
 		}
       });
-	 
+
 }
+	}
+	
+	/*$("#search").on("click", function() {
+	var sNo =	$("input[name='line']:checked").val();
+	reloadList();*/
+	});
+	
+		
+	});
+	
+
 
 
 
@@ -404,7 +409,7 @@ function drawList(list){
 	var html ="";
 	
 	for(var d of list){ 
-		html += "<tr>"; 
+		html += "<tr> ";
 		html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
 		html += "<td>" + d.ELEV_COUNT + "</td>";
 		html += "<td>" + d.ESCA_COUNT + "</td>";
@@ -516,53 +521,56 @@ function drawList(list){
 				<div id = "sub_tit">
 			<strong>	호선 선택</strong>
 				</div>
+				<form action="#" id="actionForm" method="post">
 				<span class="wrap">
-				<input type="radio" name = "line"  onclick ="rd1;" checked="checked"  id = cheak_line1>
+
+				<input type="radio" name = "line"  value = "1" checked="checked"  id = "cheak_line1">
 				<img src="resources/images/line/line1.png" style="width: 22px; height: 22px;">
 				1호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line"  onclick ="rd2;" id = cheak_line2>
+				<input type="radio" name = "line"  value = "2" id = "cheak_line2">
 				<img src="resources/images/line/line2.png" style="width: 22px; height: 22px;">
 				2호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line"  onclick ="rd3;"  id = cheak_line3>
+				<input type="radio" name = "line"  value = "3"  id = "cheak_line3">
 				<img src="resources/images/line/line3.png" style="width: 22px; height: 22px;">
 				3호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd4;" id = cheak_line4>
+				<input type="radio" name = "line" value = "4" id = "cheak_line4">
 				<img src="resources/images/line/line4.png" style="width: 22px; height: 22px;">
 				4호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd5;"  id = cheak_line5>
+				<input type="radio" name = "line" value = "5"  id = "cheak_line5">
 				<img src="resources/images/line/line5.png" style="width: 22px; height: 22px;">
 				5호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd6;"  id = cheak_line6>
+				<input type="radio" name = "line" value = "6"  id = "cheak_line6">
 				<img src="resources/images/line/line6.png" style="width: 22px; height: 22px;">
 				6호선
 				</span>&nbsp; 
 				<span class=wrap>			
-				<input type="radio" name = "line" onclick ="rd7;"  id = cheak_line7>
+				<input type="radio" name = "line" value = "7"  id = "cheak_line7">
 				<img src="resources/images/line/line7.png" style="width: 22px; height: 22px;">
 				7호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd8;"  id = cheak_line8>
+				<input type="radio" name = "line" value = "8"  id = "cheak_line8">
 				<img src="resources/images/line/line8.png" style="width: 22px; height: 22px;">
 				8호선
 				</span>&nbsp; 
 				<span class=wrap>
-				<input type="radio" name = "line" onclick ="rd9;"  id = cheak_line9>
+				<input type="radio" name = "line" value = "9"  id = "cheak_line9">
 				<img src="resources/images/line/line9.png" style="width: 22px; height: 22px;">
 				9호선
 				</span>	&nbsp; 
-				<form action="#" id="actionForm" method="post">
-				<input type="button" value="검색">
+				
+				<input type="button" value="검색" id="search" name = "search">
+				
 				</form>
 				</div>
 				
