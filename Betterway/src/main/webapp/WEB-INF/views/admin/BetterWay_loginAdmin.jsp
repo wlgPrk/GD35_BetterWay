@@ -239,7 +239,7 @@ $(document).ready(function(){
 				data: params, //보낼 데이터 (문자열형태)
 				success: function(res) { // 성공시 다음함수 실행
 					if(res.resMsg =="success"){
-						location.href = "BetterWay_happyAdmin";
+						location.href = "BetterWay_mainAdmin";
 					} else{
 						alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 					}

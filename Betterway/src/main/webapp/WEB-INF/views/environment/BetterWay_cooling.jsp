@@ -259,12 +259,21 @@ $(document).ready(function(){
 			data:params,
 			success:function(res){
 				var html = "";
+
 				console.log(res);
 				console.log(res.data[0]);
 				//$("#img").attr("src","resources/images/train.png")
 				
 				for(var i=0;i<res.CAR_COUNT;i++){			
 							if(i!=res.CAR_NO){		
+
+		console.log(res);
+				var checkLine = document.getElementsByName("sName");
+				for(var i=0;i<checkLine.length;i++){
+					if(checkLine[i].checked==true){	
+						for(j=1;j<=res.CAR_COUNT;j++){
+							if(j!=res.CAR_NO){
+
 								
 								html+="<img alt=\"냉방칸\" src=\"resources/images/train.png\"/>"
 							}else{

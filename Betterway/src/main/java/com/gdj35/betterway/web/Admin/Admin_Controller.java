@@ -25,9 +25,17 @@ public class Admin_Controller {
 	
 	
 	@RequestMapping(value ="/BetterWay_loginAdmin")
-	public ModelAndView BetterWay_login(ModelAndView mav) {
+	public ModelAndView BetterWay_loginAdmin(ModelAndView mav) {
 		
 		mav.setViewName("admin/BetterWay_loginAdmin");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value ="/BetterWay_mainAdmin")
+	public ModelAndView BetterWay_mainAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_mainAdmin");
 		
 		return mav;
 	}
