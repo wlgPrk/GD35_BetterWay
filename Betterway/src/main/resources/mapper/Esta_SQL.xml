@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="E">
 <select id="EstaList" resultType="hashmap">
-
 SELECT ST.SUBWAY_STATION_NAME, SE.ELEV_COUNT, SE.ESCA_COUNT, SE.MOVINGWALK_COUNT,SE.WCHAIR_LIFT_COUNT, SE.MV_SAFE_FOOT_COUNT, SE.WCHAIR_CHARGER_COUNT,
 SE.DISABLED_TOILET_COUNT, SE.VOICE_INDUCER_COUNT
 FROM SUBWAY_STATION_ESTA SE
@@ -12,7 +11,6 @@ FROM
 SUBWAY_STATION S) ST
 ON SE.SUBWAY_STATION_INCODE = ST.SUBWAY_STATION_INCODE
 WHERE ST.SUBLINE_NO = 1
-
 </select>
 
 <select id="happyList" resultType="hashmap">
