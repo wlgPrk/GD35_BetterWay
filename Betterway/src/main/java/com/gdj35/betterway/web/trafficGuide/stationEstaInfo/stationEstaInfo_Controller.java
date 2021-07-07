@@ -22,10 +22,21 @@ public class stationEstaInfo_Controller {
 	public IEstaService iEstaService;
 	
 	@RequestMapping(value="/BetterWay_nursingRoom")
-	public ModelAndView BetterWay_baby(ModelAndView mav) {
+	public ModelAndView BetterWay_nursingRoom(ModelAndView mav) {
 		
 		mav.setViewName("traffic/BetterWay_nursingRoom");
 		
+		return mav;
+	}
+	
+	@RequestMapping(value="/BetterWay_nursingRoom2")
+	public ModelAndView BetterWay_nursingRoom2(ModelAndView mav) {
+		try {
+			mav.setViewName("traffic/BetterWay_nursingRoom2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 		return mav;
 	}
 	
@@ -58,6 +69,24 @@ public class stationEstaInfo_Controller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/cycle_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String cycle_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		//목록 취득
+			List<HashMap<String,String>> list
+			= iEstaService.cycleList(params);
+			
+			modelMap.put("list", list);
+			
+		return mapper.writeValueAsString(modelMap);
+	 }
 	
 	@RequestMapping(value="/BetterWay_happy")
 	public ModelAndView BetterWay_happy( 
@@ -95,6 +124,24 @@ public class stationEstaInfo_Controller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/wheelchair_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String wheelchair_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		//목록 취득
+			List<HashMap<String,String>> list
+			= iEstaService.wheelchairList(params);
+			
+			modelMap.put("list", list);
+			
+		return mapper.writeValueAsString(modelMap);
+	 }
 	
 	@RequestMapping(value="/BetterWay_menu_real")
 	public ModelAndView BetterWay_menu_real(ModelAndView mav) {
