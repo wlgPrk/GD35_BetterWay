@@ -347,8 +347,20 @@ cursor: pointer;
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" 
+src="resources/script/ckeditor/ckeditor.js"></script>		
+		
 <script type="text/javascript">
+
 $(document).ready(function(){
+	
+	CKEDITOR.replace("con",{ //아이디 찾음 
+		resize_enabled : false,
+		language :"ko",
+		enterMode: "2",
+		width : "900",
+		height : "300"
+	});// CKEDITOR end
 	
 	
 	//사이버스테이션
@@ -412,6 +424,60 @@ $(document).ready(function(){
 		location.href="BetterWay_suggestList"
 	});
 	
+	
+	
+	
+	//작성버튼
+	$(".con_add").on("click",function(){
+		$("#con").val(CKEDITOR.instances['con'].getData());
+		
+		if($.trim($("#id").val()) == ""){
+		alert("아이디를 입력하세요")	
+		$("#id").focus();
+		return false;
+		}else if($.trim($("#pw").val()) == ""){
+		alert("비밀번호를 입력하세요")	
+		$("#pw").focus();
+		return false;
+		}else if($.trim($(".con_title").val()) == ""){
+		alert("제목을 입력하세요")	
+		$(".con_title").focus();
+		return false;
+		}else if($.trim($(".con").val()) == ""){
+		alert("내용을 입력하세요")	
+		$(".con").focus();
+		return false;
+		}else{
+			//글저장
+			var params = $("#addForm").serialize();
+			//ajax
+			$.ajax({
+				url: "BetterWay_suggestWrites", 
+				type: "post", 
+				dataType: "json",
+				data: params, 
+				success: function(res) {
+					if(res.msg =="success"){
+						location.href = "BetterWay_suggestList";
+					}else if(res.msg =="failed"){
+						alert("작성에 실패하였습니다.");
+					}else{
+						alert("작성중 문제가 발생하였습니다");
+					}
+					
+				},
+				error: function(request, status, error) {
+					console.log(error);
+				}
+			});//ajax end
+		}//else end
+		
+	});// con_add click end
+	
+	//뒤로가기
+	$(".cancel_btn").on("click", function(){
+		$("#backForm").submit();
+	}); //cancel_btn end
 	
 	
 }); // document end
@@ -487,18 +553,25 @@ $(document).ready(function(){
 			<div class="con_box">
 			
 					<div class="con_box_2">
-
-		 		<input type="text" class="id_pw" placeholder="아이디를 입력해주세요.">
- 		<input type="password" class="id_pw" placeholder="패스워드를 입력해주세요."><br/>
+	<form action="BetterWay_suggestList" id="backForm" method="post">				
+		<input type="hidden" name="page" value="${param.page}"/>			
+		<input type="hidden" name="searchGbn" value="${param.searchGbn}"/>			
+		<input type="hidden" name="searcgTxt" value="${param.searchTxt}"/>								
+	</form>				
+	<form action="#" id="addForm" method="post">
+		 		<input type="text" class="id_pw" name="id" id="id"placeholder="아이디를 입력해주세요.">
+ 		<input type="password" class="id_pw" name="pw" id="pw"placeholder="패스워드를 입력해주세요."><br/>
  		※쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.<br/>
- 		<input type="text" class="con_title" placeholder="제목을 입력해주세요."><br/>
+ 		<input type="text" class="con_title" name="con_title" placeholder="제목을 입력해주세요." ><br/>
  		
  		
  		
- 		<textarea rows="15" cols="88" placeholder="내용을 입력해주세요." class="con"></textarea>
+ 		<textarea rows="15" cols="88" placeholder="내용을 입력해주세요." class="con" id="con" name="con"></textarea>
  	<div class="btn_box">
 	<input type="button" value="취소" class="cancel_btn">
 	<input type="button" value="등록" class="con_add">
+	</div>
+	</form>
 	</div>
  		
 
