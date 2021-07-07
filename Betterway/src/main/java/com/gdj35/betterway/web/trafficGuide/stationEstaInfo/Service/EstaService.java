@@ -35,8 +35,14 @@ public class EstaService implements IEstaService{
 	}
 
 	@Override
+	public List<HashMap<String, String>> getToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iEstaDao.getToilet(params);
+	}
+		@Override
 	public List<HashMap<String, String>> cycleList(HashMap<String, String> params) throws Throwable {
 		return iEstaDao.cycleList(params);
+
 	}
 
 }

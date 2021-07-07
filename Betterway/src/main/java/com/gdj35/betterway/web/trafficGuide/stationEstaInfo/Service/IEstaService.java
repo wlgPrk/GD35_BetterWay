@@ -13,7 +13,11 @@ public interface IEstaService {
 
 	public List<HashMap<String, String>> wheelchairList(HashMap<String, String> params) throws Throwable;
 
+
+	public List<HashMap<String, String>> getToilet(HashMap<String, String> params)throws Throwable;
+
 	public List<HashMap<String, String>> cycleList(HashMap<String, String> params)throws Throwable;
+
 
 
 	

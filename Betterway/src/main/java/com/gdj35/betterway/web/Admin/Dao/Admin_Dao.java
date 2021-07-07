@@ -14,8 +14,12 @@ public class Admin_Dao implements IAdmin_Dao{
 	
 	@Override
 	public HashMap<String, String> getAdmin(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.getAdmin", params);
+	}
+
+	@Override
+	public HashMap<String, String> getDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getDetail",params);
 	}
 
 }
