@@ -34,4 +34,9 @@ public class EstaService implements IEstaService{
 		return iEstaDao.wheelchairList(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> cycleList(HashMap<String, String> params) throws Throwable {
+		return iEstaDao.cycleList(params);
+	}
+
 }

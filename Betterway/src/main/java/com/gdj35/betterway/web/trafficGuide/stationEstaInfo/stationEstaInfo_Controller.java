@@ -70,6 +70,24 @@ public class stationEstaInfo_Controller {
 		return mav;
 	}
 	
+	@RequestMapping(value="/cycle_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String cycle_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		//목록 취득
+			List<HashMap<String,String>> list
+			= iEstaService.cycleList(params);
+			
+			modelMap.put("list", list);
+			
+		return mapper.writeValueAsString(modelMap);
+	 }
+	
 	@RequestMapping(value="/BetterWay_happy")
 	public ModelAndView BetterWay_happy( 
 			@RequestParam HashMap<String, String> params,

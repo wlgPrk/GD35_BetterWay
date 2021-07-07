@@ -64,7 +64,7 @@ body{
 	padding : 6px;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: 172px;
+	margin-left: 5px;
 	margin-top:10px;
 	padding: 10px;
 }
@@ -103,6 +103,7 @@ function drawList(list){
 		  html += "<tr>";
 	      html += "<td>" + d.NRWP_SPACING_NO + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
+	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
 	      html += "<td>" + d.DIRECTION + "</td>";
 	      html += "<td>" + d.PLATFORM_NO + "</td>";
 	      html += "</tr>";
@@ -154,15 +155,17 @@ function reloadList(){
 		<div class ="list_wrap">
 			<table>
 				<colgroup>
-					<col width="10%">
 					<col width="15%">
 					<col width="15%">
-					<col width="15%">
+					<col width="30%">
+					<col width="20%">
+					<col width="20%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>좁은연단간격번호</th>
 						<th>지하철역코드</th>
+						<th>역이름</th>
 						<th>방면</th>
 						<th>승강장번호</th>
 					</tr>
@@ -171,17 +174,6 @@ function reloadList(){
 				<tbody>
 					<tr>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
