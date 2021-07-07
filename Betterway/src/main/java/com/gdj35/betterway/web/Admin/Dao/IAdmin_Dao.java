@@ -9,4 +9,6 @@ public interface IAdmin_Dao {
 
 	public HashMap<String, String> getDetail(HashMap<String, String> params)throws Throwable;
 
+	public int addT(HashMap<String, String> params)throws Throwable;
+
 }

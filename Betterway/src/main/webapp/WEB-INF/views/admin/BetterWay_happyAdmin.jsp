@@ -96,7 +96,7 @@ $(document).ready(function(){
 	reloadList();
 	
 	$("#writeBtn").on("click",function(){
-		$("#actionForm").attr("action","BetterWay_happyAdminWrite");
+		$("#actionForm").attr("action","BetterWay_happyAdmin_Write");
 		$("#actionForm").submit();
 	});
 	
@@ -186,7 +186,7 @@ function reloadList(){
 						<th>지하철역코드</th>
 						<th>역이름</th>
 						<th>위치</th>
-						<th>면적</th>
+						<th>면적(㎡)</th>
 						<th>운영기관</th>
 						<th>전화번호</th>
 						<th>삭제여부</th>

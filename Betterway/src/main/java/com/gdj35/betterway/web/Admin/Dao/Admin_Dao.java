@@ -22,4 +22,9 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.selectOne("admin.getDetail",params);
 	}
 
+	@Override
+	public int addT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.insert("admin.addT",params);
+	}
+
 }

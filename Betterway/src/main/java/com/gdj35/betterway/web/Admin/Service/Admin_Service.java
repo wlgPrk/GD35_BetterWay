@@ -23,4 +23,9 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.getDetail(params);
 	}
 
+	@Override
+	public int addT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.addT(params);
+	}
+
 }

@@ -101,6 +101,38 @@ public class Admin_Controller {
 		   return mav;
 	   }
 	
+	 @RequestMapping(value="BetterWay_happyAdmin_Write")
+	   public ModelAndView BetterWay_happyAdmin_Write(ModelAndView mav) {
+		   
+		   mav.setViewName("admin/BetterWay_happyAdmin_Write");
+		   
+		   return mav;
+	   }
+	
+	 @RequestMapping(value = "/BetterWay_happyAdmin_Writes",
+		   method = RequestMethod.POST,
+		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody
+	 public String  BetterWay_happyAdmin_Writes(
+			 @RequestParam HashMap<String, String> params) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		 try {
+			 int cnt = iAdmin_Service.addT(params);
+
+			 if(cnt > 0) {
+				 modelMap.put("msg","success");
+			 }else {
+				 modelMap.put("msg","failed");
+			 }
+		 }catch(Throwable e){
+			 e.printStackTrace();
+			 modelMap.put("msg", "error");
+		 }
+		 return mapper.writeValueAsString(modelMap);
+	 }
+	 
 	@RequestMapping(value ="/BetterWay_cycleAdmin")
 	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
 		
