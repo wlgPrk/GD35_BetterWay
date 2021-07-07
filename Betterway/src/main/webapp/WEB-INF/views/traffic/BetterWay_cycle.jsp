@@ -398,7 +398,7 @@ background: #B2A59F;
 			<div id = "box_con_sub_num">Ⅰ </div>
 			<h4 id = "sub_title">사물함형 자전거 보관함 설치 역</h4>
 				<p>6호선 - 고려대역 / 화랑대역 / 봉화산역
-				<br/>7호선 - 역골역 / 신풍역</p>
+				<br/>7호선 - 먹골역 / 신풍역</p>
 			<br/>
 			
 			<div id = "box_con_sub_num">Ⅱ </div>

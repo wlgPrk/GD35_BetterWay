@@ -9,6 +9,8 @@
 	WHERE ADMIN_ID=#{id} 
 	AND ADMIN_PW=#{pw}
 	</select>
+	
+
 
 
 

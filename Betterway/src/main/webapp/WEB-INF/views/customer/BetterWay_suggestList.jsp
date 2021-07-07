@@ -331,12 +331,17 @@ text-align: center;
 
 /*화살표 */
 .arrow{
+display:inline-block;
+vertical-align:top;
+margin-left:5px;
 width: 50px;
 font-size: 20px;
 height : 40px;
 border : 0;
 box-shadow: 1px 2px 3px grey;
-background-color: #e0e0eb;
+background-color: #f0f0f5;
+cursor: pointer;
+line-height:2;
 
 }
 
@@ -346,6 +351,7 @@ margin-top:10px;
 display: inline-block;
 width : 1100px;
 height :50px;
+
 
 text-align: center;
 }
@@ -360,7 +366,7 @@ font-size: 20px;
 /*검색버튼*/
 .search_btn{
 
-
+vertical-align:top;
 background-color:#e0e0eb;
 font-size: 20px;
 width :100px;
@@ -381,6 +387,14 @@ font-size: 20px;
 li{
 cursor: pointer;
 }
+/* 현재페이지 짙어짐 */
+#on{
+background-color: #e0e0eb;
+}
+
+tr{
+cursor:pointer;
+}
 
 
 
@@ -392,6 +406,8 @@ cursor: pointer;
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
+
 	
 	
 	//사이버스테이션
@@ -457,7 +473,129 @@ $(document).ready(function(){
 	
 	
 	
+	
+	//구분
+	if("${param.searchGbn}" != ""){
+		$(".search_type").val("${param.searchGbn}");
+	}//if end
+	
+	reloadList();
+	
+	//검색
+	$(".search_btn").on("click", function(){
+		$("#page").val(1);
+		reloadList();
+	});
+	
+	//페이징 
+	$(".arrow_box").on("click","div",function(){
+		$("#page").val($(this).attr("page"));
+		reloadList();
+	});//paging wrap end
+	
+	
+	//작성
+	$(".arrow_box").on("click","input",function(){
+		 console.log("작동돼라")
+		$("#actionForm").attr("action","BetterWay_suggestWrite"); 
+		$("#actionForm").submit();
+	});// write btn end
+	
+	
+	//상세보기
+	$("tbody").on("click","tr",function(){
+		$("#sug_no").val($(this).attr("sug_no"));
+		
+		$("#actionForm").attr("action","BetterWay_suggestContent");
+		$("#actionForm").submit();
+	});// tbody tr click end
+	
+	
+	
 }); // document end
+
+function reloadList(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestLists", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			drawList(res.list);
+			drawPaging(res.pb);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+//목록그리기
+function drawList(list){
+	var html ="";
+	for(var d of list){       
+		
+		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
+		
+if(d.POST_TYPE_CODE =="0"){
+	html+=	"<td><img alt=\"공지\" src=\"resources/images/notice.png\" class=\"img\"></td>           "   ;
+		}else{
+			html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
+		}
+if(d.REQ_NO !=0){
+	html+=	"<td>↳ re: " +d.TITLE + "</td>   "   ;
+	}else{
+	html+=	"<td>" +d.TITLE + "</td>   "   ;
+	}
+	html+=	"<td>" +d.USER_ID + "</td>             "   ;
+	html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
+	html+=	"<td>" +d.INQ_COUNT + "</td>               "   ;
+	html+=	"<td>" +d.PUSH_COUNT + "</td>                "   ;
+	html+=	"</tr>                     "   ;
+		                               
+		
+		$("tbody").html(html);
+	}
+	
+}//drawlist end
+
+//페이징그리기
+function drawPaging(pb){
+	var html="";
+	
+	
+	
+	html+= "<div page=\"1\" type=\"button\" class=\"arrow\">처음</div>";
+	if($("page").val() =="1"){
+	html+= "<div page=\"1\" type=\"button\" class=\"arrow\"><</div>";
+	}else{
+	html+= "<div page=\""+ ($("#page").val() -1) +"\" type=\"button\" class=\"arrow\"><</div>";
+	}
+	
+	
+	for(var i=pb.startPcount; i<=pb.endPcount; i++){
+	if($("#page").val() ==i){
+	html+="<div page=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"on\"> "+i+"</div>";
+	}else{
+	html+="<div page=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
+	}
+	}
+	
+	
+	if($("#page").val() == pb.maxPcount){
+	html+= "<div page=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">></div>";
+	}else {
+	html+= "<div page=\""+ ($("#page").val() * 1 + 1) +"\" type=\"button\" class=\"arrow\">></div>";
+	}
+	html+= "<div page=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">끝</div>";
+	html+= "<input type=\"button\" value=\"글쓰기\" class=\"write_btn\">";
+	
+	$(".arrow_box").html(html);
+	
+}//drawPaging end
 
 </script>
 </head>
@@ -484,6 +622,7 @@ $(document).ready(function(){
 		<li id="news">지하철 뉴스</li>
 		<li><a href="#">고객의 소리</a>
 			<ul>
+			
 				<li id="lost">유실물 조회</li>
 				<li id="sug">건의 게시판</li>
 			</ul>
@@ -493,6 +632,7 @@ $(document).ready(function(){
 </div>
 </header>
 <body>
+
 
 <section>
   <article>
@@ -530,6 +670,7 @@ $(document).ready(function(){
 			<div class="con_box">
 			
 					<div class="con_box_2">
+				
 
 <table class="table" cellspacing="0px">
 <colgroup>
@@ -603,7 +744,14 @@ $(document).ready(function(){
 
 </table>
 
+
+	
+<div class="search_box">
+
+<!-- 폼 -->
+<form action="#" id="actionForm" method="post">
 <div class="arrow_box">
+<input type="button" class="arrow" value="처음">
 <input type="button" class="arrow" value="<">
 <input type="button" class="arrow" value="1">
 <input type="button" class="arrow" value="2">
@@ -611,20 +759,34 @@ $(document).ready(function(){
 <input type="button" class="arrow" value="4">
 <input type="button" class="arrow" value="5">
 <input type="button" class="arrow" value=">">
+<input type="button" class="arrow" value="끝">
 
 
 
-<input type="button" value="글쓰기" class="write_btn">
+
 
 	</div>
-<div class="search_box">
-<select class="search_type">
-					<option>제목</option>
-					<option>작성자</option>
-					<option>내용</option>
+
+<select class="search_type" name="searchGbn">
+					<option value="0">제목</option>
+					<option value="1">작성자</option>
+					<option value="2">내용</option>
 </select>
-<input type="text" class="input"/>
+
+<input type="text" class="input" name="searchTxt" value="${param.searchTxt}"/>
+<input type="hidden" id="sug_no" name="sug_no"/>
+<input type="hidden" id="page" name="page" value="${page}"/>
+
 <input type="button" value="검색" class="search_btn" />
+
+
+
+</form>
+<!-- 폼 끝-->
+
+
+
+
 </div>
 	
 				</div><!-- con_box_2 end -->

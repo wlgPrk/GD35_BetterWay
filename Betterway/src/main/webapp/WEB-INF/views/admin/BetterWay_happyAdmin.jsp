@@ -64,7 +64,7 @@ body{
 	padding : 6px;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: 120px;
+	margin-left: 130px;
 	margin-top:10px;
 	padding: 10px;
 }
@@ -103,6 +103,7 @@ function drawList(list){
 		  html += "<tr>";
 	      html += "<td>" + d.HAPPY_NO + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
+	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
 	      html += "<td>" + d.LOCATION + "</td>";
 	      html += "<td>" + d.AREA + "</td>";
 	      html += "<td>" + d.OPERATING_AGENCY + "</td>";
@@ -158,17 +159,19 @@ function reloadList(){
 			<table>
 				<colgroup>
 					<col width="10%">
+					<col width="12.5%">
 					<col width="15%">
-					<col width="15%">
-					<col width="15%">
-					<col width="15%">
-					<col width="15%">
-					<col width="15%">
+					<col width="12.5%">
+					<col width="12.5%">
+					<col width="12.5%">
+					<col width="12.5%">
+					<col width="12.5%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>행복지대번호</th>
 						<th>지하철역코드</th>
+						<th>역이름</th>
 						<th>위치</th>
 						<th>면적</th>
 						<th>운영기관</th>
@@ -180,23 +183,6 @@ function reloadList(){
 				<tbody>
 					<tr>
 						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
 						<td>1</td>
 						<td>1</td>
 						<td>1</td>

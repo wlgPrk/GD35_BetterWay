@@ -150,7 +150,7 @@ color: #fff;
 
   .box_tit{
     position: relative;
- background-image:url("re/images/서브타이틀_배경.png");       
+     
                        
   height:216px;
 

@@ -13,6 +13,10 @@ public interface IEstaDao {
 
 	public List<HashMap<String, String>> wheelchairList(HashMap<String, String> params)throws Throwable;
 
+<<<<<<< HEAD
 	public List<HashMap<String, String>> getToilet(HashMap<String, String> params)throws Throwable;
+=======
+	public List<HashMap<String, String>> cycleList(HashMap<String, String> params)throws Throwable;
+>>>>>>> branch 'main' of https://github.com/wlgPrk/GD35_BetterWay.git
 
 }
