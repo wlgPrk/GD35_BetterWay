@@ -28,4 +28,10 @@ WHERE  ES.NURSINGROOM = 1
 ORDER BY SUBLINE_NO ASC
 </select>
 
+<select id="wheelchairList" resultType="hashmap">
+SELECT *
+FROM NRWP_SPACING
+ORDER BY NRWP_SPACING_NO ASC
+</select>
+
 </mapper>

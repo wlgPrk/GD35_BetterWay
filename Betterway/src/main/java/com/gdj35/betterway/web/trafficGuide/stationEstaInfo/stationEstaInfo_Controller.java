@@ -107,6 +107,24 @@ public class stationEstaInfo_Controller {
 		return mav;
 	}
 	
+	@RequestMapping(value="/wheelchair_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String wheelchair_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		//목록 취득
+			List<HashMap<String,String>> list
+			= iEstaService.wheelchairList(params);
+			
+			modelMap.put("list", list);
+			
+		return mapper.writeValueAsString(modelMap);
+	 }
+	
 	@RequestMapping(value="/BetterWay_menu_real")
 	public ModelAndView BetterWay_menu_real(ModelAndView mav) {
 		

@@ -29,4 +29,9 @@ public class EstaService implements IEstaService{
 		return iEstaDao.nursingRoomList(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> wheelchairList(HashMap<String, String> params) throws Throwable {
+		return iEstaDao.wheelchairList(params);
+	}
+
 }

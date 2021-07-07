@@ -11,4 +11,6 @@ public interface IEstaDao {
 
 	public List<HashMap<String, String>> nursingRoomList(HashMap<String, String> params)throws Throwable;
 
+	public List<HashMap<String, String>> wheelchairList(HashMap<String, String> params)throws Throwable;
+
 }

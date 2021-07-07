@@ -342,6 +342,10 @@ function drawList(list){
 	   
 	   var nowSub = list[0].SUBLINE_NO;
 	   //시작 그리기 <tbody>까지
+	   //html += "<tr bno=\"" + d.B_NO + "\">";
+       //html += "<td>" + d.B_NO + "</td>";
+       //html += "<td>" + d.B_TITLE; 
+	   
 	   
 	   for(var i = 1 ; i < list.length ; i++){
 		   if(nowSub == list[i].SUBLINE_NO) { // 같은 호선
