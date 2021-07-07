@@ -1,4 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="admin">
+<mapper namespace="customer">
+
+
+
+<select id="getSugCnt" parameterType="hashMap" resultType="Integer">
+SELECT COUNT(*) AS CNT
+FROM SUG
+WHERE 1=1 AND DEL_STATUS=1
+<if test="searchTxt != null and searchTxt !=''">
+<choose>
+<when test="searchGbn ==0">
+AND TITLE LIKE '%'|| #{searchTxt} || '%'
+</when>
+<when test="searchGbn ==1">
+AND USER_ID LIKE '%'|| #{searchTxt} || '%'
+</when>
+<when test="searchGbn ==2">
+AND CON LIKE '%' || #{searchTxt} || '%'
+</when>
+</choose>
+</if>
+</select>
+
+<select id="getSugList" parameterType="hashMap" resultType="hashMap"> 
+SELECT POST_TYPE_CODE,SUG_NO,TITLE,USER_ID,WRITE_DATE,INQ_COUNT,PUSH_COUNT,CON,RNUM,REQ_NO
+FROM(
+SELECT POST_TYPE_CODE,SUG_NO,TITLE,USER_ID, WRITE_DATE,INQ_COUNT,PUSH_COUNT,CON,ROW_NUMBER() OVER(PARTITION BY POST_TYPE_CODE ORDER BY ANO DESC) AS RNUM,REQ_NO
+FROM(
+SELECT POST_TYPE_CODE,SUG_NO, TITLE, USER_ID, TO_CHAR(WRITE_DATE, 'YYYY/MM/DD HH24:MI:SS')AS WRITE_DATE,INQ_COUNT,PUSH_COUNT,CON,REQ_NO,
+CASE WHEN REQ_NO !=0
+     THEN REQ_NO -1
+     ELSE SUG_NO
+      END ANO 
+FROM SUG
+WHERE 1=1 AND DEL_STATUS=1 
+<if test="searchTxt != null and searchTxt !='' ">
+<choose>
+<when test="searchGbn ==0">
+AND TITLE LIKE '%' || #{searchTxt} || '%'
+</when>
+<when test="searchGbn ==1">
+AND USER_ID LIKE '%' || #{searchTxt} || '%'
+</when>
+<when test="searchGbn ==2">
+AND CON LIKE '%' || #{searchTxt} || '%'
+</when>
+</choose>
+</if>
+))
+WHERE RNUM BETWEEN #{startCnt} AND #{endCnt}
+</select>
+
+<insert id="addSug" parameterType="hashmap">
+INSERT INTO SUG
+VALUES (SUG_SEQ.NEXTVAL, 0 ,1 ,1,#{id},#{pw},#{con_title},#{con},SYSDATE,0,0,1)
+
+
+</insert>
+
 </mapper>

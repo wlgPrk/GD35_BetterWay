@@ -9,6 +9,8 @@
 	WHERE ADMIN_ID=#{id} 
 	AND ADMIN_PW=#{pw}
 	</select>
+	
+
 
 	<select id="getDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT H.HAPPY_NO, H.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, H.LOCATION, 
