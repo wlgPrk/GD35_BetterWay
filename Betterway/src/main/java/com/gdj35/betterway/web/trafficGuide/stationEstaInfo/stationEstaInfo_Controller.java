@@ -182,5 +182,27 @@ public class stationEstaInfo_Controller {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/toilet", 
+			method = RequestMethod.POST, 
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String toilet(
+			@RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String,Object> modelMap = new HashMap<String, Object>();
+		try {
+			List<HashMap<String, String>> list
+			= iEstaService.getToilet(params);
+			
+			modelMap.put("list", list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 
+		 return mapper.writeValueAsString(modelMap);
+	
+	
+	}
 	
 }
