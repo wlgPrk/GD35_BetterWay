@@ -243,11 +243,10 @@ margin-left:15px;
 #img img {
 	width: 100px;
 }
-/* #img{
-width:150px;
-height:100px;
 
-} */
+#show img{
+width:500px;
+}
 </style>
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -264,20 +263,23 @@ $(document).ready(function(){
 			success:function(res){
 				var html = "";
 				console.log(res);
-				console.log(res.data[0].CAR_COUNT);
 				
-				for(var i=0;i<res.data[0].CAR_COUNT;i++){
+				if(res.data.length==0){
+					alert("해당 호선은 약냉방칸을 제공하지 않습니다.");
+				}
+				for(var i=0;i<res.data[0].CAR_COUNT;i++){					
 					var cnt = 0;
 					for(var j = 0 ; j < res.data.length ; j++) {
 							if(i == res.data[j].CAR_NO){
 								cnt++;
-								break;
+								break;								
 							}
 					}
 					if(cnt == 0){
 						html+="<img alt=\"냉방칸\" src=\"resources/images/train.png\"/>"
 					}else{
 						html+="<img alt=\"약냉방칸\" src=\"resources/images/cooltrain.png\"/>"
+					
 					}
 				} 
 				console.log(html);
@@ -286,6 +288,7 @@ $(document).ready(function(){
 			},
 			error:function(requet,status,error){
 				console.log(error);
+				
 			}
 		});
 		
@@ -384,7 +387,7 @@ function cooling(){
 
 
 			<div class="cooling_line_search">				
-				<input type="radio" name="sName" id="chkLine1" value="1호선" class="chkLine"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
+				<input type="radio" name="sName" id="chkLine1" value="1호선" class="chkLine" checked="checked"><img class="Lineimg" alt="Line1" src="resources/images/line/line1.png">1호선
 				<input type="radio" name="sName" id="chkLine2" value="2호선" class="chkLine"><img class="Lineimg" alt="Line2" src="resources/images/line/line2.png">2호선
 				<input type="radio" name="sName" id="chkLine3" value="3호선" class="chkLine"><img class="Lineimg" alt="Line3" src="resources/images/line/line3.png">3호선
 				<input type="radio" name="sName" id="chkLine4" value="4호선" class="chkLine"><img class="Lineimg" alt="Line4" src="resources/images/line/line4.png">4호선
@@ -409,7 +412,7 @@ function cooling(){
 					
 					 
 				    <div id="img">
-						그림띄울거임
+						
 						
 						</div>
 						

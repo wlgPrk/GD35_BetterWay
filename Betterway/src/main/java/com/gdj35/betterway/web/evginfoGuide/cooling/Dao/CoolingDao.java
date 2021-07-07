@@ -18,6 +18,11 @@ public class CoolingDao implements ICoolingDao{
 		return sqlSession.selectList("cooling.getCar",params);
 	}
 
+	public List<HashMap<String, String>> coolingList(HashMap<String, String> params) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cooling.coolingList",params);
+	}
+
 	
 	
 	

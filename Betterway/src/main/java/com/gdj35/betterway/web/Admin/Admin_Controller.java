@@ -1,6 +1,7 @@
 package com.gdj35.betterway.web.Admin;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -16,12 +17,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.gdj35.betterway.util.Utils;
 import com.gdj35.betterway.web.Admin.Service.IAdmin_Service;
+import com.gdj35.betterway.web.evginfoGuide.cooling.Service.ICoolingService;
+import com.gdj35.betterway.web.trafficGuide.stationEstaInfo.Service.IEstaService;
 
 @Controller
 public class Admin_Controller {
 	
 	@Autowired
 	public IAdmin_Service iAdmin_Service;
+	@Autowired 
+	public ICoolingService iCoolingService;
 	
 	
 	@RequestMapping(value ="/BetterWay_loginAdmin")
@@ -117,4 +122,31 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	@RequestMapping(value ="/BetterWay_infoAdmin")
+	public ModelAndView BetterWay_infoAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_infoAdmin");
+		
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/infoAdmin_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String infoAdmin_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		//목록 취득
+			List<HashMap<String,String>> list
+			= iCoolingService.coolingList(params);
+			
+			modelMap.put("list", list);
+			
+		return mapper.writeValueAsString(modelMap);
+	 }
+	
 }
