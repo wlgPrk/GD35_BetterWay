@@ -34,14 +34,14 @@ public class EstaDao implements IEstaDao {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<HashMap<String, String>> getToilet(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("E.getToilet",params);
-=======
+	}
+	@Override
 	public List<HashMap<String, String>> cycleList(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("E.cycleList",params);
->>>>>>> branch 'main' of https://github.com/wlgPrk/GD35_BetterWay.git
+
 	}
 
 

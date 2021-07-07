@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="E">
+ <mapper namespace="E">
 <select id="EstaList" resultType="hashmap">
 SELECT ST.SUBWAY_STATION_NAME, SE.ELEV_COUNT, SE.ESCA_COUNT, SE.MOVINGWALK_COUNT,SE.WCHAIR_LIFT_COUNT, SE.MV_SAFE_FOOT_COUNT, SE.WCHAIR_CHARGER_COUNT,
 SE.DISABLED_TOILET_COUNT, SE.VOICE_INDUCER_COUNT
@@ -12,6 +12,7 @@ SUBWAY_STATION S) ST
 ON SE.SUBWAY_STATION_INCODE = ST.SUBWAY_STATION_INCODE
 WHERE ST.SUBLINE_NO = #{line}
 </select>
+
 
 <select id="happyList" resultType="hashmap">
 SELECT H.HAPPY_NO, H.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, H.LOCATION, 
@@ -36,7 +37,7 @@ FROM NRWP_SPACING NR INNER JOIN SUBWAY_STATION ST
 ORDER BY NRWP_SPACING_NO ASC
 </select>
 
-<<<<<<< HEAD
+
 <select id = "getToilet" resultType = "hashmap">
 SELECT SS.SUBWAY_STATION_NAME,  SS.SUBWAY_STATION_INCODE,  SS.SUBLINE_NO
 FROM SUBWAY_STATION SS INNER JOIN
@@ -44,7 +45,7 @@ TOILET T ON SS.SUBWAY_STATION_INCODE = T.SUBWAY_STATION_INCODE
 WHERE SS.SUBLINE_NO = #{line}
 
 </select>
-=======
+
 <select id="cycleList" resultType="hashmap">
 SELECT ST.SUBWAY_STATION_INCODE,ST.SUBLINE_NO, ST.SUBWAY_STATION_NAME,ES.CYCLE_COUNT
 FROM SUBWAY_STATION ST INNER JOIN SUBWAY_STATION_ESTA ES
@@ -53,5 +54,5 @@ WHERE ES.CYCLE_COUNT = 1
 ORDER BY SUBWAY_STATION_INCODE ASC
 </select>
 
->>>>>>> branch 'main' of https://github.com/wlgPrk/GD35_BetterWay.git
+
 </mapper>
