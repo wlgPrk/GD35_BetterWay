@@ -58,7 +58,7 @@ body{
 	width:100%;
 	margin-left: 900px;
 }
-#right_sub2 > input{
+#writeBtn{
 	font-size: 15pt;
 	border: none;
 	padding : 6px;
@@ -95,12 +95,24 @@ th{
 $(document).ready(function(){
 	
 	reloadList();
+	
+	$("#writeBtn").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_happyAdminWrite");
+		$("#actionForm").submit();
+	});
+	
+	$(".list_wrap tbody").on("click","tr",function(){
+		$("#happy_no").val($(this).attr("happy_no"));
+		
+		$("#actionForm").attr("action","BetterWay_happyAdmin_Detail");
+		$("#actionForm").submit();
+	});
 });
 function drawList(list){
 	   var html = "";
 	   
 	   for(var d of list){
-		  html += "<tr>";
+		  html += "<tr happy_no =\"" + d.HAPPY_NO +"\">";
 	      html += "<td>" + d.HAPPY_NO + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
@@ -134,7 +146,6 @@ function reloadList(){
 </script>
 </head>
 <body>
-	<form action="#" id="actionForm" method="post"></form>
 
 	<div id="left">
 		<div id="left_sub">
@@ -153,7 +164,10 @@ function reloadList(){
 			<input type="button" value="화장실" />
 		</div>
 		<div id ="right_sub2">
-			<input type="button" value="행추가" />
+			<form action="#" id="actionForm" method="post">
+				<input type="hidden" id="happy_no" name="happy_no"/> 
+				<input type="button" id="writeBtn"  value="행추가" />
+			</form>
 		</div>
 		<div class ="list_wrap">
 			<table>

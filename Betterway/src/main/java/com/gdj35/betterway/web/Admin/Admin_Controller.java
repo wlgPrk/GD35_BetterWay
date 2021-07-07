@@ -79,6 +79,23 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/BetterWay_happyAdmin_Detail")
+	   public  ModelAndView BetterWay_happyAdmin_Detail(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws Throwable{
+		   try {
+			   HashMap<String, String> data = iAdmin_Service.getDetail(params);
+			   
+			   mav.addObject("data",data);
+			   
+			   mav.setViewName("admin/BetterWay_happyAdmin_Detail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		   return mav;
+	   }
+	
 	@RequestMapping(value ="/BetterWay_cycleAdmin")
 	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
 		

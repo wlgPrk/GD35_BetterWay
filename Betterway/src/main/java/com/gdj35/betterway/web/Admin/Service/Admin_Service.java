@@ -15,8 +15,12 @@ public class Admin_Service implements IAdmin_Service{
 	
 	@Override
 	public HashMap<String, String> getAdmin(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.getAdmin(params);
+	}
+
+	@Override
+	public HashMap<String, String> getDetail(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.getDetail(params);
 	}
 
 }
