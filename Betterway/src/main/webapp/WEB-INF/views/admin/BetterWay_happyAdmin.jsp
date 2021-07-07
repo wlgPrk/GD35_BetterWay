@@ -61,7 +61,6 @@ body{
 #writeBtn{
 	font-size: 15pt;
 	border: none;
-	padding : 6px;
 	border-radius: 5pt;	
 	background-color: #82b2da;
 	margin-left: 130px;
