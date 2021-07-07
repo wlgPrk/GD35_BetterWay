@@ -371,31 +371,9 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 $(document).ready(function(){
 	
 	reloadList();
-<<<<<<< HEAD
-	$("#search").on("click",function(){
-		
-function reloadList() {
-	var params =$("#actionForm").serialize();
-	 $.ajax({
-         url: "esta_mains", 
-         type: "post", 
-         dataType: "json", 
-         data: params, 
-         success: function(res){ 
-        	 drawList(res.list);
-        	
-         },
-     	error: function(request, status, error) { 
-			
-			console.log(error);
-		}
-      });
-
-}
-	}
 
 
-	});
+
 $("#search").on("click",function(){
 var params = $("#actionForm").serialize();
 		//ajax
@@ -413,10 +391,11 @@ var params = $("#actionForm").serialize();
 			}
 		});//ajax end
 	});//searchBtn
+	});
 
 	
 		
-	});
+	
 	
 	function reloadList() {
 		var params =$("#actionForm").serialize();
@@ -459,29 +438,7 @@ var params = $("#actionForm").serialize();
 
 
 
-function drawList(list){
-	var html ="";
-	
-	for(var d of list){ 
-		html += "<tr> ";
-		html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
-		html += "<td>" + d.ELEV_COUNT + "</td>";
-		html += "<td>" + d.ESCA_COUNT + "</td>";
-		html += "<td>" + d.MOVINGWALK_COUNT + "</td>";
-		html += "<td>" + d.WCHAIR_LIFT_COUNT + "</td>";
-		html += "<td>" + d.MV_SAFE_FOOT_COUNT + "</td>";
-		html += "<td>" + d.WCHAIR_CHARGER_COUNT + "</td>";
-		html += "<td>" + d.DISABLED_TOILET_COUNT + "</td>";
-		html += "<td>" + d.VOICE_INDUCER_COUNT + "</td>";
-		html += "</tr>";
-		
-		
-		$("#con_tab tbody").html(html);
-		
-	}
-	
 
-}
 </script>
 </head>
 <body>
