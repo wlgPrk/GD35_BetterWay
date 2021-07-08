@@ -150,39 +150,6 @@ text-decoration: underline;
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
-
-		
-
-function fnSearch(sParam){
-				var $target = $("select[name='cat_sub_name']");
-				
-				$target.empty();
-				if(sParam == ""){
-					$target.append("<option value="">선택</option>");	
-					return;
-				}
-				
-				$.ajax({
-					url:"envinfo",
-					type:"post",
-					dataType:"json",
-					data:{SUBLINE_NO:sParam},
-					success:function(data){
-						console.(data);
-						if(data.length==0){
-							$target.append("<option value="">선택</option>");		
-						}else{
-							$(data).each(function(i){
-								$target.append("<option value="+data[i]+"</option>");
-							});
-						},
-						error:function(requet,status,error){
-							console.log(error);
-							
-						}
-					}
-					});
-}
 		
 
 </script>
@@ -211,18 +178,11 @@ function fnSearch(sParam){
 				<div class="station_title">역명</div>	
 				
 				<form action="#" id="SearchForm" method="post" >
-						<select name="ctg_line" id="ctg_line" onchange="fnSearch(this.value);">
-						  <option>선택</option>
-						  <option value="1">1호선</option>
-						  <option value="2">2호선</option>
-						  <option value="3">3호선</option>
-						  <option value="4">4호선</option>
-						  <option value="5">5호선</option>
-						  <option value="6">6호선</option>
-						  <option value="7">7호선</option>
-						  <option value="8">8호선</option>
-						  <option value="9">9호선</option>
-						</select>
+				<select id="selectLine">
+			          <option value="1">1호선</option>
+			          <option value="2">2호선</option>
+			          <option value="3">3호선</option>
+				</select>
 						 
 						<select id="cat_sub_name" name="cat_sub_name">
 						<option value="">역 선택</option>

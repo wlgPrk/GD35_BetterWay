@@ -32,4 +32,31 @@ public class board_Service implements Iboard_Service {
 		return iboard_dao.addSug(params);
 	}
 
+	@Override
+	public HashMap<String, String> getSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.getSug(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getSugComm(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.getSugComm(params);
+	}
+
+	@Override
+	public int upadteInq(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.updateInq(params); 
+	}
+
+	@Override
+	public int getCommCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.getCommCnt(params);
+	}
+
+
+
+
 }

@@ -52,11 +52,41 @@ AND CON LIKE '%' || #{searchTxt} || '%'
 WHERE RNUM BETWEEN #{startCnt} AND #{endCnt}
 </select>
 
-<insert id="addSug" parameterType="hashmap">
+<insert id="addSug" parameterType="hashMap">
 INSERT INTO SUG
 VALUES (SUG_SEQ.NEXTVAL, 0 ,1 ,1,#{id},#{pw},#{con_title},#{con},SYSDATE,0,0,1)
-
-
 </insert>
+
+
+<select id="getSug" parameterType="hashMap" resultType="hashMap">
+
+SELECT SUG_NO,USER_ID,USER_PW,TITLE,CON,WRITE_DATE,PUSH_COUNT,INQ_COUNT
+FROM SUG
+WHERE SUG_NO = #{sug_no}
+
+</select>
+
+
+<select id="getSugComm" parameterType="hashMap" resultType="hashMap">
+SELECT C.COMM_NO,C.USER_ID,C.USER_PW,C.CON,C.WRITE_DATE
+FROM COMM C INNER JOIN SUG S
+ON C.SUG_NO = S.SUG_NO 
+WHERE S.SUG_NO = #{sug_no} AND C.DEL_STATUS =1
+
+</select>
+
+<update id="updateInq" parameterType="hashMap">
+UPDATE SUG SET INQ_COUNT = INQ_COUNT +1
+WHERE SUG_NO=#{sug_no}
+</update>
+
+<select id="getCommCnt" parameterType="hashMap" resultType="Integer">
+SELECT COUNT(C.COMM_NO)
+FROM SUG S INNER JOIN COMM C 
+ON S.SUG_NO = C.SUG_NO
+WHERE S.SUG_NO=#{sug_no} AND C.DEL_STATUS =1
+
+</select>
+
 
 </mapper>

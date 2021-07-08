@@ -94,12 +94,61 @@ public IPagingService iPagingService;
 	
 	//건의게시판내용
 	@RequestMapping(value="/BetterWay_suggestContent")
-	public ModelAndView suggestContent(ModelAndView mav) {
+	public ModelAndView suggestContent(ModelAndView mav ,
+			@RequestParam HashMap<String, String> params)throws Throwable {
+		HashMap<String, String> data;
+
+		try {
+			int inq = iboard_Service.upadteInq(params);
+			
+			if(inq  >0) {
+				mav.addObject("msg", "success");
+			}else {
+				mav.addObject("msg", "failed");
+			}
+			data = iboard_Service.getSug(params);
+			mav.addObject("data",data);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 		mav.setViewName("customer/BetterWay_suggestContent");
 		
 		return mav;
 	}//suggestContent end
+	
+	
+	//건의게시판내용댓글
+	@RequestMapping(value="/BetterWay_suggestContents",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestContents(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		try {
+			
+			
+		int commCnt = iboard_Service.getCommCnt(params);
+		//목록취득
+		List<HashMap<String, String>> list
+			=iboard_Service.getSugComm(params);
+		modelMap.put("commCnt", commCnt);
+		modelMap.put("list",list);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
+	}//SuggestContents end
+	
+	
+	
 	
 	
 	//건의게시판쓰기

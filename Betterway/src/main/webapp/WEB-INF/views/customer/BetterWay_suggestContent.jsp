@@ -331,6 +331,21 @@ margin-right: 10px;
 margin-left: 10px;
 }
 
+/*목록버튼 */
+.list_btn{
+position:absolute;
+left:600px;
+background-color:#e0e0eb;
+font-size: 20px;
+margin-right:10px;
+width :80px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+}
+
+
 /*삭제버튼 */
 .del_btn{
 position:absolute;
@@ -390,13 +405,14 @@ border-left: 1px solid #e0e0eb;
 padding-left:10px;
 text-align: left;
 }
-/* 글수정*/
+
+/* 댓글수정*/
 .comm_update{
 position: absolute;
 left:800px;
 cursor: pointer;
 }
-/* 글삭제*/
+/* 댓글삭제*/
 .comm_del{
 position: absolute;
 left:850px;
@@ -551,8 +567,75 @@ $(document).ready(function(){
 	
 	
 	
+	reloadList();
+	
+	$(".update_btn").on("click",function(){
+			
+	});
+	
+	
+	
 }); // document end
 
+
+
+//댓글보이기, 댓글수
+function reloadList(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestContents", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			drawList(res.list);
+			commCnt(res.commCnt);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+//댓글수 보이기
+function commCnt(cnt){
+	var html="";
+	html ="댓글"+ cnt +""
+	
+	$(".sug_tit_sub span:nth-child(2)").html(html);
+	$(".comm_push span").html(html);
+}
+
+
+
+
+//목록그리기
+function drawList(list){
+	var html ="";
+
+	for(var d of list){       
+                                         
+html+=" 	 <tr comm_no=\""+ d.COMM_NO +"\" >";
+html+=" 	<td>" + d.USER_ID+ " ";
+html+=" 	</td>";
+html+=" 	 	<td>";
+html+=" 	 	" +d.CON+ "";
+html+=" 	<span class=\"comm_update\">수정</span>";
+html+=" 	<span class=\"comm_del\">삭제</span>";
+html+=" 	</td>";
+html+=" 	</tr>	";
+	
+	
+		
+		
+		
+	}
+	$(".comm_table").append(html);
+	
+}//drawlist end
 </script>
 </head>
 <body>
@@ -628,52 +711,35 @@ $(document).ready(function(){
 		
  		<div class="sug_tit_box">
  		<div class="sug_tit_writer">
- 		제목 </div>건의합니다
+ 		제목 </div>${data.TITLE}
  		
- 		 <div class="sug_tit_sub">2021/05/08 14:08:22</div>
+ 		 <div class="sug_tit_sub">${data.WRITE_DATE}</div>
  		</div>
  		<div class="sug_tit_box">
  		<div class="sug_tit_writer">
- 		작성자</div>홍길동
- 		<div class="sug_tit_sub">조회11 추천2 댓글2</div>
+ 		작성자</div>${data.USER_ID}
+ 		<div class="sug_tit_sub">조회${data.INQ_COUNT} <span>추천${data.PUSH_COUNT}</span> <span>댓글2</span></div>
  		</div>
  		<div class="sug_con">
  		
- 		dasdasddasdasdasdsaczxcxzcxzczxcxzcxczxczxczx
+ 		${data.CON}
  		</div>
  		
  		
  		<div class="comm_push">
- 		<div class="comm_img"></div>댓글 2 <div class="push_img"></div>추천하기
+ 		<div class="comm_img"></div><span>댓글</span> <div class="push_img"></div>추천하기
+ 			<input type="button" value="목록" class="list_btn">
  			<input type="button" value="수정" class="update_btn">
  			<input type="button" value="삭제" class="del_btn">
 
  		</div>
- 	<table class="comm_table">
+ 	<table class="comm_table" cellspacing="0">
  	<colgroup>
  	<col width="20%"/>
  	<col width="80%"/>
  	</colgroup>
  	
- 	<tr>
- 	<td>홍길동
- 	</td>
- 	<td>
- 	zxczxczxczxczxcczxcxzc
- 	<span class="comm_update">수정</span>
- 	<span class="comm_del">삭제</span>
- 	</td>
- 	</tr>
- 	
- 	 <tr>
- 	<td>김길동
- 	</td>
- 	 	<td>
- 	 	xzczxczxczxcxzcxzczx
- 	<span class="comm_update">수정</span>
- 	<span class="comm_del">삭제</span>
- 	</td>
- 	</tr>
+
  	</table>	
  		
  		
@@ -693,9 +759,11 @@ $(document).ready(function(){
 	<input type="button" value="등록" class="comm_add"></div>
 	</div>
 
-	
-	
-	
+<form  action="#" id="actionForm"  method="post">
+<input type="hidden" class="input" name="searchTxt" value="${param.searchTxt}"/>
+<input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}"/>
+<input type="hidden" id="page" name="page" value="${param.page}"/>
+	</form>
 				</div><!-- con_box_2 end -->
 			
 			

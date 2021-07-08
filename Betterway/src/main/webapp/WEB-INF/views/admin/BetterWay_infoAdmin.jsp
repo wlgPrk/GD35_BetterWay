@@ -30,7 +30,7 @@ body{
 	text-align: center;
 	line-height: 2;
 }
-#left_sub div:nth-child(1){
+#left_sub div:nth-child(2){
 	background-color: #ffcc00;
 }
 #right{
@@ -56,7 +56,16 @@ body{
 #right_sub2{
 	height:15%;
 	width:100%;
-	margin-left: 900px;
+	margin-left: 450px;
+}
+#writeBtn{
+	font-size: 15pt;
+	border: none;
+	border-radius: 5pt;	
+	background-color: #82b2da;
+	margin-left: 130px;
+	margin-top:10px;
+	padding: 10px;
 }
 #right_sub2 > input{
 	font-size: 15pt;
@@ -95,16 +104,25 @@ th{
 $(document).ready(function(){
 	
 	reloadList();
+	$("#writeBtn").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_coolingAdmin_Write");
+		$("#actionForm").submit();
+	});
+	
+	$(".list_wrap tbody").on("click","tr",function(){
+		$("#weak_cooling_car_no").val($(this).attr("weak_cooling_car_no"));	
+		$("#actionForm").attr("action","BetterWay_infoAdmin_Detail");
+		$("#actionForm").submit();
+	});
 });
 function drawList(list){
 	   var html = "";
 	   
 	   for(var d of list){
-		  html += "<tr>";
+		  html += "<tr weak_cooling_car_no =\"" + d.WEAK_COOLING_CAR_NO + "\">";
 	      html += "<td>" + d.WEAK_COOLING_CAR_NO + "</td>";
 	      html += "<td>" + d.SUBLINE_NO + "</td>";
-	      html += "<td>" + d.CAR_NO + "</td>";
-	 
+	      html += "<td>" + d.CAR_NO + "</td>";	 
 	      html += "</tr>";
 	   }
 	   
@@ -130,7 +148,7 @@ function reloadList(){
 </script>
 </head>
 <body>
-	<form action="#" id="actionForm" method="post"></form>
+	
 
 	<div id="left">
 		<div id="left_sub">
@@ -144,13 +162,17 @@ function reloadList(){
 	<div id="right">
 	
 		<div id ="right_sub2">
-			<input type="button" value="행추가" />
+		<form action="#" id="actionForm" method="post">
+		<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no"/>
+		<input type="button" id="writeBtn" value="행추가" />
+		</form>
+			
 		</div>
 		<div class ="list_wrap">
 			<table>
 				<colgroup>
-					<col width="15%">
-					<col width="15%">
+					<col width="40%">
+					<col width="30%">
 					<col width="30%">
 					
 				</colgroup>
@@ -167,13 +189,11 @@ function reloadList(){
 					<tr>
 						<td></td>
 						<td></td>
-						<td></td>
-					
+						<td></td>				
 					</tr>
 				</tbody>				
 			</table>
 		</div>
-		<div id ="right_sub"></div>
 	</div>
 </body>
 </html>

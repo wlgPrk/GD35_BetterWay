@@ -29,4 +29,9 @@
 	
 	</update>
 
+	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
+	FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</select>
 </mapper>

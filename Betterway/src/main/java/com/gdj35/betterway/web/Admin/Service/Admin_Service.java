@@ -27,6 +27,11 @@ public class Admin_Service implements IAdmin_Service{
 	public int addT(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.addT(params);
 	}
+	//냉방상세보기
+	@Override
+	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.getcoolingDetail(params);
+	}
 
 	@Override
 	public int deleteT(HashMap<String, String> params) throws Throwable {

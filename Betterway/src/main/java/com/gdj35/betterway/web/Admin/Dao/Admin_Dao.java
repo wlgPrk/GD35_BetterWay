@@ -28,8 +28,13 @@ public class Admin_Dao implements IAdmin_Dao{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int deleteT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.deleteT",params);
+=======
+	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getcoolingDetail",params);
+>>>>>>> branch 'main' of https://github.com/wlgPrk/GD35_BetterWay.git
 	}
 
 }
