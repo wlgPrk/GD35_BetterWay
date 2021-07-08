@@ -3,6 +3,7 @@ package com.gdj35.betterway.web.main;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.zip.CheckedOutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,16 +36,11 @@ public class main_Controller {
 	public ModelAndView BetterWay_time(ModelAndView mav) {
 		
 		mav.setViewName("main/BetterWay_time");
-		
+	
 		return mav;
 	}
-	@RequestMapping(value="/BetterWay_time2")
-	public ModelAndView BetterWay_time2(ModelAndView mav) {
-		
-		mav.setViewName("main/BetterWay_time2");
-		
-		return mav;
-	}
+	
+	
 	
 	
 	}

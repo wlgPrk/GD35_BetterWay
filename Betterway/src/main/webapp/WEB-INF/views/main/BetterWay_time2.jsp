@@ -24,6 +24,14 @@ xhr.send('');
 </script>
 </head>
 <body>
+<div id="weatherWrap">
+<span id="temp"></span>
+<table id="weatherHistory">
+	<tbody></tbody>
+</table>
+</div>
+<input type="button" value="가져오기" id="getBtn" />
+<div id="box"></div>
 </body>
 
 </html>
