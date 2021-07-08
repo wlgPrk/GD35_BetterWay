@@ -11,4 +11,12 @@ public interface Iboard_Dao {
 
 	public int addSug(HashMap<String, String> params)throws Throwable;
 
+	public HashMap<String, String> getSug(HashMap<String, String> params)throws Throwable;
+
+	public List<HashMap<String, String>> getSugComm(HashMap<String, String> params) throws Throwable;
+
+	public int updateInq(HashMap<String, String> params) throws Throwable;
+
+	public int getCommCnt(HashMap<String, String> params) throws Throwable;
+
 }

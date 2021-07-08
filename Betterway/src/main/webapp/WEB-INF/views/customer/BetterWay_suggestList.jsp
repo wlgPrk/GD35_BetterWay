@@ -404,6 +404,8 @@ cursor:pointer;
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" 
+src="resources/script/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -496,7 +498,6 @@ $(document).ready(function(){
 	
 	//작성
 	$(".arrow_box").on("click","input",function(){
-		 console.log("작동돼라")
 		$("#actionForm").attr("action","BetterWay_suggestWrite"); 
 		$("#actionForm").submit();
 	});// write btn end
@@ -504,7 +505,9 @@ $(document).ready(function(){
 	
 	//상세보기
 	$("tbody").on("click","tr",function(){
+		
 		$("#sug_no").val($(this).attr("sug_no"));
+		console.log($("#sug_no").val());
 		
 		$("#actionForm").attr("action","BetterWay_suggestContent");
 		$("#actionForm").submit();
@@ -749,7 +752,7 @@ function drawPaging(pb){
 <div class="search_box">
 
 <!-- 폼 -->
-<form action="#" id="actionForm" method="post">
+
 <div class="arrow_box">
 <input type="button" class="arrow" value="처음">
 <input type="button" class="arrow" value="<">
@@ -766,7 +769,7 @@ function drawPaging(pb){
 
 
 	</div>
-
+<form action="#" id="actionForm" method="post">
 <select class="search_type" name="searchGbn">
 					<option value="0">제목</option>
 					<option value="1">작성자</option>

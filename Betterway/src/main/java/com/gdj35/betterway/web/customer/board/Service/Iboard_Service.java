@@ -11,4 +11,13 @@ public interface Iboard_Service {
 
 	public int addSug(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> getSug(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getSugComm(HashMap<String, String> params) throws Throwable;
+
+
+	public int upadteInq(HashMap<String, String> params) throws Throwable;
+
+	public int getCommCnt(HashMap<String, String> params) throws Throwable;
+
 }
