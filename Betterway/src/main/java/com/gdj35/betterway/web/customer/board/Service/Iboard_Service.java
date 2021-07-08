@@ -20,4 +20,6 @@ public interface Iboard_Service {
 
 	public int getCommCnt(HashMap<String, String> params) throws Throwable;
 
+	public HashMap<String, String> getPwCheck(HashMap<String, String> params) throws Throwable;
+
 }
