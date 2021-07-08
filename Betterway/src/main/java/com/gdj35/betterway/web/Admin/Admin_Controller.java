@@ -237,4 +237,5 @@ public class Admin_Controller {
 		}
 		   return mav;
 	   }
+	//냉방수정
 }
