@@ -37,13 +37,13 @@ $(document).ready(function(){
 		var fileForm =$("#fileForm");
 		fileForm.ajaxForm({
 			beforeSubmit:function(){
-				if($.trim($("#bTitle").val())==""){
-					alert("제목을 입력해 주세요");
-					$("#bTitle").focus();
+				if($.trim($("#subline_no").val())==""){
+					alert("호선번호를 입력해 주세요");
+					$("#subline_no").focus();
 					return false;//아작스 폼 실행 불가->제목 입력 안했는데 파일 입력할필요 없자너
-				}else if($.trim($("#bCon").val())==""){
-					alert("내용을 입력해 주세요");
-					$("#bCon").focus();
+				}else if($.trim($("#car_no").val())==""){
+					alert("칸번호를 입력해 주세요");
+					$("#car_no").focus();
 					return false;
 				}
 			},
@@ -54,7 +54,7 @@ $(document).ready(function(){
 					var params = $("#updateForm").serialize();
 					
 					$.ajax({
-						url:"coolingUpdates",//접속 주소->testALogins파일 필요없음
+						url:"infocoolingUpdates",//접속 주소->파일 필요없음
 						type:"post", //전송방식(get,post)
 						dataType:"json",//받아올 데이터 형식
 						data:params,//보낼 데이터(문자열 형태)

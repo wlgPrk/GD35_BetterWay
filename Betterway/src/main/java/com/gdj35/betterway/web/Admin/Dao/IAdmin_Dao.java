@@ -1,6 +1,7 @@
 package com.gdj35.betterway.web.Admin.Dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 public interface IAdmin_Dao {
@@ -14,5 +15,13 @@ public interface IAdmin_Dao {
 	public int deleteT(HashMap<String, String> params)throws Throwable;
 
 	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params)throws Throwable;
+
+	public int addcooling(HashMap<String, String> params)throws Throwable;
+
+	public List<HashMap<String, String>> guideList(HashMap<String, String> params)throws Throwable;
+	
+	
+	public HashMap<String, String> getguideDetail(HashMap<String, String> params)throws Throwable;
+
 
 }

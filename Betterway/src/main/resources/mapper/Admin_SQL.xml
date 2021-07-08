@@ -35,4 +35,22 @@
 	FROM WEAK_COOLING_CAR
 	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
 	</select>
+	
+	<insert id="addcooling" parameterType="hashmap">
+	
+	INSERT INTO WEAK_COOLING_CAR
+	VALUES(COOLING_SEQ.NEXTVAL,#{subline_no},4,#{car_no})
+
+	</insert>
+	
+	<select id="guideList" parameterType="hashmap" resultType="hashmap">
+	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	FROM CHARGE_GUIDE
+	</select>
+	
+	<select id="getguideDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	FROM CHARGE_GUIDE
+	WHERE GUIDE_NO=#{guide_no}
+	</select>
 </mapper>

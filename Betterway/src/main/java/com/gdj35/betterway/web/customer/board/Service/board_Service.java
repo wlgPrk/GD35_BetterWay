@@ -56,6 +56,12 @@ public class board_Service implements Iboard_Service {
 		return iboard_dao.getCommCnt(params);
 	}
 
+	@Override
+	public HashMap<String, String> getPwCheck(HashMap<String, String> params) throws Throwable  {
+		// TODO Auto-generated method stub
+		return iboard_dao.getPwCheck(params);
+	}
+
 
 
 

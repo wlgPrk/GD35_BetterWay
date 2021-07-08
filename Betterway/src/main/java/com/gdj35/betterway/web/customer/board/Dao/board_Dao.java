@@ -54,6 +54,12 @@ public class board_Dao implements Iboard_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("customer.getCommCnt", params);
 	}
+
+	@Override
+	public HashMap<String, String> getPwCheck(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("customer.getPwCheck",params);
+	}
 	
 	
 
