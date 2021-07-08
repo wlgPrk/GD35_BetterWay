@@ -223,19 +223,93 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 	 }
 	//냉방상세
-	@RequestMapping(value="/BetterWay_infoAdmin_Detail")
-	   public  ModelAndView BetterWay_infoAdmin_Detail(
+	@RequestMapping(value="/BetterWay_infocoolingAdmin_Detail")
+	   public  ModelAndView BetterWay_infocoolingAdmin_Detail(
 			   @RequestParam HashMap<String, String> params,ModelAndView mav)throws Throwable{
 		   try {
 			   HashMap<String, String> data = iAdmin_Service.getcoolingDetail(params);
 			   
 			   mav.addObject("data",data);
 			   
-			   mav.setViewName("admin/BetterWay_infoAdmin_Detail");
+			   mav.setViewName("admin/BetterWay_infocoolingAdmin_Detail");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		   return mav;
 	   }
-	//냉방수정
+	//냉방등록
+	 @RequestMapping(value="BetterWay_infocoolingAdmin_Write")
+	   public ModelAndView BetterWay_infocoolingAdmin_Write(ModelAndView mav) {
+		   
+		   mav.setViewName("admin/BetterWay_infocoolingAdmin_Write");
+		   
+		   return mav;
+	   }
+	 
+	 @RequestMapping(value = "/BetterWay_infocoolingAdmin_Writes",
+			   method = RequestMethod.POST,
+			   produces = "text/json;charset=UTF-8")
+		 @ResponseBody
+		 public String BetterWay_infocoolingAdmin_Writes(
+				 @RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 try {
+				 int cnt = iAdmin_Service.addcooling(params);
+				 if(cnt > 0) {
+					 modelMap.put("msg","success");
+				 }else {
+					 modelMap.put("msg","failed");
+				 }
+			 }catch(Throwable e){
+				 e.printStackTrace();
+				 modelMap.put("msg", "error");
+			 }
+			 return mapper.writeValueAsString(modelMap);
+		 }
+	 //냉방수정
+	 @RequestMapping(value="BetterWay_infocoolingAdmin_Update")
+	   public ModelAndView BetterWay_infocoolingAdmin_Update(ModelAndView mav) {
+		   
+		   mav.setViewName("admin/BetterWay_infocoolingAdmin_Update");
+		   
+		   return mav;
+	   }
+	 
+	 //운임리스트
+	 @RequestMapping(value="/infoAdminguide_List",
+	   		   method = RequestMethod.POST,
+	   		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody //ajax때 꼭 필요
+	 public String infoAdminguide_List(
+		@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		//목록 취득
+			List<HashMap<String,String>> list= iAdmin_Service.guideList(params);
+			
+			modelMap.put("list", list);
+			
+		return mapper.writeValueAsString(modelMap);
+	 }
+	 
+	 
+	 //운임상세
+		@RequestMapping(value="/BetterWay_infoguideAdmin_Detail")
+		   public  ModelAndView BetterWay_infoguideAdmin_Detail(
+				   @RequestParam HashMap<String, String> params,ModelAndView mav)throws Throwable{
+			   try {
+				   HashMap<String, String> data = iAdmin_Service.getguideDetail(params);
+				   
+				   mav.addObject("data",data);
+				   
+				   mav.setViewName("admin/BetterWay_infoguideAdmin_Detail");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			   return mav;
+		   }
+	 
+	
 }
