@@ -26,7 +26,8 @@
 	</insert>
 	
 	<update id="deleteT" parameterType="hashmap">
-	
+	UPDATE HAPPY SET DEL_STATUS = 0 
+	WHERE HAPPY_NO = #{happy_no}
 	</update>
 
 	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
