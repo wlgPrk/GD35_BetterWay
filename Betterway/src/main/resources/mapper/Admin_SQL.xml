@@ -9,11 +9,25 @@
 	WHERE ADMIN_ID=#{id} 
 	AND ADMIN_PW=#{pw}
 	</select>
+
+	<select id="getDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT H.HAPPY_NO, H.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, H.LOCATION, 
+	H.AREA, H.OPERATING_AGENCY, H.PHONE_NUM, H.DEL_STATUS 
+	FROM HAPPY H INNER JOIN SUBWAY_STATION ST
+                	ON H.SUBWAY_STATION_INCODE = ST.SUBWAY_STATION_INCODE
+	WHERE H.HAPPY_NO = #{happy_no}
+	</select>
 	
+	<insert id="addT" parameterType="hashmap">
+	INSERT INTO HAPPY(HAPPY_NO, SUBWAY_STATION_INCODE, ADMIN_NO, 
+                LOCATION, AREA, OPERATING_AGENCY, PHONE_NUM, DEL_STATUS)
+	VALUES(HAPPY_SEQ.NEXTVAL, #{subway_station_incode} , 2, 
+			#{location}, #{area}, #{operating_agency}, #{phone_num},1)
+	</insert>
 
-
-
-
-
-
+	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
+	FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</select>
 </mapper>

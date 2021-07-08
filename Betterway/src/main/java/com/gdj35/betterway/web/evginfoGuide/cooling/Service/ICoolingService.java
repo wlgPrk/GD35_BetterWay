@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface ICoolingService {
 	public List<HashMap<String, String>> getCar(HashMap<String, String> params) throws Throwable;
+	public List<HashMap<String, String>> coolingList(HashMap<String, String> params) throws Throwable;
 }

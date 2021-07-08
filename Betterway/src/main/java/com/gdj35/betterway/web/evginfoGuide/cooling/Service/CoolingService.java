@@ -20,6 +20,12 @@ public class CoolingService implements ICoolingService{
 		return iCoolingDao.getCar(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> coolingList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iCoolingDao.coolingList(params);
+	}
+
 
 
 }

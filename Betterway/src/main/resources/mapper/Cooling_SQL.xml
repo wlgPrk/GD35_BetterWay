@@ -10,6 +10,8 @@ FROM SUBLINE S INNER JOIN WEAK_COOLING_CAR W ON S.SUBLINE_NO= W.SUBLINE_NO
 WHERE S.SUBLINE_NAME=#{sName}
 </select>
 
-
-
+<select id="coolingList" parameterType="hashmap" resultType="hashmap">
+SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
+FROM weak_cooling_car
+</select>
 </mapper>

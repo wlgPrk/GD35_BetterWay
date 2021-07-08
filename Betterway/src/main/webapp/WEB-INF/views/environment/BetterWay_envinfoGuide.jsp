@@ -90,7 +90,7 @@ a {
 }
   .box_title{
     position: relative;
- background-image:url("./handleimg.png");       
+ background-image:url("resources/images/handleimg.png");       
                        
   height:88px;
 
@@ -146,28 +146,12 @@ margin-top: 60px;
 #air_guide_btn:hover{
 text-decoration: underline;
 }
-</style>
-<script type="text/javascript"
-		src="resources/jquery/jquery-1.12.4.js"></script>
+</style><script type="text/javascript"
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-function getWeather() {
-	$.ajax({
-		url: "http://api.openweathermap.org/data/2.5/weather", // 접속 주소
-		type: "get", // 전송방식 : get, post
-		dataType: "json", // 받아올 데이터 형식
-		data: "q=seoul&appid=44c6ec52a93219e25d17ecf7fed82606&lang=kr&units=metric", //보낼 데이터(문자열형태)
-		success: function(res) { // 성공 시 다음 함수 실행 res->받아오는 데이터를 인자로 받음 
-			console.log(res);
-			
+
 		
-		},
-		error: function(request, status, error) { // 실패 시 다음 함수 실행
-			console.log(request);
-			console.log(status);
-			console.log(error);
-		}
-	});
-}
+
 </script>
 
 </head>
@@ -190,16 +174,22 @@ function getWeather() {
     		
     		
 			<div class="wrap">
-
 			<div class="top_title" >
-				<div class="station_title">역명</div>
-				<select name="station_search">
-					<option>역 검색 </option>
+				<div class="station_title">역명</div>	
+				
+				<form action="#" id="SearchForm" method="post" >
+				<select id="selectLine">
+			          <option value="1">1호선</option>
+			          <option value="2">2호선</option>
+			          <option value="3">3호선</option>
 				</select>
-				<select name="subline">
-					<option>호선 검색</option>
-				</select>
-				<input type="button" id="air_search" value="검색"/>
+						 
+						<select id="cat_sub_name" name="cat_sub_name">
+						<option value="">역 선택</option>
+						</select>
+
+						<input type="submit" id="air_search"value="검색">
+				</form>
 			</div>
 		
 		
