@@ -142,9 +142,8 @@ public class Admin_Controller {
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 		 
-		 int cnt = iAdmin_Service.deleteT(params);
-		 
 		 try {
+			 int cnt = iAdmin_Service.deleteT(params);
 			 if(cnt > 0) {
 				 modelMap.put("msg", "success");
 			 }else {
@@ -152,7 +151,7 @@ public class Admin_Controller {
 			 }
 		} catch (Exception e) {
 			e.printStackTrace();
-			 modelMap.put("msg", "error");
+			modelMap.put("msg", "error");
 		}
 		 return mapper.writeValueAsString(modelMap);
 	 }
