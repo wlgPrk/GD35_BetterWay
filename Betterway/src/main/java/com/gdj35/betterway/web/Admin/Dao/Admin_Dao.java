@@ -27,4 +27,9 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.insert("admin.addT",params);
 	}
 
+	@Override
+	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getcoolingDetail",params);
+	}
+
 }

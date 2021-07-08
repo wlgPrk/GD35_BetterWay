@@ -10,4 +10,5 @@ public interface IAdmin_Service {
 
 	public int addT(HashMap<String, String> params)throws Throwable;
 
+	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params)throws Throwable;
 }

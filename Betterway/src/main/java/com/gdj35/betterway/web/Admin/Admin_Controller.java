@@ -197,5 +197,19 @@ public class Admin_Controller {
 			
 		return mapper.writeValueAsString(modelMap);
 	 }
-	
+	//냉방상세
+	@RequestMapping(value="/BetterWay_infoAdmin_Detail")
+	   public  ModelAndView BetterWay_infoAdmin_Detail(
+			   @RequestParam HashMap<String, String> params,ModelAndView mav)throws Throwable{
+		   try {
+			   HashMap<String, String> data = iAdmin_Service.getcoolingDetail(params);
+			   
+			   mav.addObject("data",data);
+			   
+			   mav.setViewName("admin/BetterWay_infoAdmin_Detail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		   return mav;
+	   }
 }
