@@ -101,7 +101,7 @@ public class Admin_Controller {
 		   return mav;
 	   }
 	
-	 @RequestMapping(value="BetterWay_happyAdmin_Write")
+	 @RequestMapping(value="/BetterWay_happyAdmin_Write")
 	   public ModelAndView BetterWay_happyAdmin_Write(ModelAndView mav) {
 		   
 		   mav.setViewName("admin/BetterWay_happyAdmin_Write");
@@ -131,6 +131,13 @@ public class Admin_Controller {
 			 modelMap.put("msg", "error");
 		 }
 		 return mapper.writeValueAsString(modelMap);
+	 }
+	 
+	 @RequestMapping(value="/BetterWay_happyAdmin_Update")
+	 public ModelAndView BetterWay_happyAdmin_Update(ModelAndView mav) {
+		 mav.setViewName("admin/BetterWay_happyAdmin_Update");
+		 
+		 return mav;
 	 }
 	 
 	 @RequestMapping(value = "/BetterWay_happyAdmin_Deletes",
