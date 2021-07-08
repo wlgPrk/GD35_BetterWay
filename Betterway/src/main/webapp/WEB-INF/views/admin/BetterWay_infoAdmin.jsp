@@ -53,21 +53,26 @@ body{
 	padding : 6px;
 	border-radius: 5pt;	
 }
-#right_sub2{
+#right_sub2A{
+
+	width:100%;
+
+}
+#right_sub2B{
 	height:15%;
 	width:100%;
-	margin-left: 450px;
+
 }
 #writeBtn{
 	font-size: 15pt;
 	border: none;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: 130px;
+	margin-left: 50px;
 	margin-top:10px;
 	padding: 10px;
 }
-#right_sub2 > input{
+#right_sub2A > input{
 	font-size: 15pt;
 	border: none;
 	padding : 6px;
@@ -96,7 +101,14 @@ th,tr,td{
 th{
 	background-color: #e0e0eb;
 }
-
+.list_wrapA{
+width:50%;
+float:left;
+}
+.list_wrapB{
+width:50%;
+float:left;
+}
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
@@ -105,17 +117,23 @@ $(document).ready(function(){
 	
 	reloadList();
 	$("#writeBtn").on("click",function(){
-		$("#actionForm").attr("action","BetterWay_coolingAdmin_Write");
-		$("#actionForm").submit();
+		$("#actionFormA").attr("action","BetterWay_infocoolingAdmin_Write");
+		$("#actionFormA").submit();
 	});
 	
-	$(".list_wrap tbody").on("click","tr",function(){
+	$(".list_wrapA tbody").on("click","tr",function(){
 		$("#weak_cooling_car_no").val($(this).attr("weak_cooling_car_no"));	
-		$("#actionForm").attr("action","BetterWay_infoAdmin_Detail");
-		$("#actionForm").submit();
+		$("#actionFormA").attr("action","BetterWay_infocoolingAdmin_Detail");
+		$("#actionFormA").submit();
+	});
+	
+	$(".list_wrapB tbody").on("click","tr",function(){
+		$("#guide_no").val($(this).attr("guide_no"));			
+		$("#actionFormB").attr("action","BetterWay_infoguideAdmin_Detail");
+		$("#actionFormB").submit();
 	});
 });
-function drawList(list){
+function drawListA(list){
 	   var html = "";
 	   
 	   for(var d of list){
@@ -126,11 +144,28 @@ function drawList(list){
 	      html += "</tr>";
 	   }
 	   
-	   $(".list_wrap tbody").html(html);
+	   $(".list_wrapA tbody").html(html);
+
+		  
 	}
 	
+	
+function drawListB(list){
+	   var html = "";
+	   
+	for(var g of list){
+			  html += "<tr category =\"" + g.CATEGORY + "\">";
+		      html += "<td>" + g.CATEGORY + "</td>";
+		      html += "<td>" + g.TRAFFIC_CARD + "</td>";
+		      html += "<td>" + g.D_TRAFFIC_CARD + "</td>";	 
+		      html += "</tr>";
+		   }
+	$(".list_wrapB tbody").html(html);
+}
+
 function reloadList(){
-	var params = $("#actionForm").serialize();
+	var params = $("#actionFormA").serialize();
+	var params = $("#actionFormB").serialize();
 	
 	 $.ajax({
          url : "infoAdmin_List",
@@ -138,7 +173,20 @@ function reloadList(){
          dataType :"json", 
          data : params,
          success : function(res){
-             drawList(res.list); 
+             drawListA(res.list); 
+         },
+         error : function(request,status,error){
+            console.log(error);
+         }
+      });
+	 
+	 $.ajax({
+         url : "infoAdminguide_List",
+         type : "post",  
+         dataType :"json", 
+         data : params,
+         success : function(res){
+             drawListB(res.list); 
          },
          error : function(request,status,error){
             console.log(error);
@@ -161,14 +209,21 @@ function reloadList(){
 	</div>
 	<div id="right">
 	
-		<div id ="right_sub2">
-		<form action="#" id="actionForm" method="post">
-		<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no"/>
-		<input type="button" id="writeBtn" value="행추가" />
-		</form>
-			
+		<div id ="right_sub2A">
+			<form action="#" id="actionFormA" method="post">
+			<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no"/>
+			<input type="button" id="writeBtn" value="약냉방칸행추가" />
+			</form>		
 		</div>
-		<div class ="list_wrap">
+		
+		<div id ="right_sub2B">
+			<form action="#" id="actionFormB" method="post">
+			<input type="hidden" id="guide_no" name="guide_no"/>
+			<input type="button" id="writeBtn" value="운임행추가" />
+		</form>			
+		</div>
+		<div class ="list">
+		<div class ="list_wrapA">
 			<table>
 				<colgroup>
 					<col width="40%">
@@ -194,6 +249,34 @@ function reloadList(){
 				</tbody>				
 			</table>
 		</div>
+		
+		<div class ="list_wrapB">
+			<table>
+				<colgroup>
+					<col width="20%">
+					<col width="50%">
+					<col width="30%">				
+				</colgroup>
+				<thead>
+					<tr>
+						<th>구분</th>
+						<th>교통카드</th>
+						<th>1회용교통카드</th>
+						
+					</tr>
+				</thead>
+					
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>				
+					</tr>
+				</tbody>				
+			</table>
+		</div>
+		</div>
+		
 	</div>
 </body>
 </html>
