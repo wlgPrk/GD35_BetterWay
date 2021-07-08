@@ -10,4 +10,6 @@ public interface IAdmin_Service {
 
 	public int addT(HashMap<String, String> params)throws Throwable;
 
+	public int deleteT(HashMap<String, String> params)throws Throwable;
+
 }

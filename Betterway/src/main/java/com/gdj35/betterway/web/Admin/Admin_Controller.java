@@ -133,6 +133,31 @@ public class Admin_Controller {
 		 return mapper.writeValueAsString(modelMap);
 	 }
 	 
+	 @RequestMapping(value = "/BetterWay_happyAdmin_Deletes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+	 @ResponseBody
+	 public String BetterWay_happyAdmin_Deletes(
+			 @RequestParam HashMap<String, String>params) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+		 
+		 int cnt = iAdmin_Service.deleteT(params);
+		 
+		 try {
+			 if(cnt > 0) {
+				 modelMap.put("msg", "success");
+			 }else {
+				 modelMap.put("msg", "failed");
+			 }
+		} catch (Exception e) {
+			e.printStackTrace();
+			 modelMap.put("msg", "error");
+		}
+		 return mapper.writeValueAsString(modelMap);
+	 }
+
+	 
 	@RequestMapping(value ="/BetterWay_cycleAdmin")
 	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
 		

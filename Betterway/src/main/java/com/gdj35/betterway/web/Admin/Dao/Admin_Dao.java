@@ -27,4 +27,9 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.insert("admin.addT",params);
 	}
 
+	@Override
+	public int deleteT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.deleteT",params);
+	}
+
 }

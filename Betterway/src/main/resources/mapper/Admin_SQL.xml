@@ -24,5 +24,9 @@
 	VALUES(HAPPY_SEQ.NEXTVAL, #{subway_station_incode} , 2, 
 			#{location}, #{area}, #{operating_agency}, #{phone_num},1)
 	</insert>
+	
+	<update id="deleteT" parameterType="hashmap">
+	
+	</update>
 
 </mapper>

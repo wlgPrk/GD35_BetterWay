@@ -28,4 +28,9 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.addT(params);
 	}
 
+	@Override
+	public int deleteT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deleteT(params);
+	}
+
 }

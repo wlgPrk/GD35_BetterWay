@@ -37,6 +37,31 @@ $(document).ready(function(){
 	$("#listBtn").on("click",function(){
 		$("#goForm").submit();
 	});
+	
+	   $("#deleteBtn").on("click", function(){
+		      if(confirm("삭제하시겠습니까?")){
+		    	  var params = $("#goForm").serialize();
+					
+					 $.ajax({
+				         url : "BetterWay_happyAdmin_Deletes",
+				         type : "post",  
+				         dataType :"json", 
+				         data : params,
+				         success : function(res){
+							if(res.msg == "success"){
+								location.href = "BetterWay_happyAdmin";
+							}else if(res.msg =="failed"){
+								alert("작성에 실패하였습니다.");
+							}else{
+								alert("작성중 문제가 발생했습니다.");
+							}
+				         },
+				         error : function(request,status,error){
+				            console.log(error);
+				         }
+				      });
+		      }
+		   });
 });
 </script>
 </head>
