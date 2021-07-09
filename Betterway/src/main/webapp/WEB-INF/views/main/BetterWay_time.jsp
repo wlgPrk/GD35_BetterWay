@@ -9,19 +9,25 @@
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var a = "0150/";
-	var b ="1/"
+	var a = "0330/";// api 역코드
+	var db = 150 ; // 현재 db 코드
+	var b ="2/"
 	var c="1/"
 	// 역코드, 상행 주말
 	
 	$.ajax({
-		// http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/xml/SearchSTNTimeTableByIDService/1/5/0309/1/1/
-			url: "http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/json/SearchSTNTimeTableByIDService/1/400/"+a+b+c, // 접속 주소
+		// http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/json/SearchSTNTimeTableByIDService/1/5/0309/1/1/
+			url: "http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/json/SearchSTNTimeTableByIDService/1/5/"+a+b+c, // 접속 주소
 			type: "get", // 전송방식 : get, post
 			dataType: "json",
 			success: function(resa) { // 성공 시 다음 함수 실행
-				console.log(resa);
 				
+			//var test =resa.row[1];
+
+				for(var i=0; i<resa.SearchSTNTimeTableByIDService.row.length; i++){
+				console.log(resa.SearchSTNTimeTableByIDService.row[i].LEFTTIME);
+				//console.log(test);
+				}
 			},
 			error: function(request, status, error) { // 실패 시 다음 함수 실행
 				console.log(request);
