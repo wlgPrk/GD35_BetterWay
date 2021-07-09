@@ -133,6 +133,13 @@ public class Admin_Controller {
 		 return mapper.writeValueAsString(modelMap);
 	 }
 	 
+	 @RequestMapping(value="/BetterWay_happyAdmin_Update")
+	 public ModelAndView BetterWay_happyAdmin_Update(ModelAndView mav) {
+		 mav.setViewName("admin/BetterWay_happyAdmin_Update");
+		 
+		 return mav;
+	 }
+	 
 	 @RequestMapping(value = "/BetterWay_happyAdmin_Deletes",
 			 		 method = RequestMethod.POST,
 			 		 produces = "text/json;charset=UTF-8")
@@ -266,7 +273,7 @@ public class Admin_Controller {
 			 }
 			 return mapper.writeValueAsString(modelMap);
 		 }
-	 //냉방수정
+	 //냉방수정-->왜안돼
 	 @RequestMapping(value="BetterWay_infocoolingAdmin_Update")
 	   public ModelAndView BetterWay_infocoolingAdmin_Update(ModelAndView mav) {
 		   
@@ -274,6 +281,30 @@ public class Admin_Controller {
 		   
 		   return mav;
 	   }
+	 //냉방 삭제
+	 @RequestMapping(value = "/BetterWay_infocoolingAdmin_Deletes",
+	 		 method = RequestMethod.POST,
+	 		 produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_infocoolingAdmin_Deletes(
+		 @RequestParam HashMap<String, String>params) throws Throwable{
+	 ObjectMapper mapper = new ObjectMapper();
+	 Map<String, Object> modelMap = new HashMap<String, Object>();
+	 
+	 try {
+		 int cnt = iAdmin_Service.deletecooling(params);
+		 if(cnt > 0) {
+			 modelMap.put("msg", "success");
+		 }else {
+			 modelMap.put("msg", "failed");
+		 }
+	} catch (Exception e) {
+		e.printStackTrace();
+		modelMap.put("msg", "error");
+	}
+	 return mapper.writeValueAsString(modelMap);
+	}
+
 	 
 	 //운임리스트
 	 @RequestMapping(value="/infoAdminguide_List",

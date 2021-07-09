@@ -20,4 +20,6 @@ public interface IAdmin_Service {
 	public List<HashMap<String, String>> guideList(HashMap<String, String> params) throws Throwable;
 
 	public HashMap<String, String> getguideDetail(HashMap<String, String> params)throws Throwable;
+
+	public int deletecooling(HashMap<String, String> params)throws Throwable;
 }

@@ -53,6 +53,11 @@ public class Admin_Dao implements IAdmin_Dao{
 	public HashMap<String, String> getguideDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getguideDetail",params);
 	}
+
+	@Override
+	public int deletecooling(HashMap<String, String> params) throws Throwable {
+		return sqlSession.delete("admin.deletecooling", params);
+	}
 	
 	
 }

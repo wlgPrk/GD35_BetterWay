@@ -55,6 +55,11 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.getguideDetail(params);
 	}
 
+	@Override
+	public int deletecooling(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deletecooling(params);
+	}
+
 	
 
 }

@@ -53,4 +53,8 @@
 	FROM CHARGE_GUIDE
 	WHERE GUIDE_NO=#{guide_no}
 	</select>
+	<delete id="deletecooling" parameterType="hashmap">
+	DELETE FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</delete>
 </mapper>
