@@ -134,15 +134,17 @@ public class Admin_Controller {
 	 }
 	 
 	 @RequestMapping(value="/BetterWay_happyAdmin_Update")
-	 public ModelAndView BetterWay_happyAdmin_Update(ModelAndView mav) {
-		 
-		 try {
-			 mav.setViewName("admin/BetterWay_happyAdmin_Update");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		 return mav;
-	 }
+	   public  ModelAndView BetterWay_happyAdmin_Update(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws  Throwable{//db에 붙일거라 throws필요
+		   HashMap<String, String> data = iAdmin_Service.getDetail(params);
+		   
+		   mav.addObject("data",data);
+		   
+		   mav.setViewName("admin/BetterWay_happyAdmin_Update");
+		   
+		   return mav;
+	   }
 	 
 	 @RequestMapping(value = "/BetterWay_happyAdmin_Updates",
 		 method = RequestMethod.POST,
