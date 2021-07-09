@@ -18,7 +18,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.gdj35.betterway.util.Utils;
 import com.gdj35.betterway.web.Admin.Service.IAdmin_Service;
 import com.gdj35.betterway.web.evginfoGuide.cooling.Service.ICoolingService;
-import com.gdj35.betterway.web.trafficGuide.stationEstaInfo.Service.IEstaService;
 
 @Controller
 public class Admin_Controller {
@@ -44,8 +43,6 @@ public class Admin_Controller {
 		
 		return mav;
 	}
-	
-	
 
 	@RequestMapping(value = "/BetterWay_loginAdmins",
 			method = RequestMethod.POST,
@@ -76,7 +73,6 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	
 	@RequestMapping(value ="/BetterWay_happyAdmin")
 	public ModelAndView BetterWay_happyAdmin(ModelAndView mav) {
 		
@@ -90,7 +86,7 @@ public class Admin_Controller {
 			   @RequestParam HashMap<String, String> params,
 			   ModelAndView mav)throws Throwable{
 		   try {
-			   HashMap<String, String> data = iAdmin_Service.getDetail(params);
+			   HashMap<String, String> data = iAdmin_Service.getHDetail(params);
 			   
 			   mav.addObject("data",data);
 			   
@@ -119,7 +115,7 @@ public class Admin_Controller {
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		 try {
-			 int cnt = iAdmin_Service.addT(params);
+			 int cnt = iAdmin_Service.addHT(params);
 
 			 if(cnt > 0) {
 				 modelMap.put("msg","success");
@@ -137,7 +133,7 @@ public class Admin_Controller {
 	   public  ModelAndView BetterWay_happyAdmin_Update(
 			   @RequestParam HashMap<String, String> params,
 			   ModelAndView mav)throws  Throwable{//db에 붙일거라 throws필요
-		   HashMap<String, String> data = iAdmin_Service.getDetail(params);
+		   HashMap<String, String> data = iAdmin_Service.getHDetail(params);
 		   
 		   mav.addObject("data",data);
 		   
@@ -179,7 +175,7 @@ public class Admin_Controller {
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 		 
 		 try {
-			 int cnt = iAdmin_Service.deleteT(params);
+			 int cnt = iAdmin_Service.deleteHT(params);
 			 if(cnt > 0) {
 				 modelMap.put("msg", "success");
 			 }else {
@@ -191,7 +187,6 @@ public class Admin_Controller {
 		}
 		 return mapper.writeValueAsString(modelMap);
 	 }
-
 	 
 	@RequestMapping(value ="/BetterWay_cycleAdmin")
 	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
@@ -200,6 +195,7 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	
 	@RequestMapping(value ="/BetterWay_wheelchairAdmin")
 	public ModelAndView BetterWay_wheelchairAdmin(ModelAndView mav) {
 		
@@ -231,6 +227,7 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	
 	@RequestMapping(value ="/BetterWay_infoAdmin")
 	public ModelAndView BetterWay_infoAdmin(ModelAndView mav) {
 		
@@ -238,7 +235,6 @@ public class Admin_Controller {
 		
 		return mav;
 	}
-	
 	
 	@RequestMapping(value="/infoAdmin_List",
 	   		   method = RequestMethod.POST,
@@ -257,6 +253,7 @@ public class Admin_Controller {
 			
 		return mapper.writeValueAsString(modelMap);
 	 }
+	
 	//냉방상세
 	@RequestMapping(value="/BetterWay_infocoolingAdmin_Detail")
 	   public  ModelAndView BetterWay_infocoolingAdmin_Detail(
@@ -272,6 +269,7 @@ public class Admin_Controller {
 		}
 		   return mav;
 	   }
+	
 	//냉방등록
 	 @RequestMapping(value="BetterWay_infocoolingAdmin_Write")
 	   public ModelAndView BetterWay_infocoolingAdmin_Write(ModelAndView mav) {
@@ -302,6 +300,7 @@ public class Admin_Controller {
 			 }
 			 return mapper.writeValueAsString(modelMap);
 		 }
+	 
 	 //냉방수정
 	 @RequestMapping(value="BetterWay_infocoolingAdmin_Update")
 	   public ModelAndView BetterWay_infocoolingAdmin_Update(
@@ -316,7 +315,6 @@ public class Admin_Controller {
 				return mav;
 
 			}
-			
 
 		@RequestMapping(value="/BetterWay_infocoolingAdmin_Updates",
 				method=RequestMethod.POST,
@@ -343,7 +341,6 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 		}
 		
-		
 	 //냉방 삭제
 	 @RequestMapping(value = "/BetterWay_infocoolingAdmin_Deletes",
 	 		 method = RequestMethod.POST,
@@ -368,7 +365,6 @@ public class Admin_Controller {
 	 return mapper.writeValueAsString(modelMap);
 	}
 
-	 
 	 //운임리스트
 	 @RequestMapping(value="/infoAdminguide_List",
 	   		   method = RequestMethod.POST,
@@ -387,7 +383,6 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 	 }
 	 
-	 
 	 //운임상세
 		@RequestMapping(value="/BetterWay_infoguideAdmin_Detail")
 		   public  ModelAndView BetterWay_infoguideAdmin_Detail(
@@ -403,6 +398,4 @@ public class Admin_Controller {
 			}
 			   return mav;
 		   }
-	 
-	
 }
