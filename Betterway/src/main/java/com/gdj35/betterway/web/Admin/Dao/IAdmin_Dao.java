@@ -24,4 +24,8 @@ public interface IAdmin_Dao {
 	public HashMap<String, String> getguideDetail(HashMap<String, String> params)throws Throwable;
 
 	public int deletecooling(HashMap<String, String> params)throws Throwable;
+	
+	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable;
+	
+	public int updateS(HashMap<String, String> params) throws Throwable;
 }

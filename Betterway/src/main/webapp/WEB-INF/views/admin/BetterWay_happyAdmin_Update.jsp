@@ -28,6 +28,7 @@
 <b>면적 :</b> <input type="text" id="area" name="area" value="${data.AREA}"/>㎡<br/>
 <b>운영기관 :</b> <input type="text" id="operating_agency" name="operating_agency" value="${data.OPERATING_AGENCY}"/><br/>
 <b>전화번호 :</b> <input type="text" id="phone_num" name="phone_num" value="${data.PHONE_NUM}"/><br/>
+<b>면적 :</b> <input type="text" id="area" name="area" value="${data.AREA}"/>㎡<br/>
 	<div id="main_btn">
 		<input type="button" value="수정완료" id="updateBtn"/>
 		<input type="button" value="목록으로" id="listBtn"/>

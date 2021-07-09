@@ -273,14 +273,52 @@ public class Admin_Controller {
 			 }
 			 return mapper.writeValueAsString(modelMap);
 		 }
-	 //냉방수정-->왜안돼
+	 //냉방수정
 	 @RequestMapping(value="BetterWay_infocoolingAdmin_Update")
-	   public ModelAndView BetterWay_infocoolingAdmin_Update(ModelAndView mav) {
-		   
-		   mav.setViewName("admin/BetterWay_infocoolingAdmin_Update");
-		   
-		   return mav;
-	   }
+	   public ModelAndView BetterWay_infocoolingAdmin_Update(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws Throwable {
+			if(params.get("weak_cooling_car_no")!=null) {
+			HashMap<String, String> data = iAdmin_Service.getc(params);
+			
+			mav.addObject("data",data);
+			
+			   mav.setViewName("admin/BetterWay_infocoolingAdmin_Update");
+			}else {
+				mav.setViewName("redirect:BetterWay_infocoolingAdmin_Detail");
+			}
+			
+			return mav;
+		}
+	 
+	 
+	
+		@RequestMapping(value="/BetterWay_infocoolingAdmin_Updates",
+				method=RequestMethod.POST,
+				produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_infocoolingAdmin_Updates(
+			@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+			int cnt = iAdmin_Service.updateS(params);
+			
+			if(cnt>0) {
+				modelMap.put("msg","success");
+			}else {
+				modelMap.put("msg","failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg","error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+		}
+		
+		
 	 //냉방 삭제
 	 @RequestMapping(value = "/BetterWay_infocoolingAdmin_Deletes",
 	 		 method = RequestMethod.POST,
