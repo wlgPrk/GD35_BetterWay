@@ -58,13 +58,12 @@ body{
 	width:100%;
 	margin-left: 900px;
 }
-#right_sub2 > input{
+#writeBtn{
 	font-size: 15pt;
 	border: none;
-	padding : 6px;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: -195px;
+	margin-left: -196px;
 	margin-top:10px;
 	padding: 10px;
 }
@@ -113,6 +112,17 @@ $(document).ready(function(){
 	});
 	//-----------------------------------------------------------------
 	
+	$("#writeBtn").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_cycleAdmin_Write");
+		$("#actionForm").submit();
+	});
+	
+	$(".list_wrap tbody").on("click","tr",function(){
+		$("#happy_no").val($(this).attr("happy_no"));
+		
+		$("#actionForm").attr("action","BetterWay_cycleAdmin_Detail");
+		$("#actionForm").submit();
+	});
 });
 function drawList(list){
 	   var html = "";
@@ -166,7 +176,10 @@ function reloadList(){
 			<input type="button" id="" value="화장실" />
 		</div>
 		<div id ="right_sub2">
-			<input type="button" value="행추가" />
+			<form action="#" id="actionForm" method="post">
+				<input type="hidden" id="subline_no" name="subline_no"/> 
+				<input type="button" id="writeBtn"  value="행추가" />
+			</form>
 		</div>
 		<div class ="list_wrap">
 			<table>
