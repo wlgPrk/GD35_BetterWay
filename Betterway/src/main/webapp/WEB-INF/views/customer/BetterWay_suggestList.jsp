@@ -492,6 +492,7 @@ $(document).ready(function(){
 	//페이징 
 	$(".arrow_box").on("click","div",function(){
 		$("#page").val($(this).attr("page"));
+		
 		reloadList();
 	});//paging wrap end
 	
@@ -505,7 +506,6 @@ $(document).ready(function(){
 	
 	//상세보기
 	$("tbody").on("click","tr",function(){
-		
 		$("#sug_no").val($(this).attr("sug_no"));
 		console.log($("#sug_no").val());
 		
@@ -754,15 +754,7 @@ function drawPaging(pb){
 <!-- 폼 -->
 
 <div class="arrow_box">
-<input type="button" class="arrow" value="처음">
-<input type="button" class="arrow" value="<">
-<input type="button" class="arrow" value="1">
-<input type="button" class="arrow" value="2">
-<input type="button" class="arrow" value="3">
-<input type="button" class="arrow" value="4">
-<input type="button" class="arrow" value="5">
-<input type="button" class="arrow" value=">">
-<input type="button" class="arrow" value="끝">
+
 
 
 

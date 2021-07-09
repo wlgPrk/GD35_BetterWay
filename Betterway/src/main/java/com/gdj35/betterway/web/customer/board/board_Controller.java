@@ -28,8 +28,8 @@ public IPagingService iPagingService;
 	
 	//건의게시판목록
 	@RequestMapping(value="/BetterWay_suggestList")
-	public ModelAndView BetterWay_suggestList(ModelAndView mav,
-			HashMap<String, String> params) {
+	public ModelAndView BetterWay_suggestList(ModelAndView mav,@RequestParam HashMap<String, String> params
+) {
 		
 		int page =1;
 		
@@ -54,11 +54,10 @@ public IPagingService iPagingService;
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		try {
-			
-	
+		
+		
 		//현재페이지
 		int page = Integer.parseInt(params.get("page"));
-		System.out.println(page);
 		
 		//총게시글수
 		int cnt = iboard_Service.getSugCnt(params);
@@ -248,6 +247,27 @@ public IPagingService iPagingService;
 			}else {
 				modelMap.put("msg", "failed");
 			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
+	
+	
+	//게시판수정완료
+	@RequestMapping(value="/BetterWay_suggestModifyCel",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestModifyCel(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {
+			data = iboard_Service.getSug(params);
+			modelMap.put("data",data);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			modelMap.put("msg", "error");

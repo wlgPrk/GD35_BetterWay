@@ -553,6 +553,8 @@ font-size: 20px;
 <script type="text/javascript" 
 		src="resources/script/popup/popupPw.js?after"></script>
 <script type="text/javascript" 
+		src="resources/script/popup/popupYN.js?after"></script>
+<script type="text/javascript" 
 		src="resources/script/popup/popup.js?after"></script>
 <script type="text/javascript" 
 src="resources/script/ckeditor/ckeditor.js"></script>
@@ -624,10 +626,10 @@ $(document).ready(function(){
 	$(".side_sug").on("click",function(){
 		location.href="BetterWay_suggestList"
 	});
-	
+	//검색텍스트유지
 	$("#searchTxt").val($("#searchOldTxt").val());
 	
-	
+	//구분 유지
 	if("${param.searchGbn}" != ""){
 		$("#searchGbn").val("${param.searchGbn}");
 	}//if end
@@ -646,13 +648,22 @@ $(document).ready(function(){
 			pwPopup("아이디와 비밀번호를 입력하시오" ,"","닫기");
 			
 	});
+	
+	//삭제버튼클릭시
+	$(".btn_box").on("click","input:nth-child(3)",function(){
+			ynPopup("삭제하시겠습니까?" ,"","");
+			
+	});
 	//수정완료클릭시
 	$(".btn_box").on("click","div:nth-child(1)",function(){
 		$("#title").val($("#title_input").val());
-		$("#con").val(CKEDITOR.instances['con_input'].getData());//텍스트아레아 부분을 ckeditor편집기로폼보내기
-	
-
+		$("#con").val(CKEDITOR.instances['con_input'].getData());
 		conModifys();
+	});
+	
+	//수정완료클릭시
+	$(".btn_box").on("click","div:nth-child(2)",function(){
+		conModifyCel();
 	});
 	
 	
@@ -767,6 +778,42 @@ function conModifys(){
 	//ajax
 	$.ajax({
 		url: "BetterWay_suggestModifys", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			var html="";
+			
+			html = res.data.TITLE+"";
+			$("#title_box").html(html);
+			html = "<div class=\"sug_con\">"+res.data.CON+"</div>";
+			$(".sug_con_box").html(html);
+			
+			html="";
+			
+			html +="<input type=\"button\" value=\"목록\" class=\"list_btn\">";
+ 			html +="<input type=\"button\" value=\"수정\" class=\"update_btn\">";
+ 			html +="<input type=\"button\" value=\"삭제\" class=\"del_btn\">";
+			
+			
+			
+			
+			$(".btn_box").html(html);
+ 			
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//conModifys end
+
+
+//취소버튼누를시
+function conModifyCel(){
+	var params = $("#actionForm").serialize();
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestModifyCel", 
 		type: "post", 
 		dataType: "json",
 		data: params, 
