@@ -95,6 +95,24 @@ th{
 $(document).ready(function(){
 	
 	reloadList();
+	
+	//상단 버튼 페이지이동
+	$("#happyAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_happyAdmin");
+		$("#actionForm").submit();
+	});
+	
+	$("#cycleAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_cycleAdmin");
+		$("#actionForm").submit();
+	});
+	
+	$("#wheelchairAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_wheelchairAdmin");
+		$("#actionForm").submit();
+	});
+	//-----------------------------------------------------------------
+	
 });
 function drawList(list){
 	   var html = "";
@@ -144,10 +162,10 @@ function reloadList(){
 	</div>
 	<div id="right">
 		<div id ="right_sub">
-			<input type="button" value="행복지대" />
-			<input type="button" value="자전거보관함" />
-			<input type="button" value="연단간격" />
-			<input type="button" value="화장실" />
+			<input type="button" id="happyAdmin" value="행복지대" />
+			<input type="button" id="cycleAdmin" value="자전거보관함" />
+			<input type="button" id="wheelchairAdmin" value="연단간격" />
+			<input type="button" id="" value="화장실" />
 		</div>
 		<div id ="right_sub2">
 			<input type="button" value="행추가" />

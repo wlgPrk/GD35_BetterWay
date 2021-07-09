@@ -38,6 +38,11 @@ $(document).ready(function(){
 		$("#goForm").attr("action", "BetterWay_happyAdmin");
 	    $("#goForm").submit();
 	});
+
+	$("#updateBtn").on("click",function(){
+		$("#goForm").attr("action", "BetterWay_happyAdmin_Update");
+		$("#goForm").submit();
+	});
 	
 	   $("#deleteBtn").on("click", function(){
 		      if(confirm("삭제하시겠습니까?")){
@@ -68,7 +73,7 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="#" id="goForm" method="post">
-	<input type="hidden" name="happy_no" value="${param.HAPPY_NO}"/>
+	<input type="hidden" id="happy_no" name="happy_no" value="${data.HAPPY_NO}"/>
 </form>
 <div id="main">
 <b>행복지대번호 :</b> ${data.HAPPY_NO}<br/>

@@ -101,7 +101,7 @@ public class Admin_Controller {
 		   return mav;
 	   }
 	
-	 @RequestMapping(value="BetterWay_happyAdmin_Write")
+	 @RequestMapping(value="/BetterWay_happyAdmin_Write")
 	   public ModelAndView BetterWay_happyAdmin_Write(ModelAndView mav) {
 		   
 		   mav.setViewName("admin/BetterWay_happyAdmin_Write");
@@ -127,6 +127,42 @@ public class Admin_Controller {
 				 modelMap.put("msg","failed");
 			 }
 		 }catch(Throwable e){
+			 e.printStackTrace();
+			 modelMap.put("msg", "error");
+		 }
+		 return mapper.writeValueAsString(modelMap);
+	 }
+	 
+	 @RequestMapping(value="/BetterWay_happyAdmin_Update")
+	   public  ModelAndView BetterWay_happyAdmin_Update(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws  Throwable{//db에 붙일거라 throws필요
+		   HashMap<String, String> data = iAdmin_Service.getDetail(params);
+		   
+		   mav.addObject("data",data);
+		   
+		   mav.setViewName("admin/BetterWay_happyAdmin_Update");
+		   
+		   return mav;
+	   }
+	 
+	 @RequestMapping(value = "/BetterWay_happyAdmin_Updates",
+		 method = RequestMethod.POST,
+		 produces = "text/json;charset=UTF-8")
+	 @ResponseBody
+	 public String BetterWay_happyAdmin_Updates(
+			 @RequestParam HashMap<String, String>params) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		 try {
+			 int cnt = iAdmin_Service.updateHT(params);
+			 if(cnt > 0) {
+				 modelMap.put("msg", "success");
+			 }else {
+				 modelMap.put("msg", "failed");
+			 }
+		 } catch (Exception e) {
 			 e.printStackTrace();
 			 modelMap.put("msg", "error");
 		 }
@@ -268,12 +304,70 @@ public class Admin_Controller {
 		 }
 	 //냉방수정
 	 @RequestMapping(value="BetterWay_infocoolingAdmin_Update")
-	   public ModelAndView BetterWay_infocoolingAdmin_Update(ModelAndView mav) {
-		   
-		   mav.setViewName("admin/BetterWay_infocoolingAdmin_Update");
-		   
-		   return mav;
-	   }
+	   public ModelAndView BetterWay_infocoolingAdmin_Update(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws Throwable {
+			
+			HashMap<String, String> data = iAdmin_Service.getc(params);
+			
+			mav.addObject("data",data);
+			
+			   mav.setViewName("admin/BetterWay_infocoolingAdmin_Update");
+				return mav;
+
+			}
+			
+
+		@RequestMapping(value="/BetterWay_infocoolingAdmin_Updates",
+				method=RequestMethod.POST,
+				produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_infocoolingAdmin_Updates(
+			@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+			int cnt = iAdmin_Service.updateS(params);
+			
+			if(cnt>0) {
+				modelMap.put("msg","success");
+			}else {
+				modelMap.put("msg","failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg","error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+		}
+		
+		
+	 //냉방 삭제
+	 @RequestMapping(value = "/BetterWay_infocoolingAdmin_Deletes",
+	 		 method = RequestMethod.POST,
+	 		 produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_infocoolingAdmin_Deletes(
+		 @RequestParam HashMap<String, String>params) throws Throwable{
+	 ObjectMapper mapper = new ObjectMapper();
+	 Map<String, Object> modelMap = new HashMap<String, Object>();
+	 
+	 try {
+		 int cnt = iAdmin_Service.deletecooling(params);
+		 if(cnt > 0) {
+			 modelMap.put("msg", "success");
+		 }else {
+			 modelMap.put("msg", "failed");
+		 }
+	} catch (Exception e) {
+		e.printStackTrace();
+		modelMap.put("msg", "error");
+	}
+	 return mapper.writeValueAsString(modelMap);
+	}
+
 	 
 	 //운임리스트
 	 @RequestMapping(value="/infoAdminguide_List",

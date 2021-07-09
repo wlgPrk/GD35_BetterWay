@@ -25,6 +25,13 @@
 			#{location}, #{area}, #{operating_agency}, #{phone_num},1)
 	</insert>
 	
+	<update id="updateHT">
+	UPDATE HAPPY SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
+				 LOCATION = #{location}, AREA = #{area}, 
+                 OPERATING_AGENCY = #{operating_agency}, PHONE_NUM = #{phone_num}
+	WHERE HAPPY_NO = #{happy_no}
+	</update>
+	
 	<update id="deleteT" parameterType="hashmap">
 	UPDATE HAPPY SET DEL_STATUS = 0 
 	WHERE HAPPY_NO = #{happy_no}
@@ -47,10 +54,27 @@
 	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
 	FROM CHARGE_GUIDE
 	</select>
-	
+	<!-- 운임 상세 -->
 	<select id="getguideDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
 	FROM CHARGE_GUIDE
 	WHERE GUIDE_NO=#{guide_no}
 	</select>
+	
+	<!-- 냉방 삭제 -->
+	<delete id="deletecooling" parameterType="hashmap">
+	DELETE FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</delete>
+	
+	<!-- 냉방 업데이트 -->
+	<update id="updateS" parameterType="hashmap">
+	UPDATE WEAK_COOLING_CAR SET CAR_NO = #{car_no}
+  	 WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no}
+	</update>	
+	<select id="getc" parameterType="hashmap" resultType="hashmap">
+	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
+	FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</select> 
 </mapper>

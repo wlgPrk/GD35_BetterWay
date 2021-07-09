@@ -28,16 +28,25 @@ public class Admin_Service implements IAdmin_Service{
 	public int addT(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.addT(params);
 	}
+	
+	//해피업데이트
+	@Override
+	public int updateHT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.updateHT(params);
+	}
+	
+	//해피삭제
+	@Override
+	public int deleteT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deleteT(params);
+	}
+		
 	//냉방상세보기
 	@Override
 	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.getcoolingDetail(params);
 	}
 
-	@Override
-	public int deleteT(HashMap<String, String> params) throws Throwable {
-		return iAdmin_Dao.deleteT(params);
-	}
 	//냉방등록
 	@Override
 	public int addcooling(HashMap<String, String> params) throws Throwable {
@@ -46,7 +55,6 @@ public class Admin_Service implements IAdmin_Service{
 
 	@Override
 	public List<HashMap<String, String>> guideList(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.guideList(params);
 	}
 
@@ -55,6 +63,26 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.getguideDetail(params);
 	}
 
+
+	@Override
+	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getc(params);
+	}
+	
+
+
+	@Override
+	public int updateS(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateS(params);
+	}
+
+	@Override
+	public int deletecooling(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.deletecooling(params);
+	}
 	
 
 }
