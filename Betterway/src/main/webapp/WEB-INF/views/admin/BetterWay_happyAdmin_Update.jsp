@@ -15,7 +15,7 @@
     font-size: 15pt;
 }
 #main_btn{
-	margin-left: 218px;
+	margin-left: 260px;
     margin-bottom: 3px;
 }
 #main_btn > input{
