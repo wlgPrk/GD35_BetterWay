@@ -73,6 +73,11 @@ public class Admin_Dao implements IAdmin_Dao{
 	public int updateHT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.updateHT",params);
 	}
+
+	@Override
+	public HashMap<String, String> getCDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getCDetail", params);
+	}
 	
 	
 

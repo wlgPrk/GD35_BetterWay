@@ -196,6 +196,54 @@ public class Admin_Controller {
 		return mav;
 	}
 	
+	@RequestMapping(value="/BetterWay_cycleAdmin_Detail")
+	   public  ModelAndView BetterWay_cycleAdmin_Detail(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws Throwable{
+		   try {
+			   HashMap<String, String> data = iAdmin_Service.getCDetail(params);
+			   
+			   mav.addObject("data",data);
+			   
+			   mav.setViewName("admin/BetterWay_cycleAdmin_Detail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		   return mav;
+	   }
+	
+	@RequestMapping(value="/BetterWay_cycleAdmin_Write")
+	   public ModelAndView BetterWay_cycleAdmin_Write(ModelAndView mav) {
+		   
+		   mav.setViewName("admin/BetterWay_cycleAdmin_Write");
+		   
+		   return mav;
+	   }
+	
+	@RequestMapping(value = "/BetterWay_cycleAdmin_Writes",
+			   method = RequestMethod.POST,
+			   produces = "text/json;charset=UTF-8")
+		 @ResponseBody
+		 public String  BetterWay_cycleAdmin_Writes(
+				 @RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+			 try {
+				 int cnt = iAdmin_Service.addcycleT(params);
+
+				 if(cnt > 0) {
+					 modelMap.put("msg","success");
+				 }else {
+					 modelMap.put("msg","failed");
+				 }
+			 }catch(Throwable e){
+				 e.printStackTrace();
+				 modelMap.put("msg", "error");
+			 }
+			 return mapper.writeValueAsString(modelMap);
+		 }
+	
 	@RequestMapping(value ="/BetterWay_wheelchairAdmin")
 	public ModelAndView BetterWay_wheelchairAdmin(ModelAndView mav) {
 		

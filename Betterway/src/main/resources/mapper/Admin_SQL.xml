@@ -37,6 +37,14 @@
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
 
+	<select id="getCDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT ST.SUBWAY_STATION_INCODE,ST.SUBLINE_NO, ST.SUBWAY_STATION_NAME,ES.CYCLE_EXIST
+	FROM SUBWAY_STATION ST INNER JOIN SUBWAY_STATION_ESTA ES
+                        ON ST.SUBWAY_STATION_INCODE = ES.SUBWAY_STATION_INCODE
+	WHERE ES.CYCLE_EXIST = 1 AND ST.SUBWAY_STATION_INCODE = #{subway_station_incode}
+	ORDER BY SUBWAY_STATION_INCODE ASC
+	</select>
+
 	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
 	FROM WEAK_COOLING_CAR

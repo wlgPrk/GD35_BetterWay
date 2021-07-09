@@ -78,6 +78,11 @@ public class Admin_Service implements IAdmin_Service{
 	public int deletecooling(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.deletecooling(params);
 	}
+
+	@Override
+	public HashMap<String, String> getCDetail(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.getCDetail(params);
+	}
 	
 
 }

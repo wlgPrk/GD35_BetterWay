@@ -118,7 +118,7 @@ $(document).ready(function(){
 	});
 	
 	$(".list_wrap tbody").on("click","tr",function(){
-		$("#happy_no").val($(this).attr("happy_no"));
+		$("#subway_station_incode").val($(this).attr("subway_station_incode"));
 		
 		$("#actionForm").attr("action","BetterWay_cycleAdmin_Detail");
 		$("#actionForm").submit();
@@ -128,7 +128,7 @@ function drawList(list){
 	   var html = "";
 	   
 	   for(var d of list){
-		  html += "<tr>";
+		  html += "<tr subway_station_incode = \""+ d.SUBWAY_STATION_INCODE + "\">";
 	      html += "<td>" + d.SUBLINE_NO + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
@@ -157,7 +157,6 @@ function reloadList(){
 </script>
 </head>
 <body>
-	<form action="#" id="actionForm" method="post"></form>
 
 	<div id="left">
 		<div id="left_sub">
@@ -177,7 +176,7 @@ function reloadList(){
 		</div>
 		<div id ="right_sub2">
 			<form action="#" id="actionForm" method="post">
-				<input type="hidden" id="subline_no" name="subline_no"/> 
+				<input type="hidden" id="subway_station_incode" name="subway_station_incode"/> 
 				<input type="button" id="writeBtn"  value="ÇàÃß°¡" />
 			</form>
 		</div>

@@ -12,7 +12,7 @@ public interface IAdmin_Dao {
 
 	public int addHT(HashMap<String, String> params)throws Throwable;
 	
-	public int updateHT(HashMap<String, String> params) throws Throwable;
+	public int updateHT(HashMap<String, String> params)throws Throwable;
 
 	public int deleteHT(HashMap<String, String> params)throws Throwable;
 
@@ -29,5 +29,7 @@ public interface IAdmin_Dao {
 	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable;
 	
 	public int updateS(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getCDetail(HashMap<String, String> params)throws Throwable;
 	
 }

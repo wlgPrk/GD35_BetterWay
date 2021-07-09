@@ -28,5 +28,7 @@ public interface IAdmin_Service {
 	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable;
 	
 	public int updateS(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getCDetail(HashMap<String, String> params)throws Throwable;
 	
 }
