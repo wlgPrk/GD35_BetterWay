@@ -10,7 +10,7 @@
 	AND ADMIN_PW=#{pw}
 	</select>
 
-	<select id="getDetail" parameterType="hashmap" resultType="hashmap">
+	<select id="getHDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT H.HAPPY_NO, H.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, H.LOCATION, 
 	H.AREA, H.OPERATING_AGENCY, H.PHONE_NUM, H.DEL_STATUS 
 	FROM HAPPY H INNER JOIN SUBWAY_STATION ST
@@ -18,7 +18,7 @@
 	WHERE H.HAPPY_NO = #{happy_no}
 	</select>
 	
-	<insert id="addT" parameterType="hashmap">
+	<insert id="addHT" parameterType="hashmap">
 	INSERT INTO HAPPY(HAPPY_NO, SUBWAY_STATION_INCODE, ADMIN_NO, 
                 LOCATION, AREA, OPERATING_AGENCY, PHONE_NUM, DEL_STATUS)
 	VALUES(HAPPY_SEQ.NEXTVAL, #{subway_station_incode} , 2, 
@@ -32,7 +32,7 @@
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
 	
-	<update id="deleteT" parameterType="hashmap">
+	<update id="deleteHT" parameterType="hashmap">
 	UPDATE HAPPY SET DEL_STATUS = 0 
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
@@ -54,6 +54,7 @@
 	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
 	FROM CHARGE_GUIDE
 	</select>
+	
 	<!-- 운임 상세 -->
 	<select id="getguideDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
@@ -61,20 +62,22 @@
 	WHERE GUIDE_NO=#{guide_no}
 	</select>
 	
+	<select id="getc" parameterType="hashmap" resultType="hashmap">
+	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
+	FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</select>
+	
+	<!-- 냉방 업데이트 -->
+	<update id="updateS" parameterType="hashmap">
+	UPDATE WEAK_COOLING_CAR SET CAR_NO = #{car_no}
+  	WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no}
+	</update>
+	
 	<!-- 냉방 삭제 -->
 	<delete id="deletecooling" parameterType="hashmap">
 	DELETE FROM WEAK_COOLING_CAR
 	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
 	</delete>
 	
-	<!-- 냉방 업데이트 -->
-	<update id="updateS" parameterType="hashmap">
-	UPDATE WEAK_COOLING_CAR SET CAR_NO = #{car_no}
-  	 WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no}
-	</update>	
-	<select id="getc" parameterType="hashmap" resultType="hashmap">
-	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
-	FROM WEAK_COOLING_CAR
-	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
-	</select> 
 </mapper>
