@@ -14,7 +14,7 @@
 			$("#goForm").attr("action","BetterWay_infoAdmin");
 			$("#goForm").submit();
 		});
-	});
+
 	$("#updateBtn").on("click",function(){
 		
 		if($.trim($("#car_no").val())==""){
@@ -43,22 +43,24 @@
 			});
 		}
 	});
-
+	});
 </script>
 <body>
 <form action="#" id="goForm" method="post"></form>
 <form action="#" id="updateForm" method="post">
 	<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no" value="${data.WEAK_COOLING_CAR_NO}"/>
-<div id="main">
-<b>약냉방칸번호:</b> ${data.weak_cooling_car_no}<br/>
-<b>약냉방칸번호:</b> ${param.weak_cooling_car_no}<br/>
-<b>호선번호 :</b> ${param.subline_no}<br/>
-<b>칸번호 :</b> <input type="text" id="car_no" name="car_no" value="${data.CAR_NO}"/><br/>
-	<div id="main_btn">
-		<input type="button" value="수정완료" id="updateBtn"/>
-		<input type="button" value="목록으로" id="listBtn"/>
+	<input type="hidden" id="subline_no" name="subline_no" value="${data.SUBLINE_NO}"/>
+	<input type="hidden" id="car_no" name="car_no" value="${data.CAR_NO}"/>
+	<div id="main">
+
+	<b>약냉방칸번호:</b> ${data.WEAK_COOLING_CAR_NO}<br/>
+	<b>호선번호 :</b> ${data.SUBLINE_NO}<br/>
+	<b>칸번호 :</b> <input type="text" id="car_no" name="car_no" value="${data.CAR_NO}"/><br/>
+		<div id="main_btn">
+			<input type="button" value="저장" id="updateBtn"/>
+			<input type="button" value="목록으로" id="listBtn"/>
+		</div>
 	</div>
-</div>
 </form>
 </body>
 </html>

@@ -318,8 +318,6 @@ public class Admin_Controller {
 			return mav;
 		}
 	 
-	 
-	
 		@RequestMapping(value="/BetterWay_infocoolingAdmin_Updates",
 				method=RequestMethod.POST,
 				produces = "text/json;charset=UTF-8")
