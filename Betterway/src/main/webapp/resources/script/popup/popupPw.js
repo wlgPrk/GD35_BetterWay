@@ -1,6 +1,6 @@
 function pwPopup(title, contents) {
 	var html = "";
-	html += "<div class=\"bg_divPw\"></div>                                         ";
+	
 	html += "<div class=\"popup_divPw\">                                            ";
 	html += "	<div class=\"popup_titlePw\">                                       ";
 	html += "		<div class=\"popup_title_textPw\">" + title + "</div>           ";
@@ -14,17 +14,19 @@ function pwPopup(title, contents) {
 	html += "			<input type=\"button\" class=\"btn_okPw\" value=\"확인\"/>   ";
 	html += "			<input type=\"button\" class=\"btn_closePw\" value=\"닫기\"/>   ";
 	html += "		</div>                                                        ";
-	html += "	</div>                                                            ";
-	html += "</div>                                                               ";
+	html += "		</div>                                                        ";
+	html += "		</div>                                                        ";
+	
+
 	
 	$("body").prepend(html);
 	
 	$(".btn_closePw").focus();
 	
-	$(".bg_divPw").hide();
+
 	$(".popup_divPw").hide();
 	
-	$(".bg_divPw").fadeIn();
+	
 	$(".popup_divPw").fadeIn();
 	
 	
@@ -69,17 +71,13 @@ function pwPopup(title, contents) {
 	$(".btn_closePw").on("click", function(){
 		closePwPopup();
 	});
-	//배경클릭시 닫기
-	$(".bg_divPw").off("click");
-	$(".bg_divPw").on("click", function(){
-		closePwPopup();
-	});
+	
+
 }
 
 function closePwPopup() {
-	$(".bg_divPw").fadeOut(function(){
-		$(".bg_divPw").remove();
-	});
+
+	
 	
 	$(".popup_divPw").fadeOut(function(){
 		$(".popup_divPw").remove();

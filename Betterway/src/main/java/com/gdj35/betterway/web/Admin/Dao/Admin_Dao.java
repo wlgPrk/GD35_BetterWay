@@ -78,6 +78,24 @@ public class Admin_Dao implements IAdmin_Dao{
 	public HashMap<String, String> getCDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getCDetail", params);
 	}
+
+	@Override
+	public int addguide(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.addguide",params);
+	}
+
+	@Override
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getg",params);
+	}
+
+	@Override
+	public int updateG(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateG",params);
+	}
 	
 	
 

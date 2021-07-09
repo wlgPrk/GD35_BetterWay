@@ -1,13 +1,6 @@
 @CHARSET "UTF-8";
 
-.bg_divPw {
-	width: 120%;
-	height: 100%;
-	position: absolute;
-	background-color: #000000;
-	opacity:0.3;
-	z-index: 100;
-}
+
 
 .popup_divPw {
 	font-size:20px;

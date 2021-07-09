@@ -63,7 +63,7 @@ body{
 	width:100%;
 
 }
-#writeBtn{
+#writeBtnA , #writeBtnB{
 	font-size: 15pt;
 	border: none;
 	border-radius: 5pt;	
@@ -116,9 +116,14 @@ float:left;
 $(document).ready(function(){
 	
 	reloadList();
-	$("#writeBtn").on("click",function(){
+	$("#writeBtnA").on("click",function(){
 		$("#actionFormA").attr("action","BetterWay_infocoolingAdmin_Write");
 		$("#actionFormA").submit();
+	});
+	
+	$("#writeBtnB").on("click",function(){
+		$("#actionFormB").attr("action","BetterWay_infoguideAdmin_Write");
+		$("#actionFormB").submit();
 	});
 	
 	$(".list_wrapA tbody").on("click","tr",function(){
@@ -132,6 +137,8 @@ $(document).ready(function(){
 		$("#actionFormB").attr("action","BetterWay_infoguideAdmin_Detail");
 		$("#actionFormB").submit();
 	});
+	
+	
 });
 function drawListA(list){
 	   var html = "";
@@ -154,7 +161,8 @@ function drawListB(list){
 	   var html = "";
 	   
 	for(var g of list){
-			  html += "<tr category =\"" + g.CATEGORY + "\">";
+			  html += "<tr guide_no =\"" + g.GUIDE_NO + "\">";
+			  html += "<td>" + g.GUIDE_NO + "</td>";
 		      html += "<td>" + g.CATEGORY + "</td>";
 		      html += "<td>" + g.TRAFFIC_CARD + "</td>";
 		      html += "<td>" + g.D_TRAFFIC_CARD + "</td>";	 
@@ -212,14 +220,14 @@ function reloadList(){
 		<div id ="right_sub2A">
 			<form action="#" id="actionFormA" method="post">
 			<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no"/>
-			<input type="button" id="writeBtn" value="약냉방칸행추가" />
+			<input type="button" id="writeBtnA" value="약냉방칸행추가" />
 			</form>		
 		</div>
 		
 		<div id ="right_sub2B">
 			<form action="#" id="actionFormB" method="post">
 			<input type="hidden" id="guide_no" name="guide_no"/>
-			<input type="button" id="writeBtn" value="운임행추가" />
+			<input type="button" id="writeBtnB" value="운임행추가" />
 		</form>			
 		</div>
 		<div class ="list">
@@ -259,6 +267,7 @@ function reloadList(){
 				</colgroup>
 				<thead>
 					<tr>
+						<th>운임번호</th>
 						<th>구분</th>
 						<th>교통카드</th>
 						<th>1회용교통카드</th>
@@ -268,6 +277,7 @@ function reloadList(){
 					
 				<tbody>
 					<tr>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>				

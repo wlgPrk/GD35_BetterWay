@@ -1,4 +1,4 @@
-function makePopup(title, contents) {
+function ynPopup(title, contents) {
 	var html = "";
 	html += "<div class=\"bg_div\"></div>                                         ";
 	html += "<div class=\"popup_div\">                                            ";
@@ -8,7 +8,8 @@ function makePopup(title, contents) {
 	html += "	<div class=\"popup_contents\">                                    ";
 	html += "		<div class=\"popup_text\">" + contents + "</div>              ";
 	html += "		<div class=\"popup_btn\">                                     ";
-	html += "			<input type=\"button\" class=\"btn_ok\" value=\"확인\"/>   ";
+	html += "			<input type=\"button\" class=\"btn_yes\" value=\"예\"/>   ";
+	html += "			<input type=\"button\" class=\"btn_no\" value=\"아니오\"/>   ";
 	html += "		</div>                                                        ";
 	html += "	</div>                                                            ";
 	html += "</div>                                                               ";
@@ -24,15 +25,15 @@ function makePopup(title, contents) {
 	$(".popup_div").fadeIn();
 	
 	
-	$(".btn_ok").off("click");
-	$(".btn_ok").on("click", function(){
-		closePopup();
+	$(".btn_no").off("click");
+	$(".btn_no").on("click", function(){
+		closeYNPopup();
 	});
 	
 
 }
 
-function closePopup() {
+function closeYNPopup() {
 
 	
 	$(".popup_div").fadeOut(function(){

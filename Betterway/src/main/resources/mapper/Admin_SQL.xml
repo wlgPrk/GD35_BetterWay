@@ -59,13 +59,14 @@
 	</insert>
 	
 	<select id="guideList" parameterType="hashmap" resultType="hashmap">
-	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	SELECT GUIDE_NO,CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
 	FROM CHARGE_GUIDE
+	
 	</select>
 	
 	<!-- 운임 상세 -->
 	<select id="getguideDetail" parameterType="hashmap" resultType="hashmap">
-	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	SELECT GUIDE_NO,CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
 	FROM CHARGE_GUIDE
 	WHERE GUIDE_NO=#{guide_no}
 	</select>
@@ -88,4 +89,34 @@
 	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
 	</delete>
 	
+	<!-- 냉방 업데이트 -->
+	<update id="updateS" parameterType="hashmap">
+	    UPDATE WEAK_COOLING_CAR SET CAR_NO =#{car_no}
+  	 WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no};
+	</update>	
+	<select id="getc" parameterType="hashmap" resultType="hashmap">
+	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
+	FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</select> 
+	
+	
+	<!-- 운임 등록 -->
+	
+	<insert id="addguide" parameterType="hashmap">
+	INSERT INTO CHARGE_GUIDE
+	VALUES(CHARGE_SEQ.NEXTVAL,#{category},#{traffic_card},#{d_traffic_card},4)
+	</insert>
+	
+	<!-- 운임 업데이트 -->
+	<update id="updateG" parameterType="hashmap">
+	 UPDATE CHARGE_GUIDE SET CATEGORY = #{category}, TRAFFIC_CARD=#{traffic_card},D_TRAFFIC_CARD=#{d_traffic_card}
+  	 WHERE GUIDE_NO = #{guide_no}
+	</update>	
+	<select id="getg" parameterType="hashmap" resultType="hashmap">
+	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	FROM CHARGE_GUIDE
+	WHERE GUIDE_NO=#{guide_no}
+	</select> 
+		
 </mapper>
