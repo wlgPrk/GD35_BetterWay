@@ -22,4 +22,6 @@ public interface Iboard_Service {
 
 	public HashMap<String, String> getPwCheck(HashMap<String, String> params) throws Throwable;
 
+	public int updateSug(HashMap<String, String> params)throws Throwable;
+
 }

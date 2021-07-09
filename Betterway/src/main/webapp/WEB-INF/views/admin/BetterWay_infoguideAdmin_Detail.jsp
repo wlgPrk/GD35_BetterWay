@@ -40,7 +40,7 @@ $(document).ready(function(){
 	});
 	
 	$("#updateBtn").on("click",function(){
-		$("#goForm").attr("action","BetterWay_infocoolingAdmin_Update");
+		$("#goForm").attr("action","BetterWay_infoguideAdmin_Update");
 		$("#goForm").submit();
 	});
 	$("#deleteBtn").on("click",function(){
@@ -48,7 +48,7 @@ $(document).ready(function(){
 			var params = $("#goForm").serialize();
 			
 			$.ajax({
-				url:"BetterWay_infocoolingAdmin_Deletes",//접속 주소->testALogins파일 필요없음
+				url:"BetterWay_infouideAdmin_Deletes",//접속 주소->testALogins파일 필요없음
 				type:"post", //전송방식(get,post)
 				dataType:"json",//받아올 데이터 형식
 				data:params,//보낼 데이터(문자열 형태)
@@ -72,14 +72,13 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="BetterWay_infoAdmin" id="goForm" method="post">
-	<input type="hidden" name="weak_cooling_car_no" value="${data.WEAK_COOLING_CAR_NO}"/>
-	<input type="hidden" name="subline_no" value="${data.SUBLINE_NO}"/>
-	<input type="hidden" name="car_no" value="${data.CAR_NO}"/>
+	<input type="hidden" name="guide_no" value="${data.GUIDE_NO}"/>
+	
 </form>
 <div id="main">
-<b>약냉방칸번호:</b> ${data.WEAK_COOLING_CAR_NO}<br/>
-<b>호선번호:</b> ${data.SUBLINE_NO}<br/>
-<b>칸번호 :</b> ${data.CAR_NO}<br/>
+<b>구분:</b> ${data.CATEGORY}<br/>
+<b>교통카드:</b> ${data.TRAFFIC_CARD}<br/>
+<b>1회용 교통카드:</b> ${data.D_TRAFFIC_CARD}<br/>
 
 <div id="main_btn">
 	<input type="button" value="수정" id="updateBtn"/>

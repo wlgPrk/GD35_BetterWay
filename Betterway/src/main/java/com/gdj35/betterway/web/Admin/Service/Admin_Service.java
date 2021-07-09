@@ -64,6 +64,25 @@ public class Admin_Service implements IAdmin_Service{
 	}
 
 
+	@Override
+	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getc(params);
+	}
+	
+
+
+	@Override
+	public int updateS(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateS(params);
+	}
+
+	@Override
+	public int deletecooling(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.deletecooling(params);
+	}
 	
 
 }

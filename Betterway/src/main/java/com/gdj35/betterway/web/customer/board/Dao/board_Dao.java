@@ -60,6 +60,12 @@ public class board_Dao implements Iboard_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("customer.getPwCheck",params);
 	}
+
+	@Override
+	public int updateSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("customer.updateSug",params);
+	}
 	
 	
 
