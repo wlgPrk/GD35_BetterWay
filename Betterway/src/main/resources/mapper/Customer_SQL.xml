@@ -96,4 +96,12 @@ WHERE SUG_NO=#{sug_no} AND USER_PW=#{pw}
 </select>
 
 
+<update id="updateSug" parameterType="hashMap">
+UPDATE SUG SET  TITLE =#{title}, CON=#{con} 
+WHERE SUG_NO=#{sug_no}
+
+
+</update>
+
+
 </mapper>

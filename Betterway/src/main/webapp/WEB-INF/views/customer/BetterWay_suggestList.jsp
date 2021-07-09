@@ -410,6 +410,8 @@ src="resources/script/ckeditor/ckeditor.js"></script>
 $(document).ready(function(){
 	
 
+
+	
 	
 	
 	//사이버스테이션
@@ -473,15 +475,13 @@ $(document).ready(function(){
 		location.href="BetterWay_suggestList"
 	});
 	
-	
-	
-	
 	//구분
 	if("${param.searchGbn}" != ""){
 		$(".search_type").val("${param.searchGbn}");
 	}//if end
 	
 	reloadList();
+	
 	
 	//검색
 	$(".search_btn").on("click", function(){
@@ -775,13 +775,13 @@ function drawPaging(pb){
 					<option value="1">작성자</option>
 					<option value="2">내용</option>
 </select>
-
 <input type="text" class="input" name="searchTxt" value="${param.searchTxt}"/>
+<input type="hidden" id="searchOldTxt" name="searchOldTxt" value="${param.searchOldTxt}" />
+<input type="hidden" name="searchGbn" value="${param.searchGbn}"/>
 <input type="hidden" id="sug_no" name="sug_no"/>
+
 <input type="hidden" id="page" name="page" value="${page}"/>
-
 <input type="button" value="검색" class="search_btn" />
-
 
 
 </form>

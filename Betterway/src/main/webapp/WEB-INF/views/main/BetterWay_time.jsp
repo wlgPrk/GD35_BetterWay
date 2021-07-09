@@ -17,18 +17,22 @@ $(document).ready(function() {
 	
 	$.ajax({
 		// http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/json/SearchSTNTimeTableByIDService/1/5/0309/1/1/
-			url: "http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/json/SearchSTNTimeTableByIDService/1/5/"+a+b+c, // 접속 주소
+			url: "http://openAPI.seoul.go.kr:8088/72717a744e70626237346774787358/json/SearchSTNTimeTableByIDService/1/205/"+a+b+c, // 접속 주소
 			type: "get", // 전송방식 : get, post
 			dataType: "json",
 			success: function(resa) { // 성공 시 다음 함수 실행
-				
+				var hrml ="";
 			//var test =resa.row[1];
 
 				for(var i=0; i<resa.SearchSTNTimeTableByIDService.row.length; i++){
-				console.log(resa.SearchSTNTimeTableByIDService.row[i].LEFTTIME);
-				//console.log(test);
-				}
-			},
+		var time = resa.SearchSTNTimeTableByIDService.row[i].LEFTTIME.substring(0,2);
+				
+		
+				if(time == "09"){
+				console.log(time);
+							}
+					}
+				},
 			error: function(request, status, error) { // 실패 시 다음 함수 실행
 				console.log(request);
 				console.log(status);

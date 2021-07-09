@@ -376,6 +376,8 @@ cursor: pointer;
 box-shadow: 1px 2px 3px grey;
 }
 
+
+
 /*테이블*/
 .comm_table{
 text-align:center;
@@ -497,7 +499,49 @@ cursor: pointer;
 }
 
 
+/*취소 */
+.cel_btn{
+display:inline-block;
+position:absolute;
+left:800px;
+background-color:#e0e0eb;
+font-size: 20px;
+margin-right:10px;
+width :80px;
+padding-top:5px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+line-height: -1;
+text-align:center;
+}
+/*수정버튼*/
+.updates_btn{
+display:inline-block;
+position:absolute;
+left:700px;
+background-color:#82b2da;
+font-size: 20px;
+width :80px;
+padding-top:5px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+text-align:center;
+}
 
+/*제목수정틀 */
+#title_input{
+outline: none;
+margin-top:5px;
+border:1px solid #e0e0eb;
+width:500px;
+height:40px;
+font-size: 20px;
+
+}
 
 
 </style>
@@ -581,13 +625,34 @@ $(document).ready(function(){
 		location.href="BetterWay_suggestList"
 	});
 	
+	$("#searchTxt").val($("#searchOldTxt").val());
 	
+	
+	if("${param.searchGbn}" != ""){
+		$("#searchGbn").val("${param.searchGbn}");
+	}//if end
 	
 	reloadList();
 	
-	$(".update_btn").on("click",function(){
+	//목록버튼클릭시
+	$(".btn_box").on("click","input:nth-child(1)",function(){
+		$("#actionForm").attr("action","BetterWay_suggestList");
+		$("#actionForm").submit();	
+	});
+	
+	
+	//수정버튼클릭시
+	$(".btn_box").on("click","input:nth-child(2)",function(){
 			pwPopup("아이디와 비밀번호를 입력하시오" ,"","닫기");
 			
+	});
+	//수정완료클릭시
+	$(".btn_box").on("click","div:nth-child(1)",function(){
+		$("#title").val($("#title_input").val());
+		$("#con").val(CKEDITOR.instances['con_input'].getData());//텍스트아레아 부분을 ckeditor편집기로폼보내기
+	
+
+		conModifys();
 	});
 	
 	
@@ -644,17 +709,13 @@ html+=" 	<span class=\"comm_update\">수정</span>";
 html+=" 	<span class=\"comm_del\">삭제</span>";
 html+=" 	</td>";
 html+=" 	</tr>	";
-	
-	
-
-		
 		
 	}
 	$(".comm_table").append(html);
 	
 }//drawlist end
 
-// //수정화면나오기
+// 수정화면나오기
 function conModify(){
 	var params = $("#actionForm").serialize();
 	//ajax
@@ -664,24 +725,76 @@ function conModify(){
 		dataType: "json",
 		data: params, 
 		success: function(res) {
-			var sug_con =$(".sug_con").text();
-			console.log(sug_con);
-			var html ="<textarea rows=\"15\" cols=\"88\"id=\"con\"></textarea>";	
+			var html ="";
+			html += "<div  class=\"updates_btn\">수정완료</div>";
+ 			html += "<div  class=\"cel_btn\">취소</div>";
+ 			$(".btn_box").html(html);
+ 			
+ 			
+ 			var title= $("#title_box").text();			
+ 			html ="<input type=\"text\" id=\"title_input\">";
+ 			$("#title_box").html(html);
+ 			$("#title_input").val(title);
+ 			
+ 			
+ 			
+ 			
+			var con =$(".sug_con").text();
+			html ="<textarea rows=\"15\" cols=\"88\"id=\"con_input\"></textarea>";	
 			$(".sug_con_box").html(html);
-			CKEDITOR.replace("con",{ //아이디 찾음 
+			CKEDITOR.replace("con_input",{ //아이디 찾음 
 			 	resize_enabled : false,
 			 	language :"ko",
 			 	enterMode: "2",
 			 	width : "900",
 			 	height : "300"
 			});// CKEDITOR end
-		$("#con").val(sug_con);
+		$("#con_input").val(con);
+			
+	
+ 			
 		},
 		error: function(request, status, error) {
 			console.log(error);
 		}
 	});//ajax end
-}
+}//conModify end
+
+
+//수정화면완료
+function conModifys(){
+	var params = $("#actionForm").serialize();
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestModifys", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			var html="";
+			
+			html = res.data.TITLE+"";
+			$("#title_box").html(html);
+			html = "<div class=\"sug_con\">"+res.data.CON+"</div>";
+			$(".sug_con_box").html(html);
+			
+			html="";
+			
+			html +="<input type=\"button\" value=\"목록\" class=\"list_btn\">";
+ 			html +="<input type=\"button\" value=\"수정\" class=\"update_btn\">";
+ 			html +="<input type=\"button\" value=\"삭제\" class=\"del_btn\">";
+			
+			
+			
+			
+			$(".btn_box").html(html);
+ 			
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//conModifys end
 
 
 </script>
@@ -761,7 +874,8 @@ function conModify(){
 		
  		<div class="sug_tit_box">
  		<div class="sug_tit_writer">
- 		제목 </div>${data.TITLE}
+ 		
+ 		제목 </div> <span id="title_box">${data.TITLE}</span>
  		
  		 <div class="sug_tit_sub">${data.WRITE_DATE}</div>
  		</div>
@@ -773,17 +887,20 @@ function conModify(){
  		
  		<div class="sug_con_box">
  		<div class="sug_con">
- 		
  		${data.CON}
  		</div>
  		</div>
  		
  		<div class="comm_push">
  		<div class="comm_img"></div><span>댓글</span> <div class="push_img"></div>추천하기
+ 		 		
+ 	<div class="btn_box">
+
+	
  			<input type="button" value="목록" class="list_btn">
  			<input type="button" value="수정" class="update_btn">
  			<input type="button" value="삭제" class="del_btn">
-
+</div>
  		</div>
  	<table class="comm_table" cellspacing="0">
  	<colgroup>
@@ -795,10 +912,7 @@ function conModify(){
  	</table>	
  		
  		
- 		
- 	<div class="buttonBox">
 
-	</div>
 	
 	<div class="comm_box">
 	<div class="id_pw_box">
@@ -812,9 +926,13 @@ function conModify(){
 	</div>
 
 <form  action="#" id="actionForm"  method="post">
+<input type="hidden" name="searchGbn" value="${param.searchGbn}"/>  
+<input type="hidden" id="searchOldTxt" name="searchOldTxt" value="${param.searchOldTxt}" />
 <input type="hidden" class="input" name="searchTxt" value="${param.searchTxt}"/>
 <input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}"/>
 <input type="hidden" id="page" name="page" value="${param.page}"/>
+<input type="hidden" id="title" name="title"/>
+<input type="hidden" id="con" name="con"/>
 <input type="hidden" id="pw" name="pw"/>
 	</form>
 				</div><!-- con_box_2 end -->
