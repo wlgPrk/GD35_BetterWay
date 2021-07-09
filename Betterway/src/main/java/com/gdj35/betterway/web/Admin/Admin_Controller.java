@@ -307,19 +307,17 @@ public class Admin_Controller {
 	   public ModelAndView BetterWay_infocoolingAdmin_Update(
 			   @RequestParam HashMap<String, String> params,
 			   ModelAndView mav)throws Throwable {
-			if(params.get("weak_cooling_car_no")!=null) {
+			
 			HashMap<String, String> data = iAdmin_Service.getc(params);
 			
 			mav.addObject("data",data);
 			
 			   mav.setViewName("admin/BetterWay_infocoolingAdmin_Update");
-			}else {
-				mav.setViewName("redirect:BetterWay_infocoolingAdmin_Detail");
+				return mav;
+
 			}
 			
-			return mav;
-		}
-	 
+
 		@RequestMapping(value="/BetterWay_infocoolingAdmin_Updates",
 				method=RequestMethod.POST,
 				produces = "text/json;charset=UTF-8")
