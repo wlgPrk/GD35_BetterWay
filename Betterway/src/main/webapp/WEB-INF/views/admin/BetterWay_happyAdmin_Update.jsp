@@ -89,21 +89,21 @@
 <form action="#" id="updateForm" method="post">
 	<input type="hidden" id="happy_no" name="happy_no" value="${data.HAPPY_NO}"/>
 <div id="main">
-<<<<<<< HEAD
+
 <b>지하철역코드 :</b> <input type="number" id="subway_station_incode" name="subway_station_incode" value="${data.SUBWAY_STATION_INCODE}"/><br/>
 <b>위치 :</b> <input type="text"id="location" name="location" value="${data.LOCATION}"/><br/>
 <b>면적 :</b> <input type="text" id="area" name="area" value="${data.AREA}"/>㎡<br/>
 <b>운영기관 :</b> <input type="text" id="operating_agency" name="operating_agency" value="${data.OPERATING_AGENCY}"/><br/>
 <b>전화번호 :</b> <input type="text" id="phone_num" name="phone_num" value="${data.PHONE_NUM}"/><br/>
 <b>면적 :</b> <input type="text" id="area" name="area" value="${data.AREA}"/>㎡<br/>
-=======
+
 <b>행복지대 번호 :</b>${param.HAPPY_NO}<br/>
 <b>지하철역코드 :</b> <input type="number" id="subway_station_incode" name="subway_station_incode" value="${param.SUBWAY_STATION_INCODE}"/><br/>
 <b>위치 :</b> <input type="text"id="location" name="location" value="${param.LOCATION}"/><br/>
 <b>면적 :</b> <input type="text" id="area" name="area" value="${param.AREA}"/>㎡<br/>
 <b>운영기관 :</b> <input type="text" id="operating_agency" name="operating_agency" value="${param.OPERATING_AGENCY}"/><br/>
 <b>전화번호 :</b> <input type="text" id="phone_num" name="phone_num" value="${param.PHONE_NUM}"/><br/>
->>>>>>> refs/remotes/origin/main
+
 	<div id="main_btn">
 		<input type="button" value="수정완료" id="updateBtn"/>
 		<input type="button" value="목록으로" id="listBtn"/>
