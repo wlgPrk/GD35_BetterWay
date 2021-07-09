@@ -58,6 +58,30 @@ box-shadow: 1px 2px 3px grey;
 
 }
 
+.btn_yes {
+background-color:#e0e0eb;
+font-size: 20px;
+margin-right:10px;
+width :80px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+
+}
+
+.btn_no {
+background-color:#82b2da;
+font-size: 20px;
+margin-right:10px;
+width :80px;
+height :40px;
+border : 0;
+cursor: pointer;
+box-shadow: 1px 2px 3px grey;
+
+}
+
 
 
 .id{
