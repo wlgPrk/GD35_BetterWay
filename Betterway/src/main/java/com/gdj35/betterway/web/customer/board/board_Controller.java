@@ -213,7 +213,7 @@ public IPagingService iPagingService;
 		return mapper.writeValueAsString(modelMap);
 	}//SuggestContents end
 	
-	
+	//게시판수정화면
 	@RequestMapping(value="/BetterWay_suggestModify",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -226,5 +226,40 @@ public IPagingService iPagingService;
 		
 		return mapper.writeValueAsString(modelMap);
 	}//SuggestContents end
+	
+	
+	//게시판수정완료
+	@RequestMapping(value="/BetterWay_suggestModifys",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestModifys(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {
+			int cnt =  iboard_Service.updateSug(params);
+			data = iboard_Service.getSug(params);
+			modelMap.put("data",data);
+			
+			if(cnt  >0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
+	
+	
+	
+	
+	
+	
+	
 	
 }

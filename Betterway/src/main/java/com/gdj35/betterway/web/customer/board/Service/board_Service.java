@@ -62,6 +62,12 @@ public class board_Service implements Iboard_Service {
 		return iboard_dao.getPwCheck(params);
 	}
 
+	@Override
+	public int updateSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.updateSug(params);
+	}
+
 
 
 

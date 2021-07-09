@@ -21,4 +21,6 @@ public interface Iboard_Dao {
 
 	public HashMap<String, String> getPwCheck(HashMap<String, String> params) throws Throwable;
 
+	public int updateSug(HashMap<String, String> params) throws Throwable;
+
 }
