@@ -54,9 +54,9 @@ $(document).ready(function(){
 					if(res.msg=="success"){
 						location.href="BetterWay_infoAdmin";
 					}else if(res.msg=="failed"){
-						alert("작성에 실패하였습니다.");
+						alert("삭제실패");
 					}else{
-						alert("작성중 문제가 발생하였습니다.");
+						alert("에러에러에러에러에러");
 					}
 				},
 				error:function(request,status,error){//실패시 다음 함수 실행
@@ -70,7 +70,7 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="BetterWay_infoAdmin" id="goForm" method="post">
-	<input type="hidden" name="weak_cooling_car_no" value="${param.WEAK_COOLING_CAR_NO}"/>
+	<input type="hidden" name="weak_cooling_car_no" value="${data.WEAK_COOLING_CAR_NO}"/>
 </form>
 <div id="main">
 <b>약냉방칸번호:</b> ${data.WEAK_COOLING_CAR_NO}<br/>

@@ -29,11 +29,6 @@ public class Admin_Dao implements IAdmin_Dao{
 	}
 
 	@Override
-	public int updateHT(HashMap<String, String> params) throws Throwable {
-		return sqlSession.update("admin.updateHT",params);
-	}
-	
-	@Override
 	public int deleteT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.deleteT", params);
 	}
