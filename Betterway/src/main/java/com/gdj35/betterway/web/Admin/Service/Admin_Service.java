@@ -83,6 +83,24 @@ public class Admin_Service implements IAdmin_Service{
 		// TODO Auto-generated method stub
 		return iAdmin_Dao.deletecooling(params);
 	}
+
+	@Override
+	public int addguide(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.addguide(params);
+	}
+
+	@Override
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getg(params);
+	}
+
+	@Override
+	public int updateG(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateG(params);
+	}
 	
 
 }

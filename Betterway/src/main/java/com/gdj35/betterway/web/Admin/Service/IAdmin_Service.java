@@ -24,6 +24,8 @@ public interface IAdmin_Service {
 	public int updateHT(HashMap<String, String> params) throws Throwable;
 
 	public int deletecooling(HashMap<String, String> params)throws Throwable;
+	
+	public int addguide(HashMap<String, String> params)throws Throwable;
 
 	
 
@@ -32,5 +34,9 @@ public interface IAdmin_Service {
 	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable;
 	
 	public int updateS(HashMap<String, String> params) throws Throwable;
+	
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
+	
+	public int updateG(HashMap<String, String> params) throws Throwable;
 	
 }

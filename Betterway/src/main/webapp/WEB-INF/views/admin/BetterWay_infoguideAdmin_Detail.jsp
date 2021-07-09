@@ -71,14 +71,12 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form action="BetterWay_infoAdmin" id="goForm" method="post">
+<form action="#" id="goForm" method="post">
 	<input type="hidden" name="guide_no" value="${data.GUIDE_NO}"/>
-	<input type="hidden" name="category" value="${data.CATEGORY}"/>
-	<input type="hidden" name="traffic_card" value="${data.TRAFFIC_CARD}"/>
-	<input type="hidden" name="d_traffic_card" value="${data.D_TRAFFIC_CARD}"/>
 
 </form>
 <div id="main">
+<b>운임번호:</b> ${data.GUIDE_NO}<br/>
 <b>구분:</b> ${data.CATEGORY}<br/>
 <b>교통카드:</b> ${data.TRAFFIC_CARD}<br/>
 <b>1회용 교통카드:</b> ${data.D_TRAFFIC_CARD}<br/>

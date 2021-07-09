@@ -75,6 +75,24 @@ public class Admin_Dao implements IAdmin_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.update("admin.updateHT",params);
 	}
+
+	@Override
+	public int addguide(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.addguide",params);
+	}
+
+	@Override
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getg",params);
+	}
+
+	@Override
+	public int updateG(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateG",params);
+	}
 	
 	
 

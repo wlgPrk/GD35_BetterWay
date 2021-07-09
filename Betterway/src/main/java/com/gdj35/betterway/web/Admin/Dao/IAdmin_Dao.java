@@ -30,4 +30,10 @@ public interface IAdmin_Dao {
 	
 	public int updateS(HashMap<String, String> params) throws Throwable;
 	
+	public int addguide(HashMap<String, String> params)throws Throwable;
+	
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
+	
+	public int updateG(HashMap<String, String> params) throws Throwable;
+	
 }
