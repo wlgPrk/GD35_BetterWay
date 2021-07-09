@@ -160,7 +160,7 @@ public IPagingService iPagingService;
 		return mav;
 	}//suggestWrite end
 	
-	//건의게시판쓰기2
+	//건의게시판쓰기완료
 	@RequestMapping(value="/BetterWay_suggestWrites",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -191,5 +191,40 @@ public IPagingService iPagingService;
 
 	
 	
+	//게시물수정 비밀번호체크
+	@RequestMapping(value="/BetterWay_suggestContentChecks",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestContentChecks(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		try {
+			HashMap<String, String> data = iboard_Service.getPwCheck(params);
+			if(data !=null) {
+			modelMap.put("resMsg", "success");
+			}else {
+			modelMap.put("resMsg", "faild");}
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.put("resMsg", "faild");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}//SuggestContents end
+	
+	
+	@RequestMapping(value="/BetterWay_suggestModify",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestModify(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+	
+		
+		return mapper.writeValueAsString(modelMap);
+	}//SuggestContents end
 	
 }

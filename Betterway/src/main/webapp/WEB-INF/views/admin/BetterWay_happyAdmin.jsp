@@ -165,6 +165,7 @@ function reloadList(){
 		</div>
 		<div id ="right_sub2">
 			<form action="#" id="actionForm" method="post">
+				<input type = "hidden" id = "page" name = "page" value = "${page}"/>
 				<input type="hidden" id="happy_no" name="happy_no"/> 
 				<input type="button" id="writeBtn"  value="ÇàÃß°¡" />
 			</form>

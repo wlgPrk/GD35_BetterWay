@@ -35,7 +35,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#listBtn").on("click",function(){
-		$("#goForm").submit();
+		$("#goForm").attr("action", "BetterWay_happyAdmin");
+	    $("#goForm").submit();
 	});
 	
 	$("#addBtn").on("click",function(){
@@ -79,12 +80,10 @@ $(document).ready(function(){
 		}
 	});
 });
-
-	
 </script>
 </head>
 <body>
-<form action="BetterWay_happyAdmin" id="goForm" method="post">
+<form action="#" id="goForm" method="post">
 	<input type="hidden" name="happy_no" value="${param.HAPPY_NO}"/>
 </form>
 

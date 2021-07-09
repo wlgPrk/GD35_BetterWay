@@ -101,7 +101,7 @@ public class Admin_Controller {
 		   return mav;
 	   }
 	
-	 @RequestMapping(value="BetterWay_happyAdmin_Write")
+	 @RequestMapping(value="/BetterWay_happyAdmin_Write")
 	   public ModelAndView BetterWay_happyAdmin_Write(ModelAndView mav) {
 		   
 		   mav.setViewName("admin/BetterWay_happyAdmin_Write");

@@ -7,8 +7,12 @@
 <title>건의게시판 - 작성</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript">
-</script>
+
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popup.css?after" />
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popupPw.css?after" />
+
+
+
 
 <style type="text/css">
 
@@ -498,10 +502,22 @@ cursor: pointer;
 
 </style>
 
+
+
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" 
+		src="resources/script/popup/popupPw.js?after"></script>
+<script type="text/javascript" 
+		src="resources/script/popup/popup.js?after"></script>
+<script type="text/javascript" 
+src="resources/script/ckeditor/ckeditor.js"></script>
+		
 <script type="text/javascript">
+
 $(document).ready(function(){
+	
+	
 	
 	
 	//사이버스테이션
@@ -570,6 +586,7 @@ $(document).ready(function(){
 	reloadList();
 	
 	$(".update_btn").on("click",function(){
+			pwPopup("아이디와 비밀번호를 입력하시오" ,"","닫기");
 			
 	});
 	
@@ -629,14 +646,47 @@ html+=" 	</td>";
 html+=" 	</tr>	";
 	
 	
-		
+
 		
 		
 	}
 	$(".comm_table").append(html);
 	
 }//drawlist end
+
+// //수정화면나오기
+function conModify(){
+	var params = $("#actionForm").serialize();
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestModify", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			var sug_con =$(".sug_con").text();
+			console.log(sug_con);
+			var html ="<textarea rows=\"15\" cols=\"88\"id=\"con\"></textarea>";	
+			$(".sug_con_box").html(html);
+			CKEDITOR.replace("con",{ //아이디 찾음 
+			 	resize_enabled : false,
+			 	language :"ko",
+			 	enterMode: "2",
+			 	width : "900",
+			 	height : "300"
+			});// CKEDITOR end
+		$("#con").val(sug_con);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}
+
+
 </script>
+
+
 </head>
 <body>
 
@@ -720,11 +770,13 @@ html+=" 	</tr>	";
  		작성자</div>${data.USER_ID}
  		<div class="sug_tit_sub">조회${data.INQ_COUNT} <span>추천${data.PUSH_COUNT}</span> <span>댓글2</span></div>
  		</div>
+ 		
+ 		<div class="sug_con_box">
  		<div class="sug_con">
  		
  		${data.CON}
  		</div>
- 		
+ 		</div>
  		
  		<div class="comm_push">
  		<div class="comm_img"></div><span>댓글</span> <div class="push_img"></div>추천하기
@@ -763,6 +815,7 @@ html+=" 	</tr>	";
 <input type="hidden" class="input" name="searchTxt" value="${param.searchTxt}"/>
 <input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}"/>
 <input type="hidden" id="page" name="page" value="${param.page}"/>
+<input type="hidden" id="pw" name="pw"/>
 	</form>
 				</div><!-- con_box_2 end -->
 			

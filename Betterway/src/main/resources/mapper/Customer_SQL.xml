@@ -88,5 +88,12 @@ WHERE S.SUG_NO=#{sug_no} AND C.DEL_STATUS =1
 
 </select>
 
+<select id="getPwCheck" parameterType="hashMap" resultType="hashMap">
+SELECT SUG_NO ,USER_PW
+FROM SUG
+WHERE SUG_NO=#{sug_no} AND USER_PW=#{pw}
+
+</select>
+
 
 </mapper>
