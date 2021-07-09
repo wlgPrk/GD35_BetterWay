@@ -270,7 +270,7 @@ $(document).ready(function(){
 				for(var i=0;i<res.data[0].CAR_COUNT;i++){					
 					var cnt = 0;
 					for(var j = 0 ; j < res.data.length ; j++) {
-							if(i == res.data[j].CAR_NO){
+							if(i == res.data[j].CAR_NO-1){
 								cnt++;
 								break;								
 							}
