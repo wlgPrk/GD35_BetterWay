@@ -50,7 +50,6 @@
 <form action="#" id="updateForm" method="post">
 	<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no" value="${data.WEAK_COOLING_CAR_NO}"/>
 	<input type="hidden" id="subline_no" name="subline_no" value="${data.SUBLINE_NO}"/>
-	<input type="hidden" id="car_no" name="car_no" value="${data.CAR_NO}"/>
 	<div id="main">
 
 	<b>약냉방칸번호:</b> ${data.WEAK_COOLING_CAR_NO}<br/>

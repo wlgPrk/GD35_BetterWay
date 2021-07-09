@@ -75,6 +75,7 @@ $(document).ready(function(){
 	<input type="hidden" name="weak_cooling_car_no" value="${data.WEAK_COOLING_CAR_NO}"/>
 	<input type="hidden" name="subline_no" value="${data.SUBLINE_NO}"/>
 	<input type="hidden" name="car_no" value="${data.CAR_NO}"/>
+	
 </form>
 <div id="main">
 <b>약냉방칸번호:</b> ${data.WEAK_COOLING_CAR_NO}<br/>
