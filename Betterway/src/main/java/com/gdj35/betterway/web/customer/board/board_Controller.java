@@ -30,17 +30,19 @@ public IPagingService iPagingService;
 	@RequestMapping(value="/BetterWay_suggestList")
 	public ModelAndView BetterWay_suggestList(ModelAndView mav,@RequestParam HashMap<String, String> params
 ) {
-		
-		int page =1;
-		
-		if(params.get("page") != null) {
-			page = Integer.parseInt(params.get("page"));
+		try {
+			int page =1;
+			
+			if(params.get("page") != null) {
+				page = Integer.parseInt(params.get("page"));
+			}
+			
+			mav.addObject("page",page);
+			
+			mav.setViewName("customer/BetterWay_suggestList");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		mav.addObject("page",page);
-		
-		mav.setViewName("customer/BetterWay_suggestList");
-		
 		return mav;
 	}//suggestListe end
 	
