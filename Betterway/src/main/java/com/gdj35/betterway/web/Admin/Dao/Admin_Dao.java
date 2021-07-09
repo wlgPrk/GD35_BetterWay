@@ -29,6 +29,11 @@ public class Admin_Dao implements IAdmin_Dao{
 	}
 
 	@Override
+	public int updateHT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.updateHT",params);
+	}
+	
+	@Override
 	public int deleteT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.deleteT", params);
 	}
@@ -36,7 +41,6 @@ public class Admin_Dao implements IAdmin_Dao{
 	@Override
 	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getcoolingDetail",params);
-
 	}
 
 	@Override
@@ -53,6 +57,5 @@ public class Admin_Dao implements IAdmin_Dao{
 	public HashMap<String, String> getguideDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getguideDetail",params);
 	}
-	
-	
+
 }

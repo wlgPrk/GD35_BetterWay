@@ -25,6 +25,13 @@
 			#{location}, #{area}, #{operating_agency}, #{phone_num},1)
 	</insert>
 	
+	<update id="updateHT">
+	UPDATE HAPPY SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
+				 LOCATION = #{location}, AREA = #{area}, 
+                 OPERATING_AGENCY = #{operating_agency}, PHONE_NUM = #{phone_num}
+	WHERE HAPPY_NO = #{happy_no}
+	</update>
+	
 	<update id="deleteT" parameterType="hashmap">
 	UPDATE HAPPY SET DEL_STATUS = 0 
 	WHERE HAPPY_NO = #{happy_no}
