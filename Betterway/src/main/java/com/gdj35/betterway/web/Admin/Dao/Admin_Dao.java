@@ -17,7 +17,8 @@ public class Admin_Dao implements IAdmin_Dao{
 	public HashMap<String, String> getAdmin(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getAdmin", params);
 	}
-
+	
+	//행복지대
 	@Override
 	public HashMap<String, String> getHDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getHDetail",params);
@@ -27,7 +28,12 @@ public class Admin_Dao implements IAdmin_Dao{
 	public int addHT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.insert("admin.addHT",params);
 	}
-
+	
+	@Override
+	public int updateHT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.updateHT",params);
+	}
+	
 	@Override
 	public int deleteHT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.deleteHT", params);
@@ -53,7 +59,6 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.selectOne("admin.getguideDetail",params);
 	}
 
-
 	@Override
 	public int deletecooling(HashMap<String, String> params) throws Throwable {
 		return sqlSession.delete("admin.deletecooling", params);
@@ -69,10 +74,6 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.update("admin.updateS",params);
 	}
 
-	@Override
-	public int updateHT(HashMap<String, String> params) throws Throwable {
-		return sqlSession.update("admin.updateHT",params);
-	}
 
 	@Override
 	public HashMap<String, String> getCDetail(HashMap<String, String> params) throws Throwable {
@@ -81,19 +82,16 @@ public class Admin_Dao implements IAdmin_Dao{
 
 	@Override
 	public int addguide(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("admin.addguide",params);
 	}
 
 	@Override
 	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.getg",params);
 	}
 
 	@Override
 	public int updateG(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return sqlSession.update("admin.updateG",params);
 	}
 	
