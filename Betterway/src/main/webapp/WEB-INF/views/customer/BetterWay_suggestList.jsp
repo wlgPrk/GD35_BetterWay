@@ -772,7 +772,7 @@ function drawPaging(pb){
 <input type="hidden" name="searchGbn" value="${param.searchGbn}"/>
 <input type="hidden" id="sug_no" name="sug_no"/>
 
-<input type="hidden" id="page" name="page" value="${page}"/>
+<input type="hidden" id="page" name="page" value="${param.page}"/>
 <input type="button" value="검색" class="search_btn" />
 
 

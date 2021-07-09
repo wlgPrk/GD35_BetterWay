@@ -564,7 +564,7 @@ src="resources/script/ckeditor/ckeditor.js"></script>
 $(document).ready(function(){
 	
 	
-	
+	reloadList();
 	
 	//사이버스테이션
 	$("#cyber").on("click",function(){

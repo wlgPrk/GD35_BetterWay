@@ -20,13 +20,13 @@ public class Admin_Service implements IAdmin_Service{
 	}
 
 	@Override
-	public HashMap<String, String> getDetail(HashMap<String, String> params) throws Throwable {
-		return iAdmin_Dao.getDetail(params);
+	public HashMap<String, String> getHDetail(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.getHDetail(params);
 	}
 
 	@Override
-	public int addT(HashMap<String, String> params) throws Throwable {
-		return iAdmin_Dao.addT(params);
+	public int addHT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.addHT(params);
 	}
 	
 	//해피업데이트
@@ -37,8 +37,8 @@ public class Admin_Service implements IAdmin_Service{
 	
 	//해피삭제
 	@Override
-	public int deleteT(HashMap<String, String> params) throws Throwable {
-		return iAdmin_Dao.deleteT(params);
+	public int deleteHT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deleteHT(params);
 	}
 		
 	//냉방상세보기
@@ -66,22 +66,35 @@ public class Admin_Service implements IAdmin_Service{
 
 	@Override
 	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.getc(params);
 	}
-	
-
 
 	@Override
 	public int updateS(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.updateS(params);
 	}
 
 	@Override
 	public int deletecooling(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.deletecooling(params);
+	}
+
+	@Override
+	public int addguide(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.addguide(params);
+	}
+
+	@Override
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getg(params);
+	}
+
+	@Override
+	public int updateG(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateG(params);
 	}
 	
 

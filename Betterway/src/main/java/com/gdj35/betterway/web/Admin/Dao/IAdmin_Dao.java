@@ -8,13 +8,13 @@ public interface IAdmin_Dao {
 	
 	public  HashMap<String, String> getAdmin(HashMap<String, String> params) throws Throwable;
 
-	public HashMap<String, String> getDetail(HashMap<String, String> params)throws Throwable;
+	public HashMap<String, String> getHDetail(HashMap<String, String> params)throws Throwable;
 
-	public int addT(HashMap<String, String> params)throws Throwable;
+	public int addHT(HashMap<String, String> params)throws Throwable;
 	
 	public int updateHT(HashMap<String, String> params) throws Throwable;
 
-	public int deleteT(HashMap<String, String> params)throws Throwable;
+	public int deleteHT(HashMap<String, String> params)throws Throwable;
 
 	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params)throws Throwable;
 
@@ -29,5 +29,11 @@ public interface IAdmin_Dao {
 	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable;
 	
 	public int updateS(HashMap<String, String> params) throws Throwable;
+	
+	public int addguide(HashMap<String, String> params)throws Throwable;
+	
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
+	
+	public int updateG(HashMap<String, String> params) throws Throwable;
 	
 }

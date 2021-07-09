@@ -19,18 +19,18 @@ public class Admin_Dao implements IAdmin_Dao{
 	}
 
 	@Override
-	public HashMap<String, String> getDetail(HashMap<String, String> params) throws Throwable {
-		return sqlSession.selectOne("admin.getDetail",params);
+	public HashMap<String, String> getHDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getHDetail",params);
 	}
 
 	@Override
-	public int addT(HashMap<String, String> params) throws Throwable {
-		return sqlSession.insert("admin.addT",params);
+	public int addHT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.insert("admin.addHT",params);
 	}
 
 	@Override
-	public int deleteT(HashMap<String, String> params) throws Throwable {
-		return sqlSession.update("admin.deleteT", params);
+	public int deleteHT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.deleteHT", params);
 	}
 		
 	@Override
@@ -64,7 +64,6 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.selectOne("admin.getc",params);
 	}
 	
-
 	@Override
 	public int updateS(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.updateS",params);
@@ -72,8 +71,25 @@ public class Admin_Dao implements IAdmin_Dao{
 
 	@Override
 	public int updateHT(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return sqlSession.update("admin.updateHT",params);
+	}
+
+	@Override
+	public int addguide(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.addguide",params);
+	}
+
+	@Override
+	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getg",params);
+	}
+
+	@Override
+	public int updateG(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateG",params);
 	}
 	
 	
