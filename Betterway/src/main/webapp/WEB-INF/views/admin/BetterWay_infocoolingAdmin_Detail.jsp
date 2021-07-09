@@ -38,7 +38,7 @@ $(document).ready(function(){
 		$("#goForm").submit();
 	});
 	$("#updateBtn").on("click",function(){
-		$("#goForm").attr("action","coolingUpdate");
+		$("#goForm").attr("action","BetterWay_infocoolingAdminUpdate");
 		$("#goForm").submit();
 	});
 	$("#deleteBtn").on("click",function(){
@@ -46,17 +46,17 @@ $(document).ready(function(){
 			var params = $("#goForm").serialize();
 			
 			$.ajax({
-				url:"coolingDeletes",//접속 주소->testALogins파일 필요없음
+				url:"BetterWay_infocoolingAdmin_Deletes",//접속 주소->testALogins파일 필요없음
 				type:"post", //전송방식(get,post)
 				dataType:"json",//받아올 데이터 형식
 				data:params,//보낼 데이터(문자열 형태)
 				success:function(res){//성공 시 다음 함수 실행
 					if(res.msg=="success"){
-						location.href="testABList";
+						location.href="BetterWay_infoAdmin";
 					}else if(res.msg=="failed"){
-						alert("작성에 실패하였습니다.");
+						alert("삭제실패");
 					}else{
-						alert("작성중 문제가 발생하였습니다.");
+						alert("에러에러에러에러에러");
 					}
 				},
 				error:function(request,status,error){//실패시 다음 함수 실행
@@ -70,7 +70,7 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="BetterWay_infoAdmin" id="goForm" method="post">
-	<input type="hidden" name="weak_cooling_car_no" value="${param.WEAK_COOLING_CAR_NO}"/>
+	<input type="hidden" name="weak_cooling_car_no" value="${data.WEAK_COOLING_CAR_NO}"/>
 </form>
 <div id="main">
 <b>약냉방칸번호:</b> ${data.WEAK_COOLING_CAR_NO}<br/>

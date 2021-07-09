@@ -25,8 +25,16 @@
 			#{location}, #{area}, #{operating_agency}, #{phone_num},1)
 	</insert>
 	
-	<update id="deleteT" parameterType="hashmap">
+	<update id="updateHT">
+	UPDATE HAPPY SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
+				 LOCATION = #{location}, AREA = #{area}, 
+                 OPERATING_AGENCY = #{operating_agency}, PHONE_NUM = #{phone_num}
+	WHERE HAPPY_NO = #{happy_no}
+	</update>
 	
+	<update id="deleteT" parameterType="hashmap">
+	UPDATE HAPPY SET DEL_STATUS = 0 
+	WHERE HAPPY_NO = #{happy_no}
 	</update>
 
 	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
@@ -34,4 +42,26 @@
 	FROM WEAK_COOLING_CAR
 	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
 	</select>
+	
+	<insert id="addcooling" parameterType="hashmap">
+	
+	INSERT INTO WEAK_COOLING_CAR
+	VALUES(COOLING_SEQ.NEXTVAL,#{subline_no},4,#{car_no})
+
+	</insert>
+	
+	<select id="guideList" parameterType="hashmap" resultType="hashmap">
+	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	FROM CHARGE_GUIDE
+	</select>
+	
+	<select id="getguideDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	FROM CHARGE_GUIDE
+	WHERE GUIDE_NO=#{guide_no}
+	</select>
+	<delete id="deletecooling" parameterType="hashmap">
+	DELETE FROM WEAK_COOLING_CAR
+	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
+	</delete>
 </mapper>
