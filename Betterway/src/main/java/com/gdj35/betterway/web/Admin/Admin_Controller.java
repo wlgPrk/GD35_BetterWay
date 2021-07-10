@@ -73,6 +73,7 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
+	//행복지대
 	@RequestMapping(value ="/BetterWay_happyAdmin")
 	public ModelAndView BetterWay_happyAdmin(ModelAndView mav) {
 		
@@ -186,8 +187,9 @@ public class Admin_Controller {
 			modelMap.put("msg", "error");
 		}
 		 return mapper.writeValueAsString(modelMap);
-	 }
+	 }//행복지대 끝
 	 
+	 //자전거보관함
 	@RequestMapping(value ="/BetterWay_cycleAdmin")
 	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
 		
@@ -220,30 +222,54 @@ public class Admin_Controller {
 		   return mav;
 	   }
 	
-	//@RequestMapping(value = "/BetterWay_cycleAdmin_Writes",
-	//		   method = RequestMethod.POST,
-	//		   produces = "text/json;charset=UTF-8")
-	//	 @ResponseBody
-	//	 public String  BetterWay_cycleAdmin_Writes(
-	//			 @RequestParam HashMap<String, String> params) throws Throwable{
-	//		 ObjectMapper mapper = new ObjectMapper();
-	//		 Map<String, Object> modelMap = new HashMap<String, Object>();
+	@RequestMapping(value = "/BetterWay_cycleAdmin_Writes",
+			   method = RequestMethod.POST,
+			   produces = "text/json;charset=UTF-8")
+		 @ResponseBody
+		 public String  BetterWay_cycleAdmin_Writes(
+				 @RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
 
-	//		 try {
-	//			 int cnt = iAdmin_Service.addcycleT(params);
-
-	//			 if(cnt > 0) {
-	//				 modelMap.put("msg","success");
-	//			 }else {
-	//				 modelMap.put("msg","failed");
-	//			 }
-	//		 }catch(Throwable e){
-	//			 e.printStackTrace();
-	//			 modelMap.put("msg", "error");
-	//		 }
-	//		 return mapper.writeValueAsString(modelMap);
-	//	}
+			 try {
+				 int cnt = iAdmin_Service.addcycleT(params);
 	
+				 if(cnt > 0) {
+					 modelMap.put("msg","success");
+				 }else {
+					 modelMap.put("msg","failed");
+				 }
+			 }catch(Throwable e){
+				 e.printStackTrace();
+				 modelMap.put("msg", "error");
+			 }
+			 return mapper.writeValueAsString(modelMap);
+		}
+	
+	@RequestMapping(value = "/BetterWay_cycleAdmin_Deletes",
+	 		 method = RequestMethod.POST,
+	 		 produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_cycleAdmin_Deletes(
+		@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		try {
+			int cnt = iAdmin_Service.deletecycleT(params);
+			if(cnt > 0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	//연단간격
 	@RequestMapping(value ="/BetterWay_wheelchairAdmin")
 	public ModelAndView BetterWay_wheelchairAdmin(ModelAndView mav) {
 		

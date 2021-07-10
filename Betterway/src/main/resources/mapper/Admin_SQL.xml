@@ -10,6 +10,7 @@
 	AND ADMIN_PW=#{pw}
 	</select>
 
+	<!-- 행복지대 -->
 	<select id="getHDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT H.HAPPY_NO, H.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, H.LOCATION, 
 	H.AREA, H.OPERATING_AGENCY, H.PHONE_NUM, H.DEL_STATUS 
@@ -36,7 +37,8 @@
 	UPDATE HAPPY SET DEL_STATUS = 0 
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
-
+	<!-- 행복지대 끝 -->
+	
 	<select id="getCDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT ST.SUBWAY_STATION_INCODE,ST.SUBLINE_NO, ST.SUBWAY_STATION_NAME,ES.CYCLE_EXIST
 	FROM SUBWAY_STATION ST INNER JOIN SUBWAY_STATION_ESTA ES
@@ -44,6 +46,16 @@
 	WHERE ES.CYCLE_EXIST = 1 AND ST.SUBWAY_STATION_INCODE = #{subway_station_incode}
 	ORDER BY SUBWAY_STATION_INCODE ASC
 	</select>
+	
+	<update id="addcycleT" parameterType="hashmap">
+	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 1
+	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+	</update>
+	
+	<update id="deletecycleT" parameterType="hashmap">
+	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 0
+	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+	</update>
 
 	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
@@ -52,10 +64,8 @@
 	</select>
 	
 	<insert id="addcooling" parameterType="hashmap">
-	
 	INSERT INTO WEAK_COOLING_CAR
 	VALUES(COOLING_SEQ.NEXTVAL,#{subline_no},4,#{car_no})
-
 	</insert>
 	
 	<select id="guideList" parameterType="hashmap" resultType="hashmap">

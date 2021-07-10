@@ -94,6 +94,16 @@ public class Admin_Dao implements IAdmin_Dao{
 	public int updateG(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.updateG",params);
 	}
+
+	@Override
+	public int addcycleT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.addcycleT",params);
+	}
+
+	@Override
+	public int deletecycleT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.deletecycleT",params);
+	}
 	
 	
 

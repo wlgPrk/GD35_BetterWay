@@ -37,5 +37,9 @@ public interface IAdmin_Dao {
 	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
 	
 	public int updateG(HashMap<String, String> params) throws Throwable;
+
+	public int addcycleT(HashMap<String, String> params)throws Throwable;
+
+	public int deletecycleT(HashMap<String, String> params)throws Throwable;
 	
 }

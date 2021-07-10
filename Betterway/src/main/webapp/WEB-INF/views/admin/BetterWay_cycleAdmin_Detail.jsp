@@ -15,7 +15,7 @@
     font-size: 15pt;
 }
 #main_btn{
-	margin-left: 218px;
+	margin-left: 300px;
     margin-bottom: 3px;
 }
 #main_btn > input{
@@ -39,10 +39,10 @@ $(document).ready(function(){
 	    $("#goForm").submit();
 	});
 
-	$("#updateBtn").on("click",function(){
-		$("#goForm").attr("action", "BetterWay_cycleAdmin_Update");
-		$("#goForm").submit();
-	});
+	//$("#updateBtn").on("click",function(){
+	//	$("#goForm").attr("action", "BetterWay_cycleAdmin_Update");
+	//	$("#goForm").submit();
+	//});
 	
 	   $("#deleteBtn").on("click", function(){
 		      if(confirm("삭제하시겠습니까?")){
@@ -80,7 +80,7 @@ $(document).ready(function(){
 <b>지하철역코드 :</b> ${data.SUBWAY_STATION_INCODE}<br/>
 <b>역이름 :</b> ${data.SUBWAY_STATION_NAME}<br/>
 	<div id="main_btn">
-		<input type="button" value="수정" id="updateBtn"/>
+		<!--<input type="button" value="수정" id="updateBtn"/> -->
 		<input type="button" value="삭제" id="deleteBtn"/>
 		<input type="button" value="목록으로" id="listBtn"/>
 	</div>

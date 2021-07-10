@@ -40,16 +40,13 @@ $(document).ready(function(){
 	});
 	
 	$("#addBtn").on("click",function(){
-		if($.trim($("#subline_no").val())==""){
-			alert("호선을 입력해주세요.");
-			$("#subline_no").focus();
-		}else if($.trim($("#subway_station_incode").val())==""){
-			alert("지하철역코드를 입력해주세요.");
-			$("#subway_station_incode").focus();
-		}else if($.trim($("#subway_station_line").val())==""){
-			alert("역이름을 입력해주세요.");
-			$("#subway_station_line").focus();
-		}else{
+		if($.trim($("#subway_station_incode").val())==""){
+		   alert("지하철역코드를 입력해주세요.");
+		 	$("#subway_station_incode").focus();
+		}//else if($.trim($("#subway_station_name").val())==""){
+			//alert("역이름을 입력해주세요.");
+			//$("#subway_station_name").focus();}
+		else{
 			//serialize() // 폼 태그 안 에러 구성요소를 쿼리 문자열 형식으로 자동으로 만들어 줌.
 			var params = $("#addForm").serialize();
 			
@@ -83,9 +80,8 @@ $(document).ready(function(){
 
 <form action="#" id="addForm" method="post">
 <div id="main">
-<b>호선번호 :</b> <input type="number" id="subline_no" name="subline_no"/><br/>
 <b>지하철역코드 :</b> <input type="number" id="subway_station_incode" name="subway_station_incode"/><br/>
-<b>역이름 :</b> <input type="text" id="phone_num" name="phone_num"/><br/>
+<!--<b>역이름 :</b> <input type="text" id="subway_station_name" name="subway_station_name"/><br/>-->
 	<div id="main_btn">
 		<input type="button" value="작성" id="addBtn"/>
 		<input type="button" value="목록으로" id="listBtn"/>

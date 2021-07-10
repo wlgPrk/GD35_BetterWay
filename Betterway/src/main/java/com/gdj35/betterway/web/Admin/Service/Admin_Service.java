@@ -86,20 +86,27 @@ public class Admin_Service implements IAdmin_Service{
 
 	@Override
 	public int addguide(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.addguide(params);
 	}
 
 	@Override
 	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.getg(params);
 	}
 
 	@Override
 	public int updateG(HashMap<String, String> params) throws Throwable {
-		// TODO Auto-generated method stub
 		return iAdmin_Dao.updateG(params);
+	}
+
+	@Override
+	public int addcycleT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.addcycleT(params);
+	}
+
+	@Override
+	public int deletecycleT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deletecycleT(params);
 	}
 	
 
