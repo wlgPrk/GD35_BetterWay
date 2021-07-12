@@ -35,4 +35,12 @@ public interface Iboard_Dao {
 
 	public int updateComm(HashMap<String, String> params) throws Throwable;
 
+	public int deleteComm(HashMap<String, String> params) throws Throwable;
+
+	public int updatePush(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getPush(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getNoticeList() throws Throwable;
+
 }

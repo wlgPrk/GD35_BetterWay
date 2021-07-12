@@ -55,6 +55,8 @@ public IPagingService iPagingService;
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		try {
+			
+		
 		
 		
 		//현재페이지
@@ -75,8 +77,14 @@ public IPagingService iPagingService;
 		List<HashMap<String, String>> list
 			=iboard_Service.getSugList(params);
 		
+		//공지목록취득
+		List<HashMap<String,String>> data
+			=iboard_Service.getNoticeList();
+		
+		
 		modelMap.put("list",list);
 		modelMap.put("pb", pb);
+		modelMap.put("data", data);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -400,5 +408,64 @@ public IPagingService iPagingService;
 	}	
 	
 	
+	//댓글수정완료
+	@RequestMapping(value="/BetterWay_commDels",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_commDels(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {
+			int comm = iboard_Service.deleteComm(params);
+			
+			int commCnt = iboard_Service.getCommCnt(params);
+			
+			List<HashMap<String, String>> list
+				=iboard_Service.getSugComm(params);
+			modelMap.put("commCnt", commCnt);
+			modelMap.put("list",list);
+			
+			if(comm >0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
 	
+	
+	
+	
+	//게시물추천
+	@RequestMapping(value="/BetterWay_pushUpdates",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_pushUpdates(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {	int push=iboard_Service.updatePush(params);
+				
+			if(push  >0) {
+				HashMap<String, String> pushCount=iboard_Service.getPush(params);
+				modelMap.put("pushCount", pushCount);
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
 }
