@@ -19,6 +19,7 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.getAdmin(params);
 	}
 
+	//해피시작
 	@Override
 	public HashMap<String, String> getHDetail(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.getHDetail(params);
@@ -29,17 +30,67 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.addHT(params);
 	}
 	
-	//해피업데이트
 	@Override
 	public int updateHT(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.updateHT(params);
 	}
 	
-	//해피삭제
 	@Override
 	public int deleteHT(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.deleteHT(params);
 	}
+	//해피끝
+	
+	//수유실 시작
+	@Override
+	public int addnursingRoomT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.addnursingRoomT(params);
+	}
+	
+	@Override
+	public HashMap<String, String> getnursingRoomDetail(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.getnursingRoomDetail(params);
+	}
+	
+	@Override
+	public int deletenursingRoomT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deletenursingRoomT(params);
+	}
+	//수유실끝
+	
+	//자전거보관함 시작
+	@Override
+	public int addcycleT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.addcycleT(params);
+	}
+
+	@Override
+	public int deletecycleT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deletecycleT(params);
+	}
+	//자전거보관함 끝
+
+	//연단간격 시작
+	@Override
+	public HashMap<String, String> getwheelchairDetail(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.getwheelchairDetail(params);
+	}
+	
+	@Override
+	public int addwheelchairT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.addwheelchairT(params);
+	}
+	
+	@Override
+	public int updatewheelchairT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.updatewheelchairT(params);
+	}
+	
+	@Override
+	public int deletewheelchairT(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deletewheelchairT(params);
+	}
+	//연단간격 끝
 		
 	//냉방상세보기
 	@Override
@@ -62,7 +113,6 @@ public class Admin_Service implements IAdmin_Service{
 	public HashMap<String, String> getguideDetail(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.getguideDetail(params);
 	}
-
 
 	@Override
 	public HashMap<String, String> getc(HashMap<String, String> params) throws Throwable {
@@ -98,16 +148,4 @@ public class Admin_Service implements IAdmin_Service{
 	public int updateG(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.updateG(params);
 	}
-
-	@Override
-	public int addcycleT(HashMap<String, String> params) throws Throwable {
-		return iAdmin_Dao.addcycleT(params);
-	}
-
-	@Override
-	public int deletecycleT(HashMap<String, String> params) throws Throwable {
-		return iAdmin_Dao.deletecycleT(params);
-	}
-	
-
 }

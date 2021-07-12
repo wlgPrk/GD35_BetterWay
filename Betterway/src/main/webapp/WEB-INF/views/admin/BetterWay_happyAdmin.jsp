@@ -100,6 +100,11 @@ $(document).ready(function(){
 		$("#actionForm").submit();
 	});
 	
+	$("#nursingRoomAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_nursingRoomAdmin");
+		$("#actionForm").submit();
+	});
+	
 	$("#cycleAdmin").on("click",function(){
 		$("#actionForm").attr("action","BetterWay_cycleAdmin");
 		$("#actionForm").submit();
@@ -146,7 +151,7 @@ function reloadList(){
 	var params = $("#actionForm").serialize();
 	
 	 $.ajax({
-         url : "happy_List",
+         url : "happy_List",//stationEstaInfo컨트롤러에 있음
          type : "post",  
          dataType :"json", 
          data : params,
@@ -175,6 +180,7 @@ function reloadList(){
 	<div id="right">
 		<div id ="right_sub">
 			<input type="button" id="happyAdmin" value="행복지대" />
+			<input type="button" id="nursingRoomAdmin" value="수유실" />
 			<input type="button" id="cycleAdmin" value="자전거보관함" />
 			<input type="button" id="wheelchairAdmin" value="연단간격" />
 			<input type="button" id="" value="화장실" />

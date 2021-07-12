@@ -13,6 +13,24 @@ public interface IAdmin_Service {
 
 	public int deleteHT(HashMap<String, String> params)throws Throwable;
 
+	public HashMap<String, String> getnursingRoomDetail(HashMap<String, String> params) throws Throwable;
+	
+	public int addnursingRoomT(HashMap<String, String> params) throws Throwable;
+	
+	public int deletenursingRoomT(HashMap<String, String> params) throws Throwable;
+	
+	public int addcycleT(HashMap<String, String> params) throws Throwable;
+
+	public int deletecycleT(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getwheelchairDetail(HashMap<String, String> params) throws Throwable;
+	
+	public int addwheelchairT(HashMap<String, String> params)throws Throwable;
+	
+	public int updatewheelchairT(HashMap<String, String> params)throws Throwable;
+	
+	public int deletewheelchairT(HashMap<String, String> params)throws Throwable;
+	
 	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params)throws Throwable;
 	
 	public int addcooling(HashMap<String, String> params)throws Throwable;
@@ -36,9 +54,4 @@ public interface IAdmin_Service {
 	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
 	
 	public int updateG(HashMap<String, String> params) throws Throwable;
-
-	public int addcycleT(HashMap<String, String> params) throws Throwable;
-
-	public int deletecycleT(HashMap<String, String> params) throws Throwable;
-	
 }

@@ -189,7 +189,87 @@ public class Admin_Controller {
 		 return mapper.writeValueAsString(modelMap);
 	 }//행복지대 끝
 	 
-	 //자전거보관함
+	 //수유실시작
+	 @RequestMapping(value="/BetterWay_nursingRoomAdmin")
+	 public ModelAndView BetterWay_nursingRoomAdmin(ModelAndView mav) {
+		 mav.setViewName("admin/BetterWay_nursingRoomAdmin");
+		 
+		 return mav;
+	 }
+	 
+	 @RequestMapping(value="/BetterWay_nursingRoomAdmin_Detail")
+	   public  ModelAndView BetterWay_nursingRoomAdmin_Detail(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws Throwable{
+		   try {
+			   HashMap<String, String> data = iAdmin_Service.getnursingRoomDetail(params);
+			   
+			   mav.addObject("data",data);
+			   
+			   mav.setViewName("admin/BetterWay_nursingRoomAdmin_Detail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		   return mav;
+	   }
+	 
+	 @RequestMapping(value="/BetterWay_nursingRoomAdmin_Write")
+	   public ModelAndView BetterWay_nursingRoomAdmin_Write(ModelAndView mav) {
+		   
+		   mav.setViewName("admin/BetterWay_nursingRoomAdmin_Write");
+		   
+		   return mav;
+	   }
+	
+	 @RequestMapping(value = "/BetterWay_nursingRoomAdmin_Writes",
+		   method = RequestMethod.POST,
+		   produces = "text/json;charset=UTF-8")
+	 @ResponseBody
+	 public String  BetterWay_nursingRoomAdmin_Writes(
+			 @RequestParam HashMap<String, String> params) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		 try {
+			 int cnt = iAdmin_Service.addnursingRoomT(params);
+
+			 if(cnt > 0) {
+				 modelMap.put("msg","success");
+			 }else {
+				 modelMap.put("msg","failed");
+			 }
+		 }catch(Throwable e){
+			 e.printStackTrace();
+			 modelMap.put("msg", "error");
+		 }
+		 return mapper.writeValueAsString(modelMap);
+	 }
+	 
+	 @RequestMapping(value = "/BetterWay_nursingRoomAdmin_Deletes",
+	 		 method = RequestMethod.POST,
+	 		 produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_nursingRoomAdmin_Deletes(
+		@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		try {
+			int cnt = iAdmin_Service.deletenursingRoomT(params);
+			if(cnt > 0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	 //수유실 끝
+	 
+	 //자전거보관함 시작
 	@RequestMapping(value ="/BetterWay_cycleAdmin")
 	public ModelAndView BetterWay_cycleAdmin(ModelAndView mav) {
 		
@@ -267,7 +347,7 @@ public class Admin_Controller {
 			modelMap.put("msg", "error");
 		}
 		return mapper.writeValueAsString(modelMap);
-	}
+	}//자전거보관함 끝
 	
 	//연단간격
 	@RequestMapping(value ="/BetterWay_wheelchairAdmin")
@@ -276,6 +356,112 @@ public class Admin_Controller {
 		mav.setViewName("admin/BetterWay_wheelchairAdmin");
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/BetterWay_wheelchairAdmin_Write")
+	public ModelAndView BetterWay_wheelchairAdmin_Write(ModelAndView mav) {
+		mav.setViewName("admin/BetterWay_wheelchairAdmin_Write");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/BetterWay_wheelchairAdmin_Detail")
+	   public  ModelAndView BetterWay_wheelchairAdmin_Detail(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws Throwable{
+		   try {
+			   HashMap<String, String> data = iAdmin_Service.getwheelchairDetail(params);
+			   
+			   mav.addObject("data",data);
+			   
+			   mav.setViewName("admin/BetterWay_wheelchairAdmin_Detail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		   return mav;
+	   }
+	
+	@RequestMapping(value = "/BetterWay_wheelchairAdmin_Writes",
+			   method = RequestMethod.POST,
+			   produces = "text/json;charset=UTF-8")
+		 @ResponseBody
+		 public String  BetterWay_wheelchairAdmin_Writes(
+				 @RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+			 try {
+				 int cnt = iAdmin_Service.addwheelchairT(params);
+	
+				 if(cnt > 0) {
+					 modelMap.put("msg","success");
+				 }else {
+					 modelMap.put("msg","failed");
+				 }
+			 }catch(Throwable e){
+				 e.printStackTrace();
+				 modelMap.put("msg", "error");
+			 }
+			 return mapper.writeValueAsString(modelMap);
+		}
+	
+	 @RequestMapping(value="/BetterWay_wheelchairAdmin_Update")
+	   public  ModelAndView BetterWay_wheelchairAdmin_Update(
+			   @RequestParam HashMap<String, String> params,
+			   ModelAndView mav)throws  Throwable{//db에 붙일거라 throws필요
+		   HashMap<String, String> data = iAdmin_Service.getwheelchairDetail(params);
+		   
+		   mav.addObject("data",data);
+		   
+		   mav.setViewName("admin/BetterWay_wheelchairAdmin_Update");
+		   
+		   return mav;
+	   }
+	 
+	 @RequestMapping(value = "/BetterWay_wheelchairAdmin_Updates",
+		 method = RequestMethod.POST,
+		 produces = "text/json;charset=UTF-8")
+	 @ResponseBody
+	 public String BetterWay_wheelchairAdmin_Updates(
+			 @RequestParam HashMap<String, String>params) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		 try {
+			 int cnt = iAdmin_Service.updatewheelchairT(params);
+			 if(cnt > 0) {
+				 modelMap.put("msg", "success");
+			 }else {
+				 modelMap.put("msg", "failed");
+			 }
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 modelMap.put("msg", "error");
+		 }
+		 return mapper.writeValueAsString(modelMap);
+	 }
+	
+	@RequestMapping(value = "/BetterWay_wheelchairAdmin_Deletes",
+	 		 method = RequestMethod.POST,
+	 		 produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_wheelchairAdmin_Deletes(
+		@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		try {
+			int cnt = iAdmin_Service.deletewheelchairT(params);
+			if(cnt > 0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
 	}
 	
 	@RequestMapping(value ="/BetterWay_suggestListAdmin")

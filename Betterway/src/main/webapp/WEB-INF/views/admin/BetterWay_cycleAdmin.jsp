@@ -44,7 +44,7 @@ body{
 	margin-left: 120px;
 	margin-top: 15px;
 }
-#right_sub input:nth-child(2){
+#right_sub input:nth-child(3){
 	background-color: #82b2da;
 }
 #right_sub > input{
@@ -101,6 +101,11 @@ $(document).ready(function(){
 		$("#actionForm").submit();
 	});
 	
+	$("#nursingRoomAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_nursingRoomAdmin");
+		$("#actionForm").submit();
+	});
+	
 	$("#cycleAdmin").on("click",function(){
 		$("#actionForm").attr("action","BetterWay_cycleAdmin");
 		$("#actionForm").submit();
@@ -142,7 +147,7 @@ function reloadList(){
 	var params = $("#actionForm").serialize();
 	
 	 $.ajax({
-         url : "cycle_List",
+         url : "cycle_List",//stationEstaInfo컨트롤러에 있음
          type : "post",  
          dataType :"json", 
          data : params,
@@ -170,6 +175,7 @@ function reloadList(){
 	<div id="right">
 		<div id ="right_sub">
 			<input type="button" id="happyAdmin" value="행복지대" />
+			<input type="button" id="nursingRoomAdmin" value="수유실" />
 			<input type="button" id="cycleAdmin" value="자전거보관함" />
 			<input type="button" id="wheelchairAdmin" value="연단간격" />
 			<input type="button" id="" value="화장실" />
