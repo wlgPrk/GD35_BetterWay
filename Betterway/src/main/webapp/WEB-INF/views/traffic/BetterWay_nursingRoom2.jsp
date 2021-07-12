@@ -375,7 +375,7 @@ function drawList(list){
 				html += "<tr subway_station_incode = \""+i + "\">"	
 				html += "<td>" + list[i].SUBWAY_STATION_NAME + "</td>";
 				html += "<td>" + list[i].MAIN_PHONE_NUM + "</td>";
-			   }else if(count%2 != 0){
+			   }else if(count % 2 != 0){
 				html += "<td>" + list[i].SUBWAY_STATION_NAME + "</td>";
 				html += "<td>" + list[i].MAIN_PHONE_NUM + "</td>";
 				html += "</tr>"
