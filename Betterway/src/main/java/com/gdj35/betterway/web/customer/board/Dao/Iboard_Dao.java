@@ -23,4 +23,16 @@ public interface Iboard_Dao {
 
 	public int updateSug(HashMap<String, String> params) throws Throwable;
 
+	public int deleteSug(HashMap<String, String> params) throws Throwable;
+
+	public int deleteSugComm(HashMap<String, String> params) throws Throwable;
+
+	public int deleteSugReq(HashMap<String, String> params) throws Throwable;
+
+	public int insertComm(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getCommPwCheck(HashMap<String, String> params) throws Throwable;
+
+	public int updateComm(HashMap<String, String> params) throws Throwable;
+
 }

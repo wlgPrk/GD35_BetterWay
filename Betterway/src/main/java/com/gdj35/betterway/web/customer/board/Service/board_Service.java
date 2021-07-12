@@ -68,6 +68,42 @@ public class board_Service implements Iboard_Service {
 		return iboard_dao.updateSug(params);
 	}
 
+	@Override
+	public int deleteSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.deleteSug(params);
+	}
+
+	@Override
+	public int deleteSugComm(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.deleteSugComm(params);
+	}
+
+	@Override
+	public int deleteSugReq(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.deleteSugReq(params);
+	}
+
+	@Override
+	public int insertComm(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.insertComm(params);
+	}
+
+	@Override
+	public HashMap<String, String> getCommPwCheck(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.getCommPwCheck(params);
+	}
+
+	@Override
+	public int updateComm(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.updateComm(params);
+	}
+
 
 
 

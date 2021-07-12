@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popup.css?after" />
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popupPw.css?after" />
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popupCommPw.css?after" />
 
 
 
@@ -468,6 +469,15 @@ width: 78%;
 	border : 1px solid #e0e0eb;
 }
 
+/*댓글 내용입력*/
+
+.comm_m{
+	font-size:20px;
+	outline: none;
+	padding : 10px 0 0 5px;
+	border : 1px solid #e0e0eb;
+}
+
 /*등록*/
 
 .comm_add{
@@ -552,6 +562,8 @@ font-size: 20px;
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popupPw.js?after"></script>
+<script type="text/javascript" 
+		src="resources/script/popup/popupCommPw.js?after"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popupYN.js?after"></script>
 <script type="text/javascript" 
@@ -645,7 +657,7 @@ $(document).ready(function(){
 	
 	//수정버튼클릭시
 	$(".btn_box").on("click","input:nth-child(2)",function(){
-			pwPopup("아이디와 비밀번호를 입력하시오" ,"","닫기");
+			pwPopup("비밀번호를 입력하시오" ,"","닫기");
 			
 	});
 	
@@ -654,7 +666,7 @@ $(document).ready(function(){
 			ynPopup("삭제하시겠습니까?" ,"","");
 			
 	});
-	//수정완료클릭시
+	//수정클릭시
 	$(".btn_box").on("click","div:nth-child(1)",function(){
 		$("#title").val($("#title_input").val());
 		$("#con").val(CKEDITOR.instances['con_input'].getData());
@@ -666,7 +678,29 @@ $(document).ready(function(){
 		conModifyCel();
 	});
 	
+	//댓글등록클릭시
+	$("#comm_add").on("click",function(){
+		if($.trim($("#comm_id").val()) =="" || $.trim($("#comm_pw").val()) =="" ){
+			makePopup("경고","아이디와 비밀번호를 입력해주세요")
+		}else if($.trim($("#comm_con").val())==""){
+			makePopup("경고","내용을 입력해주세요")
+		}else{
+			reviewWrites();
+		}
+	});
 	
+	//댓글수정버튼클릭시 비밀번호체크
+	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(2)",function(){
+		$("#comm_no").val($(this).attr("comm_no"));
+	
+		commPwPopup("비밀번호를 입력하시오" ,"","닫기");
+	});
+	//댓글 수정 클릭시 수정완료 
+	$("table").on("click","input",function(){
+		$("#comm_con").val($(".comm_m").val());
+		$("#comm_no").val($(this).parent().parent().attr("comm_no"));
+		commModifys();
+	});
 	
 }); // document end
 
@@ -705,24 +739,37 @@ function commCnt(cnt){
 
 
 
-//목록그리기
+//댓글목록그리기
 function drawList(list){
 	var html ="";
 
-	for(var d of list){       
+	
+	
+	
+	for(var d of list){ 
                                          
-html+=" 	 <tr comm_no=\""+ d.COMM_NO +"\" >";
+html+=" 	 <tr id=\"comm"+d.COMM_NO+"\" comm_no=\""+ d.COMM_NO+"\">";
 html+=" 	<td>" + d.USER_ID+ " ";
 html+=" 	</td>";
 html+=" 	 	<td>";
-html+=" 	 	" +d.CON+ "";
-html+=" 	<span class=\"comm_update\">수정</span>";
-html+=" 	<span class=\"comm_del\">삭제</span>";
+html+=" 	 	<span>"+d.CON+"</span>";
+html+=" 	<span class=\"comm_update\" comm_no=\""+ d.COMM_NO +"\">수정</span>";
+html+=" 	<span class=\"comm_del\" comm_no=\""+ d.COMM_NO +"\">삭제</span>";
 html+=" 	</td>";
 html+=" 	</tr>	";
 		
 	}
-	$(".comm_table").append(html);
+	$(".comm_table").html(html);
+	
+	
+	var attr="";
+	
+	attr+="	<colgroup>";
+	attr+="	<col width=\"20%\"/>";
+	attr+="	<col width=\"80%\"/>";
+	attr+="	</colgroup>";
+	
+	$(".comm_table").prepend(attr);
 	
 }//drawlist end
 
@@ -844,6 +891,86 @@ function conModifyCel(){
 }//conModifys end
 
 
+//게시물삭제
+function conDels(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_conDels", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+		location.href="BetterWay_suggestList";
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+//댓글등록
+function reviewWrites(){
+	var params = $("#reviewForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_reviewWrites", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			drawList(res.list);
+			commCnt(res.commCnt);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+
+//댓글 수정화면띄우기
+function commModify(data){
+	var html ="";
+	var text =$("#comm"+data.COMM_NO+" td:nth-child(2) span:nth-child(1)").text();
+	html+="<textarea rows=\"3\" cols=\"61\" class=\"comm_m\" name=\"comm_modifyCon\" id=\"comm_modify_con"+data.COMM_NO+"\"></textarea>";
+	html+="<input type=\"button\" value=\"수정\" class=\"comm_add\" id=\"comm_modify\">";
+	
+	
+	$("#comm"+data.COMM_NO+" td:nth-child(2)").html(html);
+	$("#comm_modify_con"+data.COMM_NO).text(text);
+	
+	
+}; //commModify end
+//work
+//댓글수정완료
+function commModifys(){
+	var params = $("#reviewForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_commModifys", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			drawList(res.list);
+			commCnt(res.commCnt);
+
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+
+
 </script>
 
 
@@ -950,28 +1077,31 @@ function conModifyCel(){
 </div>
  		</div>
  	<table class="comm_table" cellspacing="0">
- 	<colgroup>
- 	<col width="20%"/>
- 	<col width="80%"/>
- 	</colgroup>
+
+ 	
+ 	<review>
+ 	
+ 	</review>
  	
 
  	</table>	
  		
  		
 
-	
+<form action="#" id="reviewForm" method="post">	
 	<div class="comm_box">
 	<div class="id_pw_box">
-	<input type="text" placeholder="아이디" class="id_pw"><br/>
-	<input type="password" placeholder="비밀번호" class="id_pw">
+	<input type="text" placeholder="아이디" class="id_pw" name="comm_id" id="comm_id"><br/>
+	<input type="password" placeholder="비밀번호" class="id_pw" name="comm_pw" id="comm_pw">
 	</div>
 	<div class="comm_box_2">
-	<textarea rows="3" cols="60" class="comm_"></textarea>
+	<textarea rows="3" cols="60" class="comm_" name="comm_con" id="comm_con"></textarea>
 	
-	<input type="button" value="등록" class="comm_add"></div>
+	<input type="button" value="등록" class="comm_add" id="comm_add"></div>
+	<input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}"/>
+	<input type="hidden" id="comm_no" name="comm_no"/>
 	</div>
-
+</form>
 <form  action="#" id="actionForm"  method="post">
 <input type="hidden" name="searchGbn" value="${param.searchGbn}"/>  
 <input type="hidden" id="searchOldTxt" name="searchOldTxt" value="${param.searchOldTxt}" />
@@ -981,6 +1111,7 @@ function conModifyCel(){
 <input type="hidden" id="title" name="title"/>
 <input type="hidden" id="con" name="con"/>
 <input type="hidden" id="pw" name="pw"/>
+
 	</form>
 				</div><!-- con_box_2 end -->
 			

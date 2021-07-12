@@ -28,8 +28,7 @@ public IPagingService iPagingService;
 	
 	//건의게시판목록
 	@RequestMapping(value="/BetterWay_suggestList")
-	public ModelAndView BetterWay_suggestList(ModelAndView mav,@RequestParam HashMap<String, String> params
-) {
+	public ModelAndView BetterWay_suggestList(ModelAndView mav,@RequestParam HashMap<String, String> params) {
 		try {
 			int page =1;
 			
@@ -278,9 +277,127 @@ public IPagingService iPagingService;
 	}	
 	
 	
+	//게시판삭제완료
+	@RequestMapping(value="/BetterWay_conDels",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_conDels(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {
+			int delSug = iboard_Service.deleteSug(params);
+			int delSugComm = iboard_Service.deleteSugComm(params);
+			int delSugReq= iboard_Service.deleteSugReq(params);
+			if(delSug  >0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
+	
+	
+	//댓글등록
+	@RequestMapping(value="/BetterWay_reviewWrites",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_reviewWrites(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {
+			int comm = iboard_Service.insertComm(params);
+			
+			int commCnt = iboard_Service.getCommCnt(params);
+			
+			List<HashMap<String, String>> list
+				=iboard_Service.getSugComm(params);
+			modelMap.put("commCnt", commCnt);
+			modelMap.put("list",list);
+			
+			if(comm >0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
 	
 	
 	
+	
+	//게시물수정 비밀번호체크
+	@RequestMapping(value="/BetterWay_suggestCommChecks",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestCommChecks(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		try {
+			HashMap<String, String> data = iboard_Service.getCommPwCheck(params);
+			if(data !=null) {
+			modelMap.put("resMsg", "success");
+			modelMap.put("data", data);
+			}else {
+			modelMap.put("resMsg", "faild");}
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.put("resMsg", "faild");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}//SuggestContents end
+	
+	
+	
+	
+	
+	
+	//댓글수정완료
+	@RequestMapping(value="/BetterWay_commModifys",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_commModifys(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper =new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		HashMap<String, String> data;
+		try {
+			int comm = iboard_Service.updateComm(params);
+			
+			int commCnt = iboard_Service.getCommCnt(params);
+			
+			List<HashMap<String, String>> list
+				=iboard_Service.getSugComm(params);
+			modelMap.put("commCnt", commCnt);
+			modelMap.put("list",list);
+			
+			if(comm >0) {
+				modelMap.put("msg", "success");
+			}else {
+				modelMap.put("msg", "failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg", "error");
+		}
+		return mapper.writeValueAsString(modelMap);
+	}	
 	
 	
 	

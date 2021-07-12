@@ -53,7 +53,7 @@ function pwPopup(title, contents) {
 						conModify();
 					} else{
 						closePwPopup();
-						makePopup("경고","아이디 또는 비밀번호가 일치하지 않습니다.");
+						makePopup("경고"," 비밀번호가 일치하지 않습니다.");
 					}
 				},
 				error: function(request, status, error) { // 실패 시 다음 함수 실행

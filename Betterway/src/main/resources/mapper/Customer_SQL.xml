@@ -3,7 +3,7 @@
 <mapper namespace="customer">
 
 
-
+<!--  게시물 총합 -->
 <select id="getSugCnt" parameterType="hashMap" resultType="Integer">
 SELECT COUNT(*) AS CNT
 FROM SUG
@@ -23,6 +23,7 @@ AND CON LIKE '%' || #{searchTxt} || '%'
 </if>
 </select>
 
+<!--  페이징 -->
 <select id="getSugList" parameterType="hashMap" resultType="hashMap"> 
 SELECT POST_TYPE_CODE,SUG_NO,TITLE,USER_ID,WRITE_DATE,INQ_COUNT,PUSH_COUNT,CON,RNUM,REQ_NO
 FROM(
@@ -52,12 +53,15 @@ AND CON LIKE '%' || #{searchTxt} || '%'
 WHERE RNUM BETWEEN #{startCnt} AND #{endCnt}
 </select>
 
+
+
+<!--  게시물추가 -->
 <insert id="addSug" parameterType="hashMap">
 INSERT INTO SUG
 VALUES (SUG_SEQ.NEXTVAL, 0 ,1 ,1,#{id},#{pw},#{con_title},#{con},SYSDATE,0,0,1)
 </insert>
 
-
+<!--  게시물상세보기 -->
 <select id="getSug" parameterType="hashMap" resultType="hashMap">
 
 SELECT SUG_NO,USER_ID,USER_PW,TITLE,CON,WRITE_DATE,PUSH_COUNT,INQ_COUNT
@@ -66,20 +70,21 @@ WHERE SUG_NO = #{sug_no}
 
 </select>
 
-
+<!--  게시물상세댓글보기 -->
 <select id="getSugComm" parameterType="hashMap" resultType="hashMap">
 SELECT C.COMM_NO,C.USER_ID,C.USER_PW,C.CON,C.WRITE_DATE
 FROM COMM C INNER JOIN SUG S
 ON C.SUG_NO = S.SUG_NO 
 WHERE S.SUG_NO = #{sug_no} AND C.DEL_STATUS =1
+ORDER BY C.COMM_NO ASC
 
 </select>
-
+<!-- 게시믈클릭시조회수증가 -->
 <update id="updateInq" parameterType="hashMap">
 UPDATE SUG SET INQ_COUNT = INQ_COUNT +1
 WHERE SUG_NO=#{sug_no}
 </update>
-
+<!--  게시물댓글수세기 -->
 <select id="getCommCnt" parameterType="hashMap" resultType="Integer">
 SELECT COUNT(C.COMM_NO)
 FROM SUG S INNER JOIN COMM C 
@@ -87,7 +92,7 @@ ON S.SUG_NO = C.SUG_NO
 WHERE S.SUG_NO=#{sug_no} AND C.DEL_STATUS =1
 
 </select>
-
+<!--  게시물수정시 비밀번호체크 -->
 <select id="getPwCheck" parameterType="hashMap" resultType="hashMap">
 SELECT SUG_NO ,USER_PW
 FROM SUG
@@ -95,13 +100,47 @@ WHERE SUG_NO=#{sug_no} AND USER_PW=#{pw}
 
 </select>
 
-
+<!--  게시물수정완료 -->
 <update id="updateSug" parameterType="hashMap">
 UPDATE SUG SET  TITLE =#{title}, CON=#{con} 
 WHERE SUG_NO=#{sug_no}
 
 
 </update>
+<!--  게시물삭제 -->
+<update id="deleteSug" parameterType="hashMap">
+UPDATE SUG SET  DEL_STATUS=0
+WHERE SUG_NO=#{sug_no}
+</update>
 
+<!--  게시물삭제시 해당답글삭제 -->
+<update id="deleteSugReq" parameterType="hashMap">
+UPDATE SUG SET  DEL_STATUS=0
+WHERE REQ_NO=#{sug_no}
+</update>
+<!--  게시물에 삭제시 해당게시물 댓글삭제 -->
+<update id="deleteSugComm" parameterType="hashMap">
+UPDATE COMM SET  DEL_STATUS=0
+WHERE SUG_NO=#{sug_no}
+</update>
+
+<!-- 댓글등록 -->
+<insert id="insertComm" parameterType="hashMap">
+INSERT INTO COMM VALUES(COMM_SEQ.NEXTVAL,1,#{sug_no},#{comm_id},#{comm_pw},#{comm_con},SYSDATE,1)
+</insert>
+
+<!--  댓글수정시 비밀번호체크 -->
+<select id="getCommPwCheck" parameterType="hashMap" resultType="hashMap">
+SELECT COMM_NO,USER_PW
+FROM COMM
+WHERE COMM_NO=#{comm_no} AND USER_PW=#{comm_pw}
+
+</select>
+
+<update id="updateComm" parameterType="hashMap">
+UPDATE COMM SET CON=#{comm_con}
+WHERE COMM_NO=#{comm_no}
+
+</update>
 
 </mapper>

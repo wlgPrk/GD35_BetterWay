@@ -30,6 +30,14 @@ function ynPopup(title, contents) {
 		closeYNPopup();
 	});
 	
+	//삭제버튼클릭시
+	$(".btn_yes").off("click");
+	$(".btn_yes").on("click", function(){
+		conDels();
+		console.log("작동");
+		closeYNPopup();
+	});
+	
 
 }
 
