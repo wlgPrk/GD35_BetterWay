@@ -221,6 +221,8 @@ font-weight: bold;
 }
 
 #sub_title{
+    margin-bottom: -16px;
+    margin-top: 15px;
 	font-size: 15pt;
 }
 .con_box{
@@ -255,7 +257,7 @@ th,td{
 #footer{
 	width:100%;
 	height:75px;
-	margin-top : 2900px;
+	margin-top : 3000px;
 	background: #023459;
 }
 
@@ -368,11 +370,16 @@ function drawList(list){
 		 html +=		"<tbody>"
 		
 	   for(var i = 0; i < list.length; i++){
-
+		   console.log(list[i].SUBWAY_STATION_NAME);
+		   console.log(nowSub);
+		   console.log(list[i].SUBLINE_NO);
+		   console.log(count);
+		   
 		   if(nowSub == list[i].SUBLINE_NO) { // 같은 호선
 			   //tr td 그리기
-			   if(count%2 == 0){
-				html += "<tr subway_station_incode = \""+i + "\">"	
+			   //왜 처음거는 안나올까?
+			   if(count % 2 == 0){
+				html += "<tr subway_station_incode = \""+ list[i].SUBWAY_STATION_INCODE + "\">"	
 				html += "<td>" + list[i].SUBWAY_STATION_NAME + "</td>";
 				html += "<td>" + list[i].MAIN_PHONE_NUM + "</td>";
 			   }else if(count % 2 != 0){
@@ -380,8 +387,6 @@ function drawList(list){
 				html += "<td>" + list[i].MAIN_PHONE_NUM + "</td>";
 				html += "</tr>"
 			   }
-			   console.log(list[i].SUBWAY_STATION_NAME);
-			   console.log(count);
 			   count++;
 		   } else { // 다른 호선
 			   // 이전 호선 종료
@@ -389,8 +394,8 @@ function drawList(list){
 				html += "</table>"	
 				html += "</div>"
 				html += "<br/>"
-			   console.log();
-			   nowSub = list[i].SUBLINE_NO;
+			    console.log();
+			    nowSub = list[i].SUBLINE_NO;
 			   
 			   //시작 그리기
 			   	 html += "<div id = \"sub_title\">"+ nowSub +"호선[<strong>"+list[i].CNT+"개역</strong> 운영]</div>" 
@@ -413,6 +418,7 @@ function drawList(list){
 				 html +=		"<tbody>"
 				 
 				 count = 0;
+				 i--;
 		   }
 	   }
 	   // 마지막 호선 종료
