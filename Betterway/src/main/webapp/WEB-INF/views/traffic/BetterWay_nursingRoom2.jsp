@@ -143,7 +143,6 @@ color: #fff;
 	width:75%;
 	height: 645px; /* 임의 지정 */
 }
-
   .box_title{
     position: relative;
  	background-image:url("resources/images/서브타이틀_배경.png");       
@@ -151,7 +150,6 @@ color: #fff;
   height:216px;
 
   }
-
 
 .img_cov{
  backdrop-filter: blur(5px);
@@ -166,9 +164,8 @@ font-size: 20pt;
 background:rgba(52, 75, 22, 0.63);
     color: #fff;
     text-align: right;
-   
-
 }
+
 .img_cov_contxt{
 font-weight: bold;
 background: #1E646E;
@@ -176,8 +173,6 @@ color:#fff;
 width:170px;
 text-align:center;
 border-radius: 15px 15px 15px 15px;
-
-
 }
 
 #box_con_text{
@@ -185,7 +180,6 @@ margin-top: 30px;
 font-weight :bold;
 font-size: 30pt;
 display: inline-block;
-
 }
 
 .line_sel_bar{
@@ -193,18 +187,16 @@ border-bottom:2px solid #E0E0EB;
 margin-top: 50px;
 height:30px;
 }
+
 .line_sel_bar>.scroll:hover{
 text-decoration:underline;
 }
-
-
 
 .scroll {
 text-align:center;
 margin-left: 10px;
 
 }
-
 #side_sub_menu{
 text-align: center;
 font-size: 20pt;
@@ -213,9 +205,9 @@ border-bottom:1px solid #82B2DA;
 height:100px;
 padding-top: 30px;
 }
+
 #side_sub_menu:hover{
 background: #B2A59F;
-
 }
 
 p{
@@ -223,8 +215,9 @@ margin-top: 10px;
 margin-bottom:30px;
 font-weight: bold;
 }
+
 #hr{
-	margin-top :15px;
+	margin-top :17px;
 }
 
 #sub_title{
@@ -236,18 +229,22 @@ font-weight: bold;
 }
 .table_box{
 	width:100%;
+	margin-top: 19px;
 	border-top:2px solid #82b2da;
 }
+
 #con_table{
 	width : 100%;
 	border-collapse:collapse;
 	border-spacing:0px;
 }
+
 thead{
 	display: table-header-group;
 	vertical-align: middle;
 	background-color:#f0f0f5;
 }
+
 th,td{
 	border : 1px solid #e0e0eb;
 	border-collapse: collapse;
@@ -273,10 +270,12 @@ th,td{
     overflow: hidden;
     text-align: center;
 }
+
 .nav{
     overflow: hidden;
 	border-bottom:1px solid #82B2DA;
 }
+
 .btn{
     display: block;
     background-color: #fff;
@@ -288,15 +287,18 @@ th,td{
     padding-top: 30px;
 
 }
+
 .btn:hover{
 background: #B2A59F;
 }
+
 .side_menu_sub_down{
     background: #fff;
     overflow: hidden;
     transition: max-height 0.7s;
     max-height: 0;
 }
+
 .side_menu_sub_down a{
     display: block;
     padding: 15px 20px;
@@ -304,22 +306,23 @@ background: #B2A59F;
     font-size: 16px;
    /* border-bottom: 1px solid #e0e0eb;*/
     position: relative;
-    
 }
+
 .side_menu_sub_down a:after{ 
     content: '';
     opacity: 0;
     transition: opacity 0.3s;
-
 }
 .side_menu_sub_down a:hover{
     background: #B2A59F;
    	transition: all 0.3s;
     border-bottom: 1px solid #c8c8c8;
 }
+
 .side_menu_sub_down a:last-child{
     border:none;
 }
+
 .nav:target .side_menu_sub_down{
     max-height: 16em;
 }
@@ -334,35 +337,87 @@ background: #B2A59F;
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	reloadList();
+		reloadList();
 });
+
 function drawList(list){
 	   var html = "";
+	   var count = 0;
 	   
 	   var nowSub = list[0].SUBLINE_NO;
 	   //시작 그리기 <tbody>까지
 	   //html += "<tr bno=\"" + d.B_NO + "\">";
        //html += "<td>" + d.B_NO + "</td>";
-       //html += "<td>" + d.B_TITLE; 
-	   
-	   
-	   for(var i = 1 ; i < list.length ; i++){
+		 html += "<div id = \"sub_title\">"+ nowSub +"호선[<strong>2개역</strong> 운영]</div>" 
+		 html += "<div class = \"table_box\">"
+		 html +=    "<table id=\"con_table\">"
+		 html +=		"<colgroup>"
+		 html +=			"<col width = \"25%;\">" 
+		 html +=			"<col width = \"25%;\">"
+		 html +=			"<col width = \"25%;\">"
+		 html +=			"<col width = \"25%;\">"
+		 html +=		"</colgroup>"
+		 html +=		"<thead>"
+		 html +=			"<tr>"
+		 html +=				"<th>역명</th>"
+		 html +=				"<th>연락처</th>"
+		 html +=				"<th>역명</th>"
+		 html +=				"<th>연락처</th>"
+		 html +=			"</tr>"					
+		 html +=		"</thead>"
+		 html +=		"<tbody>"
+		
+	   for(var i = 0; i < list.length; i++){
+
 		   if(nowSub == list[i].SUBLINE_NO) { // 같은 호선
 			   //tr td 그리기
-			   
+			   if(count%2 == 0){
+				html += "<tr subway_station_incode = \""+i + "\">"	
+				html += "<td>" + list[i].SUBWAY_STATION_NAME + "</td>";
+				html += "<td>" + list[i].MAIN_PHONE_NUM + "</td>";
+			   }else if(count%2 != 0){
+				html += "<td>" + list[i].SUBWAY_STATION_NAME + "</td>";
+				html += "<td>" + list[i].MAIN_PHONE_NUM + "</td>";
+				html += "</tr>"
+			   }
+			   console.log(list[i].SUBWAY_STATION_NAME);
+			   console.log(count);
+			   count++;
 		   } else { // 다른 호선
 			   // 이전 호선 종료
-			   
+			    html += "</tbody>"
+				html += "</table>"	
+				html += "</div>"
+				html += "<br/>"
+			   console.log();
 			   nowSub = list[i].SUBLINE_NO;
-			   //시작 그리기
 			   
+			   //시작 그리기
+			   	 html += "<div id = \"sub_title\">"+ nowSub +"호선[<strong>"+list[i].CNT+"개역</strong> 운영]</div>" 
+				 html += "<div class = \"table_box\">"
+				 html +=    "<table id=\"con_table\">"
+				 html +=		"<colgroup>"
+				 html +=			"<col width = \"25%;\">" 
+				 html +=			"<col width = \"25%;\">"
+				 html +=			"<col width = \"25%;\">"
+				 html +=			"<col width = \"25%;\">"
+				 html +=		"</colgroup>"
+				 html +=		"<thead>"
+				 html +=			"<tr>"
+				 html +=				"<th>역명</th>"
+				 html +=				"<th>연락처</th>"
+				 html +=				"<th>역명</th>"
+				 html +=				"<th>연락처</th>"
+				 html +=			"</tr>"					
+				 html +=		"</thead>"
+				 html +=		"<tbody>"
+				 
+				 count = 0;
 		   }
 	   }
-	   
 	   // 마지막 호선 종료
 	   
-	   $(".table_box tbody").html(html);
+	   $(".table_box").html(html);
 	}
 	
 function reloadList(){
@@ -374,7 +429,8 @@ function reloadList(){
          dataType :"json", 
          data : params,
          success : function(res){
-             drawList(res.list); 
+             drawList(res.list);
+             console.log("success");
          },
          error : function(request,status,error){
             console.log(error);
@@ -464,535 +520,8 @@ function reloadList(){
 			<hr id = "hr"/>
 			<p>수유실에는 유아용침대, 소파, 기저귀교환대, 전자렌지 등 유아수유에 필요한 각종 비품이 구비되어 있습니다.</p>
 			<br/>
-				
-			<div id = "sub_title">1호선[<strong>2개역</strong> 운영]</div>
-			<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> <!-- 이렇게 주려면 이 테이블의 width도 지정해줘야함 -->
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>					
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>				
-				</table>
-			</div><br/>
-			
-			<div id = "sub_title">2호선[<strong>11개역</strong> 운영]</div>
-			<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>					
-					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>				
-				</table>
-			</div><br/>
-	
-			<div id = "sub_title">3호선[<strong>6개역</strong> 운영]</div>
-			<div class = "table_box">
-			<table id="con_table" >
-				<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-				<thead>
-					<tr>
-						<th>역명</th>
-						<th>연락처</th>
-						<th>역명</th>
-						<th>연락처</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-			</div><br/>
-			
-			<div id = "sub_title">4호선[<strong>7개역</strong>운영]</div>
-				<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>노원역</td>
-							<td>6110-4111</td>
-							<td>미아사거리역</td>
-							<td>6110-4161</td>
-						</tr>
-						<tr>
-							<td>길음역</td>
-							<td>6110-4171</td>
-							<td>동대문역사문화공원역</td>
-							<td>6110-4221</td>
-						</tr>
-						<tr>
-							<td>서울역</td>
-							<td>6110-4261</td>
-							<td>이촌역</td>
-							<td>6110-4301</td>
-						</tr>
-						<tr>
-							<td>사당역</td>
-							<td>6110-4331</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-				</div><br/>
-				
-			<div id = "sub_title">5호선[<strong>27개역</strong>운영]</div>
-				<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>김포공항역</td>
-							<td>6311-5121</td>
-							<td>우장산역</td>
-							<td>6311-5161</td>
-						</tr>
-						<tr>
-							<td>까치산역</td>
-							<td>6311-5181</td>
-							<td>목동역</td>
-							<td>6311-5201</td>
-						</tr>
-						<tr>
-							<td>영등포구청역</td>
-							<td>6311-5231</td>
-							<td>신길역</td>
-							<td>6311-5251</td>
-						</tr>
-						<tr>
-							<td>여의도역</td>
-							<td>6311-5261</td>
-							<td>여의나루역</td>
-							<td>6311-5271</td>
-						</tr>
-						<tr>
-							<td>공덕역</td>
-							<td>6311-5291</td>
-							<td>충정로역</td>
-							<td>6311-5311</td>
-						</tr>
-						<tr>
-							<td>광화문역</td>
-							<td>6311-5331</td>
-							<td>동대문역사문화공원역</td>
-							<td>6311-5361</td>
-						</tr>
-						<tr>
-							<td>청구역</td>
-							<td>6311-5371</td>
-							<td>왕십리역</td>
-							<td>6311-5401</td>
-						</tr>
-						<tr>
-							<td>답십리역</td>
-							<td>6311-5421</td>
-							<td>군자역</td>
-							<td>6311-5441</td>
-						</tr>
-						<tr>
-							<td>아차산역</td>
-							<td>6311-5451</td>
-							<td>천호역</td>
-							<td>6311-5471</td>
-						</tr>
-						<tr>
-							<td>강동역</td>
-							<td>6311-5481</td>
-							<td>고덕역</td>
-							<td>6311-5521</td>
-						</tr>
-						<tr>
-							<td>올림픽공원역</td>
-							<td>6311-5551</td>
-							<td>거여역역</td>
-							<td>6311-5591</td>
-						</tr>
-						<tr>
-							<td>강일역</td>
-							<td>6311-5611</td>
-							<td>미사역</td>
-							<td>6311-5621</td>
-						</tr>
-						<tr>
-							<td>하남풍산역</td>
-							<td>6311-5631</td>
-							<td>하남시청역</td>
-							<td>6311-5641</td>
-						</tr>
-						<tr>
-							<td>하남검단산역</td>
-							<td>6311-5651</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-				</div><br/>
-				
-			<div id = "sub_title">6호선[<strong>11개역</strong>운영]</div>
-				<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>응암역</td>
-							<td>6311-6101</td>
-							<td>불광역</td>
-							<td>6311-6121</td>
-						</tr>
-						<tr>
-							<td>월드컵경기장역</td>
-							<td>6311-6191</td>
-							<td>합정역</td>
-							<td>6311-6221</td>
-						</tr>
-						<tr>
-							<td>대흥역</td>
-							<td>6311-6251</td>
-							<td>삼각지역</td>
-							<td>6331-6281</td>
-						</tr>
-						<tr>
-							<td>이태원역</td>
-							<td>6311-6301</td>
-							<td>약수역</td>
-							<td>6311-6331</td>
-						</tr>
-						<tr>
-							<td>상월곡역</td>
-							<td>6311-6421</td>
-							<td>동묘앞역</td>
-							<td>6311-6361</td>
-						</tr>
-						<tr>
-							<td>안암역</td>
-							<td>6311-6391</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table><br/>
-				
-			<div id = "sub_title">7호선[<strong>23개역</strong>운영]</div>
-				<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>수락산역</td>
-							<td>6311-7111</td>
-							<td>노원역</td>
-							<td>6311-7131</td>
-						</tr>
-						<tr>
-							<td>하계역</td>
-							<td>6311-7151</td>
-							<td>태릉입구역</td>
-							<td>6311-7171</td>
-						</tr>
-						<tr>
-							<td>상봉역</td>
-							<td>6311-7201</td>
-							<td>부평구청역</td>
-							<td>6311-7591</td>
-						</tr>
-						<tr>
-							<td>어린이대공원역</td>
-							<td>6311-7261</td>
-							<td>뚝섬유원지역</td>
-							<td>6311-7281</td>
-						</tr>
-						<tr>
-							<td>논현역</td>
-							<td>6311-7321</td>
-							<td>고속터미널역</td>
-							<td>6311-7341</td>
-						</tr>
-						<tr>
-							<td>이수역</td>
-							<td>6311-7361</td>
-							<td>대림역</td>
-							<td>6311-7441</td>
-						</tr>
-						<tr>
-							<td>가산디지털단지역</td>
-							<td>6311-7461</td>
-							<td>광명사거리역</td>
-							<td>6311-7481</td>
-						</tr>
-						<tr>
-							<td>온수역</td>
-							<td>6311-7501</td>
-							<td>까치울역</td>
-							<td>6311-7511</td>
-						</tr>
-						<tr>
-							<td>부천종합운동장역</td>
-							<td>6311-7521</td>
-							<td>춘의역</td>
-							<td>6311-7531</td>
-						</tr>
-						<tr>
-							<td>신중동역</td>
-							<td>6311-7541</td>
-							<td>부천시청역</td>
-							<td>6311-7551</td>
-						</tr>
-						<tr>
-							<td>상동역</td>
-							<td>6311-7561</td>
-							<td>삼산체육관역</td>
-							<td>6311-7571</td>
-						</tr>
-						<tr>
-							<td>굴포천역</td>
-							<td>6311-7581</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-				</div><br/>
-				
-			<div id = "sub_title">8호선[<strong>6개역</strong>운영]</div>
-				<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>모란역</td>
-							<td>6311-8261</td>
-							<td>몽촌토성역</td>
-							<td>6311-8131</td>
-						</tr>
-						<tr>
-							<td>잠실역</td>
-							<td>6311-8141</td>
-							<td>가락시장역</td>
-							<td>6311-8171</td>
-						</tr>
-						<tr>
-							<td>장지역</td>
-							<td>6311-8191</td>
-							<td>남한산성입구역</td>
-							<td>6331-8221</td>
-						</tr>
-					</tbody>
-				</table>
-				</div><br/>
-				
-			<div id = "sub_title">9호선 2·3단계[<strong>12개역</strong>운영]</div>
-				<div class = "table_box">
-				<table id="con_table">
-					<colgroup>
-						<col width = "25%;"> 
-						<col width = "25%;">
-						<col width = "25%;">
-						<col width = "25%;">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>역명</th>
-							<th>연락처</th>
-							<th>역명</th>
-							<th>연락처</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>언주역</td>
-							<td>2656-0926</td>
-							<td>석촌역</td>
-							<td>2656-0933</td>
-						</tr>
-						<tr>
-							<td>삼성중앙역</td>
-							<td>2656-0928</td>
-							<td>송파나루역</td>
-							<td>2656-0934</td>
-						</tr>
-						<tr>
-							<td>봉은사역</td>
-							<td>2656-0929</td>
-							<td>한성백제역</td>
-							<td>2656-0935</td>
-						</tr>
-						<tr>
-							<td>종합운동장역</td>
-							<td>2656-0930</td>
-							<td>올림픽공원역</td>
-							<td>2656-0936</td>
-						</tr>
-						<tr>
-							<td>삼전역</td>
-							<td>2656-0931</td>
-							<td>둔촌오륜역</td>
-							<td>2656-0937</td>
-						</tr>
-						<tr>
-							<td>석촌고분역</td>
-							<td>2656-0932</td>
-							<td>중앙보훈병원역</td>
-							<td>2656-0938</td>
-						</tr>
-					</tbody>
-				</table>
-				</div><br/>
-				</div>
-				</div>
+				<div class = "table_box"></div>	
+			</div>
 		</div>	
 	   </div>
   </article>
