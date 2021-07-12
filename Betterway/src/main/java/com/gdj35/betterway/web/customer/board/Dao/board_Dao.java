@@ -102,6 +102,29 @@ public class board_Dao implements Iboard_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.update("customer.updateComm", params);
 	}
+
+	@Override
+	public int deleteComm(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("customer.deleteComm",params);
+	}
+
+	@Override
+	public int updatePush(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("customer.updatePush",params);
+	}
+
+	@Override
+	public HashMap<String, String> getPush(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("customer.getPush",params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getNoticeList() throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("customer.getNoticeList");
+	}
 	
 	
 

@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popup.css?after" />
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popupPw.css?after" />
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popupCommPw.css?after" />
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popupCommPwDel.css?after" />
 
 
 
@@ -339,7 +340,7 @@ margin-left: 10px;
 /*목록버튼 */
 .list_btn{
 position:absolute;
-left:600px;
+left:800px;
 background-color:#e0e0eb;
 font-size: 20px;
 margin-right:10px;
@@ -354,7 +355,7 @@ box-shadow: 1px 2px 3px grey;
 /*삭제버튼 */
 .del_btn{
 position:absolute;
-left:800px;
+left:700px;
 background-color:#e0e0eb;
 font-size: 20px;
 margin-right:10px;
@@ -367,7 +368,7 @@ box-shadow: 1px 2px 3px grey;
 /*수정버튼*/
 .update_btn{
 position:absolute;
-left:700px;
+left:600px;
 background-color:#82b2da;
 font-size: 20px;
 width :80px;
@@ -391,21 +392,13 @@ height:80px;
 }
 
 
-/*댓글 라인*/
-.comm_table tr:nth-child(1) td{
-border-top: 1px solid #e0e0eb;
 
-}
 /*댓글 라인*/
 .comm_table td{
-border-bottom: 1px solid #e0e0eb;
-border-right: 1px solid #e0e0eb;
-}
-/*댓글 라인*/
-.comm_table tr td:nth-child(1){
+border: 1px solid #e0e0eb;
 
-border-left: 1px solid #e0e0eb;
 }
+
 
 /*댓글내용 왼쪽정렬*/
 .comm_table tr td:nth-child(2){
@@ -553,6 +546,11 @@ font-size: 20px;
 
 }
 
+/*추천버튼 커서*/
+.comm_push span:nth-child(3){
+cursor:pointer;
+}
+
 
 </style>
 
@@ -564,6 +562,8 @@ font-size: 20px;
 		src="resources/script/popup/popupPw.js?after"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popupCommPw.js?after"></script>
+		<script type="text/javascript" 
+		src="resources/script/popup/popupCommPwDel.js?after"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popupYN.js?after"></script>
 <script type="text/javascript" 
@@ -702,6 +702,29 @@ $(document).ready(function(){
 		commModifys();
 	});
 	
+	//삭제버튼클릭시 비밀번호체크
+	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(3)",function(){
+		$("#comm_no").val($(this).attr("comm_no"));
+		
+		commPwDelPopup("비밀번호를 입력하시오" ,"","닫기");
+		
+	});
+	
+	
+	//추천버튼클릭시 추천증가
+	$(".comm_push").on("click","span:nth-child(3)",function(){
+		pushUpdates();
+	});
+	
+	//작성자가 관리자일시 수정,삭제 숨김
+	if("${data.POST_TYPE_CODE}" =="0" || "${data.POST_TYPE_CODE}" =="2"){
+		console.log("${data.POST_TYPE_CODE}");
+		var html ="<input type=\"button\" value=\"목록\" class=\"list_btn\">";
+		$(".btn_box").html(html);
+	}
+	
+	
+	
 }); // document end
 
 
@@ -719,6 +742,7 @@ function reloadList(){
 		success: function(res) { 
 			drawList(res.list);
 			commCnt(res.commCnt);
+			
 		},
 		error: function(request, status, error) {
 			console.log(error);
@@ -730,11 +754,11 @@ function reloadList(){
 //댓글수 보이기
 function commCnt(cnt){
 	var html="";
-	html ="댓글"+ cnt +""
+	html ="댓글 "+ cnt +""
 	
 	$(".sug_tit_sub span:nth-child(2)").html(html);
-	$(".comm_push span").html(html);
-}
+	$(".comm_push span:nth-child(2)").html(html);
+};
 
 
 
@@ -946,7 +970,7 @@ function commModify(data){
 	
 	
 }; //commModify end
-//work
+
 //댓글수정완료
 function commModifys(){
 	var params = $("#reviewForm").serialize();
@@ -966,9 +990,51 @@ function commModifys(){
 			console.log(error);
 		}
 	});//ajax end
-}//reload List end
+}//commModifys end
 
 
+//댓글삭제완료
+function commDels(){
+	var params = $("#reviewForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_commDels", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			drawList(res.list);
+			commCnt(res.commCnt);
+
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//commModifys end
+
+
+function pushUpdates(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_pushUpdates", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			
+		html="추천"+res.pushCount.PUSH_COUNT;
+		$(".sug_tit_sub span:first").html(html);
+		makePopup("알림","추천되었습니다.")
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//commModifys end
 
 
 </script>
@@ -1056,7 +1122,7 @@ function commModifys(){
  		<div class="sug_tit_box">
  		<div class="sug_tit_writer">
  		작성자</div>${data.USER_ID}
- 		<div class="sug_tit_sub">조회${data.INQ_COUNT} <span>추천${data.PUSH_COUNT}</span> <span>댓글2</span></div>
+ 		<div class="sug_tit_sub">조회 ${data.INQ_COUNT} <span>추천 ${data.PUSH_COUNT}</span> <span>댓글2</span></div>
  		</div>
  		
  		<div class="sug_con_box">
@@ -1066,15 +1132,15 @@ function commModifys(){
  		</div>
  		
  		<div class="comm_push">
- 		<div class="comm_img"></div><span>댓글</span> <div class="push_img"></div>추천하기
+ 		<div class="comm_img"></div><span>댓글</span>  <span><div class="push_img"></div>추천하기</span>
  		 		
- 	<div class="btn_box">
+ 	<span class="btn_box">
 
 	
  			<input type="button" value="목록" class="list_btn">
  			<input type="button" value="수정" class="update_btn">
  			<input type="button" value="삭제" class="del_btn">
-</div>
+</span>
  		</div>
  	<table class="comm_table" cellspacing="0">
 
@@ -1131,6 +1197,6 @@ function commModifys(){
  </article>
 </section>
 
-<div class="footer"></div>
+
 </body>
 </html>

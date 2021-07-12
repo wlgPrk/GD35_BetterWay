@@ -529,6 +529,7 @@ function reloadList(){
 		success: function(res) { 
 			drawList(res.list);
 			drawPaging(res.pb);
+			drawNotice(res.data);
 		},
 		error: function(request, status, error) {
 			console.log(error);
@@ -542,18 +543,14 @@ function drawList(list){
 	for(var d of list){       
 		
 		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
-		
-if(d.POST_TYPE_CODE =="0"){
-	html+=	"<td><img alt=\"공지\" src=\"resources/images/notice.png\" class=\"img\"></td>           "   ;
-		}else{
-			html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
-		}
+		html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
 if(d.REQ_NO !=0){
 	html+=	"<td>↳ re: " +d.TITLE + "</td>   "   ;
+	html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
 	}else{
 	html+=	"<td>" +d.TITLE + "</td>   "   ;
-	}
 	html+=	"<td>" +d.USER_ID + "</td>             "   ;
+	}
 	html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
 	html+=	"<td>" +d.INQ_COUNT + "</td>               "   ;
 	html+=	"<td>" +d.PUSH_COUNT + "</td>                "   ;
@@ -564,6 +561,23 @@ if(d.REQ_NO !=0){
 	}
 	
 }//drawlist end
+
+
+function drawNotice(data){
+	var html="";
+	for(var d of data){
+	html += "<tr sug_no=\"" + d.SUG_NO + "\">";
+	html+=	"<td><img alt=\"공지\" src=\"resources/images/notice.png\" class=\"img\"></td>";
+	html+=	"<td>" +d.TITLE + "</td>   "   ;
+	html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
+	html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
+	html+=	"<td>" +d.INQ_COUNT + "</td>               "   ;
+	html+=	"<td>" +d.PUSH_COUNT + "</td>                "   ;
+	html+=	"</tr>                     "   ;
+	}
+	$("tbody").prepend(html);
+	
+}
 
 //페이징그리기
 function drawPaging(pb){
@@ -680,7 +694,7 @@ function drawPaging(pb){
 		<col width="80px"/>
 		<col width="700px"/>
 		<col width="80px"/>
-		<col width="80px"/>
+		<col width="90px"/>
 		<col width="80px"/>
 		<col width="80px"/>
 </colgroup>

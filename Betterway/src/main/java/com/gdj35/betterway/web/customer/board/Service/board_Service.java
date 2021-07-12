@@ -104,6 +104,31 @@ public class board_Service implements Iboard_Service {
 		return iboard_dao.updateComm(params);
 	}
 
+	@Override
+	public int deleteComm(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.deleteComm(params);
+	}
+
+	@Override
+	public int updatePush(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.updatePush(params);
+	}
+
+	@Override
+	public HashMap<String, String> getPush(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.getPush(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getNoticeList() throws Throwable {
+		// TODO Auto-generated method stub
+		return iboard_dao.getNoticeList();
+	}
+
+
 
 
 
