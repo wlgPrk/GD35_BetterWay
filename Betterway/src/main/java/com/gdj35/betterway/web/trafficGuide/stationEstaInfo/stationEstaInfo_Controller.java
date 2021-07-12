@@ -151,8 +151,6 @@ public class stationEstaInfo_Controller {
 		return mav;
 	}
 	
-	
-	
 	@RequestMapping(value="/BetterWay_esta_main")
 	public ModelAndView BetterWay_esta_main(
 			
@@ -162,6 +160,7 @@ public class stationEstaInfo_Controller {
 		
 		return mav;
 	}
+	
 	@RequestMapping(value = "/esta_mains", 
 			method = RequestMethod.POST, 
 			produces = "text/json;charset=UTF-8")
@@ -173,17 +172,10 @@ public class stationEstaInfo_Controller {
 		
 		List<HashMap<String, String>> list
 		= iEstaService.EstaList(params);
-		
-		
-		
-		 modelMap.put("list", list);
+
+		modelMap.put("list", list);
 		 return mapper.writeValueAsString(modelMap);
-	
-	
 	}
-	
-	
-	
 	
 	@RequestMapping(value="/BetterWay_esta_out")
 	public ModelAndView BetterWay_esta_out(ModelAndView mav) {

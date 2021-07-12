@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자전거보관함 상세보기</title>
+<title>연단간격 상세보기</title>
 <style type="text/css">
 #main{
 	background-color: white;
@@ -15,7 +15,7 @@
     font-size: 15pt;
 }
 #main_btn{
-	margin-left: 300px;
+	margin-left: 218px;
     margin-bottom: 3px;
 }
 #main_btn > input{
@@ -35,27 +35,27 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#listBtn").on("click",function(){
-		$("#goForm").attr("action", "BetterWay_cycleAdmin");
+		$("#goForm").attr("action", "BetterWay_wheelchairAdmin");
 	    $("#goForm").submit();
 	});
 
-	//$("#updateBtn").on("click",function(){
-	//	$("#goForm").attr("action", "BetterWay_cycleAdmin_Update");
-	//	$("#goForm").submit();
-	//});
+	$("#updateBtn").on("click",function(){
+		$("#goForm").attr("action", "BetterWay_wheelchairAdmin_Update");
+		$("#goForm").submit();
+	});
 	
 	   $("#deleteBtn").on("click", function(){
 		      if(confirm("삭제하시겠습니까?")){
 		    	  var params = $("#goForm").serialize();
 					
 					 $.ajax({
-				         url : "BetterWay_cycleAdmin_Deletes",
+				         url : "BetterWay_wheelchairAdmin_Deletes",
 				         type : "post",  
 				         dataType :"json", 
 				         data : params,
 				         success : function(res){
 							if(res.msg == "success"){
-								location.href = "BetterWay_cycleAdmin";
+								location.href = "BetterWay_wheelchairAdmin";
 							}else if(res.msg =="failed"){
 								alert("작성에 실패하였습니다.");
 							}else{
@@ -73,17 +73,20 @@ $(document).ready(function(){
 </head>
 <body>
 <form action="#" id="goForm" method="post">
-	<input type="hidden" id="subway_station_incode" name="subway_station_incode" value="${data.SUBWAY_STATION_INCODE}"/>
+	<input type="hidden" id="nrwp_spacing_no" name="nrwp_spacing_no" value="${data.NRWP_SPACING_NO}"/>
 </form>
 <div id="main">
-<b>호선번호 :</b> ${data.SUBLINE_NO}<br/>
+<b>좁은연단간격번호 :</b> ${data.NRWP_SPACING_NO}<br/>
 <b>지하철역코드 :</b> ${data.SUBWAY_STATION_INCODE}<br/>
 <b>역이름 :</b> ${data.SUBWAY_STATION_NAME}<br/>
+<b>방면:</b> ${data.DIRECTION}<br/>
+<b>승강장번호 :</b> ${data.PLATFORM_NO}<br/>
 	<div id="main_btn">
-		<!--<input type="button" value="수정" id="updateBtn"/> -->
+		<input type="button" value="수정" id="updateBtn"/>
 		<input type="button" value="삭제" id="deleteBtn"/>
 		<input type="button" value="목록으로" id="listBtn"/>
 	</div>
 </div>
+
 </body>
 </html>

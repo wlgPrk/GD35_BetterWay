@@ -10,6 +10,7 @@
 	AND ADMIN_PW=#{pw}
 	</select>
 
+	<!-- 행복지대 -->
 	<select id="getHDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT H.HAPPY_NO, H.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, H.LOCATION, 
 	H.AREA, H.OPERATING_AGENCY, H.PHONE_NUM, H.DEL_STATUS 
@@ -36,7 +37,29 @@
 	UPDATE HAPPY SET DEL_STATUS = 0 
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
-
+	<!-- 행복지대 끝 -->
+	
+	<!-- 수유실 시작 -->
+	<select id="getnursingRoomDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT ST.SUBWAY_STATION_INCODE,ST.SUBWAY_STATION_NAME, ST.MAIN_PHONE_NUM, ST.SUBLINE_NO, ES.NURSINGROOM_EXIST
+	FROM SUBWAY_STATION ST RIGHT OUTER JOIN SUBWAY_STATION_ESTA ES
+                        ON ST.SUBWAY_STATION_INCODE = ES.SUBWAY_STATION_INCODE
+	WHERE ES.NURSINGROOM_EXIST = 1 AND ST.SUBWAY_STATION_INCODE = #{subway_station_incode}
+	ORDER BY SUBLINE_NO ASC
+	</select>
+	
+	<update id="addnursingRoomT" parameterType="hashmap">
+	UPDATE SUBWAY_STATION_ESTA SET NURSINGROOM_EXIST = 1
+	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+	</update>
+	
+	<update id="deletenursingRoomT" parameterType="hashmap">
+	UPDATE SUBWAY_STATION_ESTA SET NURSINGROOM_EXIST = 0
+	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+	</update>
+	<!-- 수유실 끝 -->
+	
+	<!-- 자전거보관함 시작 -->
 	<select id="getCDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT ST.SUBWAY_STATION_INCODE,ST.SUBLINE_NO, ST.SUBWAY_STATION_NAME,ES.CYCLE_EXIST
 	FROM SUBWAY_STATION ST INNER JOIN SUBWAY_STATION_ESTA ES
@@ -44,6 +67,44 @@
 	WHERE ES.CYCLE_EXIST = 1 AND ST.SUBWAY_STATION_INCODE = #{subway_station_incode}
 	ORDER BY SUBWAY_STATION_INCODE ASC
 	</select>
+	
+	<update id="addcycleT" parameterType="hashmap">
+	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 1
+	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+	</update>
+	
+	<update id="deletecycleT" parameterType="hashmap">
+	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 0
+	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+	</update>
+	<!-- 자전거보관함 끝 -->
+	
+	<!-- 연단간격 시작 -->
+	<select id="getwheelchairDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT NR.NRWP_SPACING_NO, NR.SUBWAY_STATION_INCODE,NR.DIRECTION,NR.PLATFORM_NO, ST.SUBWAY_STATION_NAME
+	FROM NRWP_SPACING NR INNER JOIN SUBWAY_STATION ST
+                     ON NR.SUBWAY_STATION_INCODE = ST.SUBWAY_STATION_INCODE
+	WHERE NRWP_SPACING_NO = #{nrwp_spacing_no}
+	ORDER BY NRWP_SPACING_NO ASC
+	</select>
+	
+	<insert id="addwheelchairT" parameterType="hashmap">
+	INSERT INTO NRWP_SPACING(NRWP_SPACING_NO, SUBWAY_STATION_INCODE, ADMIN_NO,
+                         DIRECTION, PLATFORM_NO)
+	VALUES(NRWP_SEQ.NEXTVAL, #{subway_station_incode}, 2, #{direction}, #{platform_no})
+	</insert>
+	
+	<update id="updatewheelchairT" parameterType="hashmap">
+	UPDATE NRWP_SPACING SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
+	DIRECTION= #{direction} ,PLATFORM_NO = #{platform_no}
+	WHERE NRWP_SPACING_NO = #{nrwp_spacing_no}
+	</update>
+	
+	<delete id="deletewheelchairT" parameterType="hashmap">
+	DELETE FROM  NRWP_SPACING
+	WHERE NRWP_SPACING_NO = #{nrwp_spacing_no}
+	</delete>
+	<!-- 연단간격 끝 -->
 
 	<select id="getcoolingDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT WEAK_COOLING_CAR_NO,SUBLINE_NO,CAR_NO
@@ -52,10 +113,8 @@
 	</select>
 	
 	<insert id="addcooling" parameterType="hashmap">
-	
 	INSERT INTO WEAK_COOLING_CAR
 	VALUES(COOLING_SEQ.NEXTVAL,#{subline_no},4,#{car_no})
-
 	</insert>
 	
 	<select id="guideList" parameterType="hashmap" resultType="hashmap">
@@ -77,7 +136,11 @@
 	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
 	</select>
 	
-
+	<!-- 냉방 업데이트 -->
+	<update id="updateS" parameterType="hashmap">
+	UPDATE WEAK_COOLING_CAR SET CAR_NO = #{car_no}
+  	WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no}
+	</update>
 	
 	<!-- 냉방 삭제 -->
 	<delete id="deletecooling" parameterType="hashmap">
@@ -85,16 +148,7 @@
 	WHERE WEAK_COOLING_CAR_NO=#{weak_cooling_car_no}
 	</delete>
 	
-	<!-- 냉방 업데이트 -->
-	<update id="updateS" parameterType="hashmap">
-	    UPDATE WEAK_COOLING_CAR SET CAR_NO =#{car_no}
-  	 WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no};
-	</update>	
-
-	
-	
 	<!-- 운임 등록 -->
-	
 	<insert id="addguide" parameterType="hashmap">
 	INSERT INTO CHARGE_GUIDE
 	VALUES(CHARGE_SEQ.NEXTVAL,#{category},#{traffic_card},#{d_traffic_card},4)

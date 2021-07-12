@@ -38,7 +38,59 @@ public class Admin_Dao implements IAdmin_Dao{
 	public int deleteHT(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.deleteHT", params);
 	}
+	//행복지대 끝
+	
+	//수유실 시작
+	@Override
+	public HashMap<String, String> getnursingRoomDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getnursingRoomDetail",params);
+	}
+	
+	@Override
+	public int addnursingRoomT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.addnursingRoomT",params);
+	}
+	
+	@Override
+	public int deletenursingRoomT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.deletenursingRoomT",params);
+	}
+	//수유실 끝
+	
+	//자전거보관함 시작
+	@Override
+	public int addcycleT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.addcycleT",params);
+	}
+
+	@Override
+	public int deletecycleT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.deletecycleT",params);
+	}
+	//자전거보관함 끝
+
+	//연단간격 시작
+	@Override
+	public HashMap<String, String> getwheelchairDetail(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectOne("admin.getwheelchairDetail",params);
+	}
 		
+	@Override
+	public int addwheelchairT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.insert("admin.addwheelchairT",params);
+	}
+	
+	@Override
+	public int updatewheelchairT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.update("admin.updatewheelchairT",params);
+	}
+	
+	@Override
+	public int deletewheelchairT(HashMap<String, String> params) throws Throwable {
+		return sqlSession.delete("admin.deletewheelchairT",params);
+	}
+	//연단간격 끝
+	
 	@Override
 	public HashMap<String, String> getcoolingDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getcoolingDetail",params);
@@ -74,7 +126,6 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.update("admin.updateS",params);
 	}
 
-
 	@Override
 	public HashMap<String, String> getCDetail(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectOne("admin.getCDetail", params);
@@ -94,8 +145,4 @@ public class Admin_Dao implements IAdmin_Dao{
 	public int updateG(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.updateG",params);
 	}
-	
-	
-
-
 }

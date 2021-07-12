@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>연단간격 관리자</title>
+<title>수유실 관리자</title>
 <style type="text/css">
 body{
 	width:1440px;
@@ -44,7 +44,7 @@ body{
 	margin-left: 120px;
 	margin-top: 15px;
 }
-#right_sub input:nth-child(4){
+#right_sub input:nth-child(2){
 	background-color: #82b2da;
 }
 #right_sub > input{
@@ -57,6 +57,15 @@ body{
 	height:15%;
 	width:100%;
 	margin-left: 900px;
+}
+#writeBtn{
+	font-size: 15pt;
+	border: none;
+	border-radius: 5pt;	
+	background-color: #82b2da;
+	margin-left: -132px;
+	margin-top:10px;
+	padding: 10px;
 }
 #right_sub3{
 	height: 55%;
@@ -77,15 +86,6 @@ th,tr,td{
 th{
 	background-color: #e0e0eb;
 }
-#writeBtn{
-	font-size: 15pt;
-	border: none;
-	border-radius: 5pt;	
-	background-color: #82b2da;
-	margin-left: 5px;
-	margin-top:10px;
-	padding: 10px;
-}
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
@@ -94,7 +94,6 @@ th{
 $(document).ready(function(){
 	
 	reloadList();
-	
 	//상단 버튼 페이지이동
 	$("#happyAdmin").on("click",function(){
 		$("#actionForm").attr("action","BetterWay_happyAdmin");
@@ -116,15 +115,16 @@ $(document).ready(function(){
 		$("#actionForm").submit();
 	});
 	//-----------------------------------------------------------------
+	
 	$("#writeBtn").on("click",function(){
-		$("#actionForm").attr("action","BetterWay_wheelchairAdmin_Write");
+		$("#actionForm").attr("action","BetterWay_nursingRoomAdmin_Write");
 		$("#actionForm").submit();
 	});
 	
 	$(".list_wrap tbody").on("click","tr",function(){
-		$("#nrwp_spacing_no").val($(this).attr("nrwp_spacing_no"));
+		$("#subway_station_incode").val($(this).attr("subway_station_incode"));
 		
-		$("#actionForm").attr("action","BetterWay_wheelchairAdmin_Detail");
+		$("#actionForm").attr("action","BetterWay_nursingRoomAdmin_Detail");
 		$("#actionForm").submit();
 	});
 });
@@ -132,12 +132,10 @@ function drawList(list){
 	   var html = "";
 	   
 	   for(var d of list){
-		  html += "<tr nrwp_spacing_no = \""+ d.NRWP_SPACING_NO +"\">";
-	      html += "<td>" + d.NRWP_SPACING_NO + "</td>";
+		  html += "<tr subway_station_incode =\"" + d.SUBWAY_STATION_INCODE +"\">";
 	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
-	      html += "<td>" + d.DIRECTION + "</td>";
-	      html += "<td>" + d.PLATFORM_NO + "</td>";
+	      html += "<td>" + d.MAIN_PHONE_NUM + "</td>";
 	      html += "</tr>";
 	   }
 	   
@@ -148,7 +146,7 @@ function reloadList(){
 	var params = $("#actionForm").serialize();
 	
 	 $.ajax({
-         url : "wheelchair_List",//stationEstaInfo컨트롤러에 있음
+         url : "nursingRoom_List", //stationEstaInfo컨트롤러에 있음
          type : "post",  
          dataType :"json", 
          data : params,
@@ -160,6 +158,7 @@ function reloadList(){
          }
       });
 }
+
 </script>
 </head>
 <body>
@@ -183,36 +182,30 @@ function reloadList(){
 		</div>
 		<div id ="right_sub2">
 			<form action="#" id="actionForm" method="post">
-				<input type="hidden" id="nrwp_spacing_no" name="nrwp_spacing_no"/>
-				<input type="button" id="writeBtn" value="행추가" />
+				<input type="hidden" id="subway_station_incode" name="subway_station_incode"/> 
+				<input type="button" id="writeBtn"  value="행추가" />
 			</form>
 		</div>
 		<div class ="list_wrap">
 			<table>
 				<colgroup>
-					<col width="15%">
-					<col width="15%">
-					<col width="30%">
-					<col width="20%">
-					<col width="20%">
+					<col width="150px">
+					<col width="300px">
+					<col width="300px">
 				</colgroup>
 				<thead>
 					<tr>
-						<th>좁은연단간격번호</th>
 						<th>지하철역코드</th>
 						<th>역이름</th>
-						<th>방면</th>
-						<th>승강장번호</th>
+						<th>전화번호</th>
 					</tr>
 				</thead>
 					
 				<tbody>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
 					</tr>
 				</tbody>				
 			</table>
