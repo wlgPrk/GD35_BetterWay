@@ -377,7 +377,6 @@ function drawList(list){
 		   
 		   if(nowSub == list[i].SUBLINE_NO) { // 같은 호선
 			   //tr td 그리기
-			   //왜 처음거는 안나올까?
 			   if(count % 2 == 0){
 				html += "<tr subway_station_incode = \""+ list[i].SUBWAY_STATION_INCODE + "\">"	
 				html += "<td>" + list[i].SUBWAY_STATION_NAME + "</td>";
@@ -430,7 +429,7 @@ function reloadList(){
 	var params = $("#actionForm").serialize();
 	
 	 $.ajax({
-         url : "nursingRoom_List",
+         url : "nursingRoom_List", //stationEstaInfo 컨트롤러에 있음
          type : "post",  
          dataType :"json", 
          data : params,
