@@ -8,4 +8,6 @@ public interface IMainService {
 	public List<HashMap<String, String>> SubwayList(HashMap<String, String> params) 
 			throws Throwable ;
 
+	public List<HashMap<String, String>> getChList(HashMap<String, String> params) throws Throwable ;
+
 }

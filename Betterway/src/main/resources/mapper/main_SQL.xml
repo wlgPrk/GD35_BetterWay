@@ -6,8 +6,14 @@ SELECT SUBWAY_STATION_NAME, STR_INCODE
     
 FROM SUBWAY_STATION
 
-
+ </select>
  
+ <select id="getChList"  resultType="hashmap">
+SELECT CATEGORY, TRAFFIC_CARD, D_TRAFFIC_CARD
+    
+FROM CHARGE_GUIDE
+ORDER BY GUIDE_NO ASC
+
  </select>
  </mapper>
  

@@ -10,8 +10,7 @@
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var a = "0150/";// api 역코드
-	var db = 150 ; // 현재 db 코드
+	
 	
 		// 역코드, 상행 주말
 var a=	$("#selstation option:selected").val();
@@ -518,9 +517,23 @@ th,td{
 	text-align: center;
 	width: 400px;
 }
-#dateBtn{
+#dateBtn1{
 width: 100%;
 height: 100%;
+cursor: pointer;
+}
+#dateBtn2{
+width: 100%;
+height: 100%;
+cursor: pointer;
+}
+#dateBtn3{
+width: 100%;
+height: 100%;
+cursor: pointer;
+}
+#timetable button {
+	 background-color: blue;
 }
 
 
@@ -553,7 +566,7 @@ height: 100%;
     <select id= "selstation">
     <option selected="selected">역</option>
     <c:forEach items="${SubwayList}" var = "t1">
-    	<option value="${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}"/></option>
+    	<option value="${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}(${t1.STR_INCODE})"/></option>
     </c:forEach>
     </select>
     </div>
