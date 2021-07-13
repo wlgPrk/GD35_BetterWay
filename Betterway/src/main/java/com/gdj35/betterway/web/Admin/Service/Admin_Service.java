@@ -180,7 +180,11 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.getNoticeList(params);
 	}
 
-
+	@Override
+	public int deleteSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.deleteSug(params);
+	}
 	
 	
 	//-------------------------------------건의끝 --------------------------------------

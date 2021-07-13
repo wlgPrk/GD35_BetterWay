@@ -179,7 +179,11 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.selectList("admin.getNoticeList",params);
 	}
 
-
+	@Override
+	public int deleteSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.deleteSug",params);
+	}
 	
 	
 	

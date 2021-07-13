@@ -188,24 +188,113 @@
 	</select>
 	<!--유저게시물리스트출력 -->
 	<select id="getUserList" parameterType="hashMap" resultType="hashMap">
-	SELECT S.SUG_NO,S.REQ_NO,S.POST_TYPE_CODE,S.USER_ID,A.ADMIN_ID,S.TITLE,S.CON,S.WRITE_DATE,S.DEL_STATUS
-	FROM SUG S INNER JOIN ADMIN A
-	ON S.ADMIN_NO = A.ADMIN_NO
-	WHERE S.POST_TYPE_CODE !=0
+	SELECT SUG_NO,REQ_NO,POST_TYPE_CODE,USER_ID,ADMIN_ID,TITLE,
+CON,WRITE_DATE,DEL_STATUS,RNUM
+FROM(
+SELECT SUG_NO,REQ_NO,POST_TYPE_CODE,USER_ID,ADMIN_ID,TITLE,
+CON,WRITE_DATE,DEL_STATUS,
+ROW_NUMBER() OVER(ORDER BY ANO DESC) AS RNUM
+FROM(
+SELECT S.SUG_NO,S.REQ_NO,S.POST_TYPE_CODE,S.USER_ID,
+A.ADMIN_ID,S.TITLE,S.CON,TO_CHAR(S.WRITE_DATE,'YYYY-MM-DD') AS WRITE_DATE,S.DEL_STATUS,
+CASE WHEN REQ_NO !=0
+     THEN REQ_NO 
+     ELSE SUG_NO
+     END ANO
+FROM SUG S INNER JOIN ADMIN A
+ON S.ADMIN_NO = A.ADMIN_NO
+WHERE 1=1 AND S.POST_TYPE_CODE !=0
+<if test="userSearchTxt !=''">
+<choose>
+<when test="userSearchGbn ==0">
+AND SUG_NO = #{userSearchTxt}
+</when>
+<when test="userSearchGbn ==1">
+AND S.USER_ID LIKE '%' || #{userSearchTxt} || '%' OR A.ADMIN_ID LIKE '%' || #{userSearchTxt} || '%'
+</when>
+<when test="userSearchGbn ==2">
+AND S.TITLE LIKE '%' || #{userSearchTxt} || '%'
+</when>
+</choose>
+</if>
+
+<choose>
+<when test="userPostTypeGbn==1">
+AND S.POST_TYPE_CODE =1
+</when>
+<when test="userPostTypeGbn==2">
+AND S.POST_TYPE_CODE =2
+</when>
+
+<when test="userDelete ==1">
+AND S.DEL_STATUS=0
+</when> 
+<when test="userDelete ==2">
+AND S.DEL_STATUS=1 
+</when> 
+</choose>
+))
+WHERE RNUM BETWEEN #{userStartCnt} AND #{userEndCnt}
+<if test="userDate != ''">
+AND WRITE_DATE =#{userDate}
+</if>
+
+
 	</select>
+	
+	
+	
 	
 	
 	<!--공지게시물리스트출력 -->
 	<select id="getNoticeList" parameterType="hashMap" resultType="hashMap">
-	SELECT S.SUG_NO,S.REQ_NO,S.POST_TYPE_CODE,S.USER_ID,A.ADMIN_ID,S.TITLE,S.CON,S.WRITE_DATE,S.DEL_STATUS
-	FROM SUG S INNER JOIN ADMIN A
-	ON S.ADMIN_NO = A.ADMIN_NO
-	WHERE S.POST_TYPE_CODE =0
+SELECT SUG_NO,POST_TYPE_CODE,USER_ID,ADMIN_ID,TITLE,
+CON,WRITE_DATE,DEL_STATUS,RNUM
+FROM(
+SELECT S.SUG_NO,S.POST_TYPE_CODE,S.USER_ID,
+A.ADMIN_ID,S.TITLE,S.CON,TO_CHAR(S.WRITE_DATE,'YYYY-MM-DD') AS WRITE_DATE,S.DEL_STATUS,ROW_NUMBER() OVER(ORDER BY SUG_NO DESC) AS RNUM
+FROM SUG S INNER JOIN ADMIN A
+ON S.ADMIN_NO = A.ADMIN_NO
+WHERE 1=1 AND S.POST_TYPE_CODE !=1 AND S.POST_TYPE_CODE !=2
+<if test="noticeSearchTxt !='' " >
+<choose>
+<when test="noticeSearchGbn ==0">
+AND SUG_NO = #{noticeSearchTxt}
+</when>
+<when test="noticeSearchGbn ==1">
+AND A.ADMIN_ID LIKE '%' || #{noticeSearchTxt} || '%'
+</when>
+<when test="noticeSearchGbn ==2">
+AND S.TITLE LIKE '%' || #{noticeSearchTxt} || '%'
+</when>
+</choose>
+
+</if>
+
+<choose>
+<when test="noticeDelete ==1">
+AND S.DEL_STATUS=0
+</when> 
+<when test="noticeDelete ==2">
+AND S.DEL_STATUS=1 
+</when> 
+
+</choose>
+)
+WHERE RNUM BETWEEN #{noticeStartCnt} AND #{noticeEndCnt}
+<if test="noticeDate !=''">
+AND WRITE_DATE=#{noticeDate}
+</if>
+
 	</select>
 		
 	
 		
-
+<!-- 건의게시물삭제 -->
+<update id="deleteSug" parameterType="hashMap">
+UPDATE SUG SET DEL_STATUS =0
+WHERE SUG_NO=#{sug_no}
+</update>
 
 		
 		

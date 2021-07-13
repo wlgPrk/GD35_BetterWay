@@ -65,4 +65,6 @@ public interface IAdmin_Dao {
 	public List<HashMap<String, String>> getUserList(HashMap<String, String> params) throws Throwable;
 
 	public List<HashMap<String, String>> getNoticeList(HashMap<String, String> params) throws Throwable;
+
+	public int deleteSug(HashMap<String, String> params) throws Throwable;
 }
