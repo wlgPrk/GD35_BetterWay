@@ -563,7 +563,7 @@ public class Admin_Controller {
 			modelMap.put("noticelist",noticeList);
 			
 			modelMap.put("userpb", userPb);
-			modelMap.put("userpb", noticePb);
+			modelMap.put("noticepb", noticePb);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -746,4 +746,31 @@ public class Admin_Controller {
 			}
 			   return mav;
 		   }
+		
+		
+		
+		@RequestMapping(value="/BetterWay_suggestAdmin_Deletes",
+				method=RequestMethod.POST,
+				produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_suggestAdmin_Deletes(
+			@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+			int cnt = iAdmin_Service.deleteSug(params);
+			
+			if(cnt>0) {
+				modelMap.put("msg","success");
+			}else {
+				modelMap.put("msg","failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg","error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+		}
 }

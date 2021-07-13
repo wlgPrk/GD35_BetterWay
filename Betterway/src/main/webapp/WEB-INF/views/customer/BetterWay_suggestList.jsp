@@ -507,7 +507,7 @@ $(document).ready(function(){
 	//상세보기
 	$("tbody").on("click","tr",function(){
 		$("#sug_no").val($(this).attr("sug_no"));
-		console.log($("#sug_no").val());
+		
 		
 		$("#actionForm").attr("action","BetterWay_suggestContent");
 		$("#actionForm").submit();

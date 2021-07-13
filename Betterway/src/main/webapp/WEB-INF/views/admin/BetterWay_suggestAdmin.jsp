@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>사물함형 자건거보관함 관리자</title>
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popup.css?after" />
 <style type="text/css">
 body{
 	width:1440px;
@@ -131,7 +132,8 @@ font-size: 20px;
 height : 40px;
 border : 2px solid black;
 border-radius:10px;
-background-color: #ffcc00;
+
+background-color: #e0e0eb;
 margin-left: 5px;
 vertical-align: top;
 
@@ -158,14 +160,121 @@ height :50px;
 text-align: center;
 }
 
+#user_on{
+background-color: #ffcc00;
+font-weight: bold;
+}
 
+#notice_on{
+background-color: #ffcc00;
+font-weight: bold;
+}
 </style>
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" 
+		src="resources/script/popup/popup.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	reloadList();
 
+	
+	//유저페이징
+	$("#user_arrow_box").on("click","div",function(){
+		console.log("작동");
+		$("#userPage").val($(this).attr("userpage"));
+		
+		reloadList();
+	});
+	
+	
+	//----------유저검색-----------
+	//게시물타입변경
+	$("#userPostTypeGbn").on("change",function(){
+		reloadList();
+	});
+
+	//날짜변경
+	$("#userDate").on("change",function(){
+		reloadList();
+		
+		
+	});
+	//날짜초기화
+	$("#userResetDate").on("click",function(){
+		$("#userDate").val("");
+		reloadList();
+	});
+	//삭제여부
+	$("#userDelete").on("change",function(){
+		reloadList();
+	});
+	
+	//검색
+	$("#userSearchBtn").on("click",function(){
+		reloadList();
+	});
+	
+	//----------유저검색 끝-----------
+	
+	
+	
+	//----------공지검색 -----------
+	//날짜변경
+	$("#noticeDate").on("change",function(){
+		reloadList();
+		
+		
+	});
+	//날짜초기화
+	$("#noticeResetDate").on("click",function(){
+		$("#noticeDate").val("");
+		reloadList();
+	});
+	//삭제여부
+	$("#noticeDelete").on("change",function(){
+		reloadList();
+	});
+	
+	//검색
+	$("#noticeSearchBtn").on("click",function(){
+		reloadList();
+	});
+	
+	//----------공지검색끝 -----------
+	
+	
+	//삭제 미니버튼
+	$("tbody").on("click","td:nth-child(8)",function(){
+		$("#sug_no").val($(this).parent().attr("sug_no"));
+		miniDelete();
+	});
+	
+	
+	
+	//최상단 체크박스 클릭
+	$("#userCheckAll").click(function(){
+	    if($("#userCheckAll").prop("checked")){
+	        $(".userCheck").prop("checked",true);
+	    }else{
+	        $(".userCheck").prop("checked",false);
+	    }
+	});
+	
+	
+	//최상단 체크박스 클릭
+	$("#noticeCheckAll").click(function(){
+	    if($("#noticeCheckAll").prop("checked")){
+	        $(".noticeCheck").prop("checked",true);
+	    }else{
+	        $(".noticeCheck").prop("checked",false);
+	    }
+	});
+	
+	//선택삭제버튼클릭
+	$("#userDelCheck").click(function(){
+		userCheckDel();
+	});
 	
 }); //document end
 
@@ -173,7 +282,7 @@ $(document).ready(function(){
 
 //목록,페이징가져오기
 function reloadList(){
-	var params = $("#actionForm").serialize();
+	var params = $("#userForm, #noticeForm").serialize();
 
 	//ajax
 	$.ajax({
@@ -182,10 +291,12 @@ function reloadList(){
 		dataType: "json",
 		data: params, 
 		success: function(res) { 
-
-			userList(res.userlist);
-
-			noticeList(res.noticelist);
+				userList(res.userlist);
+				userPaging(res.userpb);
+			
+				noticeList(res.noticelist);
+				noticePaging(res.noticepb);
+			
 		},
 		error: function(request, status, error) {
 			console.log(error);
@@ -200,7 +311,7 @@ function userList(list){
 	for(var d of list){       
 		
 		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
-		html += "<td><input type=\"checkbox\" id=\"check\"></td>";
+		html += "<td><input type=\"checkbox\" class=\"userCheck\" name=\"userCheck[]\" value=\""+d.SUG_NO+"\"></td>";
 		html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
 if(d.REQ_NO !=0){
 	html+=	"<td>↳ re: " +d.TITLE + "</td>   "   ;
@@ -222,11 +333,11 @@ if(d.REQ_NO !=0){
 	
 //공지가져오기
 function noticeList(list){
-	console.log("작동");
+
 		var html="";
 		for(var d of list){
 		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
-		html += "<td><input type=\"checkbox\" id=\"check\"></td>";
+		html += "<td><input type=\"checkbox\" class=\"noticeCheck\" name=\"noticeCheck[]\" value=\""+d.SUG_NO+"\"></td>";
 		html+=	"<td>"+ d.SUG_NO +"</td>";
 		html+=	"<td>" +d.TITLE + "</td>   "   ;
 		html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
@@ -258,7 +369,7 @@ function userPaging(pb){
 	
 	for(var i=pb.startPcount; i<=pb.endPcount; i++){
 	if($("#page").val() ==i){
-	html+="<div userpage=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"on\"> "+i+"</div>";
+	html+="<div userpage=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"user_on\"> "+i+"</div>";
 	}else{
 	html+="<div userpage=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
 	}
@@ -275,6 +386,85 @@ function userPaging(pb){
 	$("#user_arrow_box").html(html);
 	
 }//drawPaging end
+
+
+//페이징그리기
+function noticePaging(pb){
+	var html="";
+	
+	
+	
+	html+= "<div noticepage=\"1\" type=\"button\" class=\"arrow\">처음</div>";
+	if($("page").val() =="1"){
+	html+= "<div noticepage=\"1\" type=\"button\" class=\"arrow\"><</div>";
+	}else{
+	html+= "<div noticepage=\""+ ($("#noticePage").val() -1) +"\" type=\"button\" class=\"arrow\"><</div>";
+	}
+	
+	
+	for(var i=pb.startPcount; i<=pb.endPcount; i++){
+	if($("#page").val() ==i){
+	html+="<div noticepage=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"notice_on\"> "+i+"</div>";
+	}else{
+	html+="<div noticepage=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
+	}
+	}
+	
+	
+	if($("#userPage").val() == pb.maxPcount){
+	html+= "<div noticepage=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">></div>";
+	}else {
+	html+= "<div noticepage=\""+ ($("#noticePage").val() * 1 + 1) +"\" type=\"button\" class=\"arrow\">></div>";
+	}
+	html+= "<div noticepage=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">끝</div>";
+	
+	$("#notice_arrow_box").html(html);
+	
+}//drawPaging end
+
+//미니삭제버튼
+function miniDelete(){
+	var params = $("#userForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestAdmin_Deletes", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			makePopup("알림","삭제되었습니다.");
+			reloadList();
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+	
+}
+
+//
+function userCheckDel(){
+	var params = $("#userForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestCheckDeletes", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			makePopup("알림","삭제되었습니다.");
+			reloadList();
+			
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
 </script>
 </head>
 <body>
@@ -292,6 +482,8 @@ function userPaging(pb){
 <div class="con_box">
 <div class="btn_box"><input type="button" class="btn" value="글쓰기"/></div>
 공지
+
+<form id="noticeForm" action="#" method="post">
 <table cellspacing="0px" id="notice">
 
 <colgroup>
@@ -306,7 +498,7 @@ function userPaging(pb){
 </colgroup>
 <thead>
 <tr>
-<th><label for="check">선택</label><input type="checkbox" id="check"></th>
+<th><label for="check">선택</label><input type="checkbox"  id="noticeCheckAll"></th>
 <th>번호</th>
 <th>제목</th>
 <th>글쓴이</th>
@@ -342,7 +534,7 @@ function userPaging(pb){
 
 
 </table>
-
+<div class="btn_box">
 <div class="arrow_box" id="notice_arrow_box">
 <input type="button" class="arrow" value="처음"/>
 <input type="button" class="arrow" value="<"/>
@@ -353,28 +545,35 @@ function userPaging(pb){
 <input type="button" class="arrow" value="5"/>
 <input type="button" class="arrow" value=">"/>
 <input type="button" class="arrow" value="끝"/>
+
+</div><input type="button" class="btn" value="선택삭제" name="noticeDelCheck"/>
 </div>
+
+
 
 <div class="search_box">
 
-날짜<input type="date"> 
-삭제여부<select>
+날짜<input type="date" id="noticeDate" name="noticeDate"> 
+<input type="button" id="noticeResetDate" value="날짜초기화"> 
+삭제여부<select id="noticeDelete" name="noticeDelete">
 	<option value="0">전체</option>
 	<option value="1">예</option>
 	<option value="2">아니오</option>
 </select>
-<select class="search_type" name="searchGbn">
+<select class="search_type" name="noticeSearchGbn">
 					<option value="0">번호</option>
 					<option value="1">작성자</option>
-					<option value="2">내용</option>
+					<option value="2">제목</option>
 </select>
-<input type="text" class="input" name="searchTxt" value="${param.searchTxt}"/>
-<input type="button" value="검색" class="search_btn" />
+<input type="text" class="input" name="noticeSearchTxt" value="${param.noticeSearchTxt}"/>
+<input type="button" value="검색" class="search_btn" id="noticeSearchBtn" />
+
 
 </div>
+<input type="hidden" id="noticePage" name="noticePage" value="${noticePage}"/>
+</form>
 
-
-
+<form action="#" id="userForm" method="post">
 일반게시물
 <table cellspacing="0px" id="user">
 
@@ -383,14 +582,14 @@ function userPaging(pb){
 <col width="100px">
 <col width="500px">
 <col width="100px">
-<col width="100px">
+<col width="120px">
 <col width="100px">
 <col width="100px">
 <col width="100px">
 </colgroup>
 <thead>
 <tr>
-<th><label for="check">선택</label><input type="checkbox" id="check"></th>
+<th><label for="check">선택</label><input type="checkbox" id="userCheckAll"></th>
 <th>번호</th>
 <th>제목</th>
 <th>글쓴이</th>
@@ -439,38 +638,39 @@ function userPaging(pb){
 <input type="button" class="arrow" value="끝"/>
 </div>
 
-<input type="button" class="btn" value="선택삭제"/></div>
+<input type="button" class="btn" value="선택삭제" id="userDelCheck"/></div>
+
+
 <div class="search_box">
-날짜<input type="date"> 
-삭제여부<select>
-	<option value="0">전체</option>
-	<option value="1">예</option>
-	<option value="2">아니오</option>
-</select>
-게시물타입<select>
+게시물타입<select name="userPostTypeGbn" id="userPostTypeGbn">
 	<option value="0">전체</option>
 	<option value="1">건의</option>
 	<option value="2">답변</option>
 </select>
-
-<select class="search_type" name="searchGbn">
+날짜<input type="date" name="userDate" id="userDate"> 
+<input type="button" value="날짜초기화" id="userResetDate"/>
+삭제여부<select name="userDelete" id="userDelete">
+	<option value="0">전체</option>
+	<option value="1">예</option>
+	<option value="2">아니오</option>
+</select>
+<select class="search_type" name="userSearchGbn">
 					<option value="0">번호</option>
 					<option value="1">작성자</option>
-					<option value="2">내용</option>
+					<option value="2">제목</option>
 </select>
-<input type="text" class="input" name="searchTxt" value="${param.searchTxt}"/>
-<input type="button" value="검색" class="search_btn" />
-
+<input type="text" class="input" name="userSearchTxt" value="${param.userSearchTxt}"/>
+<input type="button" value="검색" class="search_btn" id="userSearchBtn"/>
 </div>
-</div><!-- con_box end -->
 
-<form action="#" id="actionForm" method="post">
 
 <input type="hidden" id="userPage" name="userPage" value="${userPage}"/>
-<input type="hidden" id="noticePage" name="noticePage" value="${noticePage}"/>
+<input type="hidden" id="sug_no" name="sug_no" value="${sug_no}"/>
 </form>
+
+</div><!-- con_box end -->
 	
 		<div id ="right_sub"></div>
-	</div>
+	
 </body>
 </html>
