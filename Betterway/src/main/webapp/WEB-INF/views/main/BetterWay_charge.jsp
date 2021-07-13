@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>운임 안내</title>
+<script type="text/javascript" 
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
 
-function printName()  {
-	  const name = document.getElementById('test').value;
-	  document.getElementById("result").innerText = name;
-	}
 
 </script>
 <style type="text/css">
@@ -140,7 +139,7 @@ background:#B2A59F;
 }
   .box_tit{
     position: relative;
- background-image:url("sub.png");       
+ background-image:url("resources/images/sub.png");       
  background-size:cover;                      
   height:88px;
 
@@ -234,22 +233,20 @@ th,td{
 		            </div>
     	</div>
 			<div class="wrap">
-			<table style="position: relative; left: 80px;" >
-<tbody><tr><th class="table_thead" width=100>분류</th>
-<th >교통카드</th><th>1회용 교통카드</th></tr>
-<tr><th  >일반</th><td >* 기본운임 : 10km까지 : 900원<br>* 추가운임<br>- 10km초과~40km까지 : 5km 마다 100원<br>
-- 40km초과시 : 10km 마다 100원<br>
-* 다만,수도권내 구간과 수도권외 구간
-<br>(경부선~천안)을 연속하여 이용하는 경우에는
-<br>수도권내 구간의 운임을 먼저 계산한 후
-<br>수도권외 구간의 이용거리 매 4km까지마다
-<br>100원의 추가운임을 합산하여 산출한 금액 적용<br>&nbsp;</td>
-<td>교통카드 운임에 100원 추가</td></tr><tr><th >청소년</th>
-<td  >* 일반운임의 20% 할인(기본운임 720원)</td>
-<td >할인 없음(1회권 일반 운임 적용)</td>
-</tr>
-<tr><th >어린이</th><td align="left">* 일반운임의 50% 할인(기본운임 450원)</td><td>1회권 일반운임의 50%(500원)</td>
-</tr></tbody>
+	
+			<table id = "con_tab" style="position: relative; left: 80px;" >  
+			
+<tbody>
+ <c:forEach var="data" items="${list}">
+      <tr>
+         <td>${data.CATEGORY}</td>
+         <td>${data.TRAFFIC_CARD}</td>
+         <td>${data.D_TRAFFIC_CARD}</td>
+        
+      </tr>
+   </c:forEach>
+
+</tbody>
 </table>
 
 				

@@ -17,4 +17,10 @@ public class MainDao implements IMainDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("M.SubwayList", params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> getChList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("M.getChList", params);
+	}
 }

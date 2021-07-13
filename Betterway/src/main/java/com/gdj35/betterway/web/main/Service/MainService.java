@@ -17,6 +17,12 @@ public class MainService implements IMainService {
 	public List<HashMap<String, String>> SubwayList(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return  iMainDao.SubwayList(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getChList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return  iMainDao.getChList(params);
 	} 
 
 }

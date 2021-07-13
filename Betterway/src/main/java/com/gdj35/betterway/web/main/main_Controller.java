@@ -33,10 +33,17 @@ public class main_Controller {
 		
 		return mav;
 	}
-	@RequestMapping(value="/BetterWay_pop1")
-	public ModelAndView BetterWay_pop1(ModelAndView mav) {
+	@RequestMapping(value="/BetterWay_charge")
+	public ModelAndView BetterWay_charge(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
 		
-		mav.setViewName("main/BetterWay_pop1");
+		List<HashMap<String, String>> list
+        = iMainService.getChList(params);
+		
+		mav.addObject("list",list);
+		
+		mav.setViewName("main/BetterWay_charge");
 		
 		return mav;
 	}
