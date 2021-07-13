@@ -26,13 +26,17 @@ text-align: center;
 .menu{
 width: 100%;
 height : 100px;
-background-color: #f0f0f5;
-box-shadow: 1px 1px 3px;
-border-radius: 5px;
+background-color: white;
+border-radius: 40px;
+border:1px solid black;
 margin-top: 5px;
 font-size: 40px;
 line-height: 2.5;
 cursor: pointer;
+}
+
+.menu:hover{
+background-color: #ffcc00;
 }
 
 .top_side_box{
@@ -52,7 +56,7 @@ font-size:30px;
 <div class="top_side_box">홍길동님 어서오세요. </div>
 
 <div class="con_box_1">
-<div class="menu" id="esta"><a href=""> 관리</a></div>
+<div class="menu" id="esta">편의시설 관리</div>
 <div class="menu" id="cooling">차량별 냉방상태 관리</div>
 <div class="menu" id="sug">건의게시판 관리</div>
 <div class="menu" id="station">역 정보 관리</div>

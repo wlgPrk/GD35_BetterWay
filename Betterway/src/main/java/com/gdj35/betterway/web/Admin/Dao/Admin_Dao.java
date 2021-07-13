@@ -145,4 +145,40 @@ public class Admin_Dao implements IAdmin_Dao{
 	public int updateG(HashMap<String, String> params) throws Throwable {
 		return sqlSession.update("admin.updateG",params);
 	}
+
+	
+	//----------------------------건의----------------------------------------
+	
+	//유저 게시물 최대갯수
+	@Override
+	public int getUserCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getUserCnt",params);
+	}
+	//공지 게시물 최대갯수
+	@Override
+	public int getNoticeCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getNoticeCnt",params);
+	}
+	
+	//유저게시물리스트
+	@Override
+	public List<HashMap<String, String>> getUserList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.getUserList",params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getNoticeList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.getNoticeList",params);
+	}
+	
+	
+	
+	
+	//----------------------------건의 끝----------------------------------------
+
+
 }

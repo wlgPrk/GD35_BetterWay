@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>»ç¹°ÇÔÇü ÀÚ°Ç°Åº¸°üÇÔ °ü¸®ÀÚ</title>
+<title>ì‚¬ë¬¼í•¨í˜• ìê±´ê±°ë³´ê´€í•¨ ê´€ë¦¬ì</title>
 <style type="text/css">
 body{
 	width:1440px;
@@ -44,7 +44,7 @@ body{
 	margin-left: 120px;
 	margin-top: 15px;
 }
-/*º»¹® ¸Ş´º Å«Æ²*/
+/*ë³¸ë¬¸ ë©”ë‰´ í°í‹€*/
 .con_box{
 margin-top:140px;
 margin-left:100px;
@@ -53,15 +53,15 @@ vertical-align:top;
 width:79%;
 height:75%;
 }
-/*  ÇªÅÍ*/
+/*  í‘¸í„°*/
 .footer{
 background-color: #023459;
 width:100%;
 height:5%;
 
 }
-/* -----°ø¿ë³¡ -----*/
-/*¼±¾È°ãÄ¡°Ô*/
+/* -----ê³µìš©ë -----*/
+/*ì„ ì•ˆê²¹ì¹˜ê²Œ*/
 table{
 display:inline-block;
 
@@ -76,14 +76,14 @@ text-align:center;
 height: 30px;
 background-color: #e0e0eb;
 }
-/* Å×ÀÌºí¼± */
+/* í…Œì´ë¸”ì„  */
 td,th{
 text-align:center;
 border: 2px solid black;
 height: 30px;
 }
 
-/* Å×ÀÌºí¼± */
+/* í…Œì´ë¸”ì„  */
 td:nth-child(8){
 text-align:center;
 border: 2px solid white;
@@ -92,7 +92,7 @@ text-align: left;
 padding-left:5px;
 }
 
-/*»èÁ¦¹öÆ°*/
+/*ì‚­ì œë²„íŠ¼*/
 .del_btn{
 width:50px;
 height:25px;
@@ -103,7 +103,7 @@ cursor: pointer;
 }
 
 
-/*ÀÛ¼º¹öÆ°*/
+/*ì‘ì„±ë²„íŠ¼*/
 .btn{
 position:absolute;
 left:1130px;
@@ -116,27 +116,28 @@ cursor: pointer;
 border-radius: 5px;
 }
 
-/*ÀÛ¼º¹öÆ°Æ² */
+/*ì‘ì„±ë²„íŠ¼í‹€ */
 .btn_box{
 padding-top:10px;
 height:50px;
 width:100%;
 
 }
-/*È­»ìÇ¥ */
+/*í™”ì‚´í‘œ */
 .arrow{
+display:inline-block;
 width: 50px;
 font-size: 20px;
 height : 40px;
 border : 2px solid black;
 border-radius:10px;
-background-color: #ffcc00;;
+background-color: #ffcc00;
 margin-left: 5px;
 vertical-align: top;
 
 }
 
-/* È­»ìÇ¥Æ² */
+/* í™”ì‚´í‘œí‹€ */
 .arrow_box{
 
 display: inline-block;
@@ -146,33 +147,152 @@ height :50px;
 text-align: center;
 }
 
+/*ê²€ìƒ‰ì°½ í‹€*/
+.search_box{
+margin-top:10px;
+display: inline-block;
+width : 900px;
+height :50px;
+
+
+text-align: center;
+}
+
+
 </style>
-<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
-</script>
+<script type="text/javascript" 
+		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	reloadList();
 
 	
 }); //document end
+
+
+
+//ëª©ë¡,í˜ì´ì§•ê°€ì ¸ì˜¤ê¸°
+function reloadList(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestAdmins", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+
+			userList(res.userlist);
+
+			noticeList(res.noticelist);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+//ëª©ë¡ê·¸ë¦¬ê¸°
+function userList(list){
+	var html ="";
+	for(var d of list){       
+		
+		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
+		html += "<td><input type=\"checkbox\" id=\"check\"></td>";
+		html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
+if(d.REQ_NO !=0){
+	html+=	"<td>â†³ re: " +d.TITLE + "</td>   "   ;
+	html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
+	}else{
+	html+=	"<td>" +d.TITLE + "</td>   "   ;
+	html+=	"<td>" +d.USER_ID + "</td>             "   ;
+	}
+	html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
+	html+=	"<td>" +d.POST_TYPE_CODE + "</td>               "   ;
+	html+=	"<td>" +d.DEL_STATUS + "</td>                "   ;
+	html+=  "<td><input type=\"button\" class=\"del_btn\" value=\"ì‚­ì œ\"/></td>";
+	html+=	"</tr>                     "   ;
+		                               
+		
+		$("#user tbody").html(html);
+	}
+}
+	
+//ê³µì§€ê°€ì ¸ì˜¤ê¸°
+function noticeList(list){
+	console.log("ì‘ë™");
+		var html="";
+		for(var d of list){
+		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
+		html += "<td><input type=\"checkbox\" id=\"check\"></td>";
+		html+=	"<td>"+ d.SUG_NO +"</td>";
+		html+=	"<td>" +d.TITLE + "</td>   "   ;
+		html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
+		html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
+		html+=	"<td>" +d.POST_TYPE_CODE + "</td>               "   ;
+		html+=	"<td>" +d.DEL_STATUS + "</td>                "   ;
+		html+=  "<td><input type=\"button\" class=\"del_btn\" value=\"ì‚­ì œ\"/></td>";
+		html+=	"</tr>                     "   ;
+		}
+		$("#notice tbody").html(html);
+		
+	}
+	
+
+
+//í˜ì´ì§•ê·¸ë¦¬ê¸°
+function userPaging(pb){
+	var html="";
+	
+	
+	
+	html+= "<div userpage=\"1\" type=\"button\" class=\"arrow\">ì²˜ìŒ</div>";
+	if($("page").val() =="1"){
+	html+= "<div userpage=\"1\" type=\"button\" class=\"arrow\"><</div>";
+	}else{
+	html+= "<div userpage=\""+ ($("#userPage").val() -1) +"\" type=\"button\" class=\"arrow\"><</div>";
+	}
+	
+	
+	for(var i=pb.startPcount; i<=pb.endPcount; i++){
+	if($("#page").val() ==i){
+	html+="<div userpage=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"on\"> "+i+"</div>";
+	}else{
+	html+="<div userpage=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
+	}
+	}
+	
+	
+	if($("#userPage").val() == pb.maxPcount){
+	html+= "<div userpage=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">></div>";
+	}else {
+	html+= "<div userpage=\""+ ($("#userPage").val() * 1 + 1) +"\" type=\"button\" class=\"arrow\">></div>";
+	}
+	html+= "<div userpage=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">ë</div>";
+	
+	$("#user_arrow_box").html(html);
+	
+}//drawPaging end
 </script>
 </head>
 <body>
 
 	<div id="left">
 		<div id="left_sub">
-		<div>ÆíÀÇ½Ã¼³°ü¸®</div>
-		<div>Â÷·®º°³Ã¹æ»óÅÂ °ü¸®</div>
-		<div>°ÇÀÇ°Ô½ÃÆÇ °ü¸®</div>
-		<div>¿ªÁ¤º¸ °ü¸®</div>
-		<div>È£¼± °ü¸®</div>
+		<div>í¸ì˜ì‹œì„¤ê´€ë¦¬</div>
+		<div>ì°¨ëŸ‰ë³„ëƒ‰ë°©ìƒíƒœ ê´€ë¦¬</div>
+		<div>ê±´ì˜ê²Œì‹œíŒ ê´€ë¦¬</div>
+		<div>ì—­ì •ë³´ ê´€ë¦¬</div>
+		<div>í˜¸ì„  ê´€ë¦¬</div>
 		</div>
 	</div>
 	<div id="right">
 <div class="con_box">
-<div class="btn_box"><input type="button" class="btn" value="±Û¾²±â"/></div>
-
-<table cellspacing="0px">
+<div class="btn_box"><input type="button" class="btn" value="ê¸€ì“°ê¸°"/></div>
+ê³µì§€
+<table cellspacing="0px" id="notice">
 
 <colgroup>
 <col width="100px">
@@ -186,13 +306,13 @@ $(document).ready(function(){
 </colgroup>
 <thead>
 <tr>
-<th><label for="check">¼±ÅÃ</label><input type="checkbox" id="check"></th>
-<th>¹øÈ£</th>
-<th>Á¦¸ñ</th>
-<th>±Û¾´ÀÌ</th>
-<th>ÀÛ¼ºÀÏ</th>
-<th>ºĞ·ùÄÚµå</th>
-<th>»èÁ¦¿©ºÎ</th>
+<th><label for="check">ì„ íƒ</label><input type="checkbox" id="check"></th>
+<th>ë²ˆí˜¸</th>
+<th>ì œëª©</th>
+<th>ê¸€ì“´ì´</th>
+<th>ì‘ì„±ì¼</th>
+<th>ë¶„ë¥˜ì½”ë“œ</th>
+<th>ì‚­ì œì—¬ë¶€</th>
 
 </tr>
 </thead>
@@ -206,7 +326,7 @@ $(document).ready(function(){
 <td></td>
 <td></td>
 <td></td>
-<td><input type="button" class="del_btn" value="»èÁ¦"/></td>
+<td><input type="button" class="del_btn" value="ì‚­ì œ"/></td>
 </tr>
 <tr>
 <td><input type="checkbox" id="check"></td>
@@ -216,15 +336,15 @@ $(document).ready(function(){
 <td></td>
 <td></td>
 <td></td>
-<td><input type="button" class="del_btn" value="»èÁ¦"/></td>
+<td><input type="button" class="del_btn" value="ì‚­ì œ"/></td>
 </tr>
 </tbody>
 
 
 </table>
-<div class="btn_box">
-<div class="arrow_box">
-<input type="button" class="arrow" value="Ã³À½"/>
+
+<div class="arrow_box" id="notice_arrow_box">
+<input type="button" class="arrow" value="ì²˜ìŒ"/>
 <input type="button" class="arrow" value="<"/>
 <input type="button" class="arrow" value="1"/>
 <input type="button" class="arrow" value="2"/>
@@ -232,12 +352,123 @@ $(document).ready(function(){
 <input type="button" class="arrow" value="4"/>
 <input type="button" class="arrow" value="5"/>
 <input type="button" class="arrow" value=">"/>
-<input type="button" class="arrow" value="³¡"/>
+<input type="button" class="arrow" value="ë"/>
 </div>
 
-<input type="button" class="btn" value="¼±ÅÃ»èÁ¦"/></div>
+<div class="search_box">
 
+ë‚ ì§œ<input type="date"> 
+ì‚­ì œì—¬ë¶€<select>
+	<option value="0">ì „ì²´</option>
+	<option value="1">ì˜ˆ</option>
+	<option value="2">ì•„ë‹ˆì˜¤</option>
+</select>
+<select class="search_type" name="searchGbn">
+					<option value="0">ë²ˆí˜¸</option>
+					<option value="1">ì‘ì„±ì</option>
+					<option value="2">ë‚´ìš©</option>
+</select>
+<input type="text" class="input" name="searchTxt" value="${param.searchTxt}"/>
+<input type="button" value="ê²€ìƒ‰" class="search_btn" />
+
+</div>
+
+
+
+ì¼ë°˜ê²Œì‹œë¬¼
+<table cellspacing="0px" id="user">
+
+<colgroup>
+<col width="100px">
+<col width="100px">
+<col width="500px">
+<col width="100px">
+<col width="100px">
+<col width="100px">
+<col width="100px">
+<col width="100px">
+</colgroup>
+<thead>
+<tr>
+<th><label for="check">ì„ íƒ</label><input type="checkbox" id="check"></th>
+<th>ë²ˆí˜¸</th>
+<th>ì œëª©</th>
+<th>ê¸€ì“´ì´</th>
+<th>ì‘ì„±ì¼</th>
+<th>ë¶„ë¥˜ì½”ë“œ</th>
+<th>ì‚­ì œì—¬ë¶€</th>
+
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><input type="checkbox" id="check"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><input type="button" class="del_btn" value="ì‚­ì œ"/></td>
+</tr>
+<tr>
+<td><input type="checkbox" id="check"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><input type="button" class="del_btn" value="ì‚­ì œ"/></td>
+</tr>
+</tbody>
+
+
+</table>
+<div class="btn_box">
+<div class="arrow_box" id="user_arrow_box">
+<input type="button" class="arrow" value="ì²˜ìŒ"/>
+<input type="button" class="arrow" value="<"/>
+<input type="button" class="arrow" value="1"/>
+<input type="button" class="arrow" value="2"/>
+<input type="button" class="arrow" value="3"/>
+<input type="button" class="arrow" value="4"/>
+<input type="button" class="arrow" value="5"/>
+<input type="button" class="arrow" value=">"/>
+<input type="button" class="arrow" value="ë"/>
+</div>
+
+<input type="button" class="btn" value="ì„ íƒì‚­ì œ"/></div>
+<div class="search_box">
+ë‚ ì§œ<input type="date"> 
+ì‚­ì œì—¬ë¶€<select>
+	<option value="0">ì „ì²´</option>
+	<option value="1">ì˜ˆ</option>
+	<option value="2">ì•„ë‹ˆì˜¤</option>
+</select>
+ê²Œì‹œë¬¼íƒ€ì…<select>
+	<option value="0">ì „ì²´</option>
+	<option value="1">ê±´ì˜</option>
+	<option value="2">ë‹µë³€</option>
+</select>
+
+<select class="search_type" name="searchGbn">
+					<option value="0">ë²ˆí˜¸</option>
+					<option value="1">ì‘ì„±ì</option>
+					<option value="2">ë‚´ìš©</option>
+</select>
+<input type="text" class="input" name="searchTxt" value="${param.searchTxt}"/>
+<input type="button" value="ê²€ìƒ‰" class="search_btn" />
+
+</div>
 </div><!-- con_box end -->
+
+<form action="#" id="actionForm" method="post">
+
+<input type="hidden" id="userPage" name="userPage" value="${userPage}"/>
+<input type="hidden" id="noticePage" name="noticePage" value="${noticePage}"/>
+</form>
 	
 		<div id ="right_sub"></div>
 	</div>

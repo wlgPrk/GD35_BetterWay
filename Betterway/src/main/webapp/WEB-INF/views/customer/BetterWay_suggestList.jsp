@@ -516,7 +516,7 @@ $(document).ready(function(){
 	
 	
 }); // document end
-
+//목록,페이징가져오기
 function reloadList(){
 	var params = $("#actionForm").serialize();
 
@@ -562,7 +562,7 @@ if(d.REQ_NO !=0){
 	
 }//drawlist end
 
-
+//공지가져오기
 function drawNotice(data){
 	var html="";
 	for(var d of data){

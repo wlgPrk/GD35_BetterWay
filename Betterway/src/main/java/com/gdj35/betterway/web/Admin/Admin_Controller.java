@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gdj35.betterway.common.bean.PagingBean;
+import com.gdj35.betterway.common.service.IPagingService;
 //import com.gdj35.betterway.util.Utils;
 import com.gdj35.betterway.web.Admin.Service.IAdmin_Service;
+
 import com.gdj35.betterway.web.evginfoGuide.cooling.Service.ICoolingService;
 
 @Controller
@@ -26,6 +29,9 @@ public class Admin_Controller {
 	public IAdmin_Service iAdmin_Service;
 	@Autowired 
 	public ICoolingService iCoolingService;
+
+	@Autowired
+	public IPagingService iPagingService;
 	
 	
 	@RequestMapping(value ="/BetterWay_loginAdmin")
@@ -463,7 +469,7 @@ public class Admin_Controller {
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
-	
+	//게시판상세보기
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Detail")
 	public ModelAndView BetterWay_suggestAdmin_Detail(ModelAndView mav) {
 		
@@ -471,7 +477,7 @@ public class Admin_Controller {
 		
 		return mav;
 	}
-	
+	//게시판답변
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Result")
 	public ModelAndView BetterWay_suggestAdmin_Result(ModelAndView mav) {
 		
@@ -480,6 +486,7 @@ public class Admin_Controller {
 		return mav;
 	}
 	
+	//게시판작성
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Write")
 	public ModelAndView BetterWay_suggestAdmin_Write(ModelAndView mav) {
 		
@@ -487,15 +494,88 @@ public class Admin_Controller {
 		
 		return mav;
 	}
-	
+	//works
+	//게시판리스트
 	@RequestMapping(value ="/BetterWay_suggestAdmin")
-	public ModelAndView BetterWay_suggestAdmin(ModelAndView mav) {
+	public ModelAndView BetterWay_suggestAdmin(ModelAndView mav,
+			@RequestParam HashMap<String, String> params) {
 		
-		mav.setViewName("admin/BetterWay_suggestAdmin");
-		
+		try {
+			int userPage =1;
+			int noticePage =1;
+			
+			if(params.get("userPage") != null) {
+				userPage = Integer.parseInt(params.get("userPage"));
+			}
+			
+			if(params.get("noticePage") != null) {
+				userPage = Integer.parseInt(params.get("noticePage"));
+			}
+			
+			mav.addObject("userPage",userPage);
+			mav.addObject("noticePage",noticePage);
+			
+			mav.setViewName("admin/BetterWay_suggestAdmin");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return mav;
 	}
 	
+	//게시판리스트 목록가져오기
+	@RequestMapping(value="/BetterWay_suggestAdmins",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String BetterWay_suggestAdmins(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String,Object> modelMap =new HashMap<String, Object>();
+		try {
+			
+			int userPage=Integer.parseInt(params.get("userPage"));
+			int noticePage=Integer.parseInt(params.get("noticePage"));
+			//유저최대갯수
+			int userCnt = iAdmin_Service.getUserCnt(params);
+			//공지최대갯수
+			int noticeCnt = iAdmin_Service.getNoticeCnt(params);
+			
+			//유저현재페이지 , 유저최대갯수
+			PagingBean userPb = iPagingService.getPagingBean(userPage, userCnt) ;
+			
+			//유저현재페이지 , 유저최대갯수
+			PagingBean noticePb = iPagingService.getPagingBean(noticePage, noticeCnt) ;
+			
+			params.put("userStartCnt", Integer.toString(userPb.getStartCount()));
+			params.put("userEndCnt", Integer.toString(userPb.getEndCount()));
+			
+			params.put("noticeStartCnt", Integer.toString(noticePb.getStartCount()));
+			params.put("noticeEndCnt", Integer.toString(noticePb.getEndCount()));
+			
+			List<HashMap<String, String>> userList
+			=iAdmin_Service.getUserList(params);
+			
+			List<HashMap<String,String>> noticeList
+			=iAdmin_Service.getNoticeList(params);
+			
+			modelMap.put("userlist",userList);
+			modelMap.put("noticelist",noticeList);
+			
+			modelMap.put("userpb", userPb);
+			modelMap.put("userpb", noticePb);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
+		
+		
+		
+	}
+	
+	
+
 	@RequestMapping(value ="/BetterWay_infoAdmin")
 	public ModelAndView BetterWay_infoAdmin(ModelAndView mav) {
 		

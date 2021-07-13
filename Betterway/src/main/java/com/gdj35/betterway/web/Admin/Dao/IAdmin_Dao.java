@@ -55,4 +55,12 @@ public interface IAdmin_Dao {
 	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
 	
 	public int updateG(HashMap<String, String> params) throws Throwable;
+
+	public int getUserCnt(HashMap<String, String> params) throws Throwable;
+
+	public int getNoticeCnt(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getUserList(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getNoticeList(HashMap<String, String> params) throws Throwable;
 }

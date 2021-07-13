@@ -164,5 +164,59 @@
 	FROM CHARGE_GUIDE
 	WHERE GUIDE_NO=#{guide_no}
 	</select> 
+	
+	
+	
+	
+	
+	<!-- 유저게시물최대갯수 -->
+	<select id="getUserCnt" parameterType="hashMap" resultType="Integer">
+	SELECT COUNT(*)
+	FROM SUG
+	WHERE POST_TYPE_CODE !=0
+	</select>
+	
+	<!-- 공지게시물최대갯수 -->
+	<select id="getNoticeCnt" parameterType="hashMap" resultType="Integer">
+	SELECT COUNT(*)
+	FROM SUG
+	WHERE POST_TYPE_CODE =0
+	</select>
+	<!--유저게시물리스트출력 -->
+	<select id="getUserList" parameterType="hashMap" resultType="hashMap">
+	SELECT S.SUG_NO,S.REQ_NO,S.POST_TYPE_CODE,S.USER_ID,A.ADMIN_ID,S.TITLE,S.CON,S.WRITE_DATE,S.DEL_STATUS
+	FROM SUG S INNER JOIN ADMIN A
+	ON S.ADMIN_NO = A.ADMIN_NO
+	WHERE S.POST_TYPE_CODE !=0
+	</select>
+	
+	
+	<!--공지게시물리스트출력 -->
+	<select id="getNoticeList" parameterType="hashMap" resultType="hashMap">
+	SELECT S.SUG_NO,S.REQ_NO,S.POST_TYPE_CODE,S.USER_ID,A.ADMIN_ID,S.TITLE,S.CON,S.WRITE_DATE,S.DEL_STATUS
+	FROM SUG S INNER JOIN ADMIN A
+	ON S.ADMIN_NO = A.ADMIN_NO
+	WHERE S.POST_TYPE_CODE =0
+	</select>
+		
+	
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 </mapper>

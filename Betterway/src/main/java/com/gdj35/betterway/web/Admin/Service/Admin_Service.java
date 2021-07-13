@@ -148,4 +148,35 @@ public class Admin_Service implements IAdmin_Service{
 	public int updateG(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.updateG(params);
 	}
+	
+	//-----------------------------------건의-----------------------------------------
+	
+	
+	//유저 게시물 최대갯수
+	@Override
+	public int getUserCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getUserCnt(params);
+	}
+	
+	@Override
+	public int getNoticeCnt(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getNoticeCnt(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getUserList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getUserList(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getNoticeList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getNoticeList(params);
+	}
+	
+	
+	//-------------------------------------건의끝 --------------------------------------
 }

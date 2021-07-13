@@ -236,6 +236,19 @@ $(document).ready(function(){
 <div class="comm_box_2_2">내용입니다</div>
 <div class="comm_box_2_3"><input type="button" class="comm_del_btn" value="삭제"></div>
 </div> <!-- comm_box_1 end -->
+
+
+날짜<input type="date"> 
+삭제여부<select>
+	<option value="0">전체</option>
+	<option value="1">예</option>
+	<option value="2">아니오</option>
+</select>
+게시물타입<select>
+	<option value="0">전체</option>
+	<option value="1">건의</option>
+	<option value="2">답변</option>
+</select>
 </div><!-- con_box end -->
 	
 		<div id ="right_sub"></div>
