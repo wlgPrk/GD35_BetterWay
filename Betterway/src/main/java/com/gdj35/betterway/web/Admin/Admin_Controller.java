@@ -464,26 +464,34 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	
-	@RequestMapping(value ="/BetterWay_suggestListAdmin")
-	public ModelAndView BetterWay_suggestListAdmin(ModelAndView mav) {
+	@RequestMapping(value ="/BetterWay_suggestAdmin_Detail")
+	public ModelAndView BetterWay_suggestAdmin_Detail(ModelAndView mav) {
 		
-		mav.setViewName("admin/BetterWay_suggestListAdmin");
-		
-		return mav;
-	}
-	
-	@RequestMapping(value ="/BetterWay_suggestWriteAdmin")
-	public ModelAndView BetterWay_suggestWriteAdmin(ModelAndView mav) {
-		
-		mav.setViewName("admin/BetterWay_suggestWriteAdmin");
+		mav.setViewName("admin/BetterWay_suggestAdmin_Detail");
 		
 		return mav;
 	}
 	
-	@RequestMapping(value ="/BetterWay_suggestModifyAdmin")
-	public ModelAndView BetterWay_suggestContentAdmin(ModelAndView mav) {
+	@RequestMapping(value ="/BetterWay_suggestAdmin_Result")
+	public ModelAndView BetterWay_suggestAdmin_Result(ModelAndView mav) {
 		
-		mav.setViewName("admin/BetterWay_suggestModifyAdmin");
+		mav.setViewName("admin/BetterWay_suggestAdmin_Result");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value ="/BetterWay_suggestAdmin_Write")
+	public ModelAndView BetterWay_suggestAdmin_Write(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_suggestAdmin_Write");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value ="/BetterWay_suggestAdmin")
+	public ModelAndView BetterWay_suggestAdmin(ModelAndView mav) {
+		
+		mav.setViewName("admin/BetterWay_suggestAdmin");
 		
 		return mav;
 	}
