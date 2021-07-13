@@ -52,14 +52,14 @@ padding:10px 0px 10px 0px;
 width:75%;
 }
 #title{
-font-weight: bold;
+
 font-size: 15px;
-background: #1E646E;
+background: #B2A59F;
 color:#fff;
 width:170px;
 text-align:center;
 border-radius: 15px 15px 15px 15px;
-
+margin-bottom: 5px;
 }
 
 
@@ -168,7 +168,7 @@ font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:10px;
+margin-top: 13px;
   
     padding-right:5px;
     
@@ -191,12 +191,19 @@ margin:0 auto;
     }
  	#deparr_btn,#bus_search_btn {
         width: 30px;
-
+ 
         float: right;
         box-sizing: border-box;
 		height:65px;
 		background-color: #B2A59F;
     }
+    	#deparr_btn{
+    	margin-top:26px;    	
+    	}
+    	#deparr_search_btn{
+    	padding-top:20px;    
+    	color:#fff;
+    	}
 
 #subbtn_realtime, #subbtn_busstation{
 	color: white;
@@ -218,10 +225,13 @@ margin:0 auto;
 	<div class="side_title">
 	<a class="main" href="BetterWay_main.html">BetterWay</a>
 	</div>
-	<div id="title">출발 도착 역검색</div>
+
 	<div class="wrap">
+		
 	<div id="dep_arr">
+	
 		<div id="deparr_search">
+		<div id="title">출발 도착 역검색</div>
 			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>
 			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
 		</div>
