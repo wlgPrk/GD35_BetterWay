@@ -160,11 +160,15 @@
   	 WHERE GUIDE_NO = #{guide_no}
 	</update>	
 	<select id="getg" parameterType="hashmap" resultType="hashmap">
-	SELECT CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
+	SELECT GUIDE_NO,CATEGORY,TRAFFIC_CARD,D_TRAFFIC_CARD
 	FROM CHARGE_GUIDE
 	WHERE GUIDE_NO=#{guide_no}
 	</select> 
-	
+	<!-- 운임 삭제 -->
+	<delete id="deleteguide" parameterType="hashmap">
+	DELETE FROM CHARGE_GUIDE
+	WHERE GUIDE_NO=#{guide_no}
+	</delete>
 	
 	
 	

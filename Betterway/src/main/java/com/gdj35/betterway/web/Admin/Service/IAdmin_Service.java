@@ -54,6 +54,8 @@ public interface IAdmin_Service {
 	public HashMap<String, String> getg(HashMap<String, String> params) throws Throwable;
 	
 	public int updateG(HashMap<String, String> params) throws Throwable;
+	
+	public int deleteguide(HashMap<String, String> params)throws Throwable;
 
 	public int getUserCnt(HashMap<String, String> params) throws Throwable;
 

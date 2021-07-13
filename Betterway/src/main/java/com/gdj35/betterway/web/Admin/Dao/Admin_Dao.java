@@ -146,7 +146,11 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.update("admin.updateG",params);
 	}
 
-	
+	@Override
+	public int deleteguide(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("admin.deleteguide", params);
+	}
 	//----------------------------건의----------------------------------------
 	
 	//유저 게시물 최대갯수
@@ -174,6 +178,8 @@ public class Admin_Dao implements IAdmin_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("admin.getNoticeList",params);
 	}
+
+
 	
 	
 	
