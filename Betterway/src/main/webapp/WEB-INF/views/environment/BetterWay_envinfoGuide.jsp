@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,12 +147,77 @@ margin-top: 60px;
 #air_guide_btn:hover{
 text-decoration: underline;
 }
+#select_station{
+width:150px;
+}
 </style><script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	
+	$.ajax({
+		/* http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/요청시작/요청종료 ->(259개 데이터 불러오기) */
+		url:"http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/1/259",
+		type:"get",
+		dataType:"xml",
+		success:function(res){
+			
+			//LINE AREA_NM CHECKDATE PMq		
+						
+			$(res).find("row").each(function(){
+				var LINE =$(this).find("LINE").text();
+				var AREA_NM =$(this).find("AREA_NM").text()
+				var CHECKDATE =$(this).find("CHECKDATE").text();
+				var PMq =$(this).find("PMq").text();
+				
+				var VIEW_TEXT = LINE +"호선"+" " +AREA_NM +" "+CHECKDATE +" "+PMq + "<br/>";
+				//$("#val").append(VIEW_TEXT);
+				
+				
+				var html = "";
+				$("#api_data").append(VIEW_TEXT);//데이터보려고 둠
+			});
+			console.log(res);
+		},
+		error:function(requet,status,error){
+			console.log(error);
+			
+		}
+	});//ajax로 데이터 불러옴
+	
+	$("#sName").on("change", function() {
+		var params = $("#SearchForm").serialize();	
+		var html="";
+		$.ajax({
+			url:"envinfoGuide",
+			type:"post", //전송방식(get,post)
+			dataType:"json",//받아올 데이터 형식
+			data:params,//보낼 데이터(문자열 형태)
+			success:function(res){//성공 시 다음 함수 실행							
+				console.log(res);			
+				for(var d of res.data) {
+					//html += "<option id=\"select_station\"  name=\"subway_station_name\">"+d.SUBWAY_STATION_NAME+"</option>";
+					html += "<option id=\"select_station\">"+d.SUBWAY_STATION_NAME+"</option>";
+					
+				}
 		
+				$("#select_station").append(html);//두번째셀렉트옵션에 걸러진 값인 역들을 넣어줌
 
+	
+				},
+			error:function(request,status,error){//실패시 다음 함수 실행
+				console.log(error);
+			}
+		});
+	});//첫번째 셀렉트값이 바뀌었을 때
+	$("#select_station").on("change", function() {
+		console.log( $("select[name=sName]").val());
+		console.log( $("select[name=station]").val());
+		
+		/* if($("select[name=station]").val()==) */
+		
+	});	
+});
 </script>
 
 </head>
@@ -159,7 +225,6 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <header>
 <a>실내 공기질 정보 안내</a>
 </header>
-
 		<div class="con">
 			 <div class="box_title">
         
@@ -169,26 +234,30 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		                  	홈>환경정보 안내>실내 공기질 정보 &nbsp;
 		                  </div>
 		         </div>
-    		</div>
-    		
-    		
-    		
+    		</div>	
 			<div class="wrap">
 			<div class="top_title" >
-				<div class="station_title">역명</div>	
-				
 				<form action="#" id="SearchForm" method="post" >
-				<select id="selectLine">
-			          <option value="1">1호선</option>
-			          <option value="2">2호선</option>
-			          <option value="3">3호선</option>
-				</select>
-						 
-						<select id="cat_sub_name" name="cat_sub_name">
-						<option value="">역 선택</option>
-						</select>
-
-						<input type="submit" id="air_search"value="검색">
+				 <label>호선</label>
+			        <select id="sName" name="sName">
+			            <option>--호선을 선택하세요--</option>
+			            <option value="1">1호선</option>
+			            <option value="2">2호선</option>
+			            <option value="3">3호선</option>
+			            <option value="4">4호선</option>
+			            <option value="5">5호선</option>
+			            <option value="6">6호선</option>
+			            <option value="7">7호선</option>
+			            <option value="8">8호선</option>
+			  
+			        </select>
+			     <!--쿼리 받아 뿌려줄거임 -->
+			        <label>역</label>
+			        <select id="select_station" name="station">
+			        <option>--역을 선택하세요--</option>
+			        </select>
+				<input type="submit" id="air_search"value="검색">
+				
 				</form>
 			</div>
 		
@@ -202,13 +271,11 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 							</div>
 			    </div>
 			    <div class="val_box" style="border:1px solid #B2A59F; border-left: #fff;">
-					<div class="con_val">역명"역의 미세먼지(PM10) 수치는?</div>
+					
 					<div id="val" >
-					PM10
+					여기출력  
 					</div>
-					<table id="weatherHistory">
-						<tbody></tbody>
-					</table>
+					
 					<table id="val_table">
 						<tr>
 							<td style="background: #4641D9; color:#fff;">좋음</td>
@@ -221,7 +288,14 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 					</table>			
 			    </div>
 			</div><!-- sub_con end -->
-		</div><!--wrap end  -->			
+			
+			<div id="api_data"></div>
+		</div><!--wrap end  -->
+		<form action="#" id="apiForm" method="post" >
+		
+		
+		</form>
+		
 	</div>
 </body>
 </html>
