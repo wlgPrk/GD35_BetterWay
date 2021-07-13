@@ -48,7 +48,7 @@ $(document).ready(function(){
 			var params = $("#goForm").serialize();
 			
 			$.ajax({
-				url:"BetterWay_infouideAdmin_Deletes",//접속 주소->testALogins파일 필요없음
+				url:"BetterWay_infoguideAdmin_Deletes",//접속 주소->testALogins파일 필요없음
 				type:"post", //전송방식(get,post)
 				dataType:"json",//받아올 데이터 형식
 				data:params,//보낼 데이터(문자열 형태)
@@ -73,7 +73,9 @@ $(document).ready(function(){
 <body>
 <form action="#" id="goForm" method="post">
 	<input type="hidden" name="guide_no" value="${data.GUIDE_NO}"/>
-
+	<input type="hidden" name="category" value="${data.CATEGORY}"/>
+	<input type="hidden" name="traffic_card" value="${data.TRAFFIC_CARD}"/>
+	<input type="hidden" name="d_traffic_card" value="${data.D_TRAFFIC_CARD}"/>
 </form>
 <div id="main">
 <b>운임번호:</b> ${data.GUIDE_NO}<br/>

@@ -111,14 +111,10 @@ a {
 	color: #fff;
 	text-align: right;
 }
-.con_side{
-	width:130px;
-	text-align: center;
-	padding-top: 20%;
-}
+
 .val_box{
     flex: 1;
-	padding:30px 5px 30px 5px;
+    padding:30px 30px 30px 30px;
 }
 table, td {
   width:300px;
@@ -142,67 +138,65 @@ font-size:13px;
 margin-top: 5px;
 }
 #val_table{
+
 margin-top: 60px;
+margin-left:50px;
 }
 #air_guide_btn:hover{
 text-decoration: underline;
 }
-#select_station{
-width:150px;
+#select_station,#sName{
+width:165px;
+ height: 30px;
+}
+#val,#vals{
+font-size: 15px;
+
+}
+#vals{
+height:140px;
+font-size:15px;
+}
+#air_search{
+background-color: #82b2da;
+color:white;
+    width: 50px;
+    height: 30px;
+    border: #fff;
+    color: white;
+
+}
+label{
+font-size:15px;
+font-weight: bold;
 }
 </style><script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	$.ajax({
-		/* http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/요청시작/요청종료 ->(259개 데이터 불러오기) */
-		url:"http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/1/259",
-		type:"get",
-		dataType:"xml",
-		success:function(res){
-			
-			//LINE AREA_NM CHECKDATE PMq		
-						
-			$(res).find("row").each(function(){
-				var LINE =$(this).find("LINE").text();
-				var AREA_NM =$(this).find("AREA_NM").text()
-				var CHECKDATE =$(this).find("CHECKDATE").text();
-				var PMq =$(this).find("PMq").text();
-				
-				var VIEW_TEXT = LINE +"호선"+" " +AREA_NM +" "+CHECKDATE +" "+PMq + "<br/>";
-				//$("#val").append(VIEW_TEXT);
-				
-				
-				var html = "";
-				$("#api_data").append(VIEW_TEXT);//데이터보려고 둠
-			});
-			console.log(res);
-		},
-		error:function(requet,status,error){
-			console.log(error);
-			
-		}
-	});//ajax로 데이터 불러옴
+
 	
 	$("#sName").on("change", function() {
-		var params = $("#SearchForm").serialize();	
 		var html="";
+		var params = $("#SearchForm").serialize();	
+
 		$.ajax({
 			url:"envinfoGuide",
 			type:"post", //전송방식(get,post)
 			dataType:"json",//받아올 데이터 형식
 			data:params,//보낼 데이터(문자열 형태)
-			success:function(res){//성공 시 다음 함수 실행							
+			success:function(res){//성공 시 다음 함수 실행				
+		
 				console.log(res);			
 				for(var d of res.data) {
 					//html += "<option id=\"select_station\"  name=\"subway_station_name\">"+d.SUBWAY_STATION_NAME+"</option>";
+
 					html += "<option id=\"select_station\">"+d.SUBWAY_STATION_NAME+"</option>";
 					
 				}
 		
-				$("#select_station").append(html);//두번째셀렉트옵션에 걸러진 값인 역들을 넣어줌
-
+				$("#select_station").html(html);//두번째셀렉트옵션에 걸러진 값인 역들을 넣어줌
+			
 	
 				},
 			error:function(request,status,error){//실패시 다음 함수 실행
@@ -210,13 +204,55 @@ $(document).ready(function(){
 			}
 		});
 	});//첫번째 셀렉트값이 바뀌었을 때
-	$("#select_station").on("change", function() {
-		console.log( $("select[name=sName]").val());
-		console.log( $("select[name=station]").val());
+	
+
+	//검색버튼
+	$("#air_search").on("click", function() {
+		var html="";
+		$("#sn").val($("#sName").val());
+		$("#st").val($("#select_station").val());
 		
-		/* if($("select[name=station]").val()==) */
+		$.ajax({
+			/* http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/요청시작/요청종료 ->(259개 데이터 불러오기) */
+			url:"http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/1/259",
+			type:"get",
+			dataType:"xml",
+			success:function(res){
+				console.log(res);
+				//LINE AREA_NM CHECKDATE PMq		
+							
+				$(res).find("row").each(function(){
+					var LINE =$(this).find("LINE").text();
+					var AREA_NM =$(this).find("AREA_NM").text()
+					var CHECKDATE =$(this).find("CHECKDATE").text();
+					var PMq =$(this).find("PMq").text();
+					
+					var VIEW_TEXT = LINE +"호선"+" " +AREA_NM +" "+CHECKDATE +" "+PMq + "<br/>";
+					//$("#val").append(VIEW_TEXT);
+					
+					
+					var html = "";
+					//$("#api_data").append(VIEW_TEXT);//데이터보려고 둠
+					if(sn.value==LINE&&st.value==AREA_NM){
+						html += "<div id=\"val\"><b>호선:</b>"+sn.value+"호선 </br></br>";
+						html += "<b>역:</b>"+st.value+"역 </br></br>";
+						html += "<b>초미세먼지 농도:</b>"+PMq +" ㎍/㎥</br></br>";
+						html += "<b>측정시간:</b>"+CHECKDATE+"</div>";	
+					}
+					$("#val").append(html);
+				//	$("#vals").hide(html);
+					  document.getElementById("vals").style.display ='none';
+				});
+			
+			},
+			error:function(requet,status,error){
+				console.log(error);
+				
+			}
+		});//ajax로 데이터 불러옴
 		
-	});	
+
+	});
 });
 </script>
 
@@ -256,24 +292,23 @@ $(document).ready(function(){
 			        <select id="select_station" name="station">
 			        <option>--역을 선택하세요--</option>
 			        </select>
-				<input type="submit" id="air_search"value="검색">
-				
+				<input type="button" id="air_search"value="검색">
+					<input type="hidden" id="sn" name="sName" />
+					<input type="hidden" id="st" name="select_station" />
+
 				</form>
 			</div>
 		
 		
 			<div class="sub_con" >
-			    <div class="con_side" style="border:1px solid #B2A59F; border-right: #fff;">
-							<img src="resources/images/
-							underground.png" style="width:100px;"/>
-							<div class="station" id="result_val">
-							역이름
-							</div>
-			    </div>
-			    <div class="val_box" style="border:1px solid #B2A59F; border-left: #fff;">
+			    <div class="val_box" style="border:1px solid #B2A59F;">
 					
 					<div id="val" >
-					여기출력  
+					
+					</div>
+					<div id="vals">
+
+					**실내공기질 측정기가 설치되어 있는 역사의<br/> 실내공기질 측정 정보를 매시간 단위로 제공합니다.
 					</div>
 					
 					<table id="val_table">
@@ -291,10 +326,7 @@ $(document).ready(function(){
 			
 			<div id="api_data"></div>
 		</div><!--wrap end  -->
-		<form action="#" id="apiForm" method="post" >
-		
-		
-		</form>
+
 		
 	</div>
 </body>

@@ -574,7 +574,30 @@ public class Admin_Controller {
 		
 	}
 	
-	
+		@RequestMapping(value="/BetterWay_suggestAdmin_Deletes",
+				method=RequestMethod.POST,
+				produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_suggestAdmin_Deletes(
+			@RequestParam HashMap<String, String>params) throws Throwable{
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		
+		try {
+			int cnt = iAdmin_Service.deleteSug(params);
+			
+			if(cnt>0) {
+				modelMap.put("msg","success");
+			}else {
+				modelMap.put("msg","failed");
+			}
+		} catch (Throwable e) {
+			e.printStackTrace();
+			modelMap.put("msg","error");
+		}
+		
+		return mapper.writeValueAsString(modelMap);
+		}
 
 	@RequestMapping(value ="/BetterWay_infoAdmin")
 	public ModelAndView BetterWay_infoAdmin(ModelAndView mav) {
@@ -746,31 +769,96 @@ public class Admin_Controller {
 			}
 			   return mav;
 		   }
-		
-		
-		
-		@RequestMapping(value="/BetterWay_suggestAdmin_Deletes",
-				method=RequestMethod.POST,
-				produces = "text/json;charset=UTF-8")
-		@ResponseBody
-		public String BetterWay_suggestAdmin_Deletes(
-			@RequestParam HashMap<String, String>params) throws Throwable{
-		ObjectMapper mapper = new ObjectMapper();
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		
-		try {
-			int cnt = iAdmin_Service.deleteSug(params);
+		//운임 등록
+		 @RequestMapping(value="BetterWay_infoguideAdmin_Write")
+		   public ModelAndView BetterWay_infoguideAdmin_Write(ModelAndView mav) {
+			   
+			   mav.setViewName("admin/BetterWay_infoguideAdmin_Write");
+			   
+			   return mav;
+		   }
+		 
+		 @RequestMapping(value = "/BetterWay_infoguideAdmin_Writes",
+				   method = RequestMethod.POST,
+				   produces = "text/json;charset=UTF-8")
+			 @ResponseBody
+			 public String BetterWay_infoguideAdmin_Writes(
+					 @RequestParam HashMap<String, String> params) throws Throwable{
+				 ObjectMapper mapper = new ObjectMapper();
+				 Map<String, Object> modelMap = new HashMap<String, Object>();
+				 try {
+					 int cnt = iAdmin_Service.addguide(params);
+					 if(cnt > 0) {
+						 modelMap.put("msg","success");
+					 }else {
+						 modelMap.put("msg","failed");
+					 }
+				 }catch(Throwable e){
+					 e.printStackTrace();
+					 modelMap.put("msg", "error");
+				 }
+				 return mapper.writeValueAsString(modelMap);
+			 }
+		//운임 수정
+		@RequestMapping(value="BetterWay_infoguideAdmin_Update")
+		   public ModelAndView BetterWay_infoguideAdmin_Update(
+				   @RequestParam HashMap<String, String> params,
+				   ModelAndView mav)throws Throwable {
+				
+				HashMap<String, String> data = iAdmin_Service.getg(params);
+				
+				mav.addObject("data",data);
+				
+				   mav.setViewName("admin/BetterWay_infoguideAdmin_Update");
+					return mav;
+
+				}
+
+			@RequestMapping(value="/BetterWay_infoguideAdmin_Updates",
+					method=RequestMethod.POST,
+					produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_infoguideAdmin_Updates(
+				@RequestParam HashMap<String, String>params) throws Throwable{
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			if(cnt>0) {
-				modelMap.put("msg","success");
-			}else {
-				modelMap.put("msg","failed");
+			try {
+				int cnt = iAdmin_Service.updateG(params);
+				
+				if(cnt>0) {
+					modelMap.put("msg","success");
+				}else {
+					modelMap.put("msg","failed");
+				}
+			} catch (Throwable e) {
+				e.printStackTrace();
+				modelMap.put("msg","error");
 			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-			modelMap.put("msg","error");
-		}
-		
-		return mapper.writeValueAsString(modelMap);
-		}
+			
+			return mapper.writeValueAsString(modelMap);
+			}
+			//운임 삭제
+			 @RequestMapping(value = "/BetterWay_infoguideAdmin_Deletes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_infoguideAdmin_Deletes(
+				 @RequestParam HashMap<String, String>params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 int cnt = iAdmin_Service.deleteguide(params);
+				 if(cnt > 0) {
+					 modelMap.put("msg", "success");
+				 }else {
+					 modelMap.put("msg", "failed");
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
 }

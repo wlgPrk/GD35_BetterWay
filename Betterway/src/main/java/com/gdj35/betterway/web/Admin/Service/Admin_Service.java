@@ -148,7 +148,10 @@ public class Admin_Service implements IAdmin_Service{
 	public int updateG(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.updateG(params);
 	}
-	
+	@Override
+	public int deleteguide(HashMap<String, String> params) throws Throwable {
+		return iAdmin_Dao.deleteguide(params);
+	}
 	//-----------------------------------건의-----------------------------------------
 	
 	
