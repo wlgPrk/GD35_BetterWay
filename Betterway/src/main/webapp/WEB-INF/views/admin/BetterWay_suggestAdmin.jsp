@@ -271,10 +271,21 @@ $(document).ready(function(){
 	    }
 	});
 	
-	//선택삭제버튼클릭
+	//유저게시물선택삭제버튼클릭
 	$("#userDelCheck").click(function(){
 		userCheckDel();
+		
 	});
+	
+	
+	//공지게시물선택삭제버튼클릭
+	$("#noticeDelCheck").click(function(){
+		noticeCheckDel();
+		
+	});
+	
+	
+
 	
 }); //document end
 
@@ -311,7 +322,7 @@ function userList(list){
 	for(var d of list){       
 		
 		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
-		html += "<td><input type=\"checkbox\" class=\"userCheck\" name=\"userCheck[]\" value=\""+d.SUG_NO+"\"></td>";
+		html += "<td><input type=\"checkbox\" class=\"userCheck\" name=\"userCheck\" value=\""+d.SUG_NO+"\"></td>";
 		html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
 if(d.REQ_NO !=0){
 	html+=	"<td>↳ re: " +d.TITLE + "</td>   "   ;
@@ -337,7 +348,7 @@ function noticeList(list){
 		var html="";
 		for(var d of list){
 		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
-		html += "<td><input type=\"checkbox\" class=\"noticeCheck\" name=\"noticeCheck[]\" value=\""+d.SUG_NO+"\"></td>";
+		html += "<td><input type=\"checkbox\" class=\"noticeCheck\" name=\"noticeCheck\" value=\""+d.SUG_NO+"\"></td>";
 		html+=	"<td>"+ d.SUG_NO +"</td>";
 		html+=	"<td>" +d.TITLE + "</td>   "   ;
 		html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
@@ -443,13 +454,51 @@ function miniDelete(){
 	
 }
 
-//
+//유저게시물 선택삭제
 function userCheckDel(){
-	var params = $("#userForm").serialize();
-
+	var checkArray =[];
+	
+	$('input[name="userCheck"]:checked').each(function(i){
+		checkArray.push($(this).val());
+	});
+	
+	var params={
+			"userCheck" : checkArray
+	};
+	console.log(params);
 	//ajax
 	$.ajax({
-		url: "BetterWay_suggestCheckDeletes", 
+		url: "BetterWay_suggestCheckUserDeletes", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			makePopup("알림","삭제되었습니다.");
+			reloadList();
+			
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+//공지게시물 선택삭제
+function noticeCheckDel(){
+	var checkArray =[];
+	
+	$('input[name="userCheck"]:checked').each(function(i){
+		checkArray.push($(this).val());
+	});
+	
+	var params={
+			"noticeCheck" : checkArray
+	};
+	console.log(params);
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestCheckNoticeDeletes", 
 		type: "post", 
 		dataType: "json",
 		data: params, 
@@ -480,7 +529,7 @@ function userCheckDel(){
 	</div>
 	<div id="right">
 <div class="con_box">
-<div class="btn_box"><input type="button" class="btn" value="글쓰기"/></div>
+<div class="btn_box"><input type="button" class="btn" value="글쓰기" id="writeBtn"/ ></div>
 공지
 
 <form id="noticeForm" action="#" method="post">
