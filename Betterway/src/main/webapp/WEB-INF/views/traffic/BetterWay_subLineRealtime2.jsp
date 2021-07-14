@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>실시간 위치</title>
 <script type="text/javascript">
 
 function main(){
@@ -14,11 +14,11 @@ function main(){
 
 function BetterWay_subLineRealtime(){
 
-	location.href="BetterWay_subLineRealtime.html";
+	location.href="BetterWay_subLineRealtime2";
 
 }
 function BetterWay_subLineBusstation(){
-	location.href="BetterWay_subLineBusstation.html";
+	location.href="BetterWay_subLineBusstation";
 }
 </script>
 <style>
@@ -47,6 +47,10 @@ padding:10px 0px 10px 0px;
 }
 .subline_img{
 width:75%;
+}
+#subway{
+	width:100%;
+	height:940px;
 }
 #title{
 font-weight: bold;
@@ -162,6 +166,9 @@ a{
 	height:65px;
 	background-color: #B2A59F;
 }
+#deparr_search_btn{
+    margin-top: 20px;
+}
 #subbtn_realtime, #subbtn_busstation{
 	color: white;
 	background:#B2A59F;
@@ -174,7 +181,6 @@ a{
 		$(document).ready(function(){
 		//$('#zooming').zoom();
 		//$('#zooming').zoom({ on:'grab' });
-		
 		//});
 		
 		$("img[name='subway']").imagezoomsl({
@@ -182,6 +188,25 @@ a{
 			zoomstart: 4, //시작 줌
 			innerzoom: true, //이미지 내 줌으로 전환
 			magnifierborder: "none" //두께 없음
+		});
+		
+		$(".realtime_search").on("click",function(){
+			var html = "";
+			
+			$.ajax({
+				/* http://swopenAPI.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimePosition/0/5/1호선 ->(데이터 불러오기) */
+				url:"http://swopenAPI.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimePosition/0/5/1호선",
+				type:"get",
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					
+				},
+				error:function(requet,status,error){
+					console.log(error);
+				}
+			});//ajax로 데이터 불러옴
+			
 		});
 	});
 	</script>
@@ -200,7 +225,7 @@ a{
 			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
 		</div>
 		<div id="deparr_btn">
-			<input type="button" id="deparr_search_btn"value="검색" style="background: none;"/>
+			<input type="button" id="deparr_search_btn" value="검색" style="background: none;"/>
 		</div>
 	</div>	  
 	<div class="subbtn_box">
@@ -220,13 +245,9 @@ a{
  
 </div>
 
-
-
-<div class="subline_img"><span class='zoom' id='zooming'>
-		<img src='resources/images/
-		naver_subway.jpg' name='subway' width='100%' height='100%'/>
+<div class="subline_img">
+		<img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>
 		<p>마우스를 올려 확대해보세요.</p>
-	</span>
 </div>
 
 </body>

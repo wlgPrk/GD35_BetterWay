@@ -218,7 +218,7 @@ margin-bottom:15px;
 font-weight: bold;
 }
 #hr{
-	margin-top :15px;
+	margin-top :16px;
 }
 #sub_title{
 	font-size: 15pt;

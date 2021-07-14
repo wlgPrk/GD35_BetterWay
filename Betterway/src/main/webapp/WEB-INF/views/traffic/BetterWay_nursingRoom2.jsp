@@ -217,7 +217,7 @@ font-weight: bold;
 }
 
 #hr{
-	margin-top :17px;
+	margin-top :16px;
 }
 
 #sub_title{
@@ -236,7 +236,7 @@ font-weight: bold;
 }
 .table_box1{
 	width: 100%;
-    margin-top: -27px;
+    margin-top: -25px;
 }
 
 #con_table{
