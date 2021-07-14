@@ -184,6 +184,13 @@ public class Admin_Dao implements IAdmin_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.update("admin.deleteSug",params);
 	}
+
+
+	@Override
+	public int checkDeleteSug(List<Integer> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.checkDeleteSug",params);
+	}
 	
 	
 	

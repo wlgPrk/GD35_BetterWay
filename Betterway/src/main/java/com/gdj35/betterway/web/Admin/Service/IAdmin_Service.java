@@ -67,5 +67,7 @@ public interface IAdmin_Service {
 
 	public int deleteSug(HashMap<String, String> params) throws Throwable;
 
+	public int checkDeleteSug(List<Integer> params) throws Throwable;
+
 	
 }
