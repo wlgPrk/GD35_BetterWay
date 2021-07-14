@@ -9,8 +9,8 @@
 
 
 function main(){
-	/* 수정수정 */
-		location.href="BetterWay_cooling.html";
+
+		location.href="BetterWay_main.html";
 	}
 
 function BetterWay_subLineBusstation(){
@@ -52,14 +52,14 @@ padding:10px 0px 10px 0px;
 width:75%;
 }
 #title{
-
 font-size: 15px;
-background: #B2A59F;
-color:#fff;
+background:#e0e0eb;
 width:170px;
-text-align:center;
-border-radius: 15px 15px 15px 15px;
+padding-top:2px;
+border-radius: 15px;
 margin-bottom: 5px;
+font-weight:bold;
+height:22px;
 }
 
 
@@ -73,7 +73,7 @@ margin-top:5px;
 #dep , #arr{
 padding-left:5px;
 width:300px;
-height:30px;
+height:29.7px;
 }
 /* zoom */
 * { border:0; margin:0; padding:0; }
@@ -103,7 +103,7 @@ padding:5px 0px 5px 0px;
 
 }
 .subbtn{
-background:#B2A59F;
+background:#82b2da;
 border-radius: 5px;
 height:100%;
 width:155px;
@@ -134,10 +134,14 @@ float:left;
 }
 .realtime_search{  
 padding-left: 5px;
-  display: flex;
-  justify-content: center;
-    height: 20px;
-     color: white;background:#B2A59F; padding-top:5px;padding-bottom:5px;padding-right:5px;
+display: flex;
+justify-content: center;
+height: 20px;
+color: white;
+background:#82b2da; 
+padding-top:5px;
+padding-bottom:5px;
+padding-right:5px;
 
 }
 a{
@@ -160,9 +164,10 @@ font-size: 15px;
       background-color: #f2f2f2;
       width: 300px;
       height: 300px;
-      padding:15px 5px 15px 5px;
+      padding:10px 5px ;
+
  	  margin-top:10px;
-      border-radius: 15px;
+
     }
 .subbtn_box{
     display: flex;
@@ -176,6 +181,7 @@ margin-top: 13px;
 table{
 text-align:center;
 margin:0 auto;
+border:1px solid;
 }
 #dep_arr{
 	    display: flex;
@@ -195,49 +201,109 @@ margin:0 auto;
         float: right;
         box-sizing: border-box;
 		height:65px;
-		background-color: #B2A59F;
+		background-color: #82b2da;
     }
-    	#deparr_btn{
-    	margin-top:26px;    	
-    	}
+
     	#deparr_search_btn{
-    	padding-top:20px;    
+    	margin-top: 27px;
+    	height: 65px;
     	color:#fff;
+    	background-color: #82b2da;
+
     	}
 
 #subbtn_realtime, #subbtn_busstation{
 	color: white;
-	background:#B2A59F;
+	background:#82b2da;
+}
+
+#deparr_search_btn,#subbtn_realtime, #subbtn_busstation:hover {
+	cursor: pointer;
 }
 	</style>
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-	<script src='jquery.zoom.js'></script>
-	<script>
-		$(document).ready(function(){
-			$('#zooming').zoom();
-			$('#zooming').zoom({ on:'grab' });
+<script type="text/javascript"
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#realtime_search").on("click",function(){
+		var html="";
+		var params = $("#SearchForm").serialize();	
+		var stationid;
+		$("#st").val($("#select_station").val());
+		console.log(st);
+
+				$.ajax({
+					url:"getsIdsName",
+					type:"post", //전송방식(get,post)
+					dataType:"json",//받아올 데이터 형식
+					data:params,//보낼 데이터(문자열 형태)
+					success:function(res){//성공 시 다음 함수 실행						
+					console.log(res);
+					for(var d of res.data){						
+						if(st.value==d.SUBWAY_STATION_NAME){														
+							var stationid=d.SUBWAYSTATIONID;
+							console.log(stationid);
+						}
+					}
+					$.ajax({
+						
+						url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid,
+						type:"get",
+						dataType:"xml",				
+						success:function(res){
+							console.log(res);
+							
+							$(res).find('item').each(function(){ 
+							var busRouteNo = $(this).find("busRouteNo").text(); 
+							var exitNo = $(this).find("exitNo").text();
+							console.log(busRouteNo);
+							html += "<tr>";
+							html += "<td>" + exitNo+ "</td>";
+							html += "<td>" + busRouteNo + "</td>";
+							html += "</tr>";
+							$("tbody").html(html);
+							
+							});
+
+							
+						},
+						error:function(requet,status,error){
+							console.log(error);
+							
+						}
+					});//api에서 가져올 id에 따른 출구번호, 버스번호
+						},//success end
+					error:function(request,status,error){//실패시 다음 함수 실행
+						console.log(error);
+					}
+				});//db에서 가져온 id, 역이름
 		
-		});
-	</script>
+	});
+
+		
+
+		
+
+});
+</script>
 </head>
 <body>
+
 <div class="side">
 	<div class="side_title">
 	<a class="main" href="BetterWay_main.html">BetterWay</a>
 	</div>
 
 	<div class="wrap">
-		
-	<div id="dep_arr">
-	
+	<div id="dep_arr">	
 		<div id="deparr_search">
 		<div id="title">출발 도착 역검색</div>
 			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>
 			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
 		</div>
-		<div id="deparr_btn">
-			<input type="button" id="deparr_search_btn"value="검색" style="background: none;"/>
-		</div>
+
+			
 	</div>	  
 	<div class="subbtn_box">
 		<div class="subbtn"><a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a></div>
@@ -248,56 +314,39 @@ margin:0 auto;
 		<div id="dep_arr">
 		
 		<div class="box_sub">
-			<input type="text" class="realtime" placeholder="역 검색"/>
-			<a class="realtime_search" href="#" style="color: white;background:#B2A59F; padding-top:5px;padding-bottom:5px;padding-right:5px;">검색</a>
+		 <form action="#" id="SearchForm" method="post" >
+		 <input type="text"  class="realtime" id="select_station"/>
+		 <input type="button" id="realtime_search"value="검색">
+		  <input type="hidden" id="st" name="select_station"/>  
+
+			
+		  </form>
+			
 		</div>
 
 		</div>	  
+	
 	    <div class="box_table">
 								<table>
 									<thead>
 										<tr>
-											<td>출구번호</td>
-											<td>정류소 명</td>
+											<td>출구번호</td>											
 											<td>버스번호</td>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>OO 앞</td>
-											<td>753</td>
+											<td></td>
+
+											<td></td>
 										</tr>
-										<tr>
-											<td>3</td>
-											<td>Female</td>
-											<td>47</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>Male</td>
-											<td>12</td>
-										</tr>
-										<tr>
-											<td>12</td>
-											<td>Male</td>
-											<td>12</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>Male</td>
-											<td>12</td>
-										</tr>
-										<tr>
-											<td>Warren</td>
-											<td>Male</td>
-											<td>12</td>
-										</tr>
+										
 										</tbody>
 										</table> 
 	</div>
 	   
   </div>
+ 
 </div>
 
 
