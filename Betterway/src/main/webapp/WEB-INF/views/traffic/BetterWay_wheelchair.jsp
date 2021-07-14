@@ -269,7 +269,7 @@ th,td{
 	text-align: center;
 }
 td{
-	height:50px;
+	height:61px;
 }
 #footer{
 	width:100%;
@@ -347,8 +347,6 @@ $(document).ready(function(){
 		reloadList();
 });
 
-//테이블 호선마다 나눠서 만들고
-//테이블 display inline block으로 하면 달라붙음
 
 function drawList(list){
 	   var html = "";
@@ -386,6 +384,20 @@ function drawList(list){
 				html += "<tr>"
 				html += 	"<td>"+ list[i].DIRECTION + "</td>"
 				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}else if(i<44){
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\"></td>"  
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td></td>"
+				html += 	"<td></td>"
 				html += "</tr>"
 			}
 			count++;
@@ -479,6 +491,20 @@ function drawList3(list){
 				html += "</tr>"
 			}
 			count++;
+		}else if(i>56&&i<101){
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\"></td>"  
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}
+			count++;
 		}
 		nowSub = list[i].SUBLINE_NO;
 	} 
@@ -521,6 +547,20 @@ function drawList4(list){
 				html += "<tr>"
 				html += 	"<td>"+ list[i].DIRECTION + "</td>"
 				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}else if(i>129&&i<146){
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\"></td>"  
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td></td>"
+				html += 	"<td></td>"
 				html += "</tr>"
 			}
 			count++;
@@ -614,6 +654,20 @@ function drawList6(list){
 				html += "</tr>"
 			}
 			count++;
+		}else if(i>182&&i<199){
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\"></td>"  
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}
+			count++;
 		}
 		nowSub = list[i].SUBLINE_NO;
 	} 
@@ -659,6 +713,22 @@ function drawList7(list){
 				html += "</tr>"
 			}
 			count++;
+		}else if(i>212){
+			for(var j = 0; j<8; j++){
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\"></td>"  
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td></td>"
+				html += 	"<td></td>"
+				html += "</tr>"
+			}
+			count++;
+			}
 		}
 		nowSub = list[i].SUBLINE_NO;
 	} 
@@ -690,7 +760,7 @@ function drawList8(list){
 	
 	for(var i = 0; i < list.length; i++){
 		if(nowSub == 8){
-				console.log(nowSub);
+				console.log(i);
 			if(count % 2 == 0){
 				html += "<tr>"
 				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
@@ -706,7 +776,21 @@ function drawList8(list){
 			count++;
 		}
 		nowSub = list[i].SUBLINE_NO;
-	} 
+	}for(var j = 0; j<31; j++){
+				if(count % 2 == 0){
+					html += "<tr>"
+					html += 	"<td rowspan=\"2\"></td>"  
+					html += 	"<td></td>"
+					html += 	"<td></td>"
+					html += "</tr>"
+				}else{
+					html += "<tr>"
+					html += 	"<td></td>"
+					html += 	"<td></td>"
+					html += "</tr>"
+				}
+				count++;
+	} //for
 	   $(".table_box8").html(html);
 	}
 	
