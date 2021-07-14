@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휠체어 이용안내</title>
 </head>
 <script type="text/javascript">
 </script>
@@ -92,9 +92,6 @@ nav ul {
 	font-size: 30px;
 
 }
-
-	
-
 article {/* 섹션 안 큰내용, 가운데정렬 */
   	background-color: #fff;
     height: 100%;
@@ -111,7 +108,6 @@ section:after { /* 뒷배경 */
   clear: both;
   background: orange;
 }
-
 
 /* 
 @media (max-width: 600px) {
@@ -143,21 +139,16 @@ color: #fff;
 	width:75%;
 	height: 645px; /* 임의 지정 */
 }
-
-  .box_title{
-    position: relative;
- 	background-image:url("resources/images/서브타이틀_배경.png");       
-    background-size : cover;                   
+.box_title{
+  position: relative;
+  background-image:url("resources/images/서브타이틀_배경.png");       
+  background-size : cover;                   
   height:216px;
-
   }
-
-
 .img_cov{
  backdrop-filter: blur(5px);
    height:216px;
    padding-top: 160px;
- 
 }
 .img_cov_con{/* 어디로 왔능가  */
 
@@ -166,8 +157,6 @@ font-size: 20pt;
 background:rgba(52, 75, 22, 0.63);
     color: #fff;
     text-align: right;
-   
-
 }
 .img_cov_context{
 font-weight: bold;
@@ -183,7 +172,6 @@ margin-top: 30px;
 font-weight :bold;
 font-size: 30pt;
 display: inline-block;
-
 }
 
 #box_con_img{
@@ -204,7 +192,6 @@ height:30px;
 .line_sel_bar>.scroll:hover{
 text-decoration:underline;
 }
-
 
 .scroll {
 text-align:center;
@@ -247,8 +234,26 @@ font-weight: bold;
 	width:100%;
 	border-top:2px solid #82b2da;
 }
+.table_box1,.table_box2,.table_box3,.table_box4,
+.table_box5,.table_box6,.table_box7,.table_box8{
+	width:270px;
+	border-top:2px solid #82b2da;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11pt;
+}
+
+.subLine_table,.subLine_table2{
+	width:100%;
+	font-size: 0pt;
+}
 #con_table{
 	width : 100%;
+	border-collapse:collapse;
+	border-spacing:0px;
+}
+#con_subLine_table{
+	width : 270px;
 	border-collapse:collapse;
 	border-spacing:0px;
 }
@@ -263,14 +268,15 @@ th,td{
 	padding : 10px;
 	text-align: center;
 }
-
+td{
+	height:50px;
+}
 #footer{
 	width:100%;
 	height:75px;
-	margin-top : 5260px;
+	margin-top : 5900px;
 	background: #023459;
 }
-
 *{
     margin: 0;
     padding: 0;
@@ -334,8 +340,404 @@ background: #B2A59F;
 }
 
 </style>
+<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+		reloadList();
+});
+
+//테이블 호선마다 나눠서 만들고
+//테이블 display inline block으로 하면 달라붙음
+
+function drawList(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"36%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">1호선(6역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 1){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box1").html(html);
+	}
+	
+function drawList2(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"35%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">2호선(22역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 2){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box2").html(html);
+	}
+	
+function drawList3(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">3호선(17역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 3){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box3").html(html);
+	}
+	
+function drawList4(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"36%;\">"
+	html +=	"	<col width = \"36%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">4호선(14역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 4){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box4").html(html);
+	}
+	
+function drawList5(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"36%;\">"
+	html +=	"	<col width = \"36%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">5호선(19역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 5){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box5").html(html);
+	}
+	
+function drawList6(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"36%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">6호선(13역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 6){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box6").html(html);
+	}
+	
+function drawList7(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"35%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">7호선(15역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 7){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box7").html(html);
+	}
+	
+function drawList8(list){
+	   var html = "";
+	   var count = 0;
+	   
+	   var nowSub = list[0].SUBLINE_NO;
+	   //시작 그리기 <tbody>까지
+	html += "<table id=\"con_subLine_table\">"
+	html +=	"<colgroup>"            
+	html +=	"	<col width = \"35%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"	<col width = \"33%;\">"
+	html +=	"</colgroup>"           
+	html +=	"<thead>"
+	html +=	"	<tr>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">8호선(4역)</th>"
+	html +=	"	</tr>"
+	html +=	"	<tr>"
+	html +=	"		<th scope=\"col\">역명</th>"
+	html +=	"		<th scope=\"col\" colspan=\"2\">승·하차 위치</th>"
+	html +=	"	</tr>"
+	html +=	"</thead>"
+	html +=	"<tbody>"
+	
+	for(var i = 0; i < list.length; i++){
+		if(nowSub == 8){
+				console.log(nowSub);
+			if(count % 2 == 0){
+				html += "<tr>"
+				html += 	"<td rowspan=\"2\">"+ list[i].SUBWAY_STATION_NAME +"</td>"  
+				html += 	"<td>" + list[i].DIRECTION + "</td>"
+				html += 	"<td>" + list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}else{
+				html += "<tr>"
+				html += 	"<td>"+ list[i].DIRECTION + "</td>"
+				html += 	"<td>"+ list[i].PLATFORM_NO + "</td>"
+				html += "</tr>"
+			}
+			count++;
+		}
+		nowSub = list[i].SUBLINE_NO;
+	} 
+	   $(".table_box8").html(html);
+	}
+	
+function reloadList(){
+	var params = $("#actionForm").serialize();
+	
+	 $.ajax({
+         url : "wheelchair_List", //stationEstaInfo 컨트롤러에 있음
+         type : "post",  
+         dataType :"json", 
+         data : params,
+         success : function(res){
+             drawList(res.list);
+             drawList2(res.list);
+             drawList3(res.list);
+             drawList4(res.list);
+             drawList5(res.list);
+             drawList6(res.list);
+             drawList7(res.list);
+             drawList8(res.list);
+             console.log("success");
+         },
+         error : function(request,status,error){
+            console.log(error);
+         }
+      });
+}
+</script>
 </head>
 <body>
+<form action="#" id="actionForm" method="post"></form>
 
 <header>
   <a class="main" href="menu.html">BetterWay</a>
@@ -473,1063 +875,18 @@ background: #B2A59F;
 		<h4 id = "sub_title">전동차와 승강장 연단간격이 가장 좁은 승·하차 위치 현황</h4>
 		<p>□대상 : 연단간격 10cm 초과 역사(110역)</p>
 		
-		<div class = "table_box">
-			<table id = "con_table">
-				<colgroup>
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col" colspan="3">1호선(6역)</th><!-- scope col 헤더셀이 세로행에 적용된다. row 가로행에 적용 -->
-						<th scope="col" colspan="3">2호선(22역)</th>
-						<th scope="col" colspan="3">3호선(17역)</th>
-						<th scope="col" colspan="3">4호선(14역)</th>
-					</tr>
-					<tr>
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th> <!-- colspan은 가로로 병합 -->
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th>
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th>
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td rowspan="2">서울역</td>  <!-- rowspan은 세로로 병합 -->
-						<td>소요산방면</td>
-						<td>7-3</td>
-						<td rowspan="2">시청</td> 
-						<td>내선</td>
-						<td>7-3</td>
-						<td rowspan="2">연신내</td>  
-						<td>대화방면</td>
-						<td>7-1</td>
-						<td rowspan="2">당고개</td> 
-						<td>당고개방면</td>
-						<td>4-3</td>
-					</tr>
-					<tr>
-						<td>신도림방면</td>
-						<td>1-4</td>
-						<td>외선</td>
-						<td>4-1</td>
-						<td>오금방면</td>
-						<td>3-2</td>
-						<td>오이도방면</td>
-						<td>5-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2">동대문</td> 
-						<td>소요산방면</td>
-						<td>4-4</td>
-						<td rowspan="2">동대문역사<br/>문화공원</td>  
-						<td>내선</td>
-						<td>10-2</td>
-						<td rowspan="2">불광</td> 
-						<td>대화방면</td>
-						<td>1-1</td>
-						<td rowspan="2">미아사거리</td> 
-						<td>당고개방면</td>
-						<td>7-1</td>
-					</tr>
-					<tr>
-						<td>신도림방면</td>
-						<td>7-1</td>
-						<td>외선</td>
-						<td>9-2</td>
-						<td>오금방면</td>
-						<td>1-4</td>
-						<td>오이도방면</td>
-						<td>1-4</td>
-					</tr>
-					<tr>
-						<td rowspan="2">동묘앞</td> 
-						<td>소요산방면</td>
-						<td>1-2</td>
-						<td rowspan="2">신당</td>  
-						<td>내선</td>
-						<td>4-2</td>
-						<td rowspan="2">녹번</td> 
-						<td>대화방면</td>
-						<td>8-1</td>
-						<td rowspan="2">길음</td> 
-						<td>당고개방면</td>
-						<td>7-2</td>
-					</tr>
-					<tr>
-						<td>신도림방면</td>
-						<td>3-4</td>
-						<td>외선</td>
-						<td>7-1</td>
-						<td>오금방면</td>
-						<td>10-2</td>
-						<td>오이도방면</td>
-						<td>7-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2">신설동</td> 
-						<td>소요산방면</td>
-						<td>6-1</td>
-						<td rowspan="2">상왕십리</td>  
-						<td>내선</td>
-						<td>1-1</td>
-						<td rowspan="2">홍제</td> 
-						<td>대화방면</td>
-						<td>10-2</td>
-						<td rowspan="2">성신여대<br/>입구</td> 
-						<td>당고개방면</td>
-						<td>10-4</td>
-					</tr>
-					<tr>
-						<td>신도림방면</td>
-						<td>10-4</td>
-						<td>외선</td>
-						<td>10-4</td>
-						<td>오금방면</td>
-						<td>4-2</td>
-						<td>오이도방면</td>
-						<td>9-2</td>
-					</tr>
-					<tr>
-						<td rowspan="2">제기동</td> 
-						<td>소요산방면</td>
-						<td>1-4</td>
-						<td rowspan="2">왕십리</td>  
-						<td>내선</td>
-						<td>3-1</td>
-						<td rowspan="2">무악재</td> 
-						<td>대화방면</td>
-						<td>1-3</td>
-						<td rowspan="2">한성대입구</td> 
-						<td>당고개방면</td>
-						<td>9-2</td>
-					</tr>
-					<tr>
-						<td>신도림방면</td>
-						<td>8-2</td>
-						<td>외선</td>
-						<td>6-1</td>
-						<td>오금방면</td>
-						<td>4-4</td>
-						<td>오이도방면</td>
-						<td>8-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2">청량리</td> 
-						<td>소요산방면</td>
-						<td>9-1</td>
-						<td rowspan="2">잠실</td>  
-						<td>내선</td>
-						<td>7-3</td>
-						<td rowspan="2">경복궁</td> 
-						<td>대화방면</td>
-						<td>1-1</td>
-						<td rowspan="2">혜화</td> 
-						<td>당고개방면</td>
-						<td>2-2</td>
-					</tr>
-					<tr>
-						<td>신도림방면</td>
-						<td>4-3</td>
-						<td>외선</td>
-						<td>3-3</td>
-						<td>오금방면</td>
-						<td>10-1</td>
-						<td>오이도방면</td>
-						<td>7-3</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">잠실새내</td>  
-						<td>내선</td>
-						<td>3-3</td>
-						<td rowspan="2">종로3가</td> 
-						<td>대화방면</td>
-						<td>5-1</td>
-						<td rowspan="2">동대문</td> 
-						<td>당고개방면</td>
-						<td>4-2</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>2-1</td>
-						<td>오금방면</td>
-						<td>4-3</td>
-						<td>오이도방면</td>
-						<td>2-4</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">종합운동장</td>  
-						<td>내선</td>
-						<td>1-3</td>
-						<td rowspan="2">충무로</td> 
-						<td>대화방면</td>
-						<td>8-1</td>
-						<td rowspan="2">동대문역사<br/>문화공원</td> 
-						<td>당고개방면</td>
-						<td>4-2</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>2-2</td>
-						<td>오금방면</td>
-						<td>3-2</td>
-						<td>오이도방면</td>
-						<td>5-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">삼성</td>  
-						<td>내선</td>
-						<td>9-1</td>
-						<td rowspan="2">약수</td> 
-						<td>대화방면</td>
-						<td>3-3</td>
-						<td rowspan="2">충무로</td> 
-						<td>당고개방면</td>
-						<td>1-2</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>3-3</td>
-						<td>오금방면</td>
-						<td>4-1</td>
-						<td>오이도방면</td>
-						<td>5-2</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">방배</td>  
-						<td>내선</td>
-						<td>1-4</td>
-						<td rowspan="2">금호</td> 
-						<td>대화방면</td>
-						<td>10-2</td>
-						<td rowspan="2">회현</td> 
-						<td>당고개방면</td>
-						<td>8-3</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>10-1</td>
-						<td>오금방면</td>
-						<td>4-3</td>
-						<td>오이도방면</td>
-						<td>7-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">서울대입구</td>  
-						<td>내선</td>
-						<td>6-2</td>
-						<td rowspan="2">옥수</td> 
-						<td>대화방면</td>
-						<td>5-2</td>
-						<td rowspan="2">서울역</td> 
-						<td>당고개방면</td>
-						<td>8-1</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>5-3</td>
-						<td>오금방면</td>
-						<td>1-3</td>
-						<td>오이도방면</td>
-						<td>1-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">봉천</td>  
-						<td>내선</td>
-						<td>3-1</td>
-						<td rowspan="2">압구정</td> 
-						<td>대화방면</td>
-						<td>1-1</td>
-						<td rowspan="2">숙대입구</td> 
-						<td>당고개방면</td>
-						<td>1-3</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>9-3</td>
-						<td>오금방면</td>
-						<td>8-3</td>
-						<td>오이도방면</td>
-						<td>4-4</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">신림</td>  
-						<td>내선</td>
-						<td>2-3</td>
-						<td rowspan="2">도곡</td> 
-						<td>대화방면</td>
-						<td>1-4</td>
-						<td rowspan="2">동작</td> 
-						<td>당고개방면</td>
-						<td>7-1</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>7-4</td>
-						<td>오금방면</td>
-						<td>7-1</td>
-						<td>오이도방면</td>
-						<td>1-3</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">신대방</td>  
-						<td>내선</td>
-						<td>10-1</td>
-						<td rowspan="2">대청</td> 
-						<td>대화방면</td>
-						<td>3-3</td>
-						<td rowspan="2">총신대입구</td> 
-						<td>당고개방면</td>
-						<td>7-1</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>4-4</td>
-						<td>오금방면</td>
-						<td>1-1</td>
-						<td>오이도방면</td>
-						<td>6-1</td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">구로디지털<br/>단지</td>  
-						<td>내선</td>
-						<td>1-3</td>
-						<td rowspan="2">수서</td> 
-						<td>대화방면</td>
-						<td>10-4</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>6-4</td>
-						<td>오금방면</td>
-						<td>5-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">당산</td>  
-						<td>내선</td>
-						<td>10-2</td>
-						<td rowspan="2">가락시장</td> 
-						<td>대화방면</td>
-						<td>6-4</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>2-3</td>
-						<td>오금방면</td>
-						<td>4-4</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">홍대입구</td>  
-						<td>내선</td>
-						<td>7-2</td>
-						<td rowspan="2">오금</td> 
-						<td>대화방면</td>
-						<td>5-1</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>3-2</td>
-						<td>오금방면</td>
-						<td>6-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">신촌</td>  
-						<td>내선</td>
-						<td>7-2</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>5-2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">아현</td>  
-						<td>내선</td>
-						<td>5-1</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>8-1</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">충정로</td>  
-						<td>내선</td>
-						<td>9-1</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>2-4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">신답</td>  
-						<td>내선</td>
-						<td>1-3</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>1-1</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2">용두</td>  
-						<td>내선</td>
-						<td>4-3</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td>외선</td>
-						<td>4-4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div><br/><br/>
+		<div class = "subLine_table">
+		<div class = "table_box1"></div>
+		<div class = "table_box2"></div>
+		<div class = "table_box3"></div>
+		<div class = "table_box4"></div>
+		</div><br/><br/><br/>
 		
-		<div class = "table_box">
-			<table id = "con_table">
-				<colgroup>
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-					<col width = "8%;">
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col" colspan="3">5호선(19역)</th><!-- scope col 헤더셀이 세로행에 적용된다. row 가로행에 적용 -->
-						<th scope="col" colspan="3">6호선(13역)</th>
-						<th scope="col" colspan="3">7호선(15역)</th>
-						<th scope="col" colspan="3">8호선(4역)</th>
-					</tr>
-					<tr>
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th> <!-- colspan은 가로로 병합 -->
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th>
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th>
-						<th scope="col">역명</th>
-						<th scope="col" colspan="2">승·하차 위치</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td rowspan="2">개화산</td>  <!-- rowspan은 세로로 병합 -->
-						<td>방화방면</td>
-						<td>8-2</td>
-						<td rowspan="2">응암</td> 
-						<td>역촌방면</td>
-						<td>1-1</td>
-						<td rowspan="2">도봉산</td>  
-						<td>장암방면</td>
-						<td>8-3</td>
-						<td rowspan="2">몽촌토성</td> 
-						<td>잠실방면</td>
-						<td>1-1</td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>4-4</td>
-						<td>봉화산방면</td>
-						<td>6-3</td>
-						<td>부평구청<br/>방면</td>
-						<td>4-3</td>
-						<td>모란방면</td>
-						<td>3-2</td>
-					</tr>
-					<tr>
-						<td rowspan="2">김포공항</td> 
-						<td>방화방면</td>
-						<td>7-3</td>
-						<td rowspan="2">불광</td>  
-						<td>응암방면</td>
-						<td>2-2</td>
-						<td rowspan="2">중계</td> 
-						<td>장암방면</td>
-						<td>7-4</td>
-						<td rowspan="2">산성</td> 
-						<td>잠실방면</td>
-						<td>1-3</td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>8-1</td>
-						<td></td>
-						<td></td>
-						<td>부평구청<br/>방면</td>
-						<td>7-3</td>
-						<td>모란방면</td>
-						<td>1-4</td>
-					</tr>
-					<tr>
-						<td rowspan="2">발산</td> 
-						<td>방화방면</td>
-						<td>5-1</td>
-						<td rowspan="2">독바위</td>  
-						<td>응암방면</td>
-						<td>1-2</td>
-						<td rowspan="2">공릉</td> 
-						<td>장암방면</td>
-						<td>8-1</td>
-						<td rowspan="2">단대오거리</td> 
-						<td>잠실방면</td>
-						<td>1-4</td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>8-2</td>
-						<td></td>
-						<td></td>
-						<td>부평구청<br/>방면</td>
-						<td>1-1</td>
-						<td>모란방면</td>
-						<td>1-3</td>
-					</tr>
-					<tr>
-						<td rowspan="2">화곡</td> 
-						<td>방화방면</td>
-						<td>6-3</td>
-						<td rowspan="2">연신내</td>  
-						<td>응암방면</td>
-						<td>1-1</td>
-						<td rowspan="2">중화</td> 
-						<td>장암방면</td>
-						<td>7-2</td>
-						<td rowspan="2">모란</td> 
-						<td>잠실방면</td>
-						<td>1-4</td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>6-4</td>
-						<td></td>
-						<td></td>
-						<td>부평구청<br/>방면</td>
-						<td>7-2</td>
-						<td>모란방면</td>
-						<td>3-2</td>
-					</tr>
-					<tr>
-						<td rowspan="2">목동</td> 
-						<td>방화방면</td>
-						<td>6-1</td>
-						<td rowspan="2">구산</td>  
-						<td>응암방면</td>
-						<td>1-1</td>
-						<td rowspan="2">상봉</td> 
-						<td>장암방면</td>
-						<td>7-4</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>7-2</td>
-						<td></td>
-						<td></td>
-						<td>부평구청<br/>방면</td>
-						<td>1-3</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">신길</td> 
-						<td>방화방면</td>
-						<td>5-3</td>
-						<td rowspan="2">월드컵경기장</td>  
-						<td>응암방면</td>
-						<td>4-1</td>
-						<td rowspan="2">면목</td> 
-						<td>장암방면</td>
-						<td>8-1</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>5-4</td>
-						<td>봉화산방면</td>
-						<td>8-1</td>
-						<td>부평구청<br/>방면</td>
-						<td>2-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">충정로</td> 
-						<td>방화방면</td>
-						<td>1-2</td>
-						<td rowspan="2">합정</td>  
-						<td>응암방면</td>
-						<td>8-2</td>
-						<td rowspan="2">용마산</td> 
-						<td>장암방면</td>
-						<td>2-1</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>3-2</td>
-						<td>봉화산방면</td>
-						<td>3-4</td>
-						<td>부평구청<br/>방면</td>
-						<td>6-4</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">서대문</td> 
-						<td>방화방면</td>
-						<td>5-4</td>
-						<td rowspan="2">녹사평</td>  
-						<td>응암방면</td>
-						<td>8-1</td>
-						<td rowspan="2">건대입구</td> 
-						<td>장암방면</td>
-						<td>3-3</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>7-2</td>
-						<td>봉화산방면</td>
-						<td>1-1</td>
-						<td>부평구청<br/>방면</td>
-						<td>1-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">광화문</td> 
-						<td>방화방면</td>
-						<td>8-3</td>
-						<td rowspan="2">버티고개</td>  
-						<td>응암방면</td>
-						<td>6-2</td>
-						<td rowspan="2">강남구청</td> 
-						<td>장암방면</td>
-						<td>7-4</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>4-2</td>
-						<td>봉화산방면</td>
-						<td>5-1</td>
-						<td>부평구청<br/>방면</td>
-						<td>2-4</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">동대문역사<br/>문화공원</td> 
-						<td>방화방면</td>
-						<td>1-2</td>
-						<td rowspan="2">창신</td>  
-						<td>응암방면</td>
-						<td>1-1</td>
-						<td rowspan="2">고속터미널</td> 
-						<td>장암방면</td>
-						<td>2-2</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>8-3</td>
-						<td>봉화산방면</td>
-						<td>6-4</td>
-						<td>부평구청<br/>방면</td>
-						<td>8-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">청구</td> 
-						<td>방화방면</td>
-						<td>7-2</td>
-						<td rowspan="2">고려대</td>  
-						<td>응암방면</td>
-						<td>8-1</td>
-						<td rowspan="2">남성</td> 
-						<td>장암방면</td>
-						<td>1-2</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>8-1</td>
-						<td>봉화산방면</td>
-						<td>1-1</td>
-						<td>부평구청<br/>방면</td>
-						<td>6-2</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">신금호</td> 
-						<td>방화방면</td>
-						<td>2-3</td>
-						<td rowspan="2">월곡</td>  
-						<td>응암방면</td>
-						<td>1-1</td>
-						<td rowspan="2">장승배기</td> 
-						<td>장암방면</td>
-						<td>8-3</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>8-2</td>
-						<td>봉화산방면</td>
-						<td>6-3</td>
-						<td>부평구청<br/>방면</td>
-						<td>4-4</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">군자</td> 
-						<td>방화방면</td>
-						<td>5-3</td>
-						<td rowspan="2">화랑대</td>  
-						<td>응암방면</td>
-						<td>5-3</td>
-						<td rowspan="2">가산디지털<br/>단지</td> 
-						<td>장암방면</td>
-						<td>6-4</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>7-3</td>
-						<td>봉화산방면</td>
-						<td>5-3</td>
-						<td>부평구청<br/>방면</td>
-						<td>2-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">아차산</td> 
-						<td>방화방면</td>
-						<td>3-3</td>
-						<td rowspan="2"></td>  
-						<td></td>
-						<td></td>
-						<td rowspan="2">철산</td> 
-						<td>장암방면</td>
-						<td>1-2</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>1-2</td>
-						<td></td>
-						<td></td>
-						<td>부청구청<br/>방면</td>
-						<td>8-1</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">광나루</td> 
-						<td>방화방면</td>
-						<td>5-3</td>
-						<td rowspan="2"></td>  
-						<td></td>
-						<td></td>
-						<td rowspan="2">천왕</td> 
-						<td>장암방면</td>
-						<td>1-2</td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>1-1</td>
-						<td></td>
-						<td></td>
-						<td>부청구청<br/>방면</td>
-						<td>8-3</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">천호</td> 
-						<td>방화방면</td>
-						<td>1-2</td>
-						<td rowspan="2"></td>  
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동<br/>마천방면</td>
-						<td>1-4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr><tr>
-						<td rowspan="2">굽은다리</td> 
-						<td>방화방면</td>
-						<td>4-2</td>
-						<td rowspan="2"></td>  
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동방면</td>
-						<td>5-4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr><tr>
-						<td rowspan="2">명일</td> 
-						<td>방화방면</td>
-						<td>1-3</td>
-						<td rowspan="2"></td>  
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>상일동방면</td>
-						<td>3-4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr><tr>
-						<td rowspan="2">거여</td> 
-						<td>방화방면</td>
-						<td>6-3</td>
-						<td rowspan="2"></td>  
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-						<td rowspan="2"></td> 
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>마천방면</td>
-						<td>8-3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class = "subLine_table2">
+		<div class = "table_box5"></div>
+		<div class = "table_box6"></div>
+		<div class = "table_box7"></div>
+		<div class = "table_box8"></div>
 		</div>
 					
 		</div>	
