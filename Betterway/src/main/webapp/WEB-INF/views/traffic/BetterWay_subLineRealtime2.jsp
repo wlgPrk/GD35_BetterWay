@@ -53,14 +53,16 @@ width:75%;
 	height:940px;
 }
 #title{
-font-weight: bold;
-font-size: 15px;
-background: #1E646E;
-color:#fff;
-width:170px;
-text-align:center;
-border-radius: 15px 15px 15px 15px;
-
+    font-size: 15px;
+    background: #e0e0eb;
+    width: 170px;
+    padding-top: 2px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    height: 22px;
+    text-align: center;
+    margin-left: 90px;
 }
 .arr{
 
@@ -98,7 +100,7 @@ padding:5px 0px 5px 0px;
  text-align: center;
 }
 .subbtn{
-	background:#B2A59F;
+	background:#82B2DA;
 	border-radius: 5px;
 	height:100%;
 	width:155px;
@@ -120,7 +122,7 @@ padding:5px 0px 5px 0px;
 .realtime_search{  
 	padding-left: 5px;
     height: 20px;
-     color: white;background:#B2A59F; padding-top:5px;padding-bottom:5px;padding-right:5px;
+     color: white;background:#82B2DA; padding-top:5px;padding-bottom:5px;padding-right:5px;
 }
 a{
 	text-decoration: none;
@@ -131,6 +133,14 @@ a{
      justify-content: center;
      align-items: center;
      flex-direction: column;
+}
+.box_all{
+	background-color: #f2f2f2;
+    width: 300px;
+    height: 150px;
+    padding:15px 5px 15px 5px;
+    margin-top:10px;
+    border-radius: 15px;
 }
 .box_up , .box_down{
     background-color: #f2f2f2;
@@ -164,14 +174,14 @@ a{
 	float: right;
 	box-sizing: border-box;
 	height:65px;
-	background-color: #B2A59F;
+	background-color: #82B2DA;
 }
 #deparr_search_btn{
     margin-top: 20px;
 }
 #subbtn_realtime, #subbtn_busstation{
 	color: white;
-	background:#B2A59F;
+	background:#82B2DA;
 }
 	</style>
 	<script type="text/javascript" 
@@ -179,9 +189,8 @@ a{
 	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-		//$('#zooming').zoom();
-		//$('#zooming').zoom({ on:'grab' });
-		//});
+			
+		$(".box_all").hide(); //역하나 검색했을때만 나오게
 		
 		$("img[name='subway']").imagezoomsl({
 			zoomrange: [1, 12],
@@ -190,22 +199,46 @@ a{
 			magnifierborder: "none" //두께 없음
 		});
 		
+		/* $("#deparr_search_btn").on("click",function(){
+			$(".box_all").hide();
+			$(".box_up").show();
+			$(".box_down").show();
+		}); */
+		
 		$(".realtime_search").on("click",function(){
 			var html = "";
-			
+							
 			$.ajax({
-				/* http://swopenAPI.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimePosition/0/5/1호선 ->(데이터 불러오기) */
-				url:"http://swopenAPI.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimePosition/0/5/1호선",
+				/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
+				url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8",
 				type:"get",
 				dataType:"json",
 				success:function(res){
+					var html = "";
+					
 					console.log(res);
 					
+					for(var i = 0; i< res.realtimeArrivalList.length; i++){
+						//console.log(res.realtimeArrivalList[i].statnNm);
+						var st = res.realtimeArrivalList[i];
+						
+						if($(".realtime").val()==st.statnNm){
+							if(st.updnLine =="상행"){
+							html += " 역명 : "+ st.statnNm +"<br/>";
+							html += st.trainLineNm + "<br/>";
+							
+							$(".box_up").html(html);
+							}
+						}
+					}
 				},
 				error:function(requet,status,error){
 					console.log(error);
 				}
 			});//ajax로 데이터 불러옴
+			
+			$(".realtime").val();
+			//console.log($(".realtime").val()); //값넘어오는 지 확인
 			
 		});
 	});
@@ -217,8 +250,8 @@ a{
 	<a class="main" href="javascript:main();">BetterWay</a>
 
 	</div>
-	<div id="title">실시간 위치</div>
 		<div class="wrap">
+		<div id="title">실시간 위치</div>
 	<div id="dep_arr">
 		<div id="deparr_search">
 			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>

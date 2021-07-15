@@ -9,16 +9,15 @@
 
 
 function main(){
-
-		location.href="BetterWay_main.html";
+		location.href="BetterWay_main";
 	}
 
 function BetterWay_subLineBusstation(){
-	location.href="BetterWay_subLineBusstation.html";
+	location.href="BetterWay_subLineBusstation";
 }
 function BetterWay_subLineRealtime(){
 
-	location.href="BetterWay_subLineRealtime.html";
+	location.href="BetterWay_subLineRealtime2";
 
 }
 
