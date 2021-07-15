@@ -8,8 +8,14 @@
 <title>역 별 시간표 안내</title>
 <script type="text/javascript" 
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	$("#selstation").select2();
 	
 	
 		// 역코드, 상행 주말
@@ -560,9 +566,11 @@ cursor: pointer;
 			
 			<div>
     	<input type="button" id="test1" name="test1" value="테스트">
-    	요일과 역을 선택후 버튼을 눌러주세요.
+    	요일과 호선, 역을 선택후 버튼을 눌러주세요.
     	</div>
+    	
     <div>
+    
     <select id= "selstation">
     <option selected="selected">역</option>
     <c:forEach items="${SubwayList}" var = "t1">
