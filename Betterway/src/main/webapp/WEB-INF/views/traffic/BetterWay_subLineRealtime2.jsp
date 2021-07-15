@@ -188,8 +188,8 @@ a{
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			
+	$(document).ready(function(){
+		
 		$(".box_all").hide(); //역하나 검색했을때만 나오게
 		
 		$("img[name='subway']").imagezoomsl({
@@ -207,28 +207,38 @@ a{
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
+			var a = $(".realtime").val();
 							
 			$.ajax({
 				/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
-				url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8",
+				url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"",
 				type:"get",
 				dataType:"json",
 				success:function(res){
 					var html = "";
 					
-					console.log(res);
-					
 					for(var i = 0; i< res.realtimeArrivalList.length; i++){
-						//console.log(res.realtimeArrivalList[i].statnNm);
 						var st = res.realtimeArrivalList[i];
+						//console.log(res);
 						
 						if($(".realtime").val()==st.statnNm){
-							if(st.updnLine =="상행"){
-							html += " 역명 : "+ st.statnNm +"<br/>";
-							html += st.trainLineNm + "<br/>";
-							
-							$(".box_up").html(html);
-							}
+							if(st.updnLine == "상행"){
+								if(i==0){							
+								html += " 역명 : "+ st.statnNm +"<br/>";
+								html += st.trainLineNm + "<br/>";
+								
+								$(".box_up").html(html);
+								}
+							}else if(st.updnLine == "하행"){
+								html = "";
+		                        console.log(st);
+		                        html += " 역명 : "+ st.statnNm +"<br/>";
+		                        html += st.trainLineNm + "<br/>";
+		                        
+		                        $(".box_down").html(html);
+								break; //한번그리고 브레이크 걸려서 안나옴
+								//두개 그리고 싶으면 for문 밖에 count변수 만들고 count2됐을때 브레이크
+		                     }
 						}
 					}
 				},
