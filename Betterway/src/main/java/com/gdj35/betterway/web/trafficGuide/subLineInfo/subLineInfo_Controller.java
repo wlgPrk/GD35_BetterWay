@@ -30,6 +30,21 @@ public class subLineInfo_Controller {
 		mav.setViewName("traffic/BetterWay_subLineBusstation");
 		return mav;
 	}
+
+	/*
+	 * @RequestMapping(value="/BetterWay_subLineBusstation") public ModelAndView
+	 * BetterWay_subLineBusstation(
+	 * 
+	 * @RequestParam HashMap<String, String> params, ModelAndView mav)throws
+	 * Throwable { List<HashMap<String, String>> SubwayList =
+	 * iSubLineService.getsIdsName(params);
+	 * 
+	 * mav.addObject("SubwayList",SubwayList);
+	 * 
+	 * mav.setViewName("traffic/BetterWay_subLineBusstation"); return mav;
+	 * 
+	 * }
+	 */
 	@RequestMapping(value="/BetterWay_subLineRealtime")
 	public ModelAndView BetterWay_subLineRealtime(ModelAndView mav) {
 		mav.setViewName("traffic/BetterWay_subLineRealtime");
