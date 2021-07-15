@@ -233,13 +233,15 @@ $(document).ready(function(){
 					
 					var html = "";
 					//$("#api_data").append(VIEW_TEXT);//데이터보려고 둠
-					if(sn.value==LINE&&st.value==AREA_NM){
+					if($("#sn").val()==LINE&&$("#st").val()==AREA_NM){
+						console.log("aaaa");
+				
 						html += "<div id=\"val\"><b>호선:</b>"+sn.value+"호선 </br></br>";
 						html += "<b>역:</b>"+st.value+"역 </br></br>";
 						html += "<b>초미세먼지 농도:</b>"+PMq +" ㎍/㎥</br></br>";
 						html += "<b>측정시간:</b>"+CHECKDATE+"</div>";	
+						$("#val").html(html);
 					}
-					$("#val").append(html);
 				//	$("#vals").hide(html);
 					  document.getElementById("vals").style.display ='none';
 				});
