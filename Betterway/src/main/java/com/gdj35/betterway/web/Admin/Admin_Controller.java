@@ -19,7 +19,7 @@ import com.gdj35.betterway.common.bean.PagingBean;
 import com.gdj35.betterway.common.service.IPagingService;
 //import com.gdj35.betterway.util.Utils;
 import com.gdj35.betterway.web.Admin.Service.IAdmin_Service;
-
+import com.gdj35.betterway.web.customer.board.Service.Iboard_Service;
 import com.gdj35.betterway.web.evginfoGuide.cooling.Service.ICoolingService;
 
 @Controller
@@ -32,6 +32,9 @@ public class Admin_Controller {
 
 	@Autowired
 	public IPagingService iPagingService;
+	
+	@Autowired
+	public Iboard_Service iboard_Service;
 	
 	
 	@RequestMapping(value ="/BetterWay_loginAdmin")
@@ -471,20 +474,56 @@ public class Admin_Controller {
 	}
 	//게시판상세보기
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Detail")
-	public ModelAndView BetterWay_suggestAdmin_Detail(ModelAndView mav) {
+	public ModelAndView BetterWay_suggestAdmin_Detail(ModelAndView mav,
+			@RequestParam HashMap<String, String> params) {
+		try {
+			HashMap<String, String> data = iboard_Service.getSug(params);
+			mav.addObject("data",data);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		
 		mav.setViewName("admin/BetterWay_suggestAdmin_Detail");
 		
 		return mav;
 	}
+	
+	
+	
 	//게시판답변
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Result")
-	public ModelAndView BetterWay_suggestAdmin_Result(ModelAndView mav) {
+	public ModelAndView BetterWay_suggestAdmin_Result(ModelAndView mav, @RequestParam HashMap<String, String> params) {
+		
+		try {
+			HashMap<String, String> data = iboard_Service.getSug(params);
+			mav.addObject("data",data);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 		
 		mav.setViewName("admin/BetterWay_suggestAdmin_Result");
-		
 		return mav;
 	}
+	//게시판 답변완료
+	 @RequestMapping(value = "/BetterWay_suggestAdmin_Results",
+			   method = RequestMethod.POST,
+			   produces = "text/json;charset=UTF-8")
+		 @ResponseBody
+		 public String  BetterWay_suggestAdmin_Results(
+				 @RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+
+			 try {
+				 int cnt =iAdmin_Service.resultSug(params);
+			 }catch(Throwable e){
+				 e.printStackTrace();
+				 modelMap.put("msg", "error");
+			 }
+			 return mapper.writeValueAsString(modelMap);
+		 }
 	
 	//게시판작성
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Write")
@@ -494,7 +533,9 @@ public class Admin_Controller {
 		
 		return mav;
 	}
-	//works
+	
+
+	
 	//게시판리스트
 	@RequestMapping(value ="/BetterWay_suggestAdmin")
 	public ModelAndView BetterWay_suggestAdmin(ModelAndView mav,
@@ -650,6 +691,32 @@ public class Admin_Controller {
 		 
 		 
 		 
+			//건의게시물공지선택삭제
+		 @RequestMapping(value = "/BetterWay_suggestAdmin_Writes",
+		 		 method = RequestMethod.POST,
+		 		 produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_suggestAdmin_Writes(
+			 @RequestParam HashMap<String, String> params
+				) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+		 try {
+			int add = iAdmin_Service.insertSugAdmin(params);
+			if(add == 0) {
+				modelMap.put("msg","failed");
+			}else {
+				modelMap.put("msg","success");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		 return mapper.writeValueAsString(modelMap);
+		}
+		 
+		 
+
 		 
 
 	@RequestMapping(value ="/BetterWay_infoAdmin")
@@ -659,6 +726,9 @@ public class Admin_Controller {
 		
 		return mav;
 	}
+	
+	
+	
 	
 	@RequestMapping(value="/infoAdmin_List",
 	   		   method = RequestMethod.POST,

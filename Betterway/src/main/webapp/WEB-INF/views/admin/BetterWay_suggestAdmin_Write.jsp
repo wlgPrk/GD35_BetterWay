@@ -49,7 +49,7 @@ body{
 /*본문 메뉴 큰틀*/
 .con_box{
 margin-top:180px;
-margin-left:10px;
+margin-left:50px;
 display:inline-block;
 vertical-align:top;
 width:79%;
@@ -68,7 +68,7 @@ height:5%;
 	width: 897px;
     height: 40px;
     font-size: 20px;
-	margin:20px 0 20px 30px;
+	margin:20px 0 20px 0px;
 }
 /*내용속성 */
 .con{
@@ -92,7 +92,7 @@ border-radius: 10px;
 }
 /*등록버튼*/
 .con_add{
-margin-left:10px;
+margin-left:px;
 background-color:#82b2da;
 font-size: 20px;
 width :100px;
@@ -106,7 +106,7 @@ border-radius: 10px;
 /* 버튼틀 */
 .btn_box{
 
-width:930px;
+width:900px;
 margin-top :10px;
 text-align: right;
 }
@@ -115,10 +115,62 @@ text-align: right;
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+<script type="text/javascript" 
+src="resources/script/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	CKEDITOR.replace("con",{ //아이디 찾음 
+		resize_enabled : false,
+		language :"ko",
+		enterMode: "2",
+		width : "900",
+		height : "300"
+	});// CKEDITOR end
 
+	
+	//작성버튼
+	$(".con_add").on("click",function(){
+		$("#con").val(CKEDITOR.instances['con'].getData());
+		
+		if($.trim($(".con_title").val()) == ""){
+		alert("제목을 입력하세요")	
+		$(".con_title").focus();
+		}else if($.trim($(".con").val()) == ""){
+		alert("내용을 입력하세요")	
+		$(".con").focus();
+		}else{
+			//글저장
+			var params = $("#addForm").serialize();
+			//ajax
+			$.ajax({
+				url: "BetterWay_suggestAdmin_Writes", 
+				type: "post", 
+				dataType: "json",
+				data: params, 
+				success: function(res) {
+					if(res.msg =="success"){
+						location.href = "BetterWay_suggestAdmin";
+					}else if(res.msg =="failed"){
+						alert("작성에 실패하였습니다.");
+					}else{
+						alert("작성중 문제가 발생하였습니다");
+					}
+					
+				},
+				error: function(request, status, error) {
+					console.log(error);
+				}
+			});//ajax end
+			
+			
+		}
+		});
+	//취소버튼
+	$(".cancel_btn").on("click",function(){
+		location.href="BetterWay_suggestAdmin";
+	});
+	
 	
 }); //document end
 </script>
@@ -135,12 +187,29 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div id="right">
+	<form action="#" id="addForm" method="post">
 <div class="con_box">
-	<input type="text" class="con_title" placeholder="제목을 입력해주세요."><br/>
-<textarea rows="15" cols="88" placeholder="내용을 입력해주세요." class="con"></textarea>
-<div class="btn_box"> <input type="button" class="con_add" value="등록"/><input type="button" class="cancel_btn" value="삭제"/></div>
+
+	<input type="text" class="con_title" placeholder="제목을 입력해주세요." name="title"><br/>
+<textarea rows="15" cols="88" id="con"  placeholder="내용을 입력해주세요." class="con" name="con"></textarea>
+<div class="btn_box"> <input type="button" class="con_add" value="등록"/><input type="button" class="cancel_btn" value="취소"/></div>
 </div><!-- con_box end -->
+
+<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+<input type="hidden" name="noticeDate" value="${param.noticeDate}"/>
+<input type="hidden" name="noticeDelete" value="${param.noticeDelete}"/>
+<input type="hidden" name="noticeSearchGbn" value="${param.noticeSearchGbn}"/>
+<input type="hidden" id="noticePage" name="noticePage" value="${param.noticePage}"/>
 	
+	<input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}">
+	<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+	<input type="hidden" name="userPostTypeGbn" value="${param.userPostTypeGbn}"/>
+	<input type="hidden" name="userDate" value="${param.userDate}"/>
+	<input type="hidden" name="userDelete" value="${param.userDelete}"/>
+	<input type="hidden" name="userSearchGbn" value="${param.userSearchGbn}"/>
+	<input type="hidden" id="userPage" name="userPage" value="${param.userPage}"/>
+
+	</form>
 		<div id ="right_sub"></div>
 	</div>
 </body>

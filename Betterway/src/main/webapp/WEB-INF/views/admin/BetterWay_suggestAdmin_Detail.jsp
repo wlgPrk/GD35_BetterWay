@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>사물함형 자건거보관함 관리자</title>
+<title>건의게시판</title>
 <style type="text/css">
 body{
 	font-size:0px;
@@ -93,22 +93,20 @@ font-size:15px;
 
 /* */
 
-/*삭제버튼*/
-.del_btn{
-vertical-align:bottom;
-margin-left:5px;
-background-color:#82b2da;
-font-size: 20px;
-width :100px;
-height :40px;
-border : 0;
-cursor: pointer;
-border-radius: 10px;
+.btn_box{
+display: inline-block;
+width:850px;
+height:100px;
+text-align: right;
+
+
 }
 
-/*답변버튼*/
+
+
+/*버튼*/
 .post_btn{
-margin-left:650px;
+margin-left:5px;                      
 margin-top:30px;
 vertical-align:bottom;
 background-color:#e0e0eb;
@@ -191,9 +189,132 @@ cursor: pointer;
 <script type="text/javascript">
 $(document).ready(function(){
 	
+//답변글일시 답변버튼없에기
+if("${data.REQ_NO}" != "0"){
+	$("#resBtn").css("display","none");
+	
+}
+	
+//목록이동버튼
+$("#listBtn").on("click",function(){
+	$("#actionForm").attr("action","BetterWay_suggestAdmin");
+	$("#actionForm").submit();
+});
+
+reloadList();
+//글삭제버튼
+$("#delBtn").on("click",function(){
+	conDels();
+});
+
+//댓글삭제버튼
+$(".reviewBox").on("click","div div:nth-child(3) input",function(){
+	$("#comm_no").val($(this).parent().parent().attr("comm_no"));
+	commDels();
+});
+
+
+//답변버튼
+$("#resBtn").on("click",function(){
+	$("#actionForm").attr("action","BetterWay_suggestAdmin_Result");
+	$("#actionForm").submit();
+});
+
+
 
 	
 }); //document end
+
+
+//댓글보이기, 댓글수
+function reloadList(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_suggestContents", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			drawList(res.list);
+			commCnt(res.commCnt);
+			
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+//댓글수 보이기
+function commCnt(cnt){
+	var html="";
+	html ="댓글 "+ cnt +""
+	
+	$(".comm_count").html(html);
+};
+
+
+//댓글목록그리기
+function drawList(list){
+	var html ="";
+	for(var d of list){ 
+                                         
+html +="<div class=\"comm_box_1\" id=\"comm"+d.COMM_NO+"\" comm_no=\""+ d.COMM_NO+"\">";
+html +="<div class=\"comm_box_2_1\">" + d.USER_ID+ "</div>";
+html +="<div class=\"comm_box_2_2\">"+d.CON+"</div>";
+html +="<div class=\"comm_box_2_3\"><input type=\"button\" class=\"comm_del_btn\" value=\"삭제\"></div>";
+html +="</div>"; 
+	}
+	$(".reviewBox").html(html);
+	
+
+}//drawlist end
+
+
+//게시물삭제
+function conDels(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_conDels", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+		location.href="BetterWay_suggestAdmin";
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+//댓글삭제
+function commDels(){
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_commDels", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) {
+			drawList(res.list);
+			commCnt(res.commCnt);
+
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//commModifys end
+
+
 </script>
 </head>
 <body>
@@ -210,21 +331,24 @@ $(document).ready(function(){
 	<div id="right">
 <div class="con_box">
 <div class="title_box_1">
-제목 : 건의합니다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+제목 : ${data.TITLE}
 </div>
 
 <div class="title_box_1">
-<div class="title_box_2">글번호 : 1</div>
-<div class="title_box_2">ID : zxc</div>
-<div class="title_box_2">PW : 1234</div>
-<div class="title_box_2">작성일 : 2021/03/05</div>
+<div class="title_box_2">글번호 : ${data.SUG_NO}</div>
+<div class="title_box_2">ID : ${data.USER_ID}</div>
+<div class="title_box_2">PW : ${data.USER_PW}</div>
+<div class="title_box_2">작성일 : ${data.WRITE_DATE}</div>
 </div>
 
-<div class="sug_con">내용</div>
-<input type="button" class="post_btn" value="답변">
-<input type="button" class="del_btn" value="삭제">
+<div class="sug_con">${data.CON}</div>
+<div class="btn_box">
+<input type="button" class="post_btn" value="답변" id="resBtn">
+<input type="button" class="post_btn" value="목록" id="listBtn">
+<input type="button" class="post_btn" value="삭제" id="delBtn">
+</div>
 <div class="comm_count">댓글 수 : 2</div>
-
+<div class="reviewBox">
 <div class="comm_box_1">
 <div class="comm_box_2_1">홍길동</div>
 <div class="comm_box_2_2">내용입니다</div>
@@ -236,21 +360,27 @@ $(document).ready(function(){
 <div class="comm_box_2_2">내용입니다</div>
 <div class="comm_box_2_3"><input type="button" class="comm_del_btn" value="삭제"></div>
 </div> <!-- comm_box_1 end -->
+</div>
 
-
-날짜<input type="date"> 
-삭제여부<select>
-	<option value="0">전체</option>
-	<option value="1">예</option>
-	<option value="2">아니오</option>
-</select>
-게시물타입<select>
-	<option value="0">전체</option>
-	<option value="1">건의</option>
-	<option value="2">답변</option>
-</select>
 </div><!-- con_box end -->
 	
+	<form action="#" id="actionForm" method="post">
+	
+	<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+<input type="hidden" name="noticeDate" value="${param.noticeDate}"/>
+<input type="hidden" name="noticeDelete" value="${param.noticeDelete}"/>
+<input type="hidden" name="noticeSearchGbn" value="${param.noticeSearchGbn}"/>
+<input type="hidden" id="noticePage" name="noticePage" value="${param.noticePage}"/>
+	
+	<input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}">
+	<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+	<input type="hidden" name="userPostTypeGbn" value="${param.userPostTypeGbn}"/>
+	<input type="hidden" name="userDate" value="${param.userDate}"/>
+	<input type="hidden" name="userDelete" value="${param.userDelete}"/>
+	<input type="hidden" name="userSearchGbn" value="${param.userSearchGbn}"/>
+	<input type="hidden" id="userPage" name="userPage" value="${param.userPage}"/>
+	<input type="hidden" id="comm_no" name="comm_no" >
+	</form>
 		<div id ="right_sub"></div>
 	</div>
 </body>

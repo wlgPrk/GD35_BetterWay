@@ -492,6 +492,7 @@ $(document).ready(function(){
 	//페이징 
 	$(".arrow_box").on("click","div",function(){
 		$("#page").val($(this).attr("page"));
+		$("#searchTxt").val($("#searchOldTxt").val());
 		
 		reloadList();
 	});//paging wrap end

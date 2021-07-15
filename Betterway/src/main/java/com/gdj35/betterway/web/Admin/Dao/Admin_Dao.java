@@ -191,6 +191,18 @@ public class Admin_Dao implements IAdmin_Dao{
 		// TODO Auto-generated method stub
 		return sqlSession.update("admin.checkDeleteSug",params);
 	}
+
+	@Override
+	public int insertSugAdmin(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.insertSugAdmin",params);
+	}
+
+	@Override
+	public int resultSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.resultSug",params);
+	}
 	
 	
 	

@@ -194,6 +194,18 @@ public class Admin_Service implements IAdmin_Service{
 		// TODO Auto-generated method stub
 		return iAdmin_Dao.checkDeleteSug(params);
 	}
+
+	@Override
+	public int insertSugAdmin(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.insertSugAdmin(params);
+	}
+
+	@Override
+	public int resultSug(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.resultSug(params);
+	}
 	
 	
 	//-------------------------------------건의끝 --------------------------------------

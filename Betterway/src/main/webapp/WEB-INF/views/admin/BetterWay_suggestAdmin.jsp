@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사물함형 자건거보관함 관리자</title>
+<title>건의게시판</title>
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popup.css?after" />
 <style type="text/css">
 body{
@@ -107,7 +107,7 @@ cursor: pointer;
 /*작성버튼*/
 .btn{
 position:absolute;
-left:1130px;
+left:1110px;
 background-color:#82b2da;
 font-size: 20px;
 width :100px;
@@ -130,9 +130,9 @@ display:inline-block;
 width: 50px;
 font-size: 20px;
 height : 40px;
-border : 2px solid black;
-border-radius:10px;
 
+border-radius:10px;
+line-height:2;
 background-color: #e0e0eb;
 margin-left: 5px;
 vertical-align: top;
@@ -153,7 +153,7 @@ text-align: center;
 .search_box{
 margin-top:10px;
 display: inline-block;
-width : 900px;
+width : 920px;
 height :50px;
 
 
@@ -161,13 +161,57 @@ text-align: center;
 }
 
 #user_on{
-background-color: #ffcc00;
-font-weight: bold;
+background-color: #82b2da;
+
 }
 
 #notice_on{
-background-color: #ffcc00;
+background-color: #82b2da;
+
+}
+
+.sub_title{
+background-color: #e0e0eb;
+border-radius: 5px;
+display: inline-block;
+width:100px;
+height:30px;
+text-align: center;
+line-height: 2;
+margin-bottom:10px;
 font-weight: bold;
+border:none;
+margin-right:10px;
+vertical-align: top;
+}
+
+
+.search_btn{
+background-color: #e0e0eb;
+border-radius: 5px;
+display: inline-block;
+width:50px;
+height:30px;
+text-align: center;
+line-height: 2;
+margin-bottom:10px;
+font-weight: bold;
+border:none;
+
+}
+
+select{
+height:30px;
+}
+
+input[type=text]{
+height:24px;
+outline:none;
+}
+
+input[type=date]{
+height:24px;
+outline:none;
 }
 </style>
 <script type="text/javascript" 
@@ -179,13 +223,67 @@ $(document).ready(function(){
 	reloadList();
 
 	
+	//work1
+	//유저구분
+	if("${param.userSearchGbn}" != ""){
+		$("#userSearchGbn").val("${param.userSearchGbn}");
+	}//if end
+	
+	//유저검색
+	$("#userSearchBtn").on("click", function(){
+		$("#userPage").val(1);
+		reloadList();
+	});
+	
+	//공지구분
+	if("${param.noticeSearchGbn}" != ""){
+		$(".noticeSearchGbn").val("${param.noticeSearchGbn}");
+	}//if end
+	
+	//공지검색
+	$("#noticeSearchBtn").on("click", function(){
+		$("#noticePage").val(1);
+		reloadList();
+	});
+	
 	//유저페이징
 	$("#user_arrow_box").on("click","div",function(){
-		console.log("작동");
 		$("#userPage").val($(this).attr("userpage"));
+		$("#userSearchTxt").val($("#userSearchOldTxt").val());
+		reloadList();
+	});
+	
+	//공지페이징
+	$("#notice_arrow_box").on("click","div",function(){
+		$("#noticePage").val($(this).attr("noticePage"));
+		$("#noticeSearchTxt").val($("#noticeSearchOldTxt").val());
 		
 		reloadList();
 	});
+	//유저게시물구분
+	if("${param.userPostTypeGbn}" != ""){
+		$("#userPostTypeGbn").val("${param.userPostTypeGbn}");
+	}//if end
+	
+	//유저삭제구분
+	if("${param.userDelete}" != ""){
+		$("#userDelete").val("${param.userDelete}");
+	}//if end
+	
+	//유저날짜여부
+	if("${param.userDate}" != ""){
+		$("#userDate").val("${param.userDate}");
+	}//if end
+	
+	//공지날짜여부
+	if("${param.noticeDate}" != ""){
+		$("#noticeDate").val("${param.noticeDate}");
+	}//if end
+	
+	//공지삭제여부
+	if("${param.noticeDelete}" != ""){
+		$("#noticeDelete").val("${param.noticeDelete}");
+	}//if end
 	
 	
 	//----------유저검색-----------
@@ -285,15 +383,30 @@ $(document).ready(function(){
 	});
 	
 	
-
+	//글작성
+	$("#writeBtn").on("click",function(){
+		location.href="BetterWay_suggestAdmin_Write";
+	});
+	
+	//상세보기 
+	$("tbody").on("click","tr td:nth-child(3)",function(){
+		$("#sug_no").val($(this).parent().attr("sug_no"));
+		$("#actionForm").attr("action","BetterWay_suggestAdmin_Detail");
+		$("#actionForm").submit();
+	});// tbody tr click end
+	
+	
+	
 	
 }); //document end
 
 
 
+
+
 //목록,페이징가져오기
 function reloadList(){
-	var params = $("#userForm, #noticeForm").serialize();
+	var params = $("#actionForm").serialize();
 
 	//ajax
 	$.ajax({
@@ -325,7 +438,7 @@ function userList(list){
 		html += "<td><input type=\"checkbox\" class=\"userCheck\" name=\"userCheck\" value=\""+d.SUG_NO+"\"></td>";
 		html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
 if(d.REQ_NO !=0){
-	html+=	"<td>↳ re: " +d.TITLE + "</td>   "   ;
+	html+=	"<td>re: " +d.TITLE + "</td>   "   ;
 	html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
 	}else{
 	html+=	"<td>" +d.TITLE + "</td>   "   ;
@@ -379,7 +492,7 @@ function userPaging(pb){
 	
 	
 	for(var i=pb.startPcount; i<=pb.endPcount; i++){
-	if($("#page").val() ==i){
+	if($("#userPage").val() ==i){
 	html+="<div userpage=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"user_on\"> "+i+"</div>";
 	}else{
 	html+="<div userpage=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
@@ -414,7 +527,7 @@ function noticePaging(pb){
 	
 	
 	for(var i=pb.startPcount; i<=pb.endPcount; i++){
-	if($("#page").val() ==i){
+	if($("#noticePage").val() ==i){
 	html+="<div noticepage=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"notice_on\"> "+i+"</div>";
 	}else{
 	html+="<div noticepage=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
@@ -435,7 +548,7 @@ function noticePaging(pb){
 
 //미니삭제버튼
 function miniDelete(){
-	var params = $("#userForm").serialize();
+	var params = $("#actionForm").serialize();
 
 	//ajax
 	$.ajax({
@@ -528,11 +641,12 @@ function noticeCheckDel(){
 		</div>
 	</div>
 	<div id="right">
+	<form action="#" id="actionForm" method="post">
 <div class="con_box">
 <div class="btn_box"><input type="button" class="btn" value="글쓰기" id="writeBtn"/ ></div>
-공지
+<div class="sub_title">공지게시물</div>
 
-<form id="noticeForm" action="#" method="post">
+
 <table cellspacing="0px" id="notice">
 
 <colgroup>
@@ -602,9 +716,9 @@ function noticeCheckDel(){
 
 <div class="search_box">
 
-날짜<input type="date" id="noticeDate" name="noticeDate"> 
-<input type="button" id="noticeResetDate" value="날짜초기화"> 
-삭제여부<select id="noticeDelete" name="noticeDelete">
+<input type="date" id="noticeDate" name="noticeDate"> 
+<input type="button" id="noticeResetDate" value="날짜초기화" class="sub_title"> 
+<div class="sub_title">삭제여부</div><select id="noticeDelete" name="noticeDelete">
 	<option value="0">전체</option>
 	<option value="1">예</option>
 	<option value="2">아니오</option>
@@ -615,15 +729,20 @@ function noticeCheckDel(){
 					<option value="2">제목</option>
 </select>
 <input type="text" class="input" name="noticeSearchTxt" value="${param.noticeSearchTxt}"/>
+
 <input type="button" value="검색" class="search_btn" id="noticeSearchBtn" />
 
-
+<!-- work2 -->
 </div>
+<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+<input type="hidden" name="noticeDate" value="${param.noticeDate}"/>
+<input type="hidden" name="noticeDelete" value="${param.noticeDelete}"/>
+<input type="hidden" name="noticeSearchGbn" value="${param.noticeSearchGbn}"/>
 <input type="hidden" id="noticePage" name="noticePage" value="${noticePage}"/>
-</form>
 
-<form action="#" id="userForm" method="post">
-일반게시물
+
+
+<div class="sub_title">건의게시물</div>
 <table cellspacing="0px" id="user">
 
 <colgroup>
@@ -691,14 +810,14 @@ function noticeCheckDel(){
 
 
 <div class="search_box">
-게시물타입<select name="userPostTypeGbn" id="userPostTypeGbn">
+<div class="sub_title">게시물타입</div><select name="userPostTypeGbn" id="userPostTypeGbn">
 	<option value="0">전체</option>
 	<option value="1">건의</option>
 	<option value="2">답변</option>
 </select>
-날짜<input type="date" name="userDate" id="userDate"> 
-<input type="button" value="날짜초기화" id="userResetDate"/>
-삭제여부<select name="userDelete" id="userDelete">
+<input type="date" name="userDate" id="userDate"> 
+<input type="button" value="날짜초기화" id="userResetDate" class="sub_title"/>
+<div class="sub_title">삭제여부</div><select name="userDelete" id="userDelete">
 	<option value="0">전체</option>
 	<option value="1">예</option>
 	<option value="2">아니오</option>
@@ -709,16 +828,24 @@ function noticeCheckDel(){
 					<option value="2">제목</option>
 </select>
 <input type="text" class="input" name="userSearchTxt" value="${param.userSearchTxt}"/>
-<input type="button" value="검색" class="search_btn" id="userSearchBtn"/>
+
+<input type="button" value="검색" class="search_btn" id="userSearchBtn" />
+
 </div>
 
-
+<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+<input type="hidden" name="userPostTypeGbn" value="${param.userPostTypeGbn}"/>
+<input type="hidden" name="userDate" value="${param.userDate}"/>
+<input type="hidden" name="userDelete" value="${param.userDelete}"/>
+<input type="hidden" name="userSearchGbn" value="${param.userSearchGbn}"/>
 <input type="hidden" id="userPage" name="userPage" value="${userPage}"/>
+<input type="hidden" id="noticePage" name="noticePage" value="${noticePage}"/>
 <input type="hidden" id="sug_no" name="sug_no" value="${sug_no}"/>
-</form>
+
+
 
 </div><!-- con_box end -->
-	
+	</form>
 		<div id ="right_sub"></div>
 	
 </body>

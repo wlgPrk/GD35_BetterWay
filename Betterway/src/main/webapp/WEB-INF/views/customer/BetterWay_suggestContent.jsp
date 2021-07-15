@@ -702,7 +702,7 @@ $(document).ready(function(){
 		commModifys();
 	});
 	
-	//삭제버튼클릭시 비밀번호체크
+	//댓글삭제버튼클릭시 비밀번호체크
 	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(3)",function(){
 		$("#comm_no").val($(this).attr("comm_no"));
 		
