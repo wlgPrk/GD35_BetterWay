@@ -327,7 +327,7 @@ th,td{
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>외부 편의시설 &nbsp;
+		                  	홈>역 내외 시설>외부 시설 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
@@ -336,7 +336,7 @@ th,td{
     	<div id="box_con">
 			<div id="box_con_img">●</div>
 			<div id="box_con_txt">
-			역 외부 주요 편의시설 현황
+			역 외부 주요시설 현황(서울 메트로에서 운영하는 1호선 부터 4호선)
 			</div>
 			
 			<div class="con_box">
