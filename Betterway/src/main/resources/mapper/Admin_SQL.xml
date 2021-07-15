@@ -401,7 +401,7 @@ VALUES(SUG_SEQ.NEXTVAL,#{sug_no},1,2,'TEST1','1234',#{title},#{con},SYSDATE,0,0,
 
 </insert>		
 		
-		
+
 		
 		
 		

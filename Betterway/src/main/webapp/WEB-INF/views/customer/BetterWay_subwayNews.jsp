@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,7 +151,7 @@ color: #fff;
 
   .box_tit{
     position: relative;
- background-image:url("re/images/서브타이틀_배경.png");       
+ background-image:url("resources/images/서브타이틀_배경.png");       
                        
   height:216px;
 
@@ -309,6 +310,10 @@ text-align: center;
 
 /*화살표 */
 .arrow{
+margin-left:10px;
+line-height:2;
+display:inline-block;
+vertical-align:top;
 width: 50px;
 font-size: 20px;
 height : 40px;
@@ -363,7 +368,10 @@ cursor: pointer;
 }
 
 
-
+/* 현재페이지 짙어짐 */
+#on{
+background-color: #e0e0eb;
+}
 
 
 </style>
@@ -427,7 +435,85 @@ $(document).ready(function(){
 	
 	
 	
+	reloadList();
+	//페이징 
+	$(".arrow_box").on("click","div",function(){
+		$("#page").val($(this).attr("page"));
+		
+		reloadList();
+	});//paging wrap end
+	
 }); // document end
+//목록,페이징가져오기
+function reloadList(){
+
+	var params = $("#actionForm").serialize();
+
+	//ajax
+	$.ajax({
+		url: "BetterWay_subWayNewss", 
+		type: "post", 
+		dataType: "json",
+		data: params, 
+		success: function(res) { 
+			drawList(res.list);
+			drawPaging(res.pStart,res.pEnd,res.pMax);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//reload List end
+
+
+//목록그리기
+function drawList(list){
+	var html ="";
+	for(var i=1; i<list.length; i++){       
+		                                
+	html+="	<tr>                        ";
+	html+="	<td>"+list[i].title+"</td>      ";
+	html+="	<td>"+list[i].desc+"</td>       ";
+	html+="	<td>"+list[i].link+"</td>       ";
+	html+="	<td>"+list[i].date+"</td>       ";
+	html+="	</tr>                       ";
+		$("tbody").html(html);
+	}
+	}
+	
+	
+//페이징그리기
+function drawPaging(pStart, pEnd, pMax){
+	var html="";
+	html+= "<div page=\"1\" type=\"button\" class=\"arrow\">처음</div>";
+	if($("page").val() =="1"){
+	html+= "<div page=\"1\" type=\"button\" class=\"arrow\"><</div>";
+	}else{
+	html+= "<div page=\""+ ($("#page").val() -1) +"\" type=\"button\" class=\"arrow\"><</div>";
+	}
+	
+	
+	for(var i=pStart; i<=pEnd; i++){
+	if($("#page").val() ==i){
+	html+="<div page=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"on\"> "+i+"</div>";
+	}else{
+	html+="<div page=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
+	}
+	}
+	
+	
+	if($("#page").val() == pMax){
+	html+= "<div page=\""+pMax+"\" type=\"button\" class=\"arrow\">></div>";
+	}else {
+	html+= "<div page=\""+ ($("#page").val() * 1 + 1) +"\" type=\"button\" class=\"arrow\">></div>";
+	}
+	html+= "<div page=\""+pMax+"\" type=\"button\" class=\"arrow\">끝</div>";
+	
+	$(".arrow_box").html(html);
+		
+	}//drawPaging end
+	
+
 
 </script>
 </head>
@@ -502,7 +588,7 @@ $(document).ready(function(){
 <colgroup>
 		<col width="450px"/>
 		<col width="450px"/>
-		<col width="100px"/>
+		<col width="450px"/>
 		<col width="100px"/>
 </colgroup>
 <thead>
@@ -516,30 +602,8 @@ $(document).ready(function(){
 
 
 		<tbody>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>조선일보</td>
-						<td>2020-05-12</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>조선일보</td>
-						<td>2020-05-12</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>조선일보</td>
-						<td>2020-05-12</td>
-					</tr>
-					<tr>
-						<td><a href="#">경기도, 올해 453억 들여 버스 정류소 확충 및 개선</a></td>
-						<td>경기도는 올해 도민들의 버스 이용 편의 증진을 위해 453억원을...</td>
-						<td>조선일보</td>
-						<td>2020-05-12</td>
-					</tr>
+		
+
 
 
 </tbody>
@@ -555,17 +619,8 @@ $(document).ready(function(){
 <input type="button" class="arrow" value=">">
 
 	</div>
-<div class="search_box">
-<select class="search_type">
-					<option>제목</option>
-					<option>내용</option>
-					<option>제목+내용</option>
-</select>
-<input type="text" class="input"/>
-<input type="button" value="검색" class="search_btn" />
-</div>	
+
 	
-	${news}
 				</div><!-- con_box_2 end -->
 			
 			
@@ -579,11 +634,11 @@ $(document).ready(function(){
     	</div>
 		
     	</div>
-    	
-    	
+    	<form action="#" id="actionForm" method="post">
+    	<input type="hidden" id="page" name="page" value="${page}"/></form>
  </article>
 </section>
 
-<div class="footer"></div>
+
 </body>
 </html>

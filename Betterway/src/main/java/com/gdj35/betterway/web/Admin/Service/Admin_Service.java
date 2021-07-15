@@ -154,7 +154,6 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.deleteguide(params);
 	}
 
-	//-----------------------------------건의-----------------------------------------
 	
 	
 	@Override
@@ -206,7 +205,9 @@ public class Admin_Service implements IAdmin_Service{
 		// TODO Auto-generated method stub
 		return iAdmin_Dao.resultSug(params);
 	}
+
+
 	
 	
-	//-------------------------------------건의끝 --------------------------------------
+
 }

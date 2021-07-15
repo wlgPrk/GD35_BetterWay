@@ -1,24 +1,30 @@
-package com.gdj35.betterway.web.subwayNews;
+package com.gdj35.betterway.web.subwayNews.Service;
 // 네이버 검색 API 예제 - blog 검색
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 @Service
 public class ApiNewsService   {
 
-    public String newsApi() {
+    public List<HashMap<String, String>> newsApi(String start) throws ParseException {
         String clientId = "mrLDqNvTCwR8fIu2D0b2"; //애플리케이션 클라이언트 아이디값"
         String clientSecret = "p7BZTVCNdp"; //애플리케이션 클라이언트 시크릿값"
 
         String text = "";
         try {
-            text = URLEncoder.encode("지하철", "UTF-8") +"&display=100&start=50&sort=sim";
+            text = URLEncoder.encode("지하철", "UTF-8") +"&display=10&start="+ start +"&sort=sim";
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("검색어 인코딩 실패",e);
         }
@@ -30,10 +36,36 @@ public class ApiNewsService   {
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
         String responseBody = get(apiURL,requestHeaders);
+        
+		JSONParser parser = new JSONParser();
+		
+		JSONObject univ = (JSONObject)parser.parse(responseBody);
+		
+		//테스트출력
+		//System.out.println(univ.toJSONString());
+		
+		JSONArray arr = (JSONArray)univ.get("items");
+		
+		//테스트출력
+		//System.out.println(arr.toJSONString());
+		
+		
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		for(int i=0;i<arr.size();i++){
+			HashMap<String, String> map = new HashMap<String, String>();
+			JSONObject tmp = (JSONObject)arr.get(i);//인덱스 번호로 접근해서 가져온다.
 
+			map.put("title", (String)tmp.get("title"));
+			map.put("desc", (String)tmp.get("description"));
+			map.put("link", (String)tmp.get("originallink"));
+			map.put("date", (String)tmp.get("pubDate"));
+			
+			list.add(map);
+
+		}
         
         
-        return responseBody;
+        return list;
     }
 
     private static String get(String apiUrl, Map<String, String> requestHeaders){
