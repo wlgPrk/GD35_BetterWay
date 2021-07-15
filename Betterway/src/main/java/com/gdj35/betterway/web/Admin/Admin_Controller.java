@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,18 +37,27 @@ public class Admin_Controller {
 	@Autowired
 	public Iboard_Service iboard_Service;
 	
-	
+	//관리자로그인
 	@RequestMapping(value ="/BetterWay_loginAdmin")
-	public ModelAndView BetterWay_loginAdmin(ModelAndView mav) {
-		
-		mav.setViewName("admin/BetterWay_loginAdmin");
+	public ModelAndView BetterWay_loginAdmin(ModelAndView mav,HttpSession session) {
+		if(session.getAttribute("sNO") != null) {//로그인된상태
+			mav.setViewName("redirect:BetterWay_mainAdmin");
+		}else{
+			mav.setViewName("admin/BetterWay_loginAdmin");
+		}   
+	
 		
 		return mav;
 	}
-	
+	//관리자 메인
 	@RequestMapping(value ="/BetterWay_mainAdmin")
-	public ModelAndView BetterWay_mainAdmin(ModelAndView mav) {
-		
+	public ModelAndView BetterWay_mainAdmin(ModelAndView mav,HttpSession session) {
+		//관리자 권한번호가져오기 
+		try {
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mav.setViewName("admin/BetterWay_mainAdmin");
 		
 		return mav;

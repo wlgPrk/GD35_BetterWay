@@ -50,10 +50,24 @@ font-size:30px;
 
 
 </style>
+
+<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+		
+	
+	
+	
+	
+});//document end
+
+
+
+</script>
 </head>
 <body>
 
-<div class="top_side_box">홍길동님 어서오세요. </div>
+<div class="top_side_box">${sID}님 반갑습니다. </div>
 
 <div class="con_box_1">
 <div class="menu" id="esta">편의시설 관리</div>

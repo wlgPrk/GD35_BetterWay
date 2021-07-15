@@ -73,5 +73,6 @@ public interface IAdmin_Service {
 
 	public int resultSug(HashMap<String, String> params) throws Throwable;
 
+
 	
 }
