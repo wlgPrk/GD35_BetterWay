@@ -573,7 +573,7 @@ public class Admin_Controller {
 		
 		
 	}
-	
+		//건의게시물삭제
 		@RequestMapping(value="/BetterWay_suggestAdmin_Deletes",
 				method=RequestMethod.POST,
 				produces = "text/json;charset=UTF-8")
@@ -598,6 +598,59 @@ public class Admin_Controller {
 		
 		return mapper.writeValueAsString(modelMap);
 		}
+		
+		
+		//건의게시물유저선택삭제
+		 @RequestMapping(value = "/BetterWay_suggestCheckUserDeletes",
+		 		 method = RequestMethod.POST,
+		 		 produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_suggestCheckUserDeletes(
+			 @RequestParam(value="userCheck[]") List<Integer> params
+				) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+		 try {
+			int chk = iAdmin_Service.checkDeleteSug(params);
+			if(chk == 0) {
+				modelMap.put("msg","failed");
+			}else {
+				modelMap.put("msg","success");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		 return mapper.writeValueAsString(modelMap);
+		}
+		 
+			//건의게시물공지선택삭제
+		 @RequestMapping(value = "/BetterWay_suggestCheckNoticeDeletes",
+		 		 method = RequestMethod.POST,
+		 		 produces = "text/json;charset=UTF-8")
+		@ResponseBody
+		public String BetterWay_suggestCheckNoticeDeletes(
+			 @RequestParam(value="noticeCheck[]") List<Integer> params
+				) throws Throwable{
+		 ObjectMapper mapper = new ObjectMapper();
+		 Map<String, Object> modelMap = new HashMap<String, Object>();
+		 try {
+			int chk = iAdmin_Service.checkDeleteSug(params);
+			if(chk == 0) {
+				modelMap.put("msg","failed");
+			}else {
+				modelMap.put("msg","success");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		 return mapper.writeValueAsString(modelMap);
+		}
+		 
+		 
+		 
+		 
 
 	@RequestMapping(value ="/BetterWay_infoAdmin")
 	public ModelAndView BetterWay_infoAdmin(ModelAndView mav) {

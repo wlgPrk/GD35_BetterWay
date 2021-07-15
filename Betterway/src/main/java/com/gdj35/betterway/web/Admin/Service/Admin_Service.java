@@ -1,5 +1,6 @@
 package com.gdj35.betterway.web.Admin.Service;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
 
@@ -152,10 +153,10 @@ public class Admin_Service implements IAdmin_Service{
 	public int deleteguide(HashMap<String, String> params) throws Throwable {
 		return iAdmin_Dao.deleteguide(params);
 	}
+
 	//-----------------------------------건의-----------------------------------------
 	
 	
-	//유저 게시물 최대갯수
 	@Override
 	public int getUserCnt(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
@@ -184,6 +185,14 @@ public class Admin_Service implements IAdmin_Service{
 	public int deleteSug(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return iAdmin_Dao.deleteSug(params);
+	}
+
+
+
+	@Override
+	public int checkDeleteSug(List<Integer> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.checkDeleteSug(params);
 	}
 	
 	

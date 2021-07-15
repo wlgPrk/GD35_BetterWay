@@ -297,8 +297,16 @@ WHERE SUG_NO=#{sug_no}
 </update>
 
 		
-		
-		
+<!-- 건의게시물 선택삭제 -->	
+<update id="checkDeleteSug" parameterType="java.util.List">
+UPDATE SUG SET DEL_STATUS =0
+WHERE SUG_NO IN 
+<foreach collection="list" item="check" open="(" close=")" separator=",">
+ #{check}
+</foreach>
+</update>
+
+
 		
 		
 		

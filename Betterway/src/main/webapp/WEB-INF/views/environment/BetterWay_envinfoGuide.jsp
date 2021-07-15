@@ -179,7 +179,7 @@ $(document).ready(function(){
 	$("#sName").on("change", function() {
 		var html="";
 		var params = $("#SearchForm").serialize();	
-
+		console.log(st);
 		$.ajax({
 			url:"envinfoGuide",
 			type:"post", //전송방식(get,post)
@@ -211,7 +211,7 @@ $(document).ready(function(){
 		var html="";
 		$("#sn").val($("#sName").val());
 		$("#st").val($("#select_station").val());
-		
+		console.log(st);
 		$.ajax({
 			/* http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/요청시작/요청종료 ->(259개 데이터 불러오기) */
 			url:"http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/1/259",

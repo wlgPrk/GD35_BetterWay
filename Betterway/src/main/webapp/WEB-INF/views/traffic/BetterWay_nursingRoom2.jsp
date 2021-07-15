@@ -217,7 +217,7 @@ font-weight: bold;
 }
 
 #hr{
-	margin-top :17px;
+	margin-top :16px;
 }
 
 #sub_title{
@@ -233,6 +233,10 @@ font-weight: bold;
 	width:100%;
 	margin-top: 19px;
 	border-top:2px solid #82b2da;
+}
+.table_box1{
+	width: 100%;
+    margin-top: -25px;
 }
 
 #con_table{
@@ -257,7 +261,7 @@ th,td{
 #footer{
 	width:100%;
 	height:75px;
-	margin-top : 3000px;
+	margin-top : 2950px;
 	background: #023459;
 }
 
@@ -422,7 +426,7 @@ function drawList(list){
 	   }
 	   // 마지막 호선 종료
 	   
-	   $(".table_box").html(html);
+	   $(".table_box1").html(html);
 	}
 	
 function reloadList(){
@@ -525,7 +529,7 @@ function reloadList(){
 			<hr id = "hr"/>
 			<p>수유실에는 유아용침대, 소파, 기저귀교환대, 전자렌지 등 유아수유에 필요한 각종 비품이 구비되어 있습니다.</p>
 			<br/>
-				<div class = "table_box"></div>	
+				<div class = "table_box1"></div>	
 			</div>
 		</div>	
 	   </div>
