@@ -162,7 +162,7 @@ font-size: 15px;
     .box_table {
       background-color: #f2f2f2;
       width: 300px;
-      height: 300px;
+      height: 580px;
       padding:10px 5px ;
 
  	  margin-top:10px;
@@ -222,8 +222,15 @@ border:1px solid;
 	</style>
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	//$("#select_station").select2();
 	
 	$("#realtime_search").on("click",function(){
 		var html="";
@@ -238,29 +245,52 @@ $(document).ready(function(){
 					dataType:"json",//받아올 데이터 형식
 					data:params,//보낼 데이터(문자열 형태)
 					success:function(res){//성공 시 다음 함수 실행						
-					console.log(res);
-					for(var d of res.data){						
-						if(st.value==d.SUBWAY_STATION_NAME){														
-							var stationid=d.SUBWAYSTATIONID;
-							console.log(stationid);
-						}
-					}
+					//console.log(res);
+								 for(var d of res.data){						
+									if(st.value==d.SUBWAY_STATION_NAME){														
+										var stationid=d.SUBWAYSTATIONID;
+										//console.log(stationid);
+									}
+								} 
 					$.ajax({
 						
-						url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid,
+						//url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300",
+						url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300&pageNo=1",
 						type:"get",
 						dataType:"xml",				
 						success:function(res){
-							console.log(res);
+							console.log(res);	
 							
-							$(res).find('item').each(function(){ 
+							$(res).find('item').each(function(){	
 							var busRouteNo = $(this).find("busRouteNo").text(); 
 							var exitNo = $(this).find("exitNo").text();
-							console.log(busRouteNo);
-							html += "<tr>";
+							if(exitNo=="1"){
+								html +="<tr>"
+								html +="<td>" + exitNo + "</td>";
+								html += "<td>" + busRouteNo+ "</td>";
+								html +="</tr>"
+
+							}else if(exitNo=="2"){
+								html +="<tr>"
+								html +="<td>" + exitNo + "</td>";
+								html += "<td>" + busRouteNo+ "</td>";
+								html +="</tr>"
+
+							}else if(exitNo=="3"){
+								html +="<tr>"
+								html +="<td>" + exitNo + "</td>";
+								html += "<td>" + busRouteNo+ "</td>";
+								html +="</tr>"
+							}else if(exitNo=="4"){
+								html +="<tr>"
+									html +="<td>" + exitNo + "</td>";
+									html += "<td>" + busRouteNo+ "</td>";
+									html +="</tr>"
+								}
+							/* html += "<tr>";
 							html += "<td>" + exitNo+ "</td>";
-							html += "<td>" + busRouteNo + "</td>";
-							html += "</tr>";
+							html += "<td>" + busRouteNo+ "</td>";
+							html += "</tr>"; */
 							$("tbody").html(html);
 							
 							});
@@ -317,7 +347,12 @@ $(document).ready(function(){
 		 <input type="text"  class="realtime" id="select_station"/>
 		 <input type="button" id="realtime_search"value="검색">
 		  <input type="hidden" id="st" name="select_station"/>  
-
+<%-- 	 <select class="realtime" id="select_station">
+		 <option selected="selected">역</option>
+		   <c:forEach items="${SubwayList}">
+    			<option value="${SUBWAY_STATION_NAME}"><c:out value="${SUBWAY_STATION_NAME}"/></option>
+   		   </c:forEach>
+		 </select> --%>
 			
 		  </form>
 			
@@ -328,20 +363,12 @@ $(document).ready(function(){
 	    <div class="box_table">
 								<table>
 									<thead>
-										<tr>
-											<td>출구번호</td>											
-											<td>버스번호</td>
-										</tr>
+									
 									</thead>
 									<tbody>
-										<tr>
-											<td></td>
-
-											<td></td>
-										</tr>
 										
 										</tbody>
-										</table> 
+								</table> 
 	</div>
 	   
   </div>
