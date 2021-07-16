@@ -172,6 +172,7 @@ a{
 #box_up_sub2{
 	width:60%;
 	height:100%;
+	font-size: 10.5pt;
 }
 #box_down_sub1{
 	width:40%;
@@ -186,6 +187,7 @@ a{
 #box_down_sub2{
 	width:60%;
 	height:100%;
+	font-size: 10.5pt;
 }
 .subbtn_box{
     display: flex;
@@ -338,11 +340,11 @@ a{
 			<a class="realtime_search" href="#">검색</a>
 		</div>
 	    <div class="box_up">
-	    	<div id = "box_up_sub1"><img id="box_up_sub1_img" src="resources/images/underground.png"/></div>
+	    	<div id = "box_up_sub1"><strong>상행</strong><img id="box_up_sub1_img" src="resources/images/underground.png"/></div>
 	    	<div id = "box_up_sub2">상행 열차 실시간 정보가 표시될 곳입니다.</div>
 	    </div>
 	    <div class="box_down">
-	    	<div id = "box_down_sub1"><img id="box_down_sub1_img" src="resources/images/underground.png"/></div>
+	    	<div id = "box_down_sub1"><strong>하행</strong><img id="box_down_sub1_img" src="resources/images/underground.png"/></div>
 	    	<div id = "box_down_sub2">하행 열차 실시간 정보가 표시될 곳입니다.</div>
 	    </div>
  	 </div><!-- box_upndown end -->
