@@ -261,54 +261,73 @@ $(document).ready(function(){
 						type:"get",
 						dataType:"xml",				
 						success:function(res){
-							console.log(res);	
+							console.log(res);
 							//출구번호를 밖에서 변수로 만들어 놓고
 							//먼저 그려놓음 ?
 							//안에서 비교해가면서 버스번호 뽑기
-							var table_exitNo =$(res).find("exitNo").text();//111112233344
+					 		var table_busRouteNo =$(res).find("busRouteNo").text();
+							var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호		
 							var EXIT = new Set(table_exitNo);//1234
-							
-							
-							var table_busRouteNo =$(res).find("busRouteNo").text();
-						
-							
 							var html="";
-							
-							$(res).find('item').each(function(){	
-								var busRouteNo = $(this).find("busRouteNo").text(); 
-								var exitNo = $(this).find("exitNo").text();		
-				
-								
-								}); 
-							
-							for(i=0;i<=Array.from(EXIT).length-1;i++){//출구번호그림
-							html +="<tr>";	
-							html +="<td>"+Array.from(EXIT)[i]+"</td>";
-							if(Array.from(EXIT)[i]==exitNo){
-								console.log(busRouteNo);
-							}
-							html +="<td>"+table_busRouteNo+"</td>";
-							html +="</tr>";
-							}
-							$("tbody").html(html);
 						
+							
+							 for(i=0;i<=Array.from(EXIT).length-1;i++){//tbody에출구번호그림
+									html +="<tr>";	
+									html +="<td id=\""+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td>";
+									html +="<td>출구번호가 같은 버스번호</td>";
+									html +="</tr>";
+									$("tbody").html(html);
+									
+							 }; 
+							 
+							/*  $(res).find('item').each(function(){
+								 var busRouteNo = $(this).find("busRouteNo").text(); 	
+									var exitNo = $(this).find("exitNo").text();	
+									html +="<tr>";
+									html +="<td id=\""+exitNo+"\">"+exitNo+"</td>";
+									html +="<td id=\""+busRouteNo+"\">"+busRouteNo+"</td>";
+									html +="</tr>"
+										$("tbody").html(html);
+							 }); */
+							 
+		
+								/*var data = $('tr:eq(0)>td:eq(1)').html();
+							console.log(data);
+							var data = $('tr:eq(0)>td:eq(0)').html();
+							console.log(data);
+							var data = $('tr:eq(1)>td:eq(1)').html();
+							console.log(data);
+							var data = $('tr:eq(1)>td:eq(0)').html();
+							console.log(data);
+							for(i=0;i<=300;i++){
+							if($('tr:eq('+i+')>td:eq(0)').html()==$('tr:eq('+i+')>td:eq(0)').html()){
+								html +="<td id=\""+table_busRouteNo+"\">"+table_busRouteNo+"</td>";
+								
+								
+							}
+							}
+						 if($('tr:eq(0)>td:eq(0)').html()==$('tr:eq(1)>td:eq(0)').html()){
+						
+								console.log("aadddaa");
+							} */
+								
 						},
 						error:function(requet,status,error){
 							console.log(error);
 							
 						}
+						
+						
 					});//api에서 가져올 id에 따른 출구번호, 버스번호
+				
+					
 						},//success end
 					error:function(request,status,error){//실패시 다음 함수 실행
 						console.log(error);
 					}
 				});//db에서 가져온 id, 역이름
 		
-	});
-
-		
-
-		
+	});		
 
 });
 </script>
@@ -337,12 +356,13 @@ $(document).ready(function(){
 	</div><!-- wrap end -->
 		<div class="box_sub_wrap">
 		<div id="dep_arr">
-		
+		 
 		<div class="box_sub">
 		 <form action="#" id="SearchForm" method="post" >
 		 <input type="text"  class="realtime" id="select_station"/>
 		 <input type="button" id="realtime_search"value="검색">
 		  <input type="hidden" id="st" name="select_station"/>  
+		 
 <%-- 	 <select class="realtime" id="select_station">
 		 <option selected="selected">역</option>
 		   <c:forEach items="${SubwayList}">
@@ -355,19 +375,19 @@ $(document).ready(function(){
 		</div>
 
 		</div>	  
-	
+
 	    <div class="box_table">
+	    
 								<table>
 								<thead></thead>
 								<tbody>
 							
-								<tr><td></td></tr>
-								
-								<td id="exitNo" width='50px' style="word-break:break-all"></td>
-								<td id="busRouteNo" width='250px' style="word-break:break-all"></td>
-								
+							
 								</tbody>
 								</table>
+								
+							
+								
 	</div>
 	   
   </div>
