@@ -247,7 +247,7 @@ border-radius: 15px 15px 15px 15px;
 
 }
 #box_con{
-width: 80%;
+width: 100%;
 
 
 }
@@ -301,7 +301,7 @@ margin-bottom:30px;
 font-weight: bold;
 }
 #hr{
-	margin-top :15px;
+	margin-top :25px;
 }
 
 #sub_tit{
