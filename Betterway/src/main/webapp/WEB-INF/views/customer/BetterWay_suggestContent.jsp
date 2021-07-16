@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popup.css?after" />
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popupPw.css?after" />
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popupPwDel.css?after" />
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popupCommPw.css?after" />
 <link rel="stylesheet" type="text/css" href="resources/css/popup/popupCommPwDel.css?after" />
 
@@ -560,12 +561,12 @@ cursor:pointer;
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popupPw.js?after"></script>
+		<script type="text/javascript" 
+		src="resources/script/popup/popupPwDel.js?after"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popupCommPw.js?after"></script>
 		<script type="text/javascript" 
 		src="resources/script/popup/popupCommPwDel.js?after"></script>
-<script type="text/javascript" 
-		src="resources/script/popup/popupYN.js?after"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popup.js?after"></script>
 <script type="text/javascript" 
@@ -663,7 +664,7 @@ $(document).ready(function(){
 	
 	//삭제버튼클릭시
 	$(".btn_box").on("click","input:nth-child(3)",function(){
-			ynPopup("삭제하시겠습니까?" ,"","");
+		pwDelPopup("비밀번호를 입력하시오" ,"","닫기");
 			
 	});
 	//수정클릭시
@@ -740,6 +741,8 @@ function reloadList(){
 		dataType: "json",
 		data: params, 
 		success: function(res) { 
+			
+			
 			drawList(res.list);
 			commCnt(res.commCnt);
 			

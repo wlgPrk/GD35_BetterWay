@@ -97,7 +97,7 @@ padding-left:5px;
 .del_btn{
 width:50px;
 height:25px;
-background-color: #82b2da;
+background-color: #f0f0f5;
 border: none;
 border-radius: 5px;
 cursor: pointer;
@@ -108,13 +108,22 @@ cursor: pointer;
 .btn{
 position:absolute;
 left:1110px;
-background-color:#82b2da;
+background-color:#f0f0f5;
 font-size: 20px;
 width :100px;
 height :40px;
 border : 0;
 cursor: pointer;
 border-radius: 5px;
+}
+
+.del_btn:Active{
+
+background-color:#e0e0eb
+}
+
+.btn:Active{
+background-color:#e0e0eb
 }
 
 /*작성버튼틀 */
@@ -126,6 +135,7 @@ width:100%;
 }
 /*화살표 */
 .arrow{
+cursor:pointer;
 display:inline-block;
 width: 50px;
 font-size: 20px;
@@ -133,14 +143,18 @@ height : 40px;
 
 border-radius:10px;
 line-height:2;
-background-color: #e0e0eb;
+background-color: #f0f0f5;
 margin-left: 5px;
 vertical-align: top;
 
 }
 
+.arrow:hover{background-color: #e0e0eb;
+}
+
 /* 화살표틀 */
 .arrow_box{
+
 
 display: inline-block;
 width : 100%;
@@ -171,7 +185,7 @@ background-color: #82b2da;
 }
 
 .sub_title{
-background-color: #e0e0eb;
+background-color: #f0f0f5;
 border-radius: 5px;
 display: inline-block;
 width:100px;
@@ -187,7 +201,7 @@ vertical-align: top;
 
 
 .search_btn{
-background-color: #e0e0eb;
+background-color: #f0f0f5;
 border-radius: 5px;
 display: inline-block;
 width:50px;
@@ -197,6 +211,8 @@ line-height: 2;
 margin-bottom:10px;
 font-weight: bold;
 border:none;
+font-size:15px;
+cursor:pointer;
 
 }
 
@@ -213,6 +229,28 @@ input[type=date]{
 height:24px;
 outline:none;
 }
+
+
+#userResetDate, #noticeResetDate{
+cursor:pointer;
+}
+
+#userResetDate:Active, #noticeResetDate:Active{
+background-color: #e0e0eb;
+
+}
+
+
+.search_btn:Active{
+background-color: #e0e0eb;
+}
+
+table tr td:nth-child(3){
+cursor:pointer;
+
+}
+
+
 </style>
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -414,12 +452,23 @@ function reloadList(){
 		type: "post", 
 		dataType: "json",
 		data: params, 
-		success: function(res) { 
+		success: function(res) {
+		
+			if(res.userCnt =="0"){
+				$("#user tbody").html("");
+				$("#user_arrow_box").html("");
+				
+			}else{
 				userList(res.userlist);
 				userPaging(res.userpb);
-			
+			}
+			if(res.noticeCnt =="0"){
+				$("#notice tbody").html("");
+				$("#notice_arrow_box").html("");
+			}else{
 				noticeList(res.noticelist);
 				noticePaging(res.noticepb);
+			}
 			
 		},
 		error: function(request, status, error) {
@@ -715,14 +764,15 @@ function noticeCheckDel(){
 
 
 <div class="search_box">
-
-<input type="date" id="noticeDate" name="noticeDate"> 
-<input type="button" id="noticeResetDate" value="날짜초기화" class="sub_title"> 
 <div class="sub_title">삭제여부</div><select id="noticeDelete" name="noticeDelete">
 	<option value="0">전체</option>
 	<option value="1">예</option>
 	<option value="2">아니오</option>
 </select>
+
+<input type="date" id="noticeDate" name="noticeDate"> 
+<div id="noticeResetDate" class="sub_title">날짜초기화</div>
+
 <select class="search_type" name="noticeSearchGbn">
 					<option value="0">번호</option>
 					<option value="1">작성자</option>
@@ -815,13 +865,15 @@ function noticeCheckDel(){
 	<option value="1">건의</option>
 	<option value="2">답변</option>
 </select>
-<input type="date" name="userDate" id="userDate"> 
-<input type="button" value="날짜초기화" id="userResetDate" class="sub_title"/>
 <div class="sub_title">삭제여부</div><select name="userDelete" id="userDelete">
 	<option value="0">전체</option>
 	<option value="1">예</option>
 	<option value="2">아니오</option>
 </select>
+
+<input type="date" name="userDate" id="userDate"> 
+<div id="userResetDate" class="sub_title">날짜초기화</div>
+
 <select class="search_type" name="userSearchGbn">
 					<option value="0">번호</option>
 					<option value="1">작성자</option>
@@ -846,6 +898,7 @@ function noticeCheckDel(){
 
 </div><!-- con_box end -->
 	</form>
+	</div>
 		<div id ="right_sub"></div>
 	
 </body>

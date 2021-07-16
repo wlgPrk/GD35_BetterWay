@@ -85,6 +85,7 @@ public IPagingService iPagingService;
 		modelMap.put("list",list);
 		modelMap.put("pb", pb);
 		modelMap.put("data", data);
+		modelMap.put("cnt",cnt);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

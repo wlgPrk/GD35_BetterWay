@@ -615,6 +615,8 @@ public class Admin_Controller {
 			
 			modelMap.put("userpb", userPb);
 			modelMap.put("noticepb", noticePb);
+			modelMap.put("userCnt",userCnt);
+			modelMap.put("noticeCnt",noticeCnt);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

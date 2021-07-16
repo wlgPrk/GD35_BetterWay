@@ -280,7 +280,7 @@ border-top: 2px solid #82b2da;
 /* 테이블 세로길이 */
 .table tr{
 
- height : 50px;
+ height : 30px;
 
 }
 /* 테이블 헤드 */
@@ -319,8 +319,13 @@ font-size: 20px;
 height : 40px;
 border : 0;
 box-shadow: 1px 2px 3px grey;
-background-color: #e0e0eb;
+background-color: #f0f0f5;
+cursor: pointer;
+}
 
+.arrow:hover{
+
+background-color: #e0e0eb;
 }
 
 /*검색창 틀*/
@@ -344,7 +349,7 @@ font-size: 20px;
 .search_btn{
 
 
-background-color:#e0e0eb;
+background-color:#f0f0f5;
 font-size: 20px;
 width :100px;
 height :40px;
@@ -370,8 +375,15 @@ cursor: pointer;
 
 /* 현재페이지 짙어짐 */
 #on{
-background-color: #e0e0eb;
+background-color: #82b2da;
 }
+
+
+
+tr td:nth-child(3){
+word-break:break-all;
+}
+
 
 
 </style>
@@ -471,14 +483,21 @@ function drawList(list){
 	var html ="";
 	for(var i=1; i<list.length; i++){       
 		                                
-	html+="	<tr>                        ";
+	html+="	<tr>                       ";
 	html+="	<td>"+list[i].title+"</td>      ";
 	html+="	<td>"+list[i].desc+"</td>       ";
-	html+="	<td>"+list[i].link+"</td>       ";
-	html+="	<td>"+list[i].date+"</td>       ";
+	html+="	<td><a href=\""+list[i].link+"\">"+list[i].link+"</td>       ";
+	html+="	<td>"+list[i].date+"</td>      ";
 	html+="	</tr>                       ";
 		$("tbody").html(html);
 	}
+	
+	html="";
+	
+	
+
+
+
 	}
 	
 	
@@ -586,16 +605,17 @@ function drawPaging(pStart, pEnd, pMax){
 					<div class="con_box_2">
 <table class="table" cellspacing="0px">
 <colgroup>
-		<col width="450px"/>
-		<col width="450px"/>
-		<col width="450px"/>
-		<col width="100px"/>
+		<col width="200px"/>
+		<col width="500px"/>
+		<col width="200px"/>
+		<col width="180px"/>
 </colgroup>
+
 <thead>
 <tr>
 						<th>제목</th>
 						<th>내용</th>
-						<th>언론</th>
+						<th>기사링크</th>
 						<th>날짜</th>
 </tr>
 </thead>

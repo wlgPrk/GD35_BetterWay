@@ -528,9 +528,15 @@ function reloadList(){
 		dataType: "json",
 		data: params, 
 		success: function(res) { 
+			
+			if(res.cnt == "0"){
+				$("tbody").html(" ");
+				$(".arrow_box").html("<input type=\"button\" value=\"글쓰기\" class=\"write_btn\">");
+				
+			}else{
 			drawList(res.list);
 			drawPaging(res.pb);
-			drawNotice(res.data);
+			drawNotice(res.data);}
 		},
 		error: function(request, status, error) {
 			console.log(error);

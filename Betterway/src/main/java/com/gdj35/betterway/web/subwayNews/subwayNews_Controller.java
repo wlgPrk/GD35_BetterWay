@@ -68,7 +68,7 @@ public class subwayNews_Controller {
 		int page = Integer.parseInt(params.get("page"));
 		
 		//총게시글수
-		int cnt = 100;
+		int cnt = 300;
 		
 		//현재페이지 , 최대갯수
 		PagingBean pb = iPagingService.getPagingBean(page, cnt) ;
@@ -82,8 +82,7 @@ public class subwayNews_Controller {
 		
 		//목록취득
 		List<HashMap<String, String>> list=newsService.newsApi(start);
-		System.out.println(pStart);
-		System.out.println(pEnd);
+	
 		
 		
 		modelMap.put("list",list);
