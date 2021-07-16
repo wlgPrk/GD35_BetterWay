@@ -147,10 +147,7 @@ var a=	$("#selstation option:selected").val();
 					  $('td[name="24상"]').prepend(timem,"("+ end +")</br>");
 					
 					}	
-				else if(time == "01" ){
-					  $('td[name="01상"]').prepend(timem,"("+ end +")</br>");
-					
-					}	
+			
 	
 	
 	
@@ -254,10 +251,7 @@ var a=	$("#selstation option:selected").val();
 							  
 				
 							}	
-						else if(time == "01" ){
-							  $('td[name="01하"]').prepend(timem,"("+ end +")</br>");
-							
-							}	
+						
 						else if(time == "24" ){
 							  $('td[name="24하"]').prepend(timem,"("+ end +")</br>");
 							
@@ -311,7 +305,7 @@ function draw() {
 	html += "<tr><td name=\"22상\" id=\"22상\"></td><th>22</th><td name=\"22하\" id=\"22하\"></td></tr>";
 	html += "<tr><td name=\"23상\" id=\"23상\"></td><th>23</th><td name=\"23하\" id=\"23하\"></td></tr>";
 	html += "<tr><td name=\"24상\" id=\"24상\"></td><th>24</th><td name=\"24하\" id=\"24하\"></td></tr>";
-	html += "<tr><td name=\"01상\" id=\"01상\"></td><th>01</th><td name=\"01하\" id=\"01하\"></td></tr>";
+	
 	$("#con_table").html(html);	
 }
 
@@ -565,8 +559,8 @@ cursor: pointer;
 			<div class="wrap">
 			
 			<div>
-    	<input type="button" id="test1" name="test1" value="테스트">
-    	요일과 호선, 역을 선택후 버튼을 눌러주세요.
+    	<input type="button" id="test1" name="test1" value="검색">
+    	<strong>요일과 역을 선택후 버튼을 눌러주세요.</strong>
     	</div>
     	
     <div>
@@ -574,7 +568,7 @@ cursor: pointer;
     <select id= "selstation">
     <option selected="selected">역</option>
     <c:forEach items="${SubwayList}" var = "t1">
-    	<option value="${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}(${t1.STR_INCODE})"/></option>
+    	<option value="${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
     </c:forEach>
     </select>
     </div>

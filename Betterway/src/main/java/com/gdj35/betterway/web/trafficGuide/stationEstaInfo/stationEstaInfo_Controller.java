@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gdj35.betterway.web.main.Service.IMainService;
 import com.gdj35.betterway.web.trafficGuide.stationEstaInfo.Service.IEstaService;
 
 @Controller
@@ -20,6 +21,8 @@ public class stationEstaInfo_Controller {
 	
 	@Autowired 
 	public IEstaService iEstaService;
+	@Autowired
+	public IMainService iMainService;
 	
 	@RequestMapping(value="/BetterWay_nursingRoom")
 	public ModelAndView BetterWay_nursingRoom(ModelAndView mav) {
@@ -178,12 +181,20 @@ public class stationEstaInfo_Controller {
 	}
 	
 	@RequestMapping(value="/BetterWay_esta_out")
-	public ModelAndView BetterWay_esta_out(ModelAndView mav) {
-		
+	public ModelAndView BetterWay_esta_out(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
+		 List<HashMap<String, String>> SubwayList
+         = iMainService.SubwayList(params);
+		 
+		 mav.addObject("SubwayList",SubwayList);
+		 
 		mav.setViewName("traffic/BetterWay_esta_out");
-		
+	
 		return mav;
 	}
+	
+	
 	@RequestMapping(value="/BetterWay_toilet")
 	public ModelAndView BetterWay_toilet(ModelAndView mav) {
 		
