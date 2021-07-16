@@ -341,7 +341,7 @@ background: #B2A59F;
 		<li><a href="#">교통정보안내</a>
 			<ul>
 				<li><a href="BetterWay_subLineSearch">노선도</a></li>
-				<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+				<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>
@@ -378,7 +378,7 @@ background: #B2A59F;
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                    		<a href="BetterWay_baby">수유실</a>
+                    		<a href="BetterWay_nursingRoom2">수유실</a>
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
                     		<a href="BetterWay_happy">행복지대</a>
