@@ -1,12 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>외부 편의시설</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" 
+src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
 <script type="text/javascript">
+
+$(document).ready(function() {
+	
+	
+	$("#selstation").select2();
+	var a=	$("#selstation option:selected").val();
+	var c = $("#selstation option:selected").attr("value2");
+	
+   var b= a*1 + 50;
+	
+	console.log(a);
+	console.log(b);
+	console.log(c);
+	
+	$("#test1").on("click",function(){
+		var a=	$("#selstation option:selected").val();
+		var c = $("#selstation option:selected").attr("value2");
+		 var d = String(c);
+		
+	   var b= a*1 + 50;
+	   var html= "";
+	//	http://openapi.seoul.go.kr:8088/72717a744e70626237346774787358/json/SeoulMetroStArea/1/5/
+		$.ajax({
+		
+			
+			url: "http://openapi.seoul.go.kr:8088/72717a744e70626237346774787358/json/SeoulMetroStArea/"+a+"/"+b+"/", // 접속 주소
+			type: "get", // 전송방식 : get, post
+			dataType: "json",
+			success: function(res) { // 
+				for(var i=0; i<res.SeoulMetroStArea.row.length; i++){
+					var sId = res.SeoulMetroStArea.row[i].STATION_ID;
+					var exno = res.SeoulMetroStArea.row[i].EXIT_NO;
+					var area = res.SeoulMetroStArea.row[i].AREA_NAME;
+					
+				if(sId == d){
+					console.log(sId);
+					console.log(exno);
+					console.log(area);
+					html += "<tr>";
+					html +="<td>" + exno + "</td>";
+					html +="<td>" +area + "</td>";
+					html +="</tr>";
+				}
+			
+				$("#con_tab tbody").html(html);
+			}
+		},
+		error: function(request, status, error) { // 실패 시 다음 함수 실행
+			console.log(request);
+			console.log(status);
+			console.log(error);
+		}
+	});
+	
+});
+});
+
 </script>
 
 <style type="text/css">
@@ -98,9 +162,10 @@ nav ul {
 article {/* 섹션 안 큰내용, 가운데정렬 */
   background-color: #fff;
     height: 100%;
+    min-height:1400px;
   margin: 0px auto;
     width:1440px;
-    background: orange;
+    
   
 }
 
@@ -109,7 +174,7 @@ section:after { /* 뒷배경 */
   display: table;
 
   clear: both;
-  background: orange;
+ 
 }
 
 
@@ -146,7 +211,7 @@ color: #fff;
 
   .box_tit{
     position: relative;
- background-image:url("./images/서브타이틀_배경.png");       
+ background-image:url("resources/images/서브타이틀_배경.png");       
                        
   height:216px;
 
@@ -191,7 +256,7 @@ width: 80%;
 #box_con_txt{
 margin-top: 30px;
 font-weight :bold;
-font-size: 30pt;
+font-size: 18pt;
 
 }
 #box_con_img{
@@ -336,66 +401,42 @@ th,td{
     	<div id="box_con">
 			<div id="box_con_img">●</div>
 			<div id="box_con_txt">
-			역 외부 주요시설 현황(서울 메트로에서 운영하는 1호선 부터 4호선)
+			역 외부 주요시설 현황
 			</div>
 			
 			<div class="con_box">
 			<hr id = "hr"/>
 			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
-			<div style="float: right;">
+			<div id = staName></div>
+			<div  style="float: right; position: relative; top: -50px; right: 50px">
 			원하시는 역의 이름을 검색하세요&nbsp;
-			<input type="text" value="역 검색">
+			 <select id= "selstation">
+    <option selected="selected" value="0" value2 = "q">역</option>
+    <c:forEach items="${SubwayList}" var = "t1">
+    	<option value="${t1.START_NO}" value2 = "${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
+    </c:forEach>
+    </select>
+    <input type="button" id="test1" name="test1" value="검색">
+    </div>
 			</div>
 			<br/>
 				
-			<div id = "sub_tit"><strong>서울 역</strong></div>
+			<div id = "sub_tit"></div>
 			<div class = "tab_box">
 				<table id="con_tab">
-					
 					<thead>
-						<tr>
-								<th>역</th>
-								<th>출구 번호</th>
-								<th>건물 명</th>
-							</tr>
-											
+					<tr>
+					<td>
+					<strong>출구 번호</strong>
+					</td>
+					<td>
+					<strong>건물 명</strong>
+					</td>
+					</tr>
+					
 					</thead>
 					<tbody>
-						<tr>
-							<tr>
-							<td>서울 역</td><td>1</td><td>서울 역</td>
-							</tr>
-							<tr>
-							<td> </td><td>1</td><td>동자동</td>
-							</tr>
-							<tr>
-							<td> </td><td>1</td><td>동자동</td>
-							</tr>
-							<tr>
-							<td> </td><td>1</td><td>서울시티투어버스 타는 곳</td>
-							</tr>
-							<tr>
-							<td> </td><td>2</td><td>역전 우체국</td>
-							</tr>
-							<tr>
-							<td> </td><td>2</td><td>역전 파출소</td>
-							</tr>
-							<tr>
-							<td> </td><td>2</td><td>경의선 서울역</td>
-							</tr>
-							<tr>
-							<td> </td><td>2</td><td>문화역 서울284</td>
-							</tr>
-							<tr>
-							<td> </td><td>2</td><td>서울로</td>
-							</tr>
-							<tr>
-							<td> </td><td>2</td><td>국민권익위원회</td>
-							</tr>
-							<tr>
-							<td> </td><td>3</td><td>봉래동 1가</td>
-							</tr>
-						</tr>
+						
 					</tbody>				
 				</table>
 			</div>
