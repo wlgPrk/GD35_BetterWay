@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,15 +10,16 @@
 
 
 function main(){
-		location.href="BetterWay_main";
+
+		location.href="BetterWay_main.html";
 	}
 
 function BetterWay_subLineBusstation(){
-	location.href="BetterWay_subLineBusstation";
+	location.href="BetterWay_subLineBusstation.html";
 }
 function BetterWay_subLineRealtime(){
 
-	location.href="BetterWay_subLineRealtime2";
+	location.href="BetterWay_subLineRealtime.html";
 
 }
 
@@ -164,7 +166,7 @@ font-size: 15px;
       width: 300px;
       height: 580px;
       padding:10px 5px ;
-
+	border:1px;
  	  margin-top:10px;
 
     }
@@ -260,42 +262,36 @@ $(document).ready(function(){
 						dataType:"xml",				
 						success:function(res){
 							console.log(res);	
+							//출구번호를 밖에서 변수로 만들어 놓고
+							//먼저 그려놓음 ?
+							//안에서 비교해가면서 버스번호 뽑기
+							var table_exitNo =$(res).find("exitNo").text();//111112233344
+							var EXIT = new Set(table_exitNo);//1234
+							
+							
+							var table_busRouteNo =$(res).find("busRouteNo").text();
+						
+							
+							var html="";
 							
 							$(res).find('item').each(function(){	
-							var busRouteNo = $(this).find("busRouteNo").text(); 
-							var exitNo = $(this).find("exitNo").text();
-							if(exitNo=="1"){
-								html +="<tr>"
-								html +="<td>" + exitNo + "</td>";
-								html += "<td>" + busRouteNo+ "</td>";
-								html +="</tr>"
-
-							}else if(exitNo=="2"){
-								html +="<tr>"
-								html +="<td>" + exitNo + "</td>";
-								html += "<td>" + busRouteNo+ "</td>";
-								html +="</tr>"
-
-							}else if(exitNo=="3"){
-								html +="<tr>"
-								html +="<td>" + exitNo + "</td>";
-								html += "<td>" + busRouteNo+ "</td>";
-								html +="</tr>"
-							}else if(exitNo=="4"){
-								html +="<tr>"
-									html +="<td>" + exitNo + "</td>";
-									html += "<td>" + busRouteNo+ "</td>";
-									html +="</tr>"
-								}
-							/* html += "<tr>";
-							html += "<td>" + exitNo+ "</td>";
-							html += "<td>" + busRouteNo+ "</td>";
-							html += "</tr>"; */
+								var busRouteNo = $(this).find("busRouteNo").text(); 
+								var exitNo = $(this).find("exitNo").text();		
+				
+								
+								}); 
+							
+							for(i=0;i<=Array.from(EXIT).length-1;i++){//출구번호그림
+							html +="<tr>";	
+							html +="<td>"+Array.from(EXIT)[i]+"</td>";
+							if(Array.from(EXIT)[i]==exitNo){
+								console.log(busRouteNo);
+							}
+							html +="<td>"+table_busRouteNo+"</td>";
+							html +="</tr>";
+							}
 							$("tbody").html(html);
-							
-							});
-
-							
+						
 						},
 						error:function(requet,status,error){
 							console.log(error);
@@ -362,13 +358,16 @@ $(document).ready(function(){
 	
 	    <div class="box_table">
 								<table>
-									<thead>
-									
-									</thead>
-									<tbody>
-										
-										</tbody>
-								</table> 
+								<thead></thead>
+								<tbody>
+							
+								<tr><td></td></tr>
+								
+								<td id="exitNo" width='50px' style="word-break:break-all"></td>
+								<td id="busRouteNo" width='250px' style="word-break:break-all"></td>
+								
+								</tbody>
+								</table>
 	</div>
 	   
   </div>

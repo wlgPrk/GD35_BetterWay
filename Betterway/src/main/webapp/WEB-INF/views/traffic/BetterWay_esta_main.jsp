@@ -227,7 +227,7 @@ margin-bottom:30px;
 font-weight: bold;
 }
 #hr{
-	margin-top :15px;
+	margin-top :46px;
 }
 
 #sub_title{
@@ -235,7 +235,9 @@ font-weight: bold;
 }
 .con_box{
 	width : 1080px;
-	margin : auto;
+	
+	
+	margin: auto;
 }
 .table_box{
 	width:100%;
@@ -362,6 +364,24 @@ th,td{
 }
 #subLine{
  font-size: 15px;
+}
+#sub_box{
+position: relative;
+display: inline-block;
+
+height: 100%;
+top:46px;
+}
+#box_con_cir{
+position: relative;
+display: inline-block;
+
+}
+#box_con_txt{
+position: relative;
+display: inline-block;
+
+
 }
 
 </style>
@@ -517,10 +537,12 @@ var params = $("#actionForm").serialize();
     	
     	
     	<div id="box_con">
-			<span id="box_con_cir"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </span>
-			<span id="box_con_txt">
+    	<div id = "sub_box">
+			<div id="box_con_cir"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </div>
+			<div id="box_con_txt" style="font: 20px;">
 			역 내부 편의시설 현황
-			</span>
+			</div>
+			</div>
 			
 			<div class="con_box">
 			<hr id = "hr"/>

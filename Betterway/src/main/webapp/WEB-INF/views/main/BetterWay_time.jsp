@@ -24,19 +24,25 @@ var a=	$("#selstation option:selected").val();
 	
 	
 	$("#dateBtn1").on("click",function(){
-
+		$("#dateBtn1").css("background-Color","silver");
+		$("#dateBtn2").css("background-Color","white");
+		$("#dateBtn3").css("background-Color","white");	
 		b = "1/";
 		console.log(b);
 		
 	});
 	$("#dateBtn2").on("click",function(){
-
+		$("#dateBtn1").css("background-Color","white");
+		$("#dateBtn2").css("background-Color","silver");
+		$("#dateBtn3").css("background-Color","white");	
 		b = "2/";
 		console.log(b);
 	});
 	
 	$("#dateBtn3").on("click",function(){
-
+		$("#dateBtn1").css("background-Color","white");
+		$("#dateBtn2").css("background-Color","white");
+		$("#dateBtn3").css("background-Color","silver");	
 		b = "3/";
 		console.log(b);
 	});
