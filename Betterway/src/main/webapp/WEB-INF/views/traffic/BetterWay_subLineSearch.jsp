@@ -4,24 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>경로검색</title>
 <script type="text/javascript">
 
 function main(){
-/* 수정수정 */
-	location.href="BetterWay_main.html";
-}
+	/* 수정수정 */
+		location.href="BetterWay_cooling.html";
+	}
 
 function BetterWay_subLineRealtime(){
 
-	location.href="BetterWay_subLineRealtime.html";
+	location.href="BetterWay_subLineRealtime2";
 
 }
 function BetterWay_subLineBusstation(){
-	location.href="BetterWay_subLineBusstation.html";
+	location.href="BetterWay_subLineBusstation";
 }
 </script>
-<style>*{
+<style>
+*{
 overflow: hidden;
 }
 	div{
@@ -33,7 +34,6 @@ width:100%;
 	color:white;
 	text-decoration : none;
 	font-size: 30px;
-
 }
 .side{
 background-color: #023459;
@@ -48,19 +48,22 @@ padding:10px 0px 10px 0px;
 .subline_img{
 width:75%;
 }
-#title{
-font-weight: bold;
-font-size: 15px;
-background: #1E646E;
-color:#fff;
-width:170px;
-text-align:center;
-border-radius: 15px 15px 15px 15px;
-
+#subway{
+	width:100%;
+	height:940px;
 }
-
-
-
+#title{
+    font-size: 15px;
+    background: #e0e0eb;
+    width: 170px;
+    padding-top: 2px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    height: 22px;
+    text-align: center;
+    margin-left: 90px;
+}
 .arr{
 
 display: inline-block;
@@ -89,76 +92,103 @@ p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px sans-seri
 .zoom img::selection { background-color: transparent; }
 
 #zooming img:hover { cursor:  default; }
-#zooming img:active { cursor: default; }
-
+#zooming img:active { cursor:  default; }
 
 .wrap{
 margin-top:15px;
 padding:5px 0px 5px 0px;
  text-align: center;
-
 }
-.subbtn{
-background:#B2A59F;
-border-radius: 5px;
-height:100%;
-width:155px;
-text-align: center;
-color: white;
-background:#B2A59F;
-
+.subbtn_busstation{
+	background:#B2A59F;
+	border-radius: 5px;
+	height:100%;
+	width:155px;
+	text-align: center;
 }
-.subbtn1,.subbtn2{
-background:#B2A59F;
-border-radius: 5px;
-height:100%;
-width:155px;
-text-align: center;
-color: white;
-background:#B2A59F;
-
+.subbtn_realtime{
+	background:#82B2DA;
+	border-radius: 5px;
+	height:100%;
+	width:155px;
+	text-align: center;
 }
 
- .box_sub {
-
+.box_sub {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top:10px;
-   
 } 
 
 .realtime{
 	width:265px;
 	padding-left: 5px;
-    height: 30px;
-
+	height: 30px;
 }
 .realtime_search{  
 	padding-left: 5px;
     height: 20px;
-    color: white;background:#B2A59F; padding-top:5px;padding-bottom:5px;padding-right:5px;
+     color: white;background:#82B2DA; padding-top:5px;padding-bottom:5px;padding-right:5px;
 }
 a{
 	text-decoration: none;
 	font-size: 15px;
 }
- .box_sub_wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-	  flex-direction: column;
+ .box_upndown {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
 }
-.box_table {
-      background-color: #f2f2f2;
-      width: 300px;
-      height: 400px;
-      padding:0px 5px 15px 5px;
- 	  margin-top:10px;
-      border-radius: 15px;
-  
-    }
-
+.box_all{
+	background-color: #f2f2f2;
+    width: 300px;
+    height: 150px;
+    padding:15px 5px 15px 5px;
+    margin-top:10px;
+    border-radius: 15px;
+}
+.box_up , .box_down{
+    background-color: #f2f2f2;
+    width: 300px;
+    height: 150px;
+    padding:15px 5px 15px 5px;
+    margin-top:10px;
+    border-radius: 15px;
+    font-size: 11pt;
+    text-align: center;
+}
+#box_up_sub1{
+	width:40%;
+	height:100%;
+	float :left;
+}
+#box_up_sub1_img{
+	width:100px;
+	height:110px;
+	margin-top: 17px;
+}
+#box_up_sub2{
+	width:60%;
+	height:100%;
+	font-size: 10.5pt;
+}
+#box_down_sub1{
+	width:40%;
+	height:100%;
+	float :left;
+}
+#box_down_sub1_img{
+	width:100px;
+	height:110px;
+	margin-top: 17px;
+}
+#box_down_sub2{
+	width:60%;
+	height:100%;
+	font-size: 10.5pt;
+}
 .subbtn_box{
     display: flex;
     justify-content: center;
@@ -167,63 +197,115 @@ a{
     padding-right:5px;
     
 }
-.table_img {
-  display: flex;
-  margin-top: 10pt;
-width: 100%; height: 80pt;
-}
-
-.table_img1{
-	width:50%;
-	text-align: center;
-	 height:80pt;
-	padding-left: 20pt;
-}
-
-
-.table_img2{
-	width:50%;
-	padding-right: 20pt;
-	margin-top: 15pt;
-}
-#box_table_Guide{
-margin-top: 10px;
-}
-#take,	#charge ,#train_transfer, #weather{
-margin-top:13px;
-}
-#deparr_btn,#bus_search_btn {
-    width: 30px;
-    float: right;
-    box-sizing: border-box;
-	height:65px;
-	background-color: #B2A59F;
-    }
-    #dep_arr{
-	 display: flex;
+#dep_arr{
+	display: flex;
     justify-content: center;
     align-items: center;
 
 }
-   #deparr_search {
-    width: 270px;
-    float: left;
-    box-sizing: border-box;
-
+ #deparr_search {
+     width: 270px;
+     float: left;
+     box-sizing: border-box;
     }
-    #subbtn_realtime, #subbtn_busstation, #min_transfer, #min_take{
+#deparr_btn,#bus_search_btn {
+	width: 30px;
+	float: right;
+	box-sizing: border-box;
+	height:65px;
+	background-color: #82B2DA;
+}
+#deparr_search_btn{
+    margin-top: 20px;
+}
+#subbtn_realtime{
 	color: white;
-	background:#B2A59F;
+	background: #82B2DA;
+}
+#subbtn_busstation{
+	color: white;
+	background: #B2A59F;
 }
 	</style>
-
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-	<script src='jquery.zoom.js'></script>
-	<script>
-		$(document).ready(function(){
-			$('#zooming').zoom();
-			$('#zooming').zoom({ on:'grab' });
+	<script type="text/javascript" 
+		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		/* $("#subbtn_realtime").on("click",function(){
+		$(".subbtn_realtime").css("background-Color","black");
+		$("#subbtn_realtime").css("background-Color","black"); */
 		
+		$("img[name='subway']").imagezoomsl({
+			zoomrange: [1, 12],
+			zoomstart: 4, //시작 줌
+			innerzoom: true, //이미지 내 줌으로 전환
+			magnifierborder: "none" //두께 없음
+		});
+		
+		$(".realtime_search").on("click",function(){
+			var html = "";
+			var a = $(".realtime").val();
+							
+			$.ajax({
+				/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
+				url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"",
+				type:"get",
+				dataType:"json",
+				success:function(res){
+					var html = "";
+					var html2 = "";
+					var count = 0;
+					
+					for(var i = 0; i< res.realtimeArrivalList.length; i++){
+						var st = res.realtimeArrivalList[i];
+						console.log(res);
+						
+						if($(".realtime").val()==st.statnNm){
+							if(st.updnLine == "상행"){
+								if(i<2){	
+									if(i==0){
+										html += "<strong>이번열차 </strong><br/>";
+										html += st.trainLineNm + "<br/>";
+										html += st.arvlMsg2 + "<br/><br/>";
+									}else{
+										html += " <strong>다음열차 </strong><br/>";
+										html += st.trainLineNm + "<br/>";
+										html += st.arvlMsg2 + "<br/><br/>";
+									}
+									
+								$("#box_up_sub2").html(html);
+								}
+							}else if(st.updnLine == "하행"){
+		                        console.log(count);
+		                        if(count == 0){
+		                        	 	html2 += " <strong>이번열차 </strong><br/>";
+				                        html2 += st.trainLineNm + "<br/>";
+				                        html2 += st.arvlMsg2 + "<br/><br/>";
+		                        }else if(count == 1){
+		                        		html2 += " <strong>다음열차 </strong><br/>";
+			                        	html2 += st.trainLineNm + "<br/>";
+			                       		html2 += st.arvlMsg2 + "<br/><br/>";
+		                        }
+		                      
+		                        
+		                        $("#box_down_sub2").html(html2);
+		                        count++;
+		                        if(count == 3){
+		                        	break;
+		                        }
+								//두개 그리고 싶으면 for문 밖에 count변수 만들고 count2됐을때 브레이크
+		                     }
+						}
+					}
+				},
+				error:function(requet,status,error){
+					console.log(error);
+				}
+			});//ajax로 데이터 불러옴
+			
+			//console.log($(".realtime").val()); //값넘어오는 지 확인
+			});
 		});
 	</script>
 </head>
@@ -231,35 +313,34 @@ margin-top:13px;
 <div class="side">
 	<div class="side_title">
 	<a class="main" href="javascript:main();">BetterWay</a>
+
 	</div>
-	<div id="title">출발 도착 역검색</div>
-	<div class="wrap">
-	<div id="dep_arr">
+		<div class="wrap">
+		<div id="title">출발 도착 역검색</div>
+<div id="dep_arr">
 		<div id="deparr_search">
 			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>
 			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
 		</div>
 		<div id="deparr_btn">
-			<input type="button" id="deparr_search_btn"value="검색" style="background: none;"/>
+			<input type="button" id="deparr_search_btn" value="검색" style="background: none;"/>
 		</div>
 	</div>	  
 	<div class="subbtn_box">
-		<div class="subbtn"><a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a></div>
-		<div class="subbtn"><a id="subbtn_busstation" href="javascript:BetterWay_subLineBusstation();">주변 버스정류장</a></div>
+		<div class="subbtn_realtime">
+		<a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a>
+		</div>
+		<div class="subbtn_busstation"><a id="subbtn_busstation" href="javascript:BetterWay_subLineBusstation();">주변 버스정류장</a></div>
 	</div>			
 	</div><!-- wrap end -->
-		<div class="box_sub_wrap">
-		
+	
+	<div class="box_upndown">
 		<div class="box_sub">
 			<input type="text" class="realtime" placeholder="실시간 위치"/>
 			<a class="realtime_search" href="#">검색</a>
 		</div>
-		<div class="box_table"> 
-		    <div class="subbtn_box">		 
-					<div class="subbtn"><a id="min_transfer" href="#" >최소환승</a></div>
-				<div class="subbtn"><a id="min_take" href="#">최단시간</a></div>
-			</div>
-			<div id="box_table_Guide">
+	    <div class="box_up">
+	    	<div id="box_table_Guide">
 				<div id="take" >소요시간</div>
 				<div id="take_P">소요시간출력</div>
 			    <div id="charge" >요금</div>
@@ -279,17 +360,17 @@ margin-top:13px;
 			    <div id="weather" >날씨</div>
 			    <div id="weather_P" >날씨출력</div>	  	    
 			</div>
-		 </div><!-- box_table -->
-		</div><!-- box_sub_wrap -->
-
-
+	    </div>
+	   
+ 	 </div><!-- box_upndown end -->
+ 
 </div>
-<div class="subline_img"><span class='zoom' id='zooming'>
-		<img src='resources/images/naver_subway.jpg' width='100%' height='100%'/>
+
+<div class="subline_img">
+		<img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>
 		<p>마우스를 올려 확대해보세요.</p>
-	</span>
 </div>
 
 </body>
-
 </html>
+

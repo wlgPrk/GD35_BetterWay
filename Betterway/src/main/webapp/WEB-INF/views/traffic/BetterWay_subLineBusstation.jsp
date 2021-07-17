@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>출구별 버스정류장</title>
 <script type="text/javascript">
 
 
@@ -19,7 +19,7 @@ function BetterWay_subLineBusstation(){
 }
 function BetterWay_subLineRealtime(){
 
-	location.href="BetterWay_subLineRealtime.html";
+	location.href="BetterWay_subLineRealtime2.html";
 
 }
 
@@ -53,16 +53,17 @@ padding:10px 0px 10px 0px;
 width:75%;
 }
 #title{
-font-size: 15px;
-background:#e0e0eb;
-width:170px;
-padding-top:2px;
-border-radius: 15px;
-margin-bottom: 5px;
-font-weight:bold;
-height:22px;
+    font-size: 15px;
+    background: #e0e0eb;
+    width: 170px;
+    padding-top: 2px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    height: 22px;
+    text-align: center;
+    margin-left: 90px;
 }
-
 
 
 .arr{
@@ -125,25 +126,14 @@ text-align: center;
 } 
 
 .realtime{
-  display: flex;
-  justify-content: center;
 	width:265px;
-	  padding-left: 5px;
-float:left;
-    height: 30px;
-
+	padding-left: 5px;
+	height: 30px;
 }
 .realtime_search{  
-padding-left: 5px;
-display: flex;
-justify-content: center;
-height: 20px;
-color: white;
-background:#82b2da; 
-padding-top:5px;
-padding-bottom:5px;
-padding-right:5px;
-
+	padding-left: 5px;
+    height: 20px;
+     color: white;background:#82B2DA; padding-top:5px;padding-bottom:5px;padding-right:5px;
 }
 a{
 text-decoration: none;
@@ -168,14 +158,14 @@ font-size: 15px;
       padding:10px 5px ;
 	border:1px;
  	  margin-top:10px;
+ 	  border-radius: 15px;
 
     }
 .subbtn_box{
     display: flex;
     justify-content: center;
     align-items: center;
-margin-top: 13px;
-  
+    margin-top:10px;
     padding-right:5px;
     
 }
@@ -185,53 +175,64 @@ margin:0 auto;
 border:1px solid;
 }
 #dep_arr{
-	    display: flex;
+	display: flex;
     justify-content: center;
     align-items: center;
 
 }
-   #deparr_search {
-        width: 270px;
-        float: left;
-        box-sizing: border-box;
-
+ #deparr_search {
+     width: 270px;
+     float: left;
+     box-sizing: border-box;
     }
- 	#deparr_btn,#bus_search_btn {
-        width: 30px;
- 
-        float: right;
-        box-sizing: border-box;
-		height:65px;
-		background-color: #82b2da;
-    }
-
-    	#deparr_search_btn{
-    	margin-top: 27px;
-    	height: 65px;
-    	color:#fff;
-    	background-color: #82b2da;
-
-    	}
-
-#subbtn_realtime, #subbtn_busstation{
-	color: white;
-	background:#82b2da;
+#deparr_btn,#bus_search_btn {
+	width: 30px;
+	float: right;
+	box-sizing: border-box;
+	height:65px;
+	background-color: #82B2DA;
 }
-
-#deparr_search_btn,#subbtn_realtime, #subbtn_busstation:hover {
-	cursor: pointer;
+#deparr_search_btn{
+    margin-top: 20px;
+}
+.subbtn_realtime{
+	background:#82B2DA;
+	border-radius: 5px;
+	height:100%;
+	width:155px;
+	text-align: center;
+}
+#subbtn_busstation{
+	color: white;
+	background:  #82B2DA;
+}
+#subbtn_realtime{
+	color: white;
+	background: #82B2DA;
+}
+.subbtn_busstation{
+	background:#82B2DA;
+	border-radius: 5px;
+	height:100%;
+	width:155px;
+	text-align: center;
 }
 	</style>
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
-
+<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	$("img[name='subway']").imagezoomsl({
+		zoomrange: [1, 12],
+		zoomstart: 4, //시작 줌
+		innerzoom: true, //이미지 내 줌으로 전환
+		magnifierborder: "none" //두께 없음
+	});
 	//$("#select_station").select2();
 	
 	$("#realtime_search").on("click",function(){
@@ -262,65 +263,80 @@ $(document).ready(function(){
 						dataType:"xml",				
 						success:function(res){
 							console.log(res);
+						
 							//출구번호를 밖에서 변수로 만들어 놓고
 							//먼저 그려놓음 ?
 							//안에서 비교해가면서 버스번호 뽑기
-					 		var table_busRouteNo =$(res).find("busRouteNo").text();
-							var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호		
+					 	 	var busRouteNo =$(res).find("busRouteNo").text();	
+							var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호	
 							var EXIT = new Set(table_exitNo);//1234
+							console.log(busRouteNo); 
+		
 							var html="";
+							  
+							for(i=0;i<=Array.from(EXIT).length-1;i++){
+								
+								html +="<tr>";	
+								html +="<td id=\""+Array.from(EXIT)[i]+"\" name=\""+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td><td id=\"busNo\" name=\"busNo\"></td>";
+								html +="</tr>";
+								
+								$("tbody").html(html);
+								if(Array.from(EXIT)[i]>0){
+									console.log("aaaaaa");
+									$(res).find('item').each(function(){
+										 var busRouteNo = $(this).find("busRouteNo").text(); 	
+											var exitNo = $(this).find("exitNo").text();	
+											var exitNos = $(this).find("exitNo").text();	
+											
+											if(exitNo == Array.from(EXIT)[i]){
+												console.log(exitNo);
+												console.log(Array.from(EXIT)[i]);
+												  $('td[name="busNo"]').prepend(busRouteNo);
+												
+												}
+										 }); 
+									
+									}
+						 };  
+						
+							 
+						 $(res).find('item').each(function(){
+							 var busRouteNo = $(this).find("busRouteNo").text(); 	
+								var exitNo = $(this).find("exitNo").text();	
+								var exitNos = $(this).find("exitNo").text();	
+								//var A =[exitNo]+":"+[busRouteNo];
+								
+							 	//console.log(A);
+							 });  //tbody에출구번호그림	 	
+						
+						/* 		var busRouteNo =$(this).find("busRouteNo").text();
+								var exitNo = $(this).find("exitNo").text();	
+								var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호		
+								var EXIT = new Set(table_exitNo);//1234
+								var html = "";
+								//html += "<tr><td name=\"05상\" id=\"05상\"></td><th>05</th><td name=\"05하\" id=\"05하\"></td></tr>";
+
+								for(i=0;i<=Array.from(EXIT).length-1;i++){
+									console.log("A")
+									if(Array.from(EXIT)[i]==exitNo){
+										console.log("A22")
+										html+="<tr><td name="+exitNo+" id="+exitNo+"></td><td name="+busRouteNo+" id="+busRouteNo+"></td></tr>";
+										$("tbody").html(html);
+									}
+									
+									
+								}	 */
+
 						
 							
-							 for(i=0;i<=Array.from(EXIT).length-1;i++){//tbody에출구번호그림
-									html +="<tr>";	
-									html +="<td id=\""+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td>";
-									html +="<td>출구번호가 같은 버스번호</td>";
-									html +="</tr>";
-									$("tbody").html(html);
-									
-							 }; 
-							 
-							/*  $(res).find('item').each(function(){
-								 var busRouteNo = $(this).find("busRouteNo").text(); 	
-									var exitNo = $(this).find("exitNo").text();	
-									html +="<tr>";
-									html +="<td id=\""+exitNo+"\">"+exitNo+"</td>";
-									html +="<td id=\""+busRouteNo+"\">"+busRouteNo+"</td>";
-									html +="</tr>"
-										$("tbody").html(html);
-							 }); */
-							 
-		
-								/*var data = $('tr:eq(0)>td:eq(1)').html();
-							console.log(data);
-							var data = $('tr:eq(0)>td:eq(0)').html();
-							console.log(data);
-							var data = $('tr:eq(1)>td:eq(1)').html();
-							console.log(data);
-							var data = $('tr:eq(1)>td:eq(0)').html();
-							console.log(data);
-							for(i=0;i<=300;i++){
-							if($('tr:eq('+i+')>td:eq(0)').html()==$('tr:eq('+i+')>td:eq(0)').html()){
-								html +="<td id=\""+table_busRouteNo+"\">"+table_busRouteNo+"</td>";
-								
-								
-							}
-							}
-						 if($('tr:eq(0)>td:eq(0)').html()==$('tr:eq(1)>td:eq(0)').html()){
-						
-								console.log("aadddaa");
-							} */
-								
 						},
 						error:function(requet,status,error){
 							console.log(error);
 							
 						}
 						
-						
 					});//api에서 가져올 id에 따른 출구번호, 버스번호
-				
-					
+			
 						},//success end
 					error:function(request,status,error){//실패시 다음 함수 실행
 						console.log(error);
@@ -330,6 +346,7 @@ $(document).ready(function(){
 	});		
 
 });
+
 </script>
 </head>
 <body>
@@ -339,20 +356,24 @@ $(document).ready(function(){
 	<a class="main" href="BetterWay_main.html">BetterWay</a>
 	</div>
 
+
 	<div class="wrap">
-	<div id="dep_arr">	
-		<div id="deparr_search">
 		<div id="title">출발 도착 역검색</div>
+<div id="dep_arr">
+		<div id="deparr_search">
 			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>
 			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
 		</div>
-
-			
+		<div id="deparr_btn">
+			<input type="button" id="deparr_search_btn" value="검색" style="background: none;"/>
+		</div>
 	</div>	  
 	<div class="subbtn_box">
-		<div class="subbtn"><a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a></div>
-		<div class="subbtn"><a id="subbtn_busstation" href="javascript:BetterWay_subLineBusstation();">주변 버스정류장</a></div>
-	</div>		
+		<div class="subbtn_realtime">
+		<a id="subbtn_realtime" href="javascript:BetterWay_subLineRealtime();" >실시간 위치</a>
+		</div>
+		<div class="subbtn_busstation"><a id="subbtn_busstation" href="javascript:BetterWay_subLineBusstation();">주변 버스정류장</a></div>
+	</div>			
 	</div><!-- wrap end -->
 		<div class="box_sub_wrap">
 		<div id="dep_arr">
@@ -381,8 +402,7 @@ $(document).ready(function(){
 								<table>
 								<thead></thead>
 								<tbody>
-							
-							
+				
 								</tbody>
 								</table>
 								
@@ -397,7 +417,7 @@ $(document).ready(function(){
 
 
 <div class="subline_img"><span class='zoom' id='zooming'>
-		<img src='resources/images/naver_subway.jpg' width='100%' height='100%'/>
+		<img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>
 		<p>마우스를 올려 확대해보세요.</p>
 	</span>
 </div>
