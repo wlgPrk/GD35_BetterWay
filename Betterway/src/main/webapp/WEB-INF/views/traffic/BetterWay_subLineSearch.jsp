@@ -232,9 +232,7 @@ a{
 	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		/* $("#subbtn_realtime").on("click",function(){
-		$(".subbtn_realtime").css("background-Color","black");
-		$("#subbtn_realtime").css("background-Color","black"); */
+		
 		
 		$("img[name='subway']").imagezoomsl({
 			zoomrange: [1, 12],
@@ -243,69 +241,22 @@ a{
 			magnifierborder: "none" //두께 없음
 		});
 		
-		$(".realtime_search").on("click",function(){
-			var html = "";
-			var a = $(".realtime").val();
-							
+
+		
 			$.ajax({
-				/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
-				url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"",
+				
+				url:
 				type:"get",
-				dataType:"json",
+				dataType:,
 				success:function(res){
-					var html = "";
-					var html2 = "";
-					var count = 0;
-					
-					for(var i = 0; i< res.realtimeArrivalList.length; i++){
-						var st = res.realtimeArrivalList[i];
-						console.log(res);
-						
-						if($(".realtime").val()==st.statnNm){
-							if(st.updnLine == "상행"){
-								if(i<2){	
-									if(i==0){
-										html += "<strong>이번열차 </strong><br/>";
-										html += st.trainLineNm + "<br/>";
-										html += st.arvlMsg2 + "<br/><br/>";
-									}else{
-										html += " <strong>다음열차 </strong><br/>";
-										html += st.trainLineNm + "<br/>";
-										html += st.arvlMsg2 + "<br/><br/>";
-									}
-									
-								$("#box_up_sub2").html(html);
-								}
-							}else if(st.updnLine == "하행"){
-		                        console.log(count);
-		                        if(count == 0){
-		                        	 	html2 += " <strong>이번열차 </strong><br/>";
-				                        html2 += st.trainLineNm + "<br/>";
-				                        html2 += st.arvlMsg2 + "<br/><br/>";
-		                        }else if(count == 1){
-		                        		html2 += " <strong>다음열차 </strong><br/>";
-			                        	html2 += st.trainLineNm + "<br/>";
-			                       		html2 += st.arvlMsg2 + "<br/><br/>";
-		                        }
-		                      
-		                        
-		                        $("#box_down_sub2").html(html2);
-		                        count++;
-		                        if(count == 3){
-		                        	break;
-		                        }
-								//두개 그리고 싶으면 for문 밖에 count변수 만들고 count2됐을때 브레이크
-		                     }
-						}
-					}
+				
 				},
 				error:function(requet,status,error){
 					console.log(error);
 				}
 			});//ajax로 데이터 불러옴
 			
-			//console.log($(".realtime").val()); //값넘어오는 지 확인
-			});
+		
 		});
 	</script>
 </head>

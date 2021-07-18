@@ -131,9 +131,13 @@ text-align: center;
 	height: 30px;
 }
 .realtime_search{  
-	padding-left: 5px;
+padding-left: 5px;
     height: 20px;
-     color: white;background:#82B2DA; padding-top:5px;padding-bottom:5px;padding-right:5px;
+    color: white;
+    background: #82B2DA;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
 }
 a{
 text-decoration: none;
@@ -159,6 +163,7 @@ font-size: 15px;
 	border:1px;
  	  margin-top:10px;
  	  border-radius: 15px;
+ 	  overflow:auto;
 
     }
 .subbtn_box{
@@ -196,7 +201,7 @@ border:1px solid;
     margin-top: 20px;
 }
 .subbtn_realtime{
-	background:#82B2DA;
+	background-color: #B2A59F;
 	border-radius: 5px;
 	height:100%;
 	width:155px;
@@ -208,7 +213,7 @@ border:1px solid;
 }
 #subbtn_realtime{
 	color: white;
-	background: #82B2DA;
+	background-color: #B2A59F;
 }
 .subbtn_busstation{
 	background:#82B2DA;
@@ -217,6 +222,14 @@ border:1px solid;
 	width:155px;
 	text-align: center;
 }
+table{
+padding-top:25px;
+    border-collapse: collapse;
+}
+ th, td {
+    border: 1px solid #444444;
+  }
+
 	</style>
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -273,8 +286,52 @@ $(document).ready(function(){
 							console.log(busRouteNo); 
 		
 							var html="";
-							  
+							
+							var busRouteNo =$(this).find("busRouteNo").text();
+							var exitNo = $(this).find("exitNo").text();	
+							var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호		
+							var EXIT = new Set(table_exitNo);//1234
+							var html = "";
+							//html += "<tr><td name=\"05상\" id=\"05상\"></td><th>05</th><td name=\"05하\" id=\"05하\"></td></tr>";
+
 							for(i=0;i<=Array.from(EXIT).length-1;i++){
+								html +="<tr>";	
+								html +="<td id=\""+Array.from(EXIT)[i]+"\" name=\"get"+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td><td id=\"busNo\" name=\"busNo"+Array.from(EXIT)[i]+"\"></td>";
+								html +="</tr>";
+								
+								
+							}console.log(Array.from(EXIT).length);
+							$("tbody").html(html);  
+							   
+							 $(res).find('item').each(function(){
+								 var busRouteNo = $(this).find("busRouteNo").text(); 	
+									var exitNo = $(this).find("exitNo").text();	
+									var exitNos = $(this).find("exitNo").text();
+									html +="<tr>";	
+									//html +="<td id=\""+exitNo+"\" name=\""+exitNo+"\">"+exitNo+"</td><td id=\""+busRouteNo+"\" name=\""+busRouteNo+"\">"+busRouteNo+"</td>";
+									//1 751
+									//1 571
+									html +="<td id=\""+exitNo+"\" name=\""+busRouteNo+"\"></td><td id=\""+busRouteNo+"\" name=\""+busRouteNo+"\"></td>";
+									
+									html +="</tr>";
+									$("#tmp_table_body").html(html);
+									
+									 
+								 });  //tbody에출구번호그림	 */ 	
+							 var rows = document.getElementById("tmp_table_body").getElementsByTagName("tr");
+							
+						    for(var r=Array.from(EXIT).length; r<=rows.length; r++ ){//로우수만큼 돌면서
+						      var cells = rows[r].getElementsByTagName("td");
+									console.log(cells);//tr 하나씩
+									console.log(cells[1].id);
+									for(i=0;i<=Array.from(EXIT).length;i++){
+											if(cells[0].id==i){
+												  $('td[name=busNo'+i+']').prepend(cells[1].id+" ");
+											}
+									}
+						    }
+							
+							/* for(i=0;i<=Array.from(EXIT).length-1;i++){
 								
 								html +="<tr>";	
 								html +="<td id=\""+Array.from(EXIT)[i]+"\" name=\""+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td><td id=\"busNo\" name=\"busNo\"></td>";
@@ -297,35 +354,12 @@ $(document).ready(function(){
 										 }); 
 									
 									}
-						 };  
+						 };   */
 						
 							 
-						 $(res).find('item').each(function(){
-							 var busRouteNo = $(this).find("busRouteNo").text(); 	
-								var exitNo = $(this).find("exitNo").text();	
-								var exitNos = $(this).find("exitNo").text();	
-								//var A =[exitNo]+":"+[busRouteNo];
-								
-							 	//console.log(A);
-							 });  //tbody에출구번호그림	 	
 						
-						/* 		var busRouteNo =$(this).find("busRouteNo").text();
-								var exitNo = $(this).find("exitNo").text();	
-								var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호		
-								var EXIT = new Set(table_exitNo);//1234
-								var html = "";
-								//html += "<tr><td name=\"05상\" id=\"05상\"></td><th>05</th><td name=\"05하\" id=\"05하\"></td></tr>";
-
-								for(i=0;i<=Array.from(EXIT).length-1;i++){
-									console.log("A")
-									if(Array.from(EXIT)[i]==exitNo){
-										console.log("A22")
-										html+="<tr><td name="+exitNo+" id="+exitNo+"></td><td name="+busRouteNo+" id="+busRouteNo+"></td></tr>";
-										$("tbody").html(html);
-									}
-									
-									
-								}	 */
+						
+									 
 
 						
 							
@@ -401,10 +435,12 @@ $(document).ready(function(){
 	    
 								<table>
 								<thead></thead>
-								<tbody>
+								<tbody id="tmp_table_body">
 				
 								</tbody>
+								
 								</table>
+								
 								
 							
 								
