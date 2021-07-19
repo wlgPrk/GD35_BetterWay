@@ -9,5 +9,15 @@ SELECT SUBWAY_STATION_NAME, SUBWAYSTATIONID
 FROM SUBWAY_STATION
 </select>
 
+<select id="getLatLngD" parameterType="hashmap" resultType="hashmap">
+SELECT SUBWAY_STATION_NAME,LAT,LNG
+FROM SUBWAY_STATION
+WHERE SUBWAY_STATION_NAME=#{select_LatLngD}
+</select>
 
+<select id="getLatLngA" parameterType="hashmap" resultType="hashmap">
+SELECT SUBWAY_STATION_NAME,LAT,LNG
+FROM SUBWAY_STATION
+WHERE SUBWAY_STATION_NAME=#{select_LatLngA}
+</select>
 </mapper>

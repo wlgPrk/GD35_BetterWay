@@ -16,4 +16,14 @@ public class SubLineDao implements ISubLineDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("subLine.getsIdsName",params);
 	}
+	@Override
+	public List<HashMap<String, String>> getLatLngD(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("subLine.getLatLngD",params);
+	}
+	@Override
+	public List<HashMap<String, String>> getLatLngA(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("subLine.getLatLngA",params);
+	}
 }

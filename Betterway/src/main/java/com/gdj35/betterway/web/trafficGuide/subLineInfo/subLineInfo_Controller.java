@@ -86,4 +86,42 @@ public class subLineInfo_Controller {
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
+	
+	//출발역 좌표 가져오기
+	@RequestMapping(value="/getLatLngD",
+			method=RequestMethod.POST, produces="text/json;charset=UTF-8")
+	@ResponseBody
+	public String getLatLngD(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			try {
+			
+			List<HashMap<String, String>> data = iSubLineService.getLatLngD(params);
+			modelMap.put("data",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	//도착역 좌표 가져오기
+	@RequestMapping(value="/getLatLngA",
+			method=RequestMethod.POST, produces="text/json;charset=UTF-8")
+	@ResponseBody
+	public String getLatLngA(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			try {
+			
+			List<HashMap<String, String>> data = iSubLineService.getLatLngA(params);
+			modelMap.put("data",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
 }

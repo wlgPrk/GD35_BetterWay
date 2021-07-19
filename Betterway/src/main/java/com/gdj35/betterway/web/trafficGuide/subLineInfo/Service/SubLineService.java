@@ -17,4 +17,15 @@ public class SubLineService implements ISubLineService{
 		return iSubLineDao.getsIdsName(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getLatLngD(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iSubLineDao.getLatLngD(params);
+	}
+	@Override
+	public List<HashMap<String, String>> getLatLngA(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iSubLineDao.getLatLngA(params);
+	}
+
 }
