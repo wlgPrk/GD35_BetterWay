@@ -152,7 +152,7 @@ a{
 .box_up , .box_down{
     background-color: #f2f2f2;
     width: 300px;
-    height: 150px;
+    height: 300px;
     padding:15px 5px 15px 5px;
     margin-top:10px;
     border-radius: 15px;
@@ -231,34 +231,107 @@ a{
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
 	<script type="text/javascript">
+	
 	$(document).ready(function(){
-		
-		
 		$("img[name='subway']").imagezoomsl({
 			zoomrange: [1, 12],
 			zoomstart: 4, //시작 줌
 			innerzoom: true, //이미지 내 줌으로 전환
 			magnifierborder: "none" //두께 없음
 		});
+		//$("#select_station").select2();
 		
-
-		
+		$("#realtime_search").on("click",function(){
+			var html="";
+			var params = $("#SearchForm").serialize();	
+			$("#sD").val($("#select_LatLngD").val()); //출발역	
+			var startX;
+			var startY;
+			$("#sA").val($("#select_LatLngA").val()); //도착역
+			var endX;
+			var endY;
 			$.ajax({
-				
-				url:
-				type:"get",
-				dataType:,
-				success:function(res){
-				
-				},
-				error:function(requet,status,error){
+					url:"getLatLngD",
+					type:"post",
+					dataType:"json",
+					data:params,
+					success:function(res){				
+								 for(var d of res.data){						
+									if(sD.value==d.SUBWAY_STATION_NAME){														
+										var startY=d.LAT;
+										var startX=d.LNG;
+									}
+								} 
+									 
+							 $.ajax({
+							url:"getLatLngA",
+							type:"post", //전송방식(get,post)
+							dataType:"json",//받아올 데이터 형식
+							data:params,//보낼 데이터(문자열 형태)
+							success:function(res){//성공 시 다음 함수 실행						
+							//console.log(res);
+										 for(var d of res.data){						
+											if(sA.value==d.SUBWAY_STATION_NAME){														
+												var endY=d.LAT;
+												var endX=d.LNG;
+											}
+										}
+											$.ajax({
+												
+											//http://ws.bus.go.kr/api/rest/pathinfo/getPathInfoBySubway?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&startX=126.91373&startY=37.54946&endX=126.9172&endY=37.61137
+												url:"http://ws.bus.go.kr/api/rest/pathinfo/getPathInfoBySubway?ServiceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&startX="+startX+"&startY="+startY+"&endX="+endX+"&endY="+endY,
+												type:"get",
+												dataType:"xml",
+												success:function(res){
+												var html ="";
+												console.log(res);
+												var time = $(res).find("time").text();
+											
+												var routeNm = $(res).find("routeNm").text();
+												
+												console.log(time);
+											
+												/* pathList 한번에 받지 말고 하나씩 받기---------------------------------------- */
+											
+												$(res).find("pathList").each(function(){
+													var fname = "승차지: " + $(this).find("fname").text() +"<br/>";
+													$('#transfer_P').html(fname);
+													
+													var tname = "하차지 : "+ $(this).find("tname").text() +"<br/>";
+													
+													$('#transfer_P').html(tname);
+													
+													
+													});
+
+
+
+													
+												
+												html += time+"분";
+												$("#take_P").prepend(html);
+												
+												
+												},
+												error:function(requet,status,error){
+													console.log(error);
+												}
+											});//ajax로 데이터 불러옴
+								
+								},//success end 도착역
+							error:function(request,status,error){//실패시 다음 함수 실행
+								console.log(error);
+							}
+						});
+				 },//success end 출발역
+				error:function(request,status,error){//실패시 다음 함수 실행
 					console.log(error);
 				}
-			});//ajax로 데이터 불러옴
+			});//db에서 좌표 가져와 변수로 담기
+		});//onclick 이벤트 end
 			
-		
-		});
-	</script>
+});	//end	
+</script>
 </head>
 <body>
 <div class="side">
@@ -270,8 +343,23 @@ a{
 		<div id="title">출발 도착 역검색</div>
 <div id="dep_arr">
 		<div id="deparr_search">
-			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>
-			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
+			<form action="#" id="SearchForm" method="post" >
+			<!-- <input type="text"  class="realtime" id="select_station"/> -->
+			<div class="dep"><input type="text"  id="select_LatLngD" name="select_LatLngD"placeholder="출발역"></div>
+			<div class="arr"><input type="text"  id="select_LatLngA" name="select_LatLngA" placeholder="도착역"></div>
+		
+				 
+				 <input type="button" id="realtime_search"value="검색">
+				  <input type="hidden" id="sD" name="select_LatLngD"/>  
+				 <input type="hidden" id="sA" name="select_LatLngA"/>  
+		<%-- 	 <select class="realtime" id="select_station">
+				 <option selected="selected">역</option>
+				   <c:forEach items="${SubwayList}">
+		    			<option value="${SUBWAY_STATION_NAME}"><c:out value="${SUBWAY_STATION_NAME}"/></option>
+		   		   </c:forEach>
+				 </select> --%>
+			
+		  </form>
 		</div>
 		<div id="deparr_btn">
 			<input type="button" id="deparr_search_btn" value="검색" style="background: none;"/>
@@ -287,29 +375,25 @@ a{
 	
 	<div class="box_upndown">
 		<div class="box_sub">
+		
 			<input type="text" class="realtime" placeholder="실시간 위치"/>
 			<a class="realtime_search" href="#">검색</a>
+		
 		</div>
+
 	    <div class="box_up">
+	
 	    	<div id="box_table_Guide">
-				<div id="take" >소요시간</div>
-				<div id="take_P">소요시간출력</div>
-			    <div id="charge" >요금</div>
-			    <div id="charge_P">요금출력</div>
-			    <div class="table_img" >
-				    <div class="table_img1">
-					<img alt="subimg" src="resources/images/underground.png" style="width:80px; hieght:80px"></div>
-				   
-				    <div class="table_img2">
-					<div id="train_for">OO행</div>
-					<div id="train_stops" >O개 역</div>
-				    </div>
-				   
-				</div>
-				 <div id="transfer">환승경로</div>
-				 <div id="transfer_P" >환승경로출력</div>
-			    <div id="weather" >날씨</div>
-			    <div id="weather_P" >날씨출력</div>	  	    
+			
+				<b>소요시간:</b><div id="take_P"></div></br>
+			   <b>환승경로:</b><div id="transfer_P"></div>
+			   
+			 
+			
+			    <div id="weather_P" >날씨출력</div>
+			   
+			
+			  	  	    
 			</div>
 	    </div>
 	   
