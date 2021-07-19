@@ -38,15 +38,16 @@ width:100%;
 .side{
 background-color: #023459;
 width:25%;
- height: 100vh;
+ height: 1080px;
 }
 .side_title{
 text-align: center;
 font-weight: bold;
 padding:10px 0px 10px 0px;
 }
-.subline_img{
+#subline_map{
 width:75%;
+height: 1080px;
 }
 #subway{
 	width:100%;
@@ -236,17 +237,22 @@ a{
 		$(".subbtn_realtime").css("background-Color","black");
 		$("#subbtn_realtime").css("background-Color","black"); */
 		
-		$("img[name='subway']").imagezoomsl({
+		/*$("img[name='subway']").imagezoomsl({
 			zoomrange: [1, 12],
 			zoomstart: 4, //시작 줌
 			innerzoom: true, //이미지 내 줌으로 전환
 			magnifierborder: "none" //두께 없음
-		});
+		});*/
+		
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
 			var a = $(".realtime").val();
-							
+			
+			for(var i = 0; i<list.length; i++){
+				console.log(list[i].LAT);
+			}
+						
 			$.ajax({
 				/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
 				url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"",
@@ -259,7 +265,6 @@ a{
 					
 					for(var i = 0; i< res.realtimeArrivalList.length; i++){
 						var st = res.realtimeArrivalList[i];
-						console.log(res);
 						
 						if($(".realtime").val()==st.statnNm){
 							if(st.updnLine == "상행"){
@@ -277,7 +282,6 @@ a{
 								$("#box_up_sub2").html(html);
 								}
 							}else if(st.updnLine == "하행"){
-		                        console.log(count);
 		                        if(count == 0){
 		                        	 	html2 += " <strong>이번열차 </strong><br/>";
 				                        html2 += st.trainLineNm + "<br/>";
@@ -288,7 +292,6 @@ a{
 			                       		html2 += st.arvlMsg2 + "<br/><br/>";
 		                        }
 		                      
-		                        
 		                        $("#box_down_sub2").html(html2);
 		                        count++;
 		                        if(count == 3){
@@ -308,8 +311,13 @@ a{
 			});
 		});
 	</script>
+	
+	<!-- 네이버지도  API-->
+	<!--<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rsi2kulw78"></script>  -->
+	
 </head>
 <body>
+
 <div class="side">
 	<div class="side_title">
 	<a class="main" href="javascript:main();">BetterWay</a>
@@ -351,10 +359,19 @@ a{
  
 </div>
 
-<div class="subline_img">
-		<img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>
-		<p>마우스를 올려 확대해보세요.</p>
+<div id="subline_map">
+		<!-- <img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>-->
+		<!--  <p>마우스를 올려 확대해보세요.</p>-->
 </div>
+
+	<script type="text/javascript">
+	var mapDiv = { 
+		center : new naver.maps.LatLng(37.554648,126.972559), zoom:14
+	}
+	
+	var map = new naver.maps.Map('subline_map',mapDiv);
+	
+	</script>
 
 </body>
 </html>
