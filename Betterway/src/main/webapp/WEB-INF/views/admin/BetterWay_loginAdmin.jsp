@@ -127,10 +127,10 @@ section:after { /* 뒷배경 */
 
 .footer{
 position: absolute;
-top:130%;
+top:93%;
 background-color: #023459;
 width :100%;
-height : 60px;
+height : 80px;
 
 }
 

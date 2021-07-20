@@ -84,7 +84,7 @@ $(document).ready(function(){
 	//로그아웃
 	$(".logoutBtn").on("click",function(){
 		console.log("작동");
-		location.href = "BetterWay_LogoutAdmin";
+		location.href = "BetterWay_logoutAdmin";
 	});//logout btn end
 	
 	

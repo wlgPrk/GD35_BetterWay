@@ -112,7 +112,7 @@ public class Admin_Controller {
 		return mapper.writeValueAsString(modelMap);
 	}
 	//로그아웃
-	@RequestMapping(value="/BetterWay_LogoutAdmin")
+	@RequestMapping(value="/BetterWay_logoutAdmin")
 	public ModelAndView testALogout(
 			HttpSession session,
 			ModelAndView mav) {

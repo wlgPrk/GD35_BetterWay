@@ -1,6 +1,7 @@
 package com.gdj35.betterway.common.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,8 +24,13 @@ public class CommonAOP {
 	 * .. -> 모든 경로
 	 * && -> 필터 추가
 	 */
-	@Pointcut("execution(* com.gdj35.betterway..CalendarController.*(..))")
+	@Pointcut("execution(* com.gdj35.betterway..Admin_Controller.*(..))"
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.BetterWay_login*(..))"
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.BerrerWay_logout*(..))"
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.*s(..))")
 	public void testAOP() {}
+	
+
 	
 	//ProceedingJoinPoint -> 대상 적용 이벤트 필터
 	/*
@@ -43,9 +49,14 @@ public class CommonAOP {
 		HttpServletRequest request
 		= ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		
-		mav = (ModelAndView) joinPoint.proceed(); //기존 이벤트 처리 행위를 이어서 진행
+		HttpSession session = request.getSession();
 		
-		System.out.println("------- testAOP 실행됨 ------");
+		if(session.getAttribute("sNO") != null) {//로그인상태일시
+			mav =(ModelAndView) joinPoint.proceed();// 기존이벤트처리행위 를이어서한다
+		}else {// 비로그인상태
+			mav.setViewName("redirect:BetterWay_loginAdmin");
+		}
+		
 		
 		return mav;
 	}
