@@ -107,7 +107,7 @@ padding:5px 0px 5px 0px;
 	text-align: center;
 }
 .subbtn_realtime{
-	background:#82B2DA;
+	background:#B2A59F;
 	border-radius: 5px;
 	height:100%;
 	width:155px;
@@ -152,12 +152,12 @@ a{
 .box_up , .box_down{
     background-color: #f2f2f2;
     width: 300px;
-    height: 300px;
+    height: 400px;
     padding:15px 5px 15px 5px;
     margin-top:10px;
     border-radius: 15px;
     font-size: 11pt;
-    text-align: center;
+
 }
 #box_up_sub1{
 	width:40%;
@@ -215,16 +215,42 @@ a{
 	height:65px;
 	background-color: #82B2DA;
 }
-#deparr_search_btn{
-    margin-top: 20px;
-}
+
 #subbtn_realtime{
 	color: white;
-	background: #82B2DA;
+	background:#B2A59F;
 }
 #subbtn_busstation{
 	color: white;
 	background: #B2A59F;
+}
+#select_LatLngD,#select_LatLngA{
+    padding-left: 5px;
+    width: 300px;
+    height: 29.7px;
+}
+table{
+/* width:250px;
+height:200px; */
+
+text-align: center;
+margin-left: 25px;
+}
+.deparr_search_btn{
+float:right;
+width: 30px;
+
+	box-sizing: border-box;
+	height:65px;
+	background-color: #82B2DA;
+}
+#weatherWrap{
+width:100%;
+height:180px;
+}
+#weatherIcon{
+height:50px;
+width:50px;
 }
 	</style>
 	<script type="text/javascript" 
@@ -233,15 +259,16 @@ a{
 	<script type="text/javascript">
 	
 	$(document).ready(function(){
+		$("#weatherIcon").hide();
 		$("img[name='subway']").imagezoomsl({
 			zoomrange: [1, 12],
 			zoomstart: 4, //시작 줌
 			innerzoom: true, //이미지 내 줌으로 전환
 			magnifierborder: "none" //두께 없음
 		});
-		//$("#select_station").select2();
 		
 		$("#realtime_search").on("click",function(){
+			
 			var html="";
 			var params = $("#SearchForm").serialize();	
 			$("#sD").val($("#select_LatLngD").val()); //출발역	
@@ -285,38 +312,77 @@ a{
 												success:function(res){
 												var html ="";
 												console.log(res);
+												var time ="";
 												var time = $(res).find("time").text();
+											console.log(time);
+												$("#take_P").html(time);//소요시간 뿌림
+												
+												
+												var pathListCnt= $(res).find("routeNm").text();
+												console.log(pathListCnt);
+												if(pathListCnt.length>=9){
+													html +="환승 2 번";
+												}else if(pathListCnt.length>=5){
+													html +="환승 1 번";
+												}else if(pathListCnt.length>=3){
+													html +="환승 없음";
+												}
+												
+												$("#transfer").html(html);//소요시간 뿌림
 											
-												var routeNm = $(res).find("routeNm").text();
 												
-												console.log(time);
-											
-												/* pathList 한번에 받지 말고 하나씩 받기---------------------------------------- */
-											
-												$(res).find("pathList").each(function(){
-													var fname = "승차지: " + $(this).find("fname").text() +"<br/>";
-													$('#transfer_P').html(fname);
+												 $(res).find('pathList').each(function(){
+													 var railLinkId=$(this).find("railLinkId").text();
+													 console.log(railLinkId.length);
+													 var routeNm = $(this).find("routeNm").text();
+												
+													 var fname = $(this).find("fname").text(); 	
+														var tname = $(this).find("tname").text();	
+														var exitNos = $(this).find("exitNo").text();
+														html +="<tr>";	
+														html +="<td>"+routeNm+fname+" 승차 </td>";
+														html +="</tr>";
+														html +="<tr>";	
+														html +=	"<td>"+routeNm+tname+" 하차</td>";
+														html +="</tr>";
+														
+														$("#route").html(html);
 													
-													var tname = "하차지 : "+ $(this).find("tname").text() +"<br/>";
-													
-													$('#transfer_P').html(tname);
-													
-													
-													});
+													 }); 	
 
-
-
-													
-												
-												html += time+"분";
-												$("#take_P").prepend(html);
-												
-												
-												},
+												 getWeather();
+												 },
 												error:function(requet,status,error){
 													console.log(error);
 												}
+												
 											});//ajax로 데이터 불러옴
+											function getWeather() {
+												$.ajax({
+													//https://api.openweathermap.org/data/2.5/weather?lat=37.61137&lon=126.9172&appid=44c6ec52a93219e25d17ecf7fed82606&units=metric
+													url: "http://api.openweathermap.org/data/2.5/weather", // 접속 주소
+													type: "get", // 전송방식 : get, post
+													dataType: "json", // 받아올 데이터 형식
+													data: "lat="+endY+"&lon="+endX+"&appid=44c6ec52a93219e25d17ecf7fed82606&lang=kr&units=metric", //보낼 데이터(문자열형태)
+													success: function(res) { // 성공 시 다음 함수 실행 res->받아오는 데이터를 인자로 받음 
+														console.log(res);
+														console.log(res.main.temp);
+														console.log(res.weather[0].icon);
+														$("#weatherIcon").attr("src", 
+																"http://openweathermap.org/img/wn/" 
+																				+ res.weather[0].icon + "@2x.png");
+														$("#temp").html(res.main.temp + "℃ - " + res.weather[0].description);
+														$("#weatherIcon").show();
+													},
+													error: function(request, status, error) { // 실패 시 다음 함수 실행
+														console.log(request);
+														console.log(status);
+														console.log(error);
+													}
+												});
+											}
+
+											//날씨 아작스 불러오기
 								
 								},//success end 도착역
 							error:function(request,status,error){//실패시 다음 함수 실행
@@ -342,14 +408,17 @@ a{
 		<div class="wrap">
 		<div id="title">출발 도착 역검색</div>
 <div id="dep_arr">
-		<div id="deparr_search">
+		
 			<form action="#" id="SearchForm" method="post" >
+			<div id="deparr_search">
 			<!-- <input type="text"  class="realtime" id="select_station"/> -->
 			<div class="dep"><input type="text"  id="select_LatLngD" name="select_LatLngD"placeholder="출발역"></div>
 			<div class="arr"><input type="text"  id="select_LatLngA" name="select_LatLngA" placeholder="도착역"></div>
+				
+					
 		
 				 
-				 <input type="button" id="realtime_search"value="검색">
+				 
 				  <input type="hidden" id="sD" name="select_LatLngD"/>  
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
 		<%-- 	 <select class="realtime" id="select_station">
@@ -358,12 +427,11 @@ a{
 		    			<option value="${SUBWAY_STATION_NAME}"><c:out value="${SUBWAY_STATION_NAME}"/></option>
 		   		   </c:forEach>
 				 </select> --%>
-			
+			</div>
+			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색"/>
 		  </form>
-		</div>
-		<div id="deparr_btn">
-			<input type="button" id="deparr_search_btn" value="검색" style="background: none;"/>
-		</div>
+		
+		
 	</div>	  
 	<div class="subbtn_box">
 		<div class="subbtn_realtime">
@@ -385,12 +453,22 @@ a{
 	
 	    	<div id="box_table_Guide">
 			
-				<b>소요시간:</b><div id="take_P"></div></br>
-			   <b>환승경로:</b><div id="transfer_P"></div>
-			   
-			 
-			
-			    <div id="weather_P" >날씨출력</div>
+				<span style="margin-left: 15px;"><b>소요시간(분) : </b><span id="take_P"></span></span></br></br>
+				<span style="margin-left: 15px;"><b>환승 횟수 : </b><span id="transfer"></span></span></br></br>
+				
+			   <table>
+			   <span style="margin-left: 15px;"><b>이동경로 </b></span></br></br>
+			   <thead></thead>
+			   <tbody id="route"></tbody>
+			   </table></br></br>
+			    <div style="margin-left: 15px;" id="weather_P" ><b>도착지 날씨</b>
+			    <div id="weatherWrap">
+					<img alt="날씨" id="weatherIcon" /><span id="temp"></span>
+					<table id="weatherHistory">
+						<tbody></tbody>
+					</table>
+					</div>
+</div>
 			   
 			
 			  	  	    
