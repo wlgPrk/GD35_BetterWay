@@ -41,7 +41,5 @@ public class EstaDao implements IEstaDao {
 	@Override
 	public List<HashMap<String, String>> cycleList(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("E.cycleList",params);
-
 	}
-
 }
