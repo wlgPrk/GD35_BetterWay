@@ -367,13 +367,17 @@ font-size: 20px;
 .search_btn{
 
 vertical-align:top;
-background-color:#e0e0eb;
+background-color:#f0f0f5;
 font-size: 20px;
 width :100px;
 height :40px;
 border : 0;
 cursor: pointer;
 box-shadow: 1px 2px 3px grey;
+}
+
+.search_btn:active{
+background-color: #e0e0eb;
 }
 
 
@@ -389,9 +393,12 @@ cursor: pointer;
 }
 /* 현재페이지 짙어짐 */
 #on{
-background-color: #e0e0eb;
+background-color: #82b2da;
 }
 
+.arrow:hover{
+background-color: #e0e0eb;
+}
 tr{
 cursor:pointer;
 }

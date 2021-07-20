@@ -62,7 +62,7 @@ public class Admin_Controller {
 		
 		return mav;
 	}
-
+	//관리자 로그인
 	@RequestMapping(value = "/BetterWay_loginAdmins",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
@@ -79,6 +79,7 @@ public class Admin_Controller {
 			if(data !=null) { 
 				session.setAttribute("sNO", data.get("ADMIN_NO"));
 				session.setAttribute("sID", data.get("ADMIN_ID"));
+				session.setAttribute("sPW", data.get("ADMIN_PW"));
 				modelMap.put("resMsg", "success");
 			}else {
 				modelMap.put("resMsg", "faild");
@@ -91,6 +92,18 @@ public class Admin_Controller {
 
 		return mapper.writeValueAsString(modelMap);
 	}
+	//로그아웃
+	@RequestMapping(value="/BetterWay_LogoutAdmin")
+	public ModelAndView testALogout(
+			HttpSession session,
+			ModelAndView mav) {
+		session.invalidate();
+		
+		mav.setViewName("redirect:BetterWay_loginAdmin");
+		
+		return mav;
+	}
+	
 	
 	//행복지대
 	@RequestMapping(value ="/BetterWay_happyAdmin")
@@ -522,12 +535,17 @@ public class Admin_Controller {
 			   produces = "text/json;charset=UTF-8")
 		 @ResponseBody
 		 public String  BetterWay_suggestAdmin_Results(
-				 @RequestParam HashMap<String, String> params) throws Throwable{
+				 @RequestParam HashMap<String, String> params, HttpSession session) throws Throwable{
 			 ObjectMapper mapper = new ObjectMapper();
 			 Map<String, Object> modelMap = new HashMap<String, Object>();
-
 			 try {
+				 
+			
+				 params.put("sNO",  String.valueOf(session.getAttribute("sNO")));
+				 params.put("sID",  String.valueOf(session.getAttribute("sID")));
+				 params.put("sPW",  String.valueOf(session.getAttribute("sPW")));
 				 int cnt =iAdmin_Service.resultSug(params);
+				 
 			 }catch(Throwable e){
 				 e.printStackTrace();
 				 modelMap.put("msg", "error");
@@ -535,7 +553,7 @@ public class Admin_Controller {
 			 return mapper.writeValueAsString(modelMap);
 		 }
 	
-	//게시판작성
+	//건의게시판작성
 	@RequestMapping(value ="/BetterWay_suggestAdmin_Write")
 	public ModelAndView BetterWay_suggestAdmin_Write(ModelAndView mav) {
 		
@@ -632,15 +650,19 @@ public class Admin_Controller {
 				produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String BetterWay_suggestAdmin_Deletes(
-			@RequestParam HashMap<String, String>params) throws Throwable{
+			@RequestParam HashMap<String, String>params,HttpSession session) throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
 		try {
+			 params.put("sNO",  String.valueOf(session.getAttribute("sNO")));
+			
+			
 			int cnt = iAdmin_Service.deleteSug(params);
 			
 			if(cnt>0) {
 				modelMap.put("msg","success");
+			iboard_Service.deleteSugComm(params);
 			}else {
 				modelMap.put("msg","failed");
 			}
@@ -659,13 +681,20 @@ public class Admin_Controller {
 		 		 produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String BetterWay_suggestCheckUserDeletes(
-			 @RequestParam(value="userCheck[]") List<Integer> params
+			 @RequestParam(value="userCheck[]") List<Integer> list,
+			 HttpSession session
 				) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
+		 
 		 try {
+			 HashMap<String, Object> params=new HashMap<String, Object>();
+			 params.put("sNO",  String.valueOf(session.getAttribute("sNO")));
+			 params.put("mapList", list);
+			 
 			int chk = iAdmin_Service.checkDeleteSug(params);
 			if(chk == 0) {
+				int comm = iAdmin_Service.checkDeleteSugComm(params);
 				modelMap.put("msg","failed");
 			}else {
 				modelMap.put("msg","success");
@@ -683,13 +712,18 @@ public class Admin_Controller {
 		 		 produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String BetterWay_suggestCheckNoticeDeletes(
-			 @RequestParam(value="noticeCheck[]") List<Integer> params
+			 @RequestParam(value="noticeCheck[]") List<Integer> list,
+			 HttpSession session
 				) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 		 try {
+			 HashMap<String, Object> params=new HashMap<String, Object>();
+			 params.put("sNO",  String.valueOf(session.getAttribute("sNO")));
+			 params.put("mapList", list);
 			int chk = iAdmin_Service.checkDeleteSug(params);
 			if(chk == 0) {
+				
 				modelMap.put("msg","failed");
 			}else {
 				modelMap.put("msg","success");
@@ -703,17 +737,21 @@ public class Admin_Controller {
 		 
 		 
 		 
-			//건의게시물공지선택삭제
+			//건의게시물작성완료
 		 @RequestMapping(value = "/BetterWay_suggestAdmin_Writes",
 		 		 method = RequestMethod.POST,
 		 		 produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String BetterWay_suggestAdmin_Writes(
-			 @RequestParam HashMap<String, String> params
+			 @RequestParam HashMap<String, String> params,HttpSession session
 				) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 		 try {
+			 
+			 params.put("sNO",  String.valueOf(session.getAttribute("sNO")));
+			 params.put("sID",  String.valueOf(session.getAttribute("sID")));
+			 params.put("sPW",  String.valueOf(session.getAttribute("sPW")));
 			int add = iAdmin_Service.insertSugAdmin(params);
 			if(add == 0) {
 				modelMap.put("msg","failed");

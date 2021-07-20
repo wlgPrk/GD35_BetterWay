@@ -407,6 +407,13 @@ padding-left:10px;
 text-align: left;
 }
 
+/* 댓글날짜*/
+.comm_date{
+position: absolute;
+left:700px;
+}
+
+
 /* 댓글수정*/
 .comm_update{
 position: absolute;
@@ -780,6 +787,7 @@ html+=" 	<td>" + d.USER_ID+ " ";
 html+=" 	</td>";
 html+=" 	 	<td>";
 html+=" 	 	<span>"+d.CON+"</span>";
+html+="     <span class=\"comm_date\">"+ d.WRITE_DATE +" </span>"
 html+=" 	<span class=\"comm_update\" comm_no=\""+ d.COMM_NO +"\">수정</span>";
 html+=" 	<span class=\"comm_del\" comm_no=\""+ d.COMM_NO +"\">삭제</span>";
 html+=" 	</td>";
@@ -951,6 +959,7 @@ function reviewWrites(){
 		success: function(res) { 
 			drawList(res.list);
 			commCnt(res.commCnt);
+			$("#comm_con").val("");
 		},
 		error: function(request, status, error) {
 			console.log(error);

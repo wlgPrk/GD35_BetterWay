@@ -188,11 +188,7 @@ public class Admin_Service implements IAdmin_Service{
 
 
 
-	@Override
-	public int checkDeleteSug(List<Integer> params) throws Throwable {
-		// TODO Auto-generated method stub
-		return iAdmin_Dao.checkDeleteSug(params);
-	}
+
 
 	@Override
 	public int insertSugAdmin(HashMap<String, String> params) throws Throwable {
@@ -204,6 +200,20 @@ public class Admin_Service implements IAdmin_Service{
 	public int resultSug(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return iAdmin_Dao.resultSug(params);
+	}
+
+
+
+	@Override
+	public int checkDeleteSug(HashMap<String, Object> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.checkDeleteSug(params);
+	}
+
+	@Override
+	public int checkDeleteSugComm(HashMap<String, Object> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.checkDeleteSugComm(params);
 	}
 
 
