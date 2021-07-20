@@ -223,6 +223,10 @@ height :50px;
 <script type="text/javascript">
 $(document).ready(function(){
 	
+
+	
+	
+	
 	$(".login_btn").on("click",function(){
 		if($.trim($("#id").val())==""){
 			makePopup( "경고","아이디를입력하시오","");
@@ -239,7 +243,7 @@ $(document).ready(function(){
 				data: params, //보낼 데이터 (문자열형태)
 				success: function(res) { // 성공시 다음함수 실행
 					if(res.resMsg =="success"){
-						console.log(res);
+						location.href="BetterWay_mainAdmin"
 					} else{
 						
 						makePopup( "경고","아이디 또는 비밀번호가 일치하지 않습니다.","");

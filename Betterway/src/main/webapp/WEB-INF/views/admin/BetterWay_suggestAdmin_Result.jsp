@@ -151,12 +151,18 @@ width:850px;
 margin-top :10px;
 text-align: right;
 }
-
+/* 서브메뉴링크css */
+a{
+color:black;
+text-decoration: none;
+}
 
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="resources/script/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" 
+		src="resources/script/popup/per.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -210,7 +216,13 @@ $(document).ready(function(){
 		$("#addForm").attr("action","BetterWay_suggestAdmin_Detail");
 		$("#addForm").submit();
 	});
+	
+	
+	per();
 }); //document end
+
+
+
 </script>
 </head>
 <body>

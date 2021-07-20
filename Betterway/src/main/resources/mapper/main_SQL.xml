@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="M">
  <select id="SubwayList"  resultType="hashmap">
-SELECT SUBWAY_STATION_NAME, STR_INCODE, SUBLINE_NO, START_NO
+SELECT SUBWAY_STATION_NAME, STR_INCODE, SUBLINE_NO, START_NO, LAT, LNG
     
 FROM SUBWAY_STATION
 ORDER BY SUBWAY_STATION_INCODE ASC

@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>°ÇÀÇ°Ô½ÃÆÇ</title>
+<meta charset="UTF-8">
+<title>ê±´ì˜ê²Œì‹œíŒ</title>
 <style type="text/css">
 body{
 	font-size:0px;
@@ -45,7 +45,7 @@ body{
 	margin-left: 120px;
 	margin-top: 15px;
 }
-/*º»¹® ¸Ş´º Å«Æ²*/
+/*ë³¸ë¬¸ ë©”ë‰´ í°í‹€*/
 .con_box{
 margin-top:200px;
 margin-left:50px;
@@ -56,8 +56,8 @@ height:75%;
 
 }
 
-/*-----°ø¿ë³¡ -----*/
-/*Á¦¸ñ Å«Æ² */
+/*-----ê³µìš©ë -----*/
+/*ì œëª© í°í‹€ */
 .title_box_1{
 font-size:15px;
 background-color:#e0e0eb;
@@ -69,7 +69,7 @@ height:40px;
 line-height: 3;
 }
 
-/*Á¦¸ñ ÀÛÀºÆ² */
+/*ì œëª© ì‘ì€í‹€ */
 .title_box_2{
 line-height:3;
 display:inline-block;
@@ -80,7 +80,7 @@ vertical-align: top;
 }
 
 
-/* ³»¿ë */
+/* ë‚´ìš© */
 .sug_con{
 display:inline-block;
 margin-left:30px;
@@ -104,7 +104,7 @@ text-align: right;
 
 
 
-/*¹öÆ°*/
+/*ë²„íŠ¼*/
 .post_btn{
 margin-left:5px;                      
 margin-top:30px;
@@ -118,24 +118,30 @@ cursor: pointer;
 border-radius: 10px;
 }
 
-/*´ñ±Û¼ö Æ²*/
+/*ëŒ“ê¸€ìˆ˜ í‹€*/
 .comm_count{
-
 margin-left:30px;
-padding-left:20px;
-width:800px;
+margin-bottom:5px;
+font-size: 15px;
+background-color: #f0f0f5;
+width:80px;
 height:30px;
 font-size: 15px;
+display: inline-block;
+border-radius: 5px;
+text-align: center;
+line-height: 2;
+
 }
 
-/* ´ñ±Û Å«Æ²*/
+/* ëŒ“ê¸€ í°í‹€*/
 .comm_box_1{
 margin-left:30px;
 width:830px;
 height:50px;
 }
 
-/* ´ñ±Û¾ÆÀÌµğ */
+/* ëŒ“ê¸€ì•„ì´ë”” */
 .comm_box_2_1{
 padding-top:15px;
 font-size:15px;
@@ -147,7 +153,7 @@ vertical-align:top;
 text-align: center;
 }
 
-/* ´ñ±Û¹Ú½º ³»¿ë */
+/* ëŒ“ê¸€ë°•ìŠ¤ ë‚´ìš© */
 .comm_box_2_2{
 padding-left:10px;
 padding-top:15px;
@@ -159,7 +165,7 @@ width:70%;
 height:35px;
 }
 
-/* ´ñ±Û¹Ú½º »èÁ¦¹öÆ°Æ²  */
+/* ëŒ“ê¸€ë°•ìŠ¤ ì‚­ì œë²„íŠ¼í‹€  */
 .comm_box_2_3{
 font-size:15px;
 border :1px solid black;
@@ -168,7 +174,7 @@ width:8%;
 height:50px;
 }
 
-/* ´ñ±Û»èÁ¦¹öÆ°*/
+/* ëŒ“ê¸€ì‚­ì œë²„íŠ¼*/
 .comm_del_btn{
 
 background-color: #82b2da;
@@ -181,52 +187,70 @@ margin-left: 10px;
 cursor: pointer;
 }
 
+/* ëŒ“ê¸€ë‚ ì§œ */
+.comm_date{
+position: absolute;
+left:1020px;
+}
+
+
+
 
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+<script type="text/javascript" 
+		src="resources/script/popup/per.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
-//´äº¯±ÛÀÏ½Ã ´äº¯¹öÆ°¾ø¿¡±â
+	
+	
+//ì‚­ì œëœê¸€ì¼ì‹œ ë‹µë³€ë²„íŠ¼ì—†ì—ê¸°
+if("${data.DEL_STATUS}" == "0"){
+	$("#resBtn").css("display","none");
+		
+	}
+	
+//ë‹µë³€ê¸€ì¼ì‹œ ë‹µë³€ë²„íŠ¼ì—†ì—ê¸°
 if("${data.REQ_NO}" != "0"){
 	$("#resBtn").css("display","none");
 	
 }
 	
-//¸ñ·ÏÀÌµ¿¹öÆ°
+//ëª©ë¡ì´ë™ë²„íŠ¼
 $("#listBtn").on("click",function(){
 	$("#actionForm").attr("action","BetterWay_suggestAdmin");
 	$("#actionForm").submit();
 });
 
 reloadList();
-//±Û»èÁ¦¹öÆ°
+//ê¸€ì‚­ì œë²„íŠ¼
 $("#delBtn").on("click",function(){
 	conDels();
 });
 
-//´ñ±Û»èÁ¦¹öÆ°
+//ëŒ“ê¸€ì‚­ì œë²„íŠ¼
 $(".reviewBox").on("click","div div:nth-child(3) input",function(){
 	$("#comm_no").val($(this).parent().parent().attr("comm_no"));
 	commDels();
 });
 
 
-//´äº¯¹öÆ°
+//ë‹µë³€ë²„íŠ¼
 $("#resBtn").on("click",function(){
 	$("#actionForm").attr("action","BetterWay_suggestAdmin_Result");
 	$("#actionForm").submit();
 });
 
 
-
+per();
 	
 }); //document end
 
 
-//´ñ±Ûº¸ÀÌ±â, ´ñ±Û¼ö
+//ëŒ“ê¸€ë³´ì´ê¸°, ëŒ“ê¸€ìˆ˜
 function reloadList(){
 	var params = $("#actionForm").serialize();
 
@@ -248,24 +272,24 @@ function reloadList(){
 }//reload List end
 
 
-//´ñ±Û¼ö º¸ÀÌ±â
+//ëŒ“ê¸€ìˆ˜ ë³´ì´ê¸°
 function commCnt(cnt){
 	var html="";
-	html ="´ñ±Û "+ cnt +""
+	html ="ëŒ“ê¸€ "+ cnt +""
 	
 	$(".comm_count").html(html);
 };
 
 
-//´ñ±Û¸ñ·Ï±×¸®±â
+//ëŒ“ê¸€ëª©ë¡ê·¸ë¦¬ê¸°
 function drawList(list){
 	var html ="";
 	for(var d of list){ 
                                          
 html +="<div class=\"comm_box_1\" id=\"comm"+d.COMM_NO+"\" comm_no=\""+ d.COMM_NO+"\">";
 html +="<div class=\"comm_box_2_1\">" + d.USER_ID+ "</div>";
-html +="<div class=\"comm_box_2_2\">"+d.CON+"</div>";
-html +="<div class=\"comm_box_2_3\"><input type=\"button\" class=\"comm_del_btn\" value=\"»èÁ¦\"></div>";
+html +="<div class=\"comm_box_2_2\">"+d.CON+"<span class=\"comm_date\">"+d.WRITE_DATE+"</span></div>";
+html +="<div class=\"comm_box_2_3\"><input type=\"button\" class=\"comm_del_btn\" value=\"ì‚­ì œ\"></div>";
 html +="</div>"; 
 	}
 	$(".reviewBox").html(html);
@@ -274,7 +298,7 @@ html +="</div>";
 }//drawlist end
 
 
-//°Ô½Ã¹°»èÁ¦
+//ê²Œì‹œë¬¼ì‚­ì œ
 function conDels(){
 	var params = $("#actionForm").serialize();
 
@@ -293,7 +317,7 @@ function conDels(){
 	});//ajax end
 }//reload List end
 
-//´ñ±Û»èÁ¦
+//ëŒ“ê¸€ì‚­ì œ
 function commDels(){
 	var params = $("#actionForm").serialize();
 
@@ -315,50 +339,52 @@ function commDels(){
 }//commModifys end
 
 
+
+
 </script>
 </head>
 <body>
 
 	<div id="left">
 		<div id="left_sub">
-		<div>ÆíÀÇ½Ã¼³°ü¸®</div>
-		<div>Â÷·®º°³Ã¹æ»óÅÂ °ü¸®</div>
-		<div>°ÇÀÇ°Ô½ÃÆÇ °ü¸®</div>
-		<div>¿ªÁ¤º¸ °ü¸®</div>
-		<div>È£¼± °ü¸®</div>
+		<div>í¸ì˜ì‹œì„¤ê´€ë¦¬</div>
+		<div>ì°¨ëŸ‰ë³„ëƒ‰ë°©ìƒíƒœ ê´€ë¦¬</div>
+		<div>ê±´ì˜ê²Œì‹œíŒ ê´€ë¦¬</div>
+		<div>ì—­ì •ë³´ ê´€ë¦¬</div>
+		<div>í˜¸ì„  ê´€ë¦¬</div>
 		</div>
 	</div>
 	<div id="right">
 <div class="con_box">
 <div class="title_box_1">
-Á¦¸ñ : ${data.TITLE}
+ì œëª© : ${data.TITLE}
 </div>
 
 <div class="title_box_1">
-<div class="title_box_2">±Û¹øÈ£ : ${data.SUG_NO}</div>
+<div class="title_box_2">ê¸€ë²ˆí˜¸ : ${data.SUG_NO}</div>
 <div class="title_box_2">ID : ${data.USER_ID}</div>
 <div class="title_box_2">PW : ${data.USER_PW}</div>
-<div class="title_box_2">ÀÛ¼ºÀÏ : ${data.WRITE_DATE}</div>
+<div class="title_box_2">ì‘ì„±ì¼ : ${data.WRITE_DATE}</div>
 </div>
 
 <div class="sug_con">${data.CON}</div>
 <div class="btn_box">
-<input type="button" class="post_btn" value="´äº¯" id="resBtn">
-<input type="button" class="post_btn" value="¸ñ·Ï" id="listBtn">
-<input type="button" class="post_btn" value="»èÁ¦" id="delBtn">
+<input type="button" class="post_btn" value="ë‹µë³€" id="resBtn">
+<input type="button" class="post_btn" value="ëª©ë¡" id="listBtn">
+<input type="button" class="post_btn" value="ì‚­ì œ" id="delBtn">
 </div>
-<div class="comm_count">´ñ±Û ¼ö : 2</div>
+<div class="comm_count">ëŒ“ê¸€ ìˆ˜ : 2</div>
 <div class="reviewBox">
 <div class="comm_box_1">
-<div class="comm_box_2_1">È«±æµ¿</div>
-<div class="comm_box_2_2">³»¿ëÀÔ´Ï´Ù</div>
-<div class="comm_box_2_3"><input type="button" class="comm_del_btn" value="»èÁ¦"></div>
+<div class="comm_box_2_1">í™ê¸¸ë™</div>
+<div class="comm_box_2_2">ë‚´ìš©ì…ë‹ˆë‹¤</div>
+<div class="comm_box_2_3"><input type="button" class="comm_del_btn" value="ì‚­ì œ"></div>
 </div> <!-- comm_box_1 end -->
 
 <div class="comm_box_1">
-<div class="comm_box_2_1">È«±æµ¿</div>
-<div class="comm_box_2_2">³»¿ëÀÔ´Ï´Ù</div>
-<div class="comm_box_2_3"><input type="button" class="comm_del_btn" value="»èÁ¦"></div>
+<div class="comm_box_2_1">í™ê¸¸ë™</div>
+<div class="comm_box_2_2">ë‚´ìš©ì…ë‹ˆë‹¤</div>
+<div class="comm_box_2_3"><input type="button" class="comm_del_btn" value="ì‚­ì œ"></div>
 </div> <!-- comm_box_1 end -->
 </div>
 
@@ -366,14 +392,14 @@ function commDels(){
 	
 	<form action="#" id="actionForm" method="post">
 	
-	<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+	<input type="hidden" name="noticeSearchTxt" value="${param.noticeSearchTxt}" />
 <input type="hidden" name="noticeDate" value="${param.noticeDate}"/>
 <input type="hidden" name="noticeDelete" value="${param.noticeDelete}"/>
 <input type="hidden" name="noticeSearchGbn" value="${param.noticeSearchGbn}"/>
 <input type="hidden" id="noticePage" name="noticePage" value="${param.noticePage}"/>
 	
 	<input type="hidden" id="sug_no" name="sug_no" value="${param.sug_no}">
-	<input type="hidden" id="searchOldTxt" name="userSearchOldTxt" value="${param.userSearchOldTxt}" />
+	<input type="hidden" name="userSearchTxt" value="${param.userSearchTxt}" />
 	<input type="hidden" name="userPostTypeGbn" value="${param.userPostTypeGbn}"/>
 	<input type="hidden" name="userDate" value="${param.userDate}"/>
 	<input type="hidden" name="userDelete" value="${param.userDelete}"/>

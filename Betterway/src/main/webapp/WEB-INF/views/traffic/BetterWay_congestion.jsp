@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>행복지대</title>
+<title>지하철 혼잡도</title>
 </head>
 <script type="text/javascript">
 function popup(){
@@ -57,6 +58,7 @@ ul li{
 		z-index: 300;
 	}
 
+
 	#menu > ul > li {
 		float:left;
 		width:180px;
@@ -95,8 +97,6 @@ nav ul {
 
 }
 
-	
-
 article {/* 섹션 안 큰내용, 가운데정렬 */
   background-color: #fff;
     height: 100%;
@@ -113,15 +113,6 @@ section:after { /* 뒷배경 */
   clear: both;
   background: orange;
 }
-
-
-/* 
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
-  }
-} */
 
 /* 사이드랑 박스  가로*/
 #sidebar {
@@ -141,19 +132,16 @@ color: #fff;
 }
 #box_top {
 	float: right;
-	
 	width:75%;
 	height: 645px; /* 임의 지정 */
 }
 
-  .box_title{
-    position: relative;
- 	background-image:url("resources/images/서브타이틀_배경.png");       
-    background-size : cover;                  
+.box_title{
+  position: relative;
+  background-image:url("resources/images/서브타이틀_배경.png");       
+  background-size : cover;                  
   height:216px;
-
   }
-
 
 .img_cov{
  backdrop-filter: blur(5px);
@@ -168,8 +156,6 @@ font-size: 20pt;
 background:rgba(52, 75, 22, 0.63);
     color: #fff;
     text-align: right;
-   
-
 }
 .img_cov_context{
 font-weight: bold;
@@ -178,8 +164,6 @@ color:#fff;
 width:170px;
 text-align:center;
 border-radius: 15px 15px 15px 15px;
-
-
 }
 
 #box_con_text{
@@ -198,8 +182,6 @@ height:30px;
 .line_sel_bar>.scroll:hover{
 text-decoration:underline;
 }
-
-
 
 .scroll {
 text-align:center;
@@ -254,14 +236,6 @@ th,td{
 	border : 1px solid #f0f0f5;
 	border-collapse: collapse;
 	padding : 10px;
-}
-
-.img_box{
-	width:100%;
-	text-align: center; /*문자의 정렬 방식을 지정.*/ 
-	margin-right: auto;
-	margin-left: auto;
-	padding:50px;
 }
 
 #footer{
@@ -335,46 +309,72 @@ background: #B2A59F;
 	width:50px;
 	margin-bottom: -10px;
 }
+#selstation{
+	width:150px;
+	height:30px;
+}
+#selsubLine{
+	width:100px;
+	height:30px;
+}
+#congestion_chart{
+	margin-top: 100px;
+}
 </style>
+
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> <!-- 차트 스크립트 -->
+
+<!-- 샐렉트2 스크립트 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
 <script type="text/javascript">
+//stationEstainfo 컨트롤러에 있음
 $(document).ready(function(){
+	$("#selstation").select2();
+	$("#selsubLine").select2();
 	
-	reloadList();
+	$.ajax({
+		/*https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=15&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D ->(데이터 불러오기) */
+		url:"https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=1668&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D",
+		type:"get",
+		dataType:"json",
+		success:function(res){
+			var html = "";
+			console.log(res);
+	
+	new Chart(document.getElementById("congestion_chart"), {
+	    type: 'bar',
+	    data: {
+	      labels: ["평일상행", "평일하행", "토요일상행", "토요일하행", "일요일상행","일요일하행"],
+	      datasets: [
+	        {
+	          label: "Population (millions)",
+	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#c45830"],
+	          data: [2478,5267,734,784,433,2000]
+	        }
+	      ]
+	    },
+	    options: {
+	      legend: { display: false },
+	      title: {
+	        display: true,
+	        text: '구로역'
+	      }
+	    }
+	});//차트 끝
+	
+		},
+		error:function(requet,status,error){
+			console.log(error);
+			}
+		});//ajax로 데이터 불러옴
+		
+	
 });
-function drawList(list){
-	   var html = "";
-	   
-	   for(var d of list){
-		  html += "<tr>";
-	      html += "<td>" + d.HAPPY_NO + "</td>";
-	      html += "<td>" + d.LOCATION + "</td>";
-	      html += "<td>" + d.AREA + "</td>";
-	      html += "<td>" + d.OPERATING_AGENCY + "</td>";
-	      html += "<td>" + d.PHONE_NUM + "</td>";
-	      html += "</tr>";
-	   }
-	   
-	   $(".table_box tbody").html(html);
-	}
-	
-function reloadList(){
-	var params = $("#actionForm").serialize();
-	
-	 $.ajax({
-         url : "happy_List",
-         type : "post",  
-         dataType :"json", 
-         data : params,
-         success : function(res){
-             drawList(res.list); 
-         },
-         error : function(request,status,error){
-            console.log(error);
-         }
-      });
-}
+
 </script>
 </head>
 <body>
@@ -443,68 +443,35 @@ function reloadList(){
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>내부 편의시설>행복지대 &nbsp;
+		                  	홈>역 내외 시설>혼잡도 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
 		<div id="box_con">
 			<img id="box_con_img" src="resources/images/쉼터검.png"/>
 			<div id="box_con_text">
-			행복지대
+			혼잡도
 			</div>
 			<div class="table_box">
-			<table id="con_table">
-				<colgroup>
-					<col width="337.5px">
-					<col width="270px;">
-					<col width="202.5px;">
-					<col width="270px;">
-					<col width="270px;">
-				</colgroup>
-				<thead>
-					<tr style=background-color:#f0f0f5;>
-						<th>역명</th>
-						<th>위치</th>
-						<th>면적(㎡)</th>
-						<th>운영기관</th>
-						<th>전화번호</th>
-					</tr>
-				</thead>
-				<tbody style = text-align:center;>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>				
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>				
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>				
-				</tbody>
-			</table>
-				
-				<div class="box_happy">
-						<div class="img_box">
-							<img src="resources/images/행복지대 5호선.PNG"/>
-							<img src="resources/images/행복지대 5~7호선.PNG"/>
-						</div>
-				</div>
-					
-		</div>	
+				<select id= "selstation">
+    				<option selected="selected">역</option>
+    					<c:forEach items="${SubwayList}" var = "t1">
+    						<option value="${t1.STR_INCODE}">
+    						<c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
+   						</c:forEach>
+   				</select>
+   				<select id= "selsubLine">
+    				<option selected="selected">호선</option>
+    					<c:forEach items="${SubwayList}" var = "t1">
+    						<option value="${t1.STR_INCODE}">
+    						<c:out value="${t1.SUBLINE_NO}호선"/> </option>
+   						</c:forEach>
+   				</select>
+   				
+   				<canvas id="congestion_chart" width="800" height="450"></canvas>
+    		</div>
+			</div>	
 		</div>
-	   </div>
   </article>
 </section>
 

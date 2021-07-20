@@ -68,11 +68,15 @@ public interface IAdmin_Dao {
 
 	public int deleteSug(HashMap<String, String> params) throws Throwable;
 
-	public int checkDeleteSug(List<Integer> params) throws Throwable;
+	public int checkDeleteSug(HashMap<String, Object> params) throws Throwable;
 
 	public int insertSugAdmin(HashMap<String, String> params) throws Throwable;
 
 	public int resultSug(HashMap<String, String> params) throws Throwable;
+
+	public int checkDeleteSugComm(HashMap<String, Object> params) throws Throwable;
+
+	public List<HashMap<String, String>> getPer(HashMap<String, String> params) throws Throwable;
 
 
 }

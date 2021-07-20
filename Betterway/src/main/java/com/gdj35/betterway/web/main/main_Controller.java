@@ -1,6 +1,5 @@
 package com.gdj35.betterway.web.main;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
