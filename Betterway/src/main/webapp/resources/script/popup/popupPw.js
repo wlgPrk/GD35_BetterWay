@@ -49,7 +49,7 @@ function pwPopup(title, contents) {
 				success: function(res) { // 성공시 다음함수 실행
 					if(res.resMsg =="success"){
 						closePwPopup();
-						//이것만바꿔주면됨
+
 						conModify();
 					} else{
 						closePwPopup();

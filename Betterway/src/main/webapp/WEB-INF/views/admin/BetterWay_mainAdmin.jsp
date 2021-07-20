@@ -45,8 +45,26 @@ height:50px;
 text-align: left;
 font-size:30px;
 }
+/*--삭제버튼 --*/
+.logoutBtn{
+vertical-align: top;
+background-color: #f0f0f5;
+border:none;
+width :80px;
+height :40px;
+font-size: 15px;
+border-radius: 5px;
+cursor:pointer;
+}
 
+.logoutBtn:hover{
+background-color: #e0e0eb;
 
+}
+
+.logoutBtn:active{
+background-color: #82b2da;
+}
 
 
 </style>
@@ -54,7 +72,19 @@ font-size:30px;
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-		
+	
+	
+	
+	
+	//로그아웃
+	$(".logoutBtn").on("click",function(){
+		console.log("작동");
+		location.href = "BetterWay_LogoutAdmin";
+	});//logout btn end
+
+$("#sug").on("click",function(){
+	location.href="BetterWay_suggestAdmin"
+});
 	
 	
 	
@@ -67,7 +97,8 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div class="top_side_box">${sID}님 반갑습니다. </div>
+<div class="top_side_box">${sID}님 반갑습니다.   </div>
+<input type="button" value="로그아웃" class="logoutBtn"/>
 
 <div class="con_box_1">
 <div class="menu" id="esta">편의시설 관리</div>

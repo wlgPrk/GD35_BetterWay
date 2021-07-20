@@ -483,11 +483,10 @@ function drawList(list){
 	var html ="";
 	for(var i=1; i<list.length; i++){       
 		                                
-	html+="	<tr>                       ";
-	html+="	<td>"+list[i].title+"</td>      ";
-	html+="	<td>"+list[i].desc+"</td>       ";
-	html+="	<td><a href=\""+list[i].link+"\">"+list[i].link+"</td>       ";
-	html+="	<td>"+list[i].date+"</td>      ";
+	html+="	<tr>";
+	html+="	<td><a href=\""+list[i].link+"\">"+list[i].title+"</a></td>      ";
+	html+="	<td><a href=\""+list[i].link+"\">"+list[i].desc+"</a></td>       ";
+	html+="	<td><a href=\""+list[i].link+"\">"+list[i].date+"</a></td>      ";
 	html+="	</tr>                       ";
 		$("tbody").html(html);
 	}
@@ -606,16 +605,15 @@ function drawPaging(pStart, pEnd, pMax){
 <table class="table" cellspacing="0px">
 <colgroup>
 		<col width="200px"/>
-		<col width="500px"/>
+		<col width="680px"/>
 		<col width="200px"/>
-		<col width="180px"/>
+
 </colgroup>
 
 <thead>
 <tr>
 						<th>제목</th>
 						<th>내용</th>
-						<th>기사링크</th>
 						<th>날짜</th>
 </tr>
 </thead>
