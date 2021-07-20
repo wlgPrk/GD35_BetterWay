@@ -20,4 +20,10 @@ SELECT SUBWAY_STATION_NAME,LAT,LNG
 FROM SUBWAY_STATION
 WHERE SUBWAY_STATION_NAME=#{select_LatLngA}
 </select>
+
+<select id="getLatLngSubWay" parameterType="hashmap" resultType="hashmap">
+SELECT SUBWAY_STATION_NAME,LAT,LNG
+FROM SUBWAY_STATION
+WHERE SUBWAY_STATION_NAME=#{select_getLatLngSubWay}
+</select>
 </mapper>

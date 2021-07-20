@@ -28,4 +28,9 @@ public class SubLineService implements ISubLineService{
 		return iSubLineDao.getLatLngA(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getLatLngSubWay(HashMap<String, String> params) throws Throwable {
+		return iSubLineDao.getLatLngSubWay(params);
+	}
+
 }

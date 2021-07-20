@@ -26,4 +26,8 @@ public class SubLineDao implements ISubLineDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("subLine.getLatLngA",params);
 	}
+	@Override
+	public List<HashMap<String, String>> getLatLngSubWay(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("subLine.getLatLngSubWay",params);
+	}
 }
