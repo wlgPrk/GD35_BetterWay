@@ -51,21 +51,31 @@ public class subLineInfo_Controller {
 	 * }
 	 */
 	@RequestMapping(value="/BetterWay_subLineRealtime2")
-	public ModelAndView BetterWay_subLineRealtime2(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) throws Throwable {
-		 List<HashMap<String, String>> SubwayList
-         = iMainService.SubwayList(params);
-		
-		 try {
-			 mav.addObject("SubwayList",SubwayList);
-			 
+	public ModelAndView BetterWay_subLineRealtime2(	ModelAndView mav) throws Throwable {
+		try {
 			 mav.setViewName("traffic/BetterWay_subLineRealtime2");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mav;
+	}
+	
+	@RequestMapping(value="/getLatLngSubWay",
+			method=RequestMethod.POST, produces="text/json;charset=UTF-8")
+	@ResponseBody
+	public String getLatLngSubWay(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			try {
+			
+			List<HashMap<String, String>> data = iSubLineService.getLatLngSubWay(params);
+			modelMap.put("data",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
 	}
 
 	//역id,역이름 가져오기
