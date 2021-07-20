@@ -222,8 +222,20 @@ public class stationEstaInfo_Controller {
 		}
 		 
 		 return mapper.writeValueAsString(modelMap);
+	}
 	
+	@RequestMapping(value="/BetterWay_congestion")
+	public ModelAndView BetterWay_congestion(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav) throws Throwable {
+		 List<HashMap<String, String>> SubwayList
+         = iMainService.SubwayList(params);
+		 
+		 mav.addObject("SubwayList",SubwayList);
+		 
+		 mav.setViewName("traffic/BetterWay_congestion");
 	
+		return mav;
 	}
 	
 }
