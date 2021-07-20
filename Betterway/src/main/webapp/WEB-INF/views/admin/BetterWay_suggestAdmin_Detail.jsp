@@ -193,16 +193,15 @@ position: absolute;
 left:1020px;
 }
 
-/*댓글수 */
-.comm_count{
 
-}
 
 
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+<script type="text/javascript" 
+		src="resources/script/popup/per.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -246,7 +245,7 @@ $("#resBtn").on("click",function(){
 });
 
 
-
+per();
 	
 }); //document end
 
@@ -338,6 +337,8 @@ function commDels(){
 		}
 	});//ajax end
 }//commModifys end
+
+
 
 
 </script>

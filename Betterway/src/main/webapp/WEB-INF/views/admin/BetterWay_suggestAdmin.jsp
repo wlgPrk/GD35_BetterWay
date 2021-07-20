@@ -31,9 +31,7 @@ body{
 	text-align: center;
 	line-height: 2;
 }
-#left_sub div:nth-child(3){
-	background-color: #ffcc00;
-}
+
 #right{
 	width:80%;
 	height : 100%;
@@ -251,11 +249,14 @@ cursor:pointer;
 }
 
 
+
 </style>
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popup.js?after"></script>
+<script type="text/javascript" 
+		src="resources/script/popup/per.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -455,11 +456,8 @@ $(document).ready(function(){
 	});// tbody tr click end
 	
 	
-	
-	
+	per();
 }); //document end
-
-
 
 
 
@@ -715,6 +713,8 @@ function noticeCheckDel(){
 		}
 	});//ajax end
 }//reload List end
+
+
 
 
 </script>

@@ -211,6 +211,12 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.update("admin.checkDeleteSugComm",params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getPer(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.getPer",params);
+	}
+
 
 
 

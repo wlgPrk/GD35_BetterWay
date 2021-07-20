@@ -52,16 +52,35 @@ public class Admin_Controller {
 	//관리자 메인
 	@RequestMapping(value ="/BetterWay_mainAdmin")
 	public ModelAndView BetterWay_mainAdmin(ModelAndView mav,HttpSession session) {
-		//관리자 권한번호가져오기 
-		try {
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		mav.setViewName("admin/BetterWay_mainAdmin");
 		
 		return mav;
 	}
+	
+	
+	//권한별 메뉴권한
+	@RequestMapping(value = "/BetterWay_menuPerAdmin",
+			method = RequestMethod.POST,
+			produces = "text/json;charset=UTF-8")
+	@ResponseBody 
+	public String BetterWay_menuPerAdmin(
+			HttpSession session) throws Throwable{
+		ObjectMapper  mapper = new ObjectMapper();
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		try {
+			HashMap<String, String> params = new HashMap<String, String>();
+			params.put("sNO", String.valueOf(session.getAttribute("sNO")));
+			List<HashMap<String, String>> data= iAdmin_Service.getPer(params);
+			modelMap.put("per",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	
 	//관리자 로그인
 	@RequestMapping(value = "/BetterWay_loginAdmins",
 			method = RequestMethod.POST,
@@ -137,19 +156,19 @@ public class Admin_Controller {
 		   
 		   return mav;
 	   }
-	
+	 
 	 @RequestMapping(value = "/BetterWay_happyAdmin_Writes",
 		   method = RequestMethod.POST,
 		   produces = "text/json;charset=UTF-8")
 	 @ResponseBody
 	 public String  BetterWay_happyAdmin_Writes(
-			 @RequestParam HashMap<String, String> params) throws Throwable{
+			 @RequestParam HashMap<String, String> params, HttpSession session) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		 try {
+			 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			 int cnt = iAdmin_Service.addHT(params);
-
 			 if(cnt > 0) {
 				 modelMap.put("msg","success");
 			 }else {
@@ -180,11 +199,12 @@ public class Admin_Controller {
 		 produces = "text/json;charset=UTF-8")
 	 @ResponseBody
 	 public String BetterWay_happyAdmin_Updates(
-			 @RequestParam HashMap<String, String>params) throws Throwable{
+			 @RequestParam HashMap<String, String>params,HttpSession session) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		 try {
+			 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			 int cnt = iAdmin_Service.updateHT(params);
 			 if(cnt > 0) {
 				 modelMap.put("msg", "success");
@@ -203,11 +223,12 @@ public class Admin_Controller {
 			 		 produces = "text/json;charset=UTF-8")
 	 @ResponseBody
 	 public String BetterWay_happyAdmin_Deletes(
-			 @RequestParam HashMap<String, String>params) throws Throwable{
+			 @RequestParam HashMap<String, String>params, HttpSession session) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 		 
 		 try {
+			 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			 int cnt = iAdmin_Service.deleteHT(params);
 			 if(cnt > 0) {
 				 modelMap.put("msg", "success");
@@ -258,11 +279,12 @@ public class Admin_Controller {
 		   produces = "text/json;charset=UTF-8")
 	 @ResponseBody
 	 public String  BetterWay_nursingRoomAdmin_Writes(
-			 @RequestParam HashMap<String, String> params) throws Throwable{
+			 @RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		 try {
+			 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			 int cnt = iAdmin_Service.addnursingRoomT(params);
 
 			 if(cnt > 0) {
@@ -282,11 +304,12 @@ public class Admin_Controller {
 	 		 produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String BetterWay_nursingRoomAdmin_Deletes(
-		@RequestParam HashMap<String, String>params) throws Throwable{
+		@RequestParam HashMap<String, String>params, HttpSession session) throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		try {
+			params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			int cnt = iAdmin_Service.deletenursingRoomT(params);
 			if(cnt > 0) {
 				modelMap.put("msg", "success");
@@ -339,11 +362,12 @@ public class Admin_Controller {
 			   produces = "text/json;charset=UTF-8")
 		 @ResponseBody
 		 public String  BetterWay_cycleAdmin_Writes(
-				 @RequestParam HashMap<String, String> params) throws Throwable{
+				 @RequestParam HashMap<String, String> params, HttpSession session) throws Throwable{
 			 ObjectMapper mapper = new ObjectMapper();
 			 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 			 try {
+				 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 				 int cnt = iAdmin_Service.addcycleT(params);
 	
 				 if(cnt > 0) {
@@ -363,11 +387,12 @@ public class Admin_Controller {
 	 		 produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String BetterWay_cycleAdmin_Deletes(
-		@RequestParam HashMap<String, String>params) throws Throwable{
+		@RequestParam HashMap<String, String>params, HttpSession session) throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		try {
+			params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			int cnt = iAdmin_Service.deletecycleT(params);
 			if(cnt > 0) {
 				modelMap.put("msg", "success");
@@ -418,11 +443,12 @@ public class Admin_Controller {
 			   produces = "text/json;charset=UTF-8")
 		 @ResponseBody
 		 public String  BetterWay_wheelchairAdmin_Writes(
-				 @RequestParam HashMap<String, String> params) throws Throwable{
+				 @RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
 			 ObjectMapper mapper = new ObjectMapper();
 			 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 			 try {
+				 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 				 int cnt = iAdmin_Service.addwheelchairT(params);
 	
 				 if(cnt > 0) {
@@ -455,11 +481,12 @@ public class Admin_Controller {
 		 produces = "text/json;charset=UTF-8")
 	 @ResponseBody
 	 public String BetterWay_wheelchairAdmin_Updates(
-			 @RequestParam HashMap<String, String>params) throws Throwable{
+			 @RequestParam HashMap<String, String>params,HttpSession session) throws Throwable{
 		 ObjectMapper mapper = new ObjectMapper();
 		 Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		 try {
+			 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			 int cnt = iAdmin_Service.updatewheelchairT(params);
 			 if(cnt > 0) {
 				 modelMap.put("msg", "success");
@@ -828,10 +855,11 @@ public class Admin_Controller {
 			   produces = "text/json;charset=UTF-8")
 		 @ResponseBody
 		 public String BetterWay_infocoolingAdmin_Writes(
-				 @RequestParam HashMap<String, String> params) throws Throwable{
+				 @RequestParam HashMap<String, String> params, HttpSession session) throws Throwable{
 			 ObjectMapper mapper = new ObjectMapper();
 			 Map<String, Object> modelMap = new HashMap<String, Object>();
 			 try {
+				 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 				 int cnt = iAdmin_Service.addcooling(params);
 				 if(cnt > 0) {
 					 modelMap.put("msg","success");
@@ -865,11 +893,12 @@ public class Admin_Controller {
 				produces = "text/json;charset=UTF-8")
 		@ResponseBody
 		public String BetterWay_infocoolingAdmin_Updates(
-			@RequestParam HashMap<String, String>params) throws Throwable{
+			@RequestParam HashMap<String, String>params, HttpSession session) throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
 		try {
+			params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			int cnt = iAdmin_Service.updateS(params);
 			
 			if(cnt>0) {
@@ -956,10 +985,11 @@ public class Admin_Controller {
 				   produces = "text/json;charset=UTF-8")
 			 @ResponseBody
 			 public String BetterWay_infoguideAdmin_Writes(
-					 @RequestParam HashMap<String, String> params) throws Throwable{
+					 @RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
 				 ObjectMapper mapper = new ObjectMapper();
 				 Map<String, Object> modelMap = new HashMap<String, Object>();
 				 try {
+					 params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 					 int cnt = iAdmin_Service.addguide(params);
 					 if(cnt > 0) {
 						 modelMap.put("msg","success");
@@ -992,11 +1022,12 @@ public class Admin_Controller {
 					produces = "text/json;charset=UTF-8")
 			@ResponseBody
 			public String BetterWay_infoguideAdmin_Updates(
-				@RequestParam HashMap<String, String>params) throws Throwable{
+				@RequestParam HashMap<String, String>params,HttpSession session) throws Throwable{
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
 			try {
+				params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 				int cnt = iAdmin_Service.updateG(params);
 				
 				if(cnt>0) {

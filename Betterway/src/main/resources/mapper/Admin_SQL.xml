@@ -22,19 +22,19 @@
 	<insert id="addHT" parameterType="hashmap">
 	INSERT INTO HAPPY(HAPPY_NO, SUBWAY_STATION_INCODE, ADMIN_NO, 
                 LOCATION, AREA, OPERATING_AGENCY, PHONE_NUM, DEL_STATUS)
-	VALUES(HAPPY_SEQ.NEXTVAL, #{subway_station_incode} , 2, 
+	VALUES(HAPPY_SEQ.NEXTVAL, #{subway_station_incode} , #{sNO}, 
 			#{location}, #{area}, #{operating_agency}, #{phone_num},1)
 	</insert>
 	
 	<update id="updateHT">
 	UPDATE HAPPY SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
-				 LOCATION = #{location}, AREA = #{area}, 
+				 LOCATION = #{location}, AREA = #{area}, ADMIN_NO=#{sNO} 
                  OPERATING_AGENCY = #{operating_agency}, PHONE_NUM = #{phone_num}
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
 	
 	<update id="deleteHT" parameterType="hashmap">
-	UPDATE HAPPY SET DEL_STATUS = 0 
+	UPDATE HAPPY SET DEL_STATUS = 0 ,ADMIN_ID=#{sNO}
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
 	<!-- 행복지대 끝 -->
@@ -49,12 +49,12 @@
 	</select>
 	
 	<update id="addnursingRoomT" parameterType="hashmap">
-	UPDATE SUBWAY_STATION_ESTA SET NURSINGROOM_EXIST = 1
+	UPDATE SUBWAY_STATION_ESTA SET NURSINGROOM_EXIST = 1, ADMIN_NO=#{sNO}
 	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
 	</update>
 	
 	<update id="deletenursingRoomT" parameterType="hashmap">
-	UPDATE SUBWAY_STATION_ESTA SET NURSINGROOM_EXIST = 0
+	UPDATE SUBWAY_STATION_ESTA SET NURSINGROOM_EXIST = 0, ADMIN_NO=#{sNO}
 	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
 	</update>
 	<!-- 수유실 끝 -->
@@ -69,12 +69,12 @@
 	</select>
 	
 	<update id="addcycleT" parameterType="hashmap">
-	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 1
+	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 1,ADMIN_NO=#{sNO}
 	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
 	</update>
 	
 	<update id="deletecycleT" parameterType="hashmap">
-	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 0
+	UPDATE SUBWAY_STATION_ESTA SET CYCLE_EXIST = 0,ADMIN_NO=#{sNO}
 	WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
 	</update>
 	<!-- 자전거보관함 끝 -->
@@ -91,12 +91,12 @@
 	<insert id="addwheelchairT" parameterType="hashmap">
 	INSERT INTO NRWP_SPACING(NRWP_SPACING_NO, SUBWAY_STATION_INCODE, ADMIN_NO,
                          DIRECTION, PLATFORM_NO)
-	VALUES(NRWP_SEQ.NEXTVAL, #{subway_station_incode}, 2, #{direction}, #{platform_no})
+	VALUES(NRWP_SEQ.NEXTVAL, #{subway_station_incode}, #{sNO}, #{direction}, #{platform_no})
 	</insert>
 	
 	<update id="updatewheelchairT" parameterType="hashmap">
 	UPDATE NRWP_SPACING SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
-	DIRECTION= #{direction} ,PLATFORM_NO = #{platform_no}
+	DIRECTION= #{direction} ,PLATFORM_NO = #{platform_no},ADMIN_NO=${sNO}
 	WHERE NRWP_SPACING_NO = #{nrwp_spacing_no}
 	</update>
 	
@@ -114,7 +114,7 @@
 	
 	<insert id="addcooling" parameterType="hashmap">
 	INSERT INTO WEAK_COOLING_CAR
-	VALUES(COOLING_SEQ.NEXTVAL,#{subline_no},4,#{car_no})
+	VALUES(COOLING_SEQ.NEXTVAL,#{subline_no},#{sNO},#{car_no})
 	</insert>
 	
 	<select id="guideList" parameterType="hashmap" resultType="hashmap">
@@ -138,7 +138,7 @@
 	
 	<!-- 냉방 업데이트 -->
 	<update id="updateS" parameterType="hashmap">
-	UPDATE WEAK_COOLING_CAR SET CAR_NO = #{car_no}
+	UPDATE WEAK_COOLING_CAR SET CAR_NO = #{car_no},ADMIN_NO=#{sNO}
   	WHERE WEAK_COOLING_CAR_NO = #{weak_cooling_car_no}
 	</update>
 	
@@ -151,12 +151,13 @@
 	<!-- 운임 등록 -->
 	<insert id="addguide" parameterType="hashmap">
 	INSERT INTO CHARGE_GUIDE
-	VALUES(CHARGE_SEQ.NEXTVAL,#{category},#{traffic_card},#{d_traffic_card},4)
+	VALUES(CHARGE_SEQ.NEXTVAL,#{category},#{traffic_card},#{d_traffic_card},#{sNO})
 	</insert>
 	
 	<!-- 운임 업데이트 -->
 	<update id="updateG" parameterType="hashmap">
 	 UPDATE CHARGE_GUIDE SET CATEGORY = #{category}, TRAFFIC_CARD=#{traffic_card},D_TRAFFIC_CARD=#{d_traffic_card}
+	 ,ADMIN_NO=#{sNO}
   	 WHERE GUIDE_NO = #{guide_no}
 	</update>	
 	<select id="getg" parameterType="hashmap" resultType="hashmap">
@@ -412,7 +413,20 @@ INSERT INTO SUG
 VALUES(SUG_SEQ.NEXTVAL,#{sug_no},#{sNO},2,#{sID},#{sPW},#{title},#{con},SYSDATE,0,0,1)
 
 
-</insert>		
+</insert>	
+
+
+<!-- 권한불러오기 -->	
+<select id="getPer" parameterType="hashMap" resultType="hashMap">
+SELECT AM.MENU_NAME,M.PER_TYPE_CODE,AM.ADDR
+FROM ADMIN A INNER JOIN PER P
+ON A.PER_NO = P.PER_NO 
+INNER JOIN MENU_PER M
+ON P.PER_NO =M.PER_NO
+INNER JOIN ADMIN_MENU AM 
+ON M.MENU_NO = AM.MENU_NO 
+WHERE A.ADMIN_NO=${sNO}
+</select>
 		
 
 		

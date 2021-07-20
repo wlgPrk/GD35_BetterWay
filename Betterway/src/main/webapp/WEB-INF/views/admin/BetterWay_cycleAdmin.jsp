@@ -90,9 +90,11 @@ th{
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+<script type="text/javascript" 
+		src="resources/script/popup/per.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	per();
 	reloadList();
 	
 	//상단 버튼 페이지이동

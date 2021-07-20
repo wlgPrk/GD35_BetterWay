@@ -33,7 +33,10 @@ margin-top: 5px;
 font-size: 40px;
 line-height: 2.5;
 cursor: pointer;
+
 }
+
+
 
 .menu:hover{
 background-color: #ffcc00;
@@ -65,7 +68,9 @@ background-color: #e0e0eb;
 .logoutBtn:active{
 background-color: #82b2da;
 }
-
+a{
+color:black;
+text-decoration: none;}
 
 </style>
 
@@ -75,21 +80,67 @@ $(document).ready(function(){
 	
 	
 	
-	
+
 	//로그아웃
 	$(".logoutBtn").on("click",function(){
 		console.log("작동");
 		location.href = "BetterWay_LogoutAdmin";
 	});//logout btn end
-
+	
+	
+//편의시설관리
+$("#esta").on("click",function(){
+	location.href="BetterWay_happyAdmin"
+});
+	
+//차량별냉방상태관리
+$("#cooling").on("click",function(){
+	location.href="BetterWay_infoAdmin"
+});
+	
+//건의게시판관리	
 $("#sug").on("click",function(){
 	location.href="BetterWay_suggestAdmin"
 });
+
+//역정보 관리
+$("#station").on("click",function(){
+	location.href="BetterWay_stationAdmin"
+});
+
+//호선정보 관리	
+$("#line").on("click",function(){
+	location.href="BetterWay_sublineAdmin"
+});
+
 	
-	
-	
+	per();
 	
 });//document end
+
+function per(){
+	//ajax
+	$.ajax({
+		url: "BetterWay_menuPerAdmin", 
+		type: "post", 
+		dataType: "json",
+		success: function(res) {
+			menuList(res.per);
+		},
+		error: function(request, status, error) {
+			console.log(error);
+		}
+	});//ajax end
+}//perList end
+
+
+function menuList(per){
+	html="";
+	for(var d of per){
+		html +="<div class=\"menu\"><a href=\""+d.ADDR+"\">"+d.MENU_NAME +"</a></div>";
+	}
+	$(".con_box_1").html(html);
+}
 
 
 

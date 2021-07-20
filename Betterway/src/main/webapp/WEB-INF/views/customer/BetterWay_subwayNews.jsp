@@ -481,7 +481,7 @@ function reloadList(){
 //목록그리기
 function drawList(list){
 	var html ="";
-	for(var i=1; i<list.length; i++){       
+	for(var i=0; i<list.length; i++){       
 		                                
 	html+="	<tr>";
 	html+="	<td><a href=\""+list[i].link+"\">"+list[i].title+"</a></td>      ";

@@ -216,6 +216,12 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.checkDeleteSugComm(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getPer(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getPer(params);
+	}
+
 
 	
 	

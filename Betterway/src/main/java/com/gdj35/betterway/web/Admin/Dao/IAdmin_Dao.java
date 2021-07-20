@@ -76,5 +76,7 @@ public interface IAdmin_Dao {
 
 	public int checkDeleteSugComm(HashMap<String, Object> params) throws Throwable;
 
+	public List<HashMap<String, String>> getPer(HashMap<String, String> params) throws Throwable;
+
 
 }

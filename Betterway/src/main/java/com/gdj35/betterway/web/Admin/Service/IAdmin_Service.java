@@ -75,6 +75,8 @@ public interface IAdmin_Service {
 
 	public int checkDeleteSugComm(HashMap<String, Object> params) throws Throwable;
 
+	public List<HashMap<String, String>> getPer(HashMap<String, String> params) throws Throwable;
+
 
 	
 }
