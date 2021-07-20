@@ -317,21 +317,63 @@ background: #B2A59F;
 	width:100px;
 	height:30px;
 }
+#congestion_chart{
+	margin-top: 100px;
+}
 </style>
 
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> <!-- 차트 스크립트 -->
 
 <!-- 샐렉트2 스크립트 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
 <script type="text/javascript">
+//stationEstainfo 컨트롤러에 있음
 $(document).ready(function(){
 	$("#selstation").select2();
 	$("#selsubLine").select2();
+	
+	$.ajax({
+		/*https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=15&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D ->(데이터 불러오기) */
+		url:"https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=1668&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D",
+		type:"get",
+		dataType:"json",
+		success:function(res){
+			var html = "";
+			console.log(res);
+	
+	new Chart(document.getElementById("congestion_chart"), {
+	    type: 'bar',
+	    data: {
+	      labels: ["평일상행", "평일하행", "토요일상행", "토요일하행", "일요일상행","일요일하행"],
+	      datasets: [
+	        {
+	          label: "Population (millions)",
+	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#c45830"],
+	          data: [2478,5267,734,784,433,2000]
+	        }
+	      ]
+	    },
+	    options: {
+	      legend: { display: false },
+	      title: {
+	        display: true,
+	        text: '구로역'
+	      }
+	    }
+	});//차트 끝
+	
+		},
+		error:function(requet,status,error){
+			console.log(error);
+			}
+		});//ajax로 데이터 불러옴
+		
+	
 });
-
 
 </script>
 </head>
@@ -425,6 +467,8 @@ $(document).ready(function(){
     						<c:out value="${t1.SUBLINE_NO}호선"/> </option>
    						</c:forEach>
    				</select>
+   				
+   				<canvas id="congestion_chart" width="800" height="450"></canvas>
     		</div>
 			</div>	
 		</div>
