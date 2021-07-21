@@ -211,7 +211,7 @@ a {
 #box_up_sub2 {
 	width: 60%;
 	height: 100%;
-	font-size: 10.5pt;
+	font-size: 10pt;
 }
 
 #box_down_sub1 {
@@ -229,7 +229,7 @@ a {
 #box_down_sub2 {
 	width: 60%;
 	height: 100%;
-	font-size: 10.5pt;
+	font-size: 10pt;
 }
 
 .subbtn_box {

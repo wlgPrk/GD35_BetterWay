@@ -42,4 +42,9 @@ public class EstaDao implements IEstaDao {
 	public List<HashMap<String, String>> cycleList(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("E.cycleList",params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> SubwayLine(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("E.SubwayLine",params);
+	}
 }

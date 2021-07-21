@@ -320,6 +320,15 @@ background: #B2A59F;
 #congestion_chart{
 	margin-top: 100px;
 }
+#search_btn{
+	font-size: 12pt;
+    border: none;
+    border-radius: 5pt;
+    background-color: #82b2da;
+    margin-top: 5px;
+    padding: 5px;
+    padding-top: 1px;
+}
 </style>
 
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
@@ -332,53 +341,137 @@ background: #B2A59F;
 
 <script type="text/javascript">
 //stationEstainfo 컨트롤러에 있음
+
+//1.역검색하면 관련된 호선나오게하기, 호선중복제거 샐렉트박스 선택했을때 값 넘어가는 거 찾기
+//2.검색내용을 API에 보내서 관련내용 차트에 받기
+//3.차트에 표현하기
 $(document).ready(function(){
 	$("#selstation").select2();
 	$("#selsubLine").select2();
 	
+	var a = "";
+	var b = "";
+	
+	/*$("#search_btn").on("click",function(){
+		console.log($("#selstation").val());
+	});*/
+	
+	$("#selstation").change(function(){
+		var selectS = $("#selstation").val();
+		//console.log(selectS);
+	
+		$("#subway_station_name").val($("#selstation").val());
+		//console.log($("#subway_station_name").val());
+		
+	 	var params = $("#SearchForm").serialize();
+	 	//console.log($("#SearchForm").serialize());
+	
 	$.ajax({
-		/*https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=15&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D ->(데이터 불러오기) */
-		url:"https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=1668&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D",
-		type:"get",
+		url:"congestions",
+		type:"post",
 		dataType:"json",
-		success:function(res){
-			var html = "";
-			console.log(res);
-	
-	new Chart(document.getElementById("congestion_chart"), {
-	    type: 'bar',
-	    data: {
-	      labels: ["평일상행", "평일하행", "토요일상행", "토요일하행", "일요일상행","일요일하행"],
-	      datasets: [
-	        {
-	          label: "Population (millions)",
-	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#c45830"],
-	          data: [2478,5267,734,784,433,2000]
-	        }
-	      ]
-	    },
-	    options: {
-	      legend: { display: false },
-	      title: {
-	        display: true,
-	        text: '구로역'
-	      }
-	    }
-	});//차트 끝
-	
+		data:params,
+		success:function(res){	
+			
+			changeL(res.data);
+			
+			$("#selsubLine").change(function(){ 
+			//console.log($("#selsubLine").val());//1호선은 맨첨에 누르면 안눌리는 거 있음
+			
+			$.ajax({
+				/*https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=15&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D ->(데이터 불러오기) */
+				url:"https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=1668&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D",
+				type:"get",
+				dataType:"json",
+				success:function(res){
+					var html = "";
+					//console.log(res);
+					
+					for(var d of res.data){
+						//console.log(d.역명);
+						//서울은 서울역이라서 따로 처리해야함
+						if($("#selstation").val()==d.역명 && $("#selsubLine").val()==d.호선){
+						//console.log(d.역명+","+d.호선);//if 조건은 잘되는 듯
+						//console.log(d);
+							if(d.방향=="상선" || d.방향=="내선"){
+								if(d.요일=="평일"){
+								     //console.log(d['5:30~ (%)']);
+									 a = d['5:30~ (%)'];
+									 b = d['6:30~ (%)'];
+									 console.log(a);
+								}else if(d.요일=="토요일"){
+									
+								}else if(d.요일=="일요일"){
+									
+								}
+							}
+				
+							console.log(a);
+			new Chart(document.getElementById("congestion_chart"), {
+				 type: 'line',
+				  data: {
+				    labels: ["5:30","6:30","7:30","8:30","9:30","10:30","11:30","12:30","13:30","14:30","15:30","16:30","17:30","18:30",
+				    		 "19:30","20:30","21:30","22:30","23:30","24:30"],
+				    datasets: [{ 
+				        data: [a,b,a,a,a,a,a,14,37,52],
+				        label: "평일",
+				        borderColor: "#3e95cd",
+				        fill: false
+				      }, { 
+				        data: [28,35,11,52,63,89,97,14,37,52],
+				        label: "토요일",
+				        borderColor: "#8e5ea2",
+				        fill: false
+				      }, { 
+				        data: [16,17,17,10,20,27,40,57,65,73],
+				        label: "일요일",
+				        borderColor: "#3cba9f",
+				        fill: false
+				      }]
+				  },
+				  options: {
+				    title: {
+				      display: true,
+				      text: $("#selstation").val()+"역 상행"
+				    }
+				  }
+			});//차트 끝
+			
+				}
+					}//성공시 for문 돌린거 마무리 
+			
+				},
+				error:function(requet,status,error){
+					console.log(error);
+					}
+				});//ajax로 데이터 불러옴
+				
+			});//$("#selstation").change 함수
 		},
 		error:function(requet,status,error){
 			console.log(error);
 			}
-		});//ajax로 데이터 불러옴
-		
+		});//congestions ajax끝
+				
+	});//$("#selstation").change 함수 끝
 	
 });
+
+function changeL(data){
+	 var html = "";
+	 //html += "<option selected=\"selected\">호선</option>";
+	   
+	   for(var d of data){
+		  html += "<option>"+ d.SUBLINE_NO +"</option>";
+	   }
+	   
+	   $("#selsubLine").html(html);
+}
 
 </script>
 </head>
 <body>
-<form action="#" id="actionForm" method="post"></form>
+
 <header>
   <a class="main" href="BetterWay_main">BetterWay</a>
 	<div id="menu">
@@ -452,24 +545,29 @@ $(document).ready(function(){
 			<div id="box_con_text">
 			혼잡도
 			</div>
+			
+			<form action="#" id="SearchForm" method="post">
+			
+			<input type="hidden" name="subway_station_name" id="subway_station_name" /><!-- 샐렉트 값받기 -->
+			
 			<div class="table_box">
-				<select id= "selstation">
+				<select id = "selstation">
     				<option selected="selected">역</option>
     					<c:forEach items="${SubwayList}" var = "t1">
-    						<option value="${t1.STR_INCODE}">
+    						<option value="${t1.SUBWAY_STATION_NAME}">
     						<c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
    						</c:forEach>
    				</select>
-   				<select id= "selsubLine">
+   				<select id = "selsubLine">
     				<option selected="selected">호선</option>
-    					<c:forEach items="${SubwayList}" var = "t1">
-    						<option value="${t1.STR_INCODE}">
-    						<c:out value="${t1.SUBLINE_NO}호선"/> </option>
-   						</c:forEach>
+    				
    				</select>
+   				<input id="search_btn" type="button" value="검색" />
    				
    				<canvas id="congestion_chart" width="800" height="450"></canvas>
     		</div>
+    		</form>
+    		
 			</div>	
 		</div>
   </article>

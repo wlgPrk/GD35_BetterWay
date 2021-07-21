@@ -54,4 +54,10 @@ WHERE ES.CYCLE_EXIST = 1
 ORDER BY SUBWAY_STATION_INCODE ASC
 </select>
 
+<select id="SubwayLine" resultType="hashmap" parameterType="hashmap">
+SELECT SUBLINE_NO
+FROM SUBWAY_STATION
+WHERE SUBWAY_STATION_NAME = #{subway_station_name}
+</select>
+
 </mapper>
