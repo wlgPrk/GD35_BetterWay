@@ -44,7 +44,7 @@ $(document).ready(function(){
 		location.href = "BetterWay_subwayNews";
 	
 	});
-	BetterWay_suggestList
+	
 	$(".time_guide").on("click", function(){
 		$(".popdiv").show();
 	
@@ -67,6 +67,20 @@ $(document).ready(function(){
 		
 		
 	});
+	
+	$("#routeBtn").on("click", function(){
+		var Start = $("#selS option:selected").val();
+		var end = $("#selE option:selected").val();
+		if(Start == "출발 역" || end == "도착 역"){
+			alert("출발역과 도착역을 입력해 주세요.");
+			
+		}
+		else{	$("#searchForm").attr("action", "BetterWay_subLineRealtime2");
+		$("#searchForm").submit();
+		console.log(Start);
+		console.log(end);
+		}
+	});
 	$("#close2").on("click", function(){
 		$(".popCharge").hide();
 	});
@@ -78,11 +92,9 @@ $(document).ready(function(){
 	});
 	
 	$("#selstation").select2();
-
-	// 역코드, 상행 주말
+	$("#selS").select2();
+	$("#selE").select2();
 	
-	console.log(a);
-
 	$("#dateBtn1").on("click", function() {
 		$("#dateBtn1").css("background-Color", "silver");
 		$("#dateBtn2").css("background-Color", "white");
@@ -720,8 +732,9 @@ z-index: -5;
 footer {
 	background-color: #777;
 	padding: 10px;
-	text-align: center;
+	text-align: right;
 	color: white;
+	
 }
 
 @media ( max-width : 600px) {
@@ -1151,6 +1164,7 @@ font-family: inherit;
 
 }
 .admin{
+
 cursor: pointer;
 }
   #pop{
@@ -1341,20 +1355,38 @@ width: 60px;
 		
 		
 		<div class= "text_header">
-		BetterWay</br>
+		BetterWay<br/>
 			<div class= "text_body">
-		더 나은 교통 서비스를 위해</br>
+		더 나은 교통 서비스를 위해<br/>
 			</div>
 			</div>
 		<div class ="con">
-		<form action="searchForm">
+		<form action="#"   id ="searchForm"method="post">
 			<div class="search_route">
 				<div class="search_route_box">
 					 <br />
-					<br /> <input type="text"   placeholder="출발역" style=" width: 200px;height: 30px;font-size: 15px;"/> <br />
-					<br /> <input type="text" placeholder="도착 역" style=" width: 200px;height: 30px;font-size: 15px;" />
+					<br /> 
+						<select id="selS" name = "selS" style=" width: 200px;height: 30px;font-size: 15px;">
+						<option selected="selected">출발 역</option>
+						<c:forEach items="${SubwayList}" var="START">
+							<option value="${START.SUBWAY_STATION_NAME}"><c:out
+									value="${START.SUBWAY_STATION_NAME}(${START.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+					</select>
+
+					<br/> 
+					<br/>
+					<select id="selE" name = "selE" style=" width: 200px;height: 30px;font-size: 15px;">
+						<option selected="selected">도착 역</option>
+						<c:forEach items="${SubwayList}" var="END">
+							<option value="${END.SUBWAY_STATION_NAME}"><c:out
+									value="${END.SUBWAY_STATION_NAME}(${END.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+					</select>
 				</div>
-				<input type="button" class="search1"   onclick="startM();" value="경로 검색"
+				<input type="button" class="search1" id= "routeBtn" name ="routeBtn" value="경로 검색"
 				style="background-color: #82B2DA;" />
 			</div>
 			</form>
