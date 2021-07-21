@@ -3,24 +3,13 @@
 	 
 	 
 	var html = "";
-//	html += "<div class=\"bg_div\"></div>                                         ";
-//	html += "<div class=\"popup_div\">                                            ";
-//	html += "	<div class=\"popup_title\">                                       ";
-//	html += "		<div class=\"popup_title_text\">" + title + "</div>           ";
-//	html += "	</div>                                                            ";
-//	html += "	<div class=\"popup_contents\">                                    ";
-//	html += "		<div class=\"popup_text\">" + contents + "</div>              ";
-//	html += "		<div class=\"popup_btn\">                                     ";
-//	html += "			<input type=\"button\" class=\"btn_ok\" value=\"확인\"/>   ";
-//	html += "		</div>                                                        ";
-//	html += "	</div>                                                            ";
-//	html += "</div>                                                               ";
 	
 	
 	
 	
 	
-html += "<div class=\"popup_div_envi\">                                            ";                                                                                                                                     
+html += "<div class=\"popup_div_envi\">                                            ";   
+html += "<header class=\"header_envi\"><a class=\"a_envi\">실내 공기질 정보 안내</a></header>";
 html+="	<div class=\"con_envi\">     ";                                                                                                          
 html+="	 <div class=\"box_title_envi\">         ";                                                                                                                                                                                                                           
 html+="       <div class=\"img_cover_envi\">         ";                                                                                                                                                                                                                             

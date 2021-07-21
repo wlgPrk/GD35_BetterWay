@@ -70,12 +70,12 @@ body {
 	margin-bottom: 20px;
 	width: 100%; height: 375px;;
 }
-.top_title {
+.top_title_envi {
 	display: flex;
 	width: 100%;
   
 }
-  .box_title{
+  .box_title_envi{
     position: relative;
  background-image:url("resources/images/handleimg.png");       
                        
@@ -84,14 +84,14 @@ body {
   }
 
 
-.img_cover{
+.img_cover_envi{
 	backdrop-filter: blur(5px);
 	padding-top:60px;
 	height: 28px;
 
  
 }
-.img_cover_con{/* 어디로 왔능가  */
+.img_cover_con_envi{/* 어디로 왔능가  */
 	font-size: 15px;
 	background:rgba(52, 75, 22, 0.63);
 	color: #fff;
