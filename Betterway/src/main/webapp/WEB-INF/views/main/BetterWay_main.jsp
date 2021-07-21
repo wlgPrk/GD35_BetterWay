@@ -20,12 +20,31 @@ $(document).ready(function(){
 		$(".popCharge").show();
 	
 	});
+	$(".admin").on("click", function(){
+		location.href = "BetterWay_loginAdmin";
+	});
 	
 	$(".map_guide").on("click", function(){
 		location.href = "BetterWay_subLineSearch";
 	
 	});
+	$(".lost").on("click", function(){
+		location.href = "BetterWay_lostAndFound";
 	
+	});
+	$(".board").on("click", function(){
+		location.href = "BetterWay_suggestList";
+	
+	});
+	$(".colling").on("click", function(){
+		location.href = "BetterWay_cooling";
+	
+	});
+	$(".news").on("click", function(){
+		location.href = "BetterWay_subwayNews";
+	
+	});
+	BetterWay_suggestList
 	$(".time_guide").on("click", function(){
 		$(".popdiv").show();
 	
@@ -665,7 +684,7 @@ nav ul {
 }
 
 article {
-	height: 1200px;
+	height: 1080px;
 	margin: 0px auto;
 	width: 1440px;
 	
@@ -726,7 +745,7 @@ display: inline-block;
 }
 .realtime_train {
 	position: relative;
-	top : -350px;
+	top : -200px;
 	height: 150px;
 	width : 360px;
 	display: inline-block;
@@ -734,7 +753,7 @@ display: inline-block;
 }
 .center_box {
 	position: relative;
-	top:-400px;
+	top:-300px;
 	text-align: center;
 	left : 70px;
 	width : 600px;
@@ -852,18 +871,48 @@ border:4px solid silver;
 
 background-color: white;
 }
-.timeguide{
-
+.colling{
 display: inline-block;
 position:relative;
 text-align:center;
-
 margin:25px;
 height:100px;
 width:200px;
 cursor: pointer;
 border:4px solid silver;
-
+background-color: white;
+}
+.news{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
+background-color: white;
+}
+.board{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
+background-color: white;
+}
+.lost{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
 background-color: white;
 }
 
@@ -932,8 +981,36 @@ background-position: center;
   background-size: cover;
 width : 80px;
 height: 80px;
+}
+.con_img_news{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/news2.png");
+background-position: center;
 
+  background-size: cover;
+width : 80px;
+height: 80px;
+}
+.con_img_board{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/board2.png");
+background-position: center;
 
+  background-size: cover;
+width : 80px;
+height: 80px;
+}
+.con_img_lost{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/lost2.png");
+background-position: center;
+
+  background-size: cover;
+width : 80px;
+height: 80px;
 }
 .con_img_ticket{
 position:relative;
@@ -966,7 +1043,7 @@ position:relative;
 display:inline-block;
 margin-left:10px;
 margin-top:25px;
-background-image :url("resources/images/map.png");
+background-image :url("resources/images/map2.png");
 background-position: center;
   background-size: cover;
 width : 100px;
@@ -1030,7 +1107,7 @@ border: 1px solid silver;
 .box_realtime_train_con_img{
 position:relative;
 display:inline-block;
-background-image :url("resources/images/train.png");
+background-image :url("resources/images/train2.png");
 top: 10px;
 width : 100px;
 height: 100px;
@@ -1050,24 +1127,6 @@ border: 1px solid silver;
 text-align: center;
 font-size: 12px;
 }
-
-
-
-.news{
-
- background-color:rgba(31,78,121,0.2);
-height: 250px;
-
-}
-.board{
-background-color:rgba(31,78,121,0.2);
-height: 250px;
-
-}
-
-
-
-
 
 .test{
 display: block;
@@ -1091,7 +1150,9 @@ font-weight: bold;
 font-family: inherit;
 
 }
-
+.admin{
+cursor: pointer;
+}
   #pop{
     width:300px; height:400px; background:#3d3d3d; color:#fff;
     position:absolute; top:10px; left:500px; text-align:center;
@@ -1160,14 +1221,14 @@ width: 60px;
 				<li><a href="#">교통안내</a>
 					<ul>
 						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
-						<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+						<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 					</ul></li>
 				<li><a href="#">환경정보안내</a>
 					<ul>
-						<li><a href="BetterWay_eveinfoGuide">실내 공기질 정보 제공</a></li>
-						<li><a href="BetterWay_eveinfoGuide2">차량 별 냉방상태</a></li>
+						<li><a href="BetterWay_envinfoGuide">실내 공기질 정보 제공</a></li>
+						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
 					</ul></li>
 				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
 				<li><a href="BetterWay_suggestList">고객의 소리</a>
@@ -1286,6 +1347,7 @@ width: 60px;
 			</div>
 			</div>
 		<div class ="con">
+		<form action="searchForm">
 			<div class="search_route">
 				<div class="search_route_box">
 					 <br />
@@ -1294,7 +1356,9 @@ width: 60px;
 				</div>
 				<input type="button" class="search1"   onclick="startM();" value="경로 검색"
 				style="background-color: #82B2DA;" />
-			</div><br/>
+			</div>
+			</form>
+			<br/>
 			<div class="realtime_train"
 			>
 				<div name = "realtime_train_box" class="realtime_train_box">
@@ -1348,7 +1412,7 @@ width: 60px;
 			
 			</div>
 		<div class = "box4">
-		<div class = "timeguide">
+		<div class = "colling">
 		 <div class = "con_img_colling"> </div>
 			<div class = "con_search_txt2">
 			<div class = "box_con_head2">냉방상태 안내</div>
@@ -1357,26 +1421,36 @@ width: 60px;
 			</div>
 		
 		
-		<div class = "timeguide">
-		 
-			
+		<div class = "news">
+		  <div class = "con_img_news"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">지하철 뉴스</div>
+			<br/> <div>지하철 관련뉴스를 안내합니다.</div>
 			</div>
-		<div class = "timeguide">
-		 
-			
+			</div>
+		<div class = "board">
+		 <div class = "con_img_board"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">건의 게시판</div>
+			<br/> <div>건의 게시판으로 이동합니다.</div>
+			</div>
 			</div>	
-		<div class = "timeguide">
-		 
-			
+		<div class = "lost">
+		  <div class = "con_img_lost"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">유실물 찾기</div>
+			<br/> <div>유실물 찾기로 이동합니다.</div>
+			</div>
 			</div>
 
 </div>
+
 </div>
 		</article>
 	</section>
 
 	<footer>
-		<p>Footer</p>
+		<div class = "admin">관리자 로그인</div>
 	</footer>
 
 </body>

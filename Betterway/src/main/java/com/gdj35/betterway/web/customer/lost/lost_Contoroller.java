@@ -11,7 +11,7 @@ public class lost_Contoroller {
 	@RequestMapping(value="/BetterWay_lostAndFound")
 	public ModelAndView lostAndFound(ModelAndView mav) {
 		
-		mav.setViewName("/BetterWay_lostAndFound");
+		mav.setViewName("customer/BetterWay_lostAndFound");
 		
 		return mav;
 	}//lostAndFound end
