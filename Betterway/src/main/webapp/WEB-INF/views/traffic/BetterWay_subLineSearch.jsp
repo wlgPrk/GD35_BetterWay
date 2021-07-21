@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +23,7 @@ function BetterWay_subLineBusstation(){
 }
 </script>
 <style>
-*{
-overflow: hidden;
-}
+
 	div{
 float:left;
 width:100%;
@@ -226,7 +225,7 @@ a{
 }
 #select_LatLngD,#select_LatLngA{
     padding-left: 5px;
-    width: 300px;
+    width: 275px;
     height: 29.7px;
 }
 table{
@@ -256,9 +255,27 @@ width:50px;
 	<script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f7722bc2ddde46bcdead0ff30caa3358"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
+
 	<script type="text/javascript">
 	
 	$(document).ready(function(){
+		
+		$("#select_LatLngD").select2();
+		$("#select_LatLngA").select2();
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };
+
+	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		
 		$("#weatherIcon").hide();
 		$("img[name='subway']").imagezoomsl({
 			zoomrange: [1, 12],
@@ -277,6 +294,8 @@ width:50px;
 			$("#sA").val($("#select_LatLngA").val()); //도착역
 			var endX;
 			var endY;
+			
+			
 			$.ajax({
 					url:"getLatLngD",
 					type:"post",
@@ -313,12 +332,12 @@ width:50px;
 												var html ="";
 												console.log(res);
 												var time ="";
-												var time = $(res).find("time").text();
+												var time = $(res).find("itemList").eq(0).find("time").text();
 											console.log(time);
 												$("#take_P").html(time);//소요시간 뿌림
 												
 												
-												var pathListCnt= $(res).find("routeNm").text();
+												var pathListCnt= $(res).find("itemList").eq(0).find("routeNm").text();
 												console.log(pathListCnt);
 												if(pathListCnt.length>=9){
 													html +="환승 2 번";
@@ -330,10 +349,11 @@ width:50px;
 												
 												$("#transfer").html(html);//소요시간 뿌림
 											
+												console.log($(res).find("itemList").eq(0));
 												
-												 $(res).find('pathList').each(function(){
+												 $(res).find("itemList").eq(0).find('pathList').each(function(){
 													 var railLinkId=$(this).find("railLinkId").text();
-													 console.log(railLinkId.length);
+													 console.log($(this).find("fname").text());
 													 var routeNm = $(this).find("routeNm").text();
 												
 													 var fname = $(this).find("fname").text(); 	
@@ -383,6 +403,7 @@ width:50px;
 											}
 
 											//날씨 아작스 불러오기
+										
 								
 								},//success end 도착역
 							error:function(request,status,error){//실패시 다음 함수 실행
@@ -394,12 +415,26 @@ width:50px;
 					console.log(error);
 				}
 			});//db에서 좌표 가져와 변수로 담기
+		
+			
+				
+				
+				
+
 		});//onclick 이벤트 end
 			
 });	//end	
 </script>
+	
+
+  	
+	
 </head>
 <body>
+
+
+
+
 <div class="side">
 	<div class="side_title">
 	<a class="main" href="javascript:main();">BetterWay</a>
@@ -411,24 +446,26 @@ width:50px;
 		
 			<form action="#" id="SearchForm" method="post" >
 			<div id="deparr_search">
-			<!-- <input type="text"  class="realtime" id="select_station"/> -->
-			<div class="dep"><input type="text"  id="select_LatLngD" name="select_LatLngD"placeholder="출발역"></div>
-			<div class="arr"><input type="text"  id="select_LatLngA" name="select_LatLngA" placeholder="도착역"></div>
+			
+			<!-- <div class="dep"><input type="text"  id="select_LatLngD" name="select_LatLngD"placeholder="출발역"></div>
+			<div class="arr"><input type="text"  id="select_LatLngA" name="select_LatLngA" placeholder="도착역"></div> -->
 				
-					
-		
-				 
-				 
 				  <input type="hidden" id="sD" name="select_LatLngD"/>  
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
-		<%-- 	 <select class="realtime" id="select_station">
-				 <option selected="selected">역</option>
-				   <c:forEach items="${SubwayList}">
-		    			<option value="${SUBWAY_STATION_NAME}"><c:out value="${SUBWAY_STATION_NAME}"/></option>
+		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD">
+				 <option selected="selected">출발역</option>
+				   <c:forEach items="${SubwayList}" var="t">
+		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}"/></option>
 		   		   </c:forEach>
-				 </select> --%>
+				 </select> 
+			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD">
+			 <option selected="selected">도착역</option>
+			   <c:forEach items="${SubwayList}" var="ts">
+	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}"/></option>
+	   		   </c:forEach>
+			 </select> 
 			</div>
-			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색"/>
+			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색" style="margin-left: 10px;"/>
 		  </form>
 		
 		
@@ -463,7 +500,7 @@ width:50px;
 			   </table></br></br>
 			    <div style="margin-left: 15px;" id="weather_P" ><b>도착지 날씨</b>
 			    <div id="weatherWrap">
-					<img alt="날씨" id="weatherIcon" /><span id="temp"></span>
+					<img alt="날씨" id="weatherIcon" /><div id="temp"></div>
 					<table id="weatherHistory">
 						<tbody></tbody>
 					</table>
@@ -479,11 +516,7 @@ width:50px;
  
 </div>
 
-<div class="subline_img">
-		<img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>
-		<p>마우스를 올려 확대해보세요.</p>
-</div>
-
+<div id="map" style="width: 75%;height: 1080px;"></div>
 </body>
 </html>
 

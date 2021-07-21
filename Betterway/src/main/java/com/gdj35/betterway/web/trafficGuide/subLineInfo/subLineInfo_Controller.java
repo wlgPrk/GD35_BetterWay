@@ -26,7 +26,12 @@ public class subLineInfo_Controller {
 	   public IMainService iMainService;
 	  
 	@RequestMapping(value="/BetterWay_subLineSearch")
-	public ModelAndView BetterWay_subLineSearch(ModelAndView mav) {
+	public ModelAndView BetterWay_subLineSearch(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav)throws Throwable {
+		 List<HashMap<String, String>> SubwayList
+         = iSubLineService.SubwayList(params);
+		 mav.addObject("SubwayList",SubwayList);
 		mav.setViewName("traffic/BetterWay_subLineSearch");
 		return mav;
 	}
@@ -134,5 +139,4 @@ public class subLineInfo_Controller {
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
-	
 }

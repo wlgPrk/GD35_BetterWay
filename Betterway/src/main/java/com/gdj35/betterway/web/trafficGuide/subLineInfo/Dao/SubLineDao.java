@@ -30,4 +30,9 @@ public class SubLineDao implements ISubLineDao{
 	public List<HashMap<String, String>> getLatLngSubWay(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("subLine.getLatLngSubWay",params);
 	}
+	@Override
+	public List<HashMap<String, String>> SubwayList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("subLine.SubwayList", params);
+	}
 }

@@ -32,5 +32,11 @@ public class SubLineService implements ISubLineService{
 	public List<HashMap<String, String>> getLatLngSubWay(HashMap<String, String> params) throws Throwable {
 		return iSubLineDao.getLatLngSubWay(params);
 	}
+	
+	@Override
+	public List<HashMap<String, String>> SubwayList(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return  iSubLineDao.SubwayList(params);
+	}
 
 }
