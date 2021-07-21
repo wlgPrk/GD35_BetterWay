@@ -37,15 +37,7 @@ public class main_Controller {
 		 List<HashMap<String, String>> list
 	        = iMainService.getChList(params);
 		 
-		 List<HashMap<String, String>> suglist
-			=iboard_Service.getSugList(params);
 		
-		//공지목록취득
-		List<HashMap<String,String>> data
-			=iboard_Service.getNoticeList();
-		 
-		mav.addObject("suglist",suglist);
-		 mav.addObject("data",data);
 		 mav.addObject("SubwayList",SubwayList);
 		 mav.addObject("list",list);
 		mav.setViewName("main/BetterWay_main");

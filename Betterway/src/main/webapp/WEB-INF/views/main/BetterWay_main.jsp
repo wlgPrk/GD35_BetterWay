@@ -17,15 +17,34 @@ $(document).ready(function(){
 	var a = $("#selstation option:selected").val();
 	
 	$(".charge_guide").on("click", function(){
-		window.open('BetterWay_charge','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
+		$(".popCharge").show();
 	
+	});
+	$(".admin").on("click", function(){
+		location.href = "BetterWay_loginAdmin";
 	});
 	
 	$(".map_guide").on("click", function(){
 		location.href = "BetterWay_subLineSearch";
 	
 	});
+	$(".lost").on("click", function(){
+		location.href = "BetterWay_lostAndFound";
 	
+	});
+	$(".board").on("click", function(){
+		location.href = "BetterWay_suggestList";
+	
+	});
+	$(".colling").on("click", function(){
+		location.href = "BetterWay_cooling";
+	
+	});
+	$(".news").on("click", function(){
+		location.href = "BetterWay_subwayNews";
+	
+	});
+	BetterWay_suggestList
 	$(".time_guide").on("click", function(){
 		$(".popdiv").show();
 	
@@ -38,6 +57,7 @@ $(document).ready(function(){
 	
 	$("#close").on("click", function(){
 		$(".popdiv").hide();
+		
 		$("#con_table").empty();
 		$("#dateBtn1").css("background-Color", "white");
 		$("#dateBtn2").css("background-Color", "white");
@@ -47,8 +67,9 @@ $(document).ready(function(){
 		
 		
 	});
-	
-
+	$("#close2").on("click", function(){
+		$(".popCharge").hide();
+	});
 	
 	$(".realtime_train_box").on("click", function () {
 		 window.open("https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do")
@@ -569,6 +590,7 @@ $("#con_table").html(html);
 
 </script>
 <link rel="stylesheet" type="text/css" href="resources/css/popup/test.css?after" />
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popCharge.css?after" />
 <style type="text/css">
 * {
 	box-sizing: border-box;
@@ -723,7 +745,7 @@ display: inline-block;
 }
 .realtime_train {
 	position: relative;
-	top : 50px;
+	top : -200px;
 	height: 150px;
 	width : 360px;
 	display: inline-block;
@@ -731,7 +753,7 @@ display: inline-block;
 }
 .center_box {
 	position: relative;
-	top:-30px;
+	top:-300px;
 	text-align: center;
 	left : 70px;
 	width : 600px;
@@ -745,11 +767,11 @@ display: inline-block;
 .box4 {
 	position: relative;
 	text-align: center;
-	
+	top: -40px;
 	
 	left: 150px;
 	width : 300px;
-	height:500px;
+	
 	display: inline-block;
 	background-color:rgba(31,78,121,0.3);
 	
@@ -787,6 +809,12 @@ display: inline-block;
 }
 .box_con_head{
 font-size: 16px;
+font-weight: bold;
+border: 1px solid silver;
+background-color: #82b2da;
+}
+.box_con_head2{
+font-size: 14px;
 font-weight: bold;
 border: 1px solid silver;
 background-color: #82b2da;
@@ -841,6 +869,50 @@ width:270px;
 cursor: pointer;
 border:4px solid silver;
 
+background-color: white;
+}
+.colling{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
+background-color: white;
+}
+.news{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
+background-color: white;
+}
+.board{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
+background-color: white;
+}
+.lost{
+display: inline-block;
+position:relative;
+text-align:center;
+margin:25px;
+height:100px;
+width:200px;
+cursor: pointer;
+border:4px solid silver;
 background-color: white;
 }
 
@@ -900,6 +972,46 @@ height: 100px;
 
 
 }
+.con_img_colling{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/aircon.png");
+background-position: center;
+
+  background-size: cover;
+width : 80px;
+height: 80px;
+}
+.con_img_news{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/news2.png");
+background-position: center;
+
+  background-size: cover;
+width : 80px;
+height: 80px;
+}
+.con_img_board{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/board2.png");
+background-position: center;
+
+  background-size: cover;
+width : 80px;
+height: 80px;
+}
+.con_img_lost{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/lost2.png");
+background-position: center;
+
+  background-size: cover;
+width : 80px;
+height: 80px;
+}
 .con_img_ticket{
 position:relative;
 display:inline-block;
@@ -931,7 +1043,7 @@ position:relative;
 display:inline-block;
 margin-left:10px;
 margin-top:25px;
-background-image :url("resources/images/map.png");
+background-image :url("resources/images/map2.png");
 background-position: center;
   background-size: cover;
 width : 100px;
@@ -971,10 +1083,20 @@ background-color: white;
 font-size: 15px;
 border: 1px solid silver;
 }
+.con_search_txt2{
+display:inline-block;
+position:relative;
+top:-12px;
+width : 100px;
+height: 85px;
+background-color: white;
+font-size: 12px;
+border: 1px solid silver;
+}
 .con_map_txt{
 display:inline-block;
 position:relative;
-top :-5px;
+top : -25px;
 width : 130px;
 height: 100px;
 background-color: white;
@@ -985,7 +1107,7 @@ border: 1px solid silver;
 .box_realtime_train_con_img{
 position:relative;
 display:inline-block;
-background-image :url("resources/images/train.png");
+background-image :url("resources/images/train2.png");
 top: 10px;
 width : 100px;
 height: 100px;
@@ -1006,83 +1128,12 @@ text-align: center;
 font-size: 12px;
 }
 
-
-
-.news{
-
- background-color:rgba(31,78,121,0.2);
-height: 250px;
-
-}
-.board{
-background-color:rgba(31,78,121,0.2);
-height: 250px;
-
-}
-#boardtab{
-position:relative;
-left : 30px;
-
-width: 80%;
-
-
-	background-color:white;
-	border: 1px solid #444444;
-	 border-collapse: collapse;
-	 
-}
-#boardtab > thead > tr{
-border-bottom: 1px solid;
-width: 100%;
-text-align: center;
-vertical-align: top;
-background-color: #82b2da;
-}
-
-
-
-#boardtab > tbody > tr>  td{
-text-align: left;
-border-bottom: 1px solid black;
-cursor: pointer;
-background-color: white;
-height: 40px;
-font-size: 15px;
-width: 100%;
-}
-
-#newstab{
-position:relative;
-left : 30px;
-height: 100px;
-width: 80%;
-	background-color:white;
-	border: 1px solid #444444;
-	 border-collapse: collapse;
-}
-#newstab >thead > tr{
-border-bottom: 2px solid;
-width: 100%;
-text-align: center;
-vertical-align: top;
-background-color: #82b2da;
-}
-
-#newstab >tbody > tr > td{
-text-align: left;
-border-bottom: 1px solid black;
-cursor: pointer;
-background-color: white;
-height: 40px;
-font-size: 15px;
-width: 100%;
-}
 .test{
 display: block;
 }
 .text_header{
 position: relative;
-top: 100px;
+top: 70px;
 
 font-size: 60px;
 color: white;
@@ -1099,13 +1150,17 @@ font-weight: bold;
 font-family: inherit;
 
 }
-
+.admin{
+cursor: pointer;
+}
   #pop{
     width:300px; height:400px; background:#3d3d3d; color:#fff;
     position:absolute; top:10px; left:500px; text-align:center;
     border:2px solid #000;
    }
-
+td{
+width: 60px;
+}
  .white_content{
         display: none;
         position: absolute;
@@ -1129,7 +1184,7 @@ font-family: inherit;
         position: absolute;
         top: 10%;
         left: 35%;
-        width: 30%;
+        width: 40%;
         height: 90%;
         
         border: 6px solid black;
@@ -1137,7 +1192,20 @@ font-family: inherit;
         z-index:1002;
         overflow: auto;
 }
-
+.popCharge{
+ 
+        display:none;
+        position: absolute;
+        top: 10%;
+        left: 35%;
+        width: 40%;
+        height: 90%;
+        
+        border: 6px solid black;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+}
 
 </style>
 </head>
@@ -1153,14 +1221,14 @@ font-family: inherit;
 				<li><a href="#">교통안내</a>
 					<ul>
 						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
-						<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+						<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 					</ul></li>
 				<li><a href="#">환경정보안내</a>
 					<ul>
-						<li><a href="BetterWay_eveinfoGuide">실내 공기질 정보 제공</a></li>
-						<li><a href="BetterWay_eveinfoGuide2">차량 별 냉방상태</a></li>
+						<li><a href="BetterWay_envinfoGuide">실내 공기질 정보 제공</a></li>
+						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
 					</ul></li>
 				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
 				<li><a href="BetterWay_suggestList">고객의 소리</a>
@@ -1175,7 +1243,44 @@ font-family: inherit;
 	
 	<section>
 		<article>
-		
+	<div class = "popCharge">
+	<header>
+<p>운임 안내</p>
+<input type="button" id = "close2" value="닫기" style="float: right; width: 40px; height: 40px;">
+</header>
+	<div class="bg">
+		<div class="popup">
+			 <div class="box_tit">
+        
+		        <div class="img_cov">
+		      
+		                  <div class="img_cov_con">
+		                  	홈>운임 안내 &nbsp;
+		                  	</div>
+		            </div>
+    	</div>
+			<div class="wrap">
+	
+			<table id = "con_tab" style="position: relative;  " >  
+			
+<tbody>
+ <c:forEach var="data" items="${list}">
+      <tr>
+         <td>${data.CATEGORY}</td>
+         <td>${data.TRAFFIC_CARD}</td>
+         <td>${data.D_TRAFFIC_CARD}</td>
+        
+      </tr>
+   </c:forEach>
+
+</tbody>
+</table>
+	</div>
+				
+			</div>
+			
+		</div>
+	</div>	
 <div class = "popdiv">
 		<header>
 		<p>역별 시간표</p>
@@ -1242,6 +1347,7 @@ font-family: inherit;
 			</div>
 			</div>
 		<div class ="con">
+		<form action="searchForm">
 			<div class="search_route">
 				<div class="search_route_box">
 					 <br />
@@ -1250,7 +1356,9 @@ font-family: inherit;
 				</div>
 				<input type="button" class="search1"   onclick="startM();" value="경로 검색"
 				style="background-color: #82B2DA;" />
-			</div><br/>
+			</div>
+			</form>
+			<br/>
 			<div class="realtime_train"
 			>
 				<div name = "realtime_train_box" class="realtime_train_box">
@@ -1271,7 +1379,7 @@ font-family: inherit;
 			<div class = "con_img_clock"> </div>
 			<div class = "con_search_txt">
 			<div class = "box_con_head">열차 시간표</div>
-			<br/> <div>호선,역별 시간표를 알려드립니다.</div>
+			<br/> <div>호선,역별 시간표를 안내합니다.</div>
 			</div>
 			</div>
 			<div name = "charge_guide"class = "charge_guide">
@@ -1288,7 +1396,7 @@ font-family: inherit;
 			<div class = "con_img_escalator"> </div>
 			<div class = "con_cov_txt">
 			<div class = "box_con_head">편의시설 안내</div>
-		<br/><div>역사내,외의 편의시설을 안내해드립니다.</div>
+		<br/><div>역사내,외의 편의시설을 안내합니다.</div>
 			
 			</div>
 			</div>
@@ -1296,7 +1404,7 @@ font-family: inherit;
 			<div class = "con_img_map"> </div>
 			<div class = "con_map_txt">
 			<div class = "box_con_head">노선도</div>
-			<br/> <div>노선도및 열차정보를 안내해드립니다.</div>
+			<br/> <div>노선도및 열차정보를 안내합니다.</div>
 			</div>
 			</div>
 			
@@ -1304,65 +1412,45 @@ font-family: inherit;
 			
 			</div>
 		<div class = "box4">
+		<div class = "colling">
+		 <div class = "con_img_colling"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">냉방상태 안내</div>
+			<br/> <div>호선별 약냉방칸을 안내합니다.</div>
+			</div>
+			</div>
+		
+		
 		<div class = "news">
-		<table id = "newstab"">
-		<thead>
-		<tr>
-		<th>지하철 뉴스<th/>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		</tbody>
-		</table>
-		</div>
-		<br/>
-		
+		  <div class = "con_img_news"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">지하철 뉴스</div>
+			<br/> <div>지하철 관련뉴스를 안내합니다.</div>
+			</div>
+			</div>
 		<div class = "board">
-		<table id = "boardtab">
-		<thead>
-		<tr> <th>게시판</th></tr>
-		</thead>
-		<tbody>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr><tr>
-		<td>내용</td>
-		</tr><tr>
-		<td>내용</td>
-		</tr><tr>
-		
-	  </tbody>
-		</table>
-		</div>	
+		 <div class = "con_img_board"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">건의 게시판</div>
+			<br/> <div>건의 게시판으로 이동합니다.</div>
+			</div>
+			</div>	
+		<div class = "lost">
+		  <div class = "con_img_lost"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">유실물 찾기</div>
+			<br/> <div>유실물 찾기로 이동합니다.</div>
+			</div>
+			</div>
 
 </div>
+
 </div>
 		</article>
 	</section>
 
 	<footer>
-		<p>Footer</p>
+		<div class = "admin">관리자 로그인</div>
 	</footer>
 
 </body>
