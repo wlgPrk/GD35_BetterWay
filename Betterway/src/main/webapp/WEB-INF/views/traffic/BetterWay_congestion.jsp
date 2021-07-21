@@ -349,9 +349,6 @@ $(document).ready(function(){
 	$("#selstation").select2();
 	$("#selsubLine").select2();
 	
-	var a = "";
-	var b = "";
-	
 	/*$("#search_btn").on("click",function(){
 		console.log($("#selstation").val());
 	});*/
@@ -378,6 +375,10 @@ $(document).ready(function(){
 			$("#selsubLine").change(function(){ 
 			//console.log($("#selsubLine").val());//1호선은 맨첨에 누르면 안눌리는 거 있음
 			
+			var a,b,c,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u = 0; //차트data에 넣을 것 평일
+			var a1,b1,c1,e1,f1,g1,h1,i1,j1,k1,l1,m1,n1,o1,p1,q1,r1,s1,t1,u1 = 0; //차트data에 넣을 것 토요일
+			var a2,b2,c2,e2,f2,g2,h2,i2,j2,k2,l2,m2,n2,o2,p2,q2,r2,s2,t2,u2 = 0; //차트data에 넣을 것 일요일
+			
 			$.ajax({
 				/*https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=15&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D ->(데이터 불러오기) */
 				url:"https://api.odcloud.kr/api/15071311/v1/uddi:a5158b81-27c7-4151-ba6c-b912a6f13d39?page=1&perPage=1668&serviceKey=3Fj2wrFDqsoyP7TUxDOYsEhXLRdqJy1f49oI894kJMGYhAOU1Gy6FUVTDyiWS101ShcJsItCxoHp3v6yOQ6cBw%3D%3D",
@@ -398,32 +399,86 @@ $(document).ready(function(){
 								     //console.log(d['5:30~ (%)']);
 									 a = d['5:30~ (%)'];
 									 b = d['6:30~ (%)'];
-									 console.log(a);
+									 c = d['7:30~ (%)'];
+									 e = d['8:30~ (%)'];
+									 f = d['9:30~ (%)'];
+									 g = d['10:30~ (%)'];
+									 h = d['11:30~ (%)'];
+									 i = d['12:30~ (%)'];
+									 j = d['13:30~ (%)'];
+									 k = d['14:30~ (%)'];
+									 l = d['15:30~ (%)'];
+									 m = d['16:30~ (%)'];
+									 n = d['17:30~ (%)'];
+									 o = d['18:30~ (%)'];
+									 p = d['19:30~ (%)'];
+									 q = d['20:30~ (%)'];
+									 r = d['21:30~ (%)'];
+									 s = d['22:30~ (%)'];
+									 t = d['23:30~ (%)'];
+									 u = d['24:30~ (%)'];
 								}else if(d.요일=="토요일"){
-									
+									 a1 = d['5:30~ (%)'];
+									 b1 = d['6:30~ (%)'];
+									 c1 = d['7:30~ (%)'];
+									 e1 = d['8:30~ (%)'];
+									 f1 = d['9:30~ (%)'];
+									 g1 = d['10:30~ (%)'];
+									 h1 = d['11:30~ (%)'];
+									 i1 = d['12:30~ (%)'];
+									 j1 = d['13:30~ (%)'];
+									 k1 = d['14:30~ (%)'];
+									 l1 = d['15:30~ (%)'];
+									 m1 = d['16:30~ (%)'];
+									 n1 = d['17:30~ (%)'];
+									 o1 = d['18:30~ (%)'];
+									 p1 = d['19:30~ (%)'];
+									 q1 = d['20:30~ (%)'];
+									 r1 = d['21:30~ (%)'];
+									 s1 = d['22:30~ (%)'];
+									 t1 = d['23:30~ (%)'];
+									 u1 = d['24:30~ (%)'];
 								}else if(d.요일=="일요일"){
-									
+									 a2 = d['5:30~ (%)'];
+									 b2 = d['6:30~ (%)'];
+									 c2 = d['7:30~ (%)'];
+									 e2 = d['8:30~ (%)'];
+									 f2 = d['9:30~ (%)'];
+									 g2 = d['10:30~ (%)'];
+									 h2 = d['11:30~ (%)'];
+									 i2 = d['12:30~ (%)'];
+									 j2 = d['13:30~ (%)'];
+									 k2 = d['14:30~ (%)'];
+									 l2 = d['15:30~ (%)'];
+									 m2 = d['16:30~ (%)'];
+									 n2 = d['17:30~ (%)'];
+									 o2 = d['18:30~ (%)'];
+									 p2 = d['19:30~ (%)'];
+									 q2 = d['20:30~ (%)'];
+									 r2 = d['21:30~ (%)'];
+									 s2 = d['22:30~ (%)'];
+									 t2 = d['23:30~ (%)'];
+									 u2 = d['24:30~ (%)'];
 								}
 							}
 				
-							console.log(a);
 			new Chart(document.getElementById("congestion_chart"), {
 				 type: 'line',
 				  data: {
 				    labels: ["5:30","6:30","7:30","8:30","9:30","10:30","11:30","12:30","13:30","14:30","15:30","16:30","17:30","18:30",
 				    		 "19:30","20:30","21:30","22:30","23:30","24:30"],
 				    datasets: [{ 
-				        data: [a,b,a,a,a,a,a,14,37,52],
+				        data: [a,b,c,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u],
 				        label: "평일",
 				        borderColor: "#3e95cd",
 				        fill: false
 				      }, { 
-				        data: [28,35,11,52,63,89,97,14,37,52],
+				        data: [a1,b1,c1,e1,f1,g1,h1,i1,j1,k1,l1,m1,n1,o1,p1,q1,r1,s1,t1,u1],
 				        label: "토요일",
 				        borderColor: "#8e5ea2",
 				        fill: false
 				      }, { 
-				        data: [16,17,17,10,20,27,40,57,65,73],
+				        data: [a2,b2,c2,e2,f2,g2,h2,i2,j2,k2,l2,m2,n2,o2,p2,q2,r2,s2,t2,u2],
 				        label: "일요일",
 				        borderColor: "#3cba9f",
 				        fill: false
@@ -436,10 +491,8 @@ $(document).ready(function(){
 				    }
 				  }
 			});//차트 끝
-			
 				}
 					}//성공시 for문 돌린거 마무리 
-			
 				},
 				error:function(requet,status,error){
 					console.log(error);
