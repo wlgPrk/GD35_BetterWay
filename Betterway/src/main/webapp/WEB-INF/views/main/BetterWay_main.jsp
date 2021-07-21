@@ -17,7 +17,7 @@ $(document).ready(function(){
 	var a = $("#selstation option:selected").val();
 	
 	$(".charge_guide").on("click", function(){
-		window.open('BetterWay_charge','팝업창',"width=700,height=1200,top="+(screen.availHeight/2-600)+",left="+(screen.availWidth/2-350)+"");
+		$(".popCharge").show();
 	
 	});
 	
@@ -38,6 +38,7 @@ $(document).ready(function(){
 	
 	$("#close").on("click", function(){
 		$(".popdiv").hide();
+		
 		$("#con_table").empty();
 		$("#dateBtn1").css("background-Color", "white");
 		$("#dateBtn2").css("background-Color", "white");
@@ -47,8 +48,9 @@ $(document).ready(function(){
 		
 		
 	});
-	
-
+	$("#close2").on("click", function(){
+		$(".popCharge").hide();
+	});
 	
 	$(".realtime_train_box").on("click", function () {
 		 window.open("https://smapp.seoulmetro.co.kr:58443/traininfo/traininfoUserView.do")
@@ -569,6 +571,7 @@ $("#con_table").html(html);
 
 </script>
 <link rel="stylesheet" type="text/css" href="resources/css/popup/test.css?after" />
+<link rel="stylesheet" type="text/css" href="resources/css/popup/popCharge.css?after" />
 <style type="text/css">
 * {
 	box-sizing: border-box;
@@ -662,7 +665,7 @@ nav ul {
 }
 
 article {
-	height: 1080px;
+	height: 1200px;
 	margin: 0px auto;
 	width: 1440px;
 	
@@ -723,7 +726,7 @@ display: inline-block;
 }
 .realtime_train {
 	position: relative;
-	top : 50px;
+	top : -350px;
 	height: 150px;
 	width : 360px;
 	display: inline-block;
@@ -731,7 +734,7 @@ display: inline-block;
 }
 .center_box {
 	position: relative;
-	top:-30px;
+	top:-400px;
 	text-align: center;
 	left : 70px;
 	width : 600px;
@@ -745,11 +748,11 @@ display: inline-block;
 .box4 {
 	position: relative;
 	text-align: center;
-	
+	top: -40px;
 	
 	left: 150px;
 	width : 300px;
-	height:500px;
+	
 	display: inline-block;
 	background-color:rgba(31,78,121,0.3);
 	
@@ -787,6 +790,12 @@ display: inline-block;
 }
 .box_con_head{
 font-size: 16px;
+font-weight: bold;
+border: 1px solid silver;
+background-color: #82b2da;
+}
+.box_con_head2{
+font-size: 14px;
 font-weight: bold;
 border: 1px solid silver;
 background-color: #82b2da;
@@ -838,6 +847,20 @@ top:60px;
 margin:10px;
 height:150px;
 width:270px;
+cursor: pointer;
+border:4px solid silver;
+
+background-color: white;
+}
+.timeguide{
+
+display: inline-block;
+position:relative;
+text-align:center;
+
+margin:25px;
+height:100px;
+width:200px;
 cursor: pointer;
 border:4px solid silver;
 
@@ -897,6 +920,18 @@ background-position: center;
   background-size: cover;
 width : 100px;
 height: 100px;
+
+
+}
+.con_img_colling{
+position:relative;
+display:inline-block;
+background-image :url("resources/images/aircon.png");
+background-position: center;
+
+  background-size: cover;
+width : 80px;
+height: 80px;
 
 
 }
@@ -971,10 +1006,20 @@ background-color: white;
 font-size: 15px;
 border: 1px solid silver;
 }
+.con_search_txt2{
+display:inline-block;
+position:relative;
+top:-12px;
+width : 100px;
+height: 85px;
+background-color: white;
+font-size: 12px;
+border: 1px solid silver;
+}
 .con_map_txt{
 display:inline-block;
 position:relative;
-top :-5px;
+top : -25px;
 width : 130px;
 height: 100px;
 background-color: white;
@@ -1019,70 +1064,17 @@ background-color:rgba(31,78,121,0.2);
 height: 250px;
 
 }
-#boardtab{
-position:relative;
-left : 30px;
-
-width: 80%;
-
-
-	background-color:white;
-	border: 1px solid #444444;
-	 border-collapse: collapse;
-	 
-}
-#boardtab > thead > tr{
-border-bottom: 1px solid;
-width: 100%;
-text-align: center;
-vertical-align: top;
-background-color: #82b2da;
-}
 
 
 
-#boardtab > tbody > tr>  td{
-text-align: left;
-border-bottom: 1px solid black;
-cursor: pointer;
-background-color: white;
-height: 40px;
-font-size: 15px;
-width: 100%;
-}
 
-#newstab{
-position:relative;
-left : 30px;
-height: 100px;
-width: 80%;
-	background-color:white;
-	border: 1px solid #444444;
-	 border-collapse: collapse;
-}
-#newstab >thead > tr{
-border-bottom: 2px solid;
-width: 100%;
-text-align: center;
-vertical-align: top;
-background-color: #82b2da;
-}
 
-#newstab >tbody > tr > td{
-text-align: left;
-border-bottom: 1px solid black;
-cursor: pointer;
-background-color: white;
-height: 40px;
-font-size: 15px;
-width: 100%;
-}
 .test{
 display: block;
 }
 .text_header{
 position: relative;
-top: 100px;
+top: 70px;
 
 font-size: 60px;
 color: white;
@@ -1105,7 +1097,9 @@ font-family: inherit;
     position:absolute; top:10px; left:500px; text-align:center;
     border:2px solid #000;
    }
-
+td{
+width: 60px;
+}
  .white_content{
         display: none;
         position: absolute;
@@ -1129,7 +1123,7 @@ font-family: inherit;
         position: absolute;
         top: 10%;
         left: 35%;
-        width: 30%;
+        width: 40%;
         height: 90%;
         
         border: 6px solid black;
@@ -1137,7 +1131,20 @@ font-family: inherit;
         z-index:1002;
         overflow: auto;
 }
-
+.popCharge{
+ 
+        display:none;
+        position: absolute;
+        top: 10%;
+        left: 35%;
+        width: 40%;
+        height: 90%;
+        
+        border: 6px solid black;
+        background-color: white;
+        z-index:1002;
+        overflow: auto;
+}
 
 </style>
 </head>
@@ -1175,7 +1182,44 @@ font-family: inherit;
 	
 	<section>
 		<article>
-		
+	<div class = "popCharge">
+	<header>
+<p>운임 안내</p>
+<input type="button" id = "close2" value="닫기" style="float: right; width: 40px; height: 40px;">
+</header>
+	<div class="bg">
+		<div class="popup">
+			 <div class="box_tit">
+        
+		        <div class="img_cov">
+		      
+		                  <div class="img_cov_con">
+		                  	홈>운임 안내 &nbsp;
+		                  	</div>
+		            </div>
+    	</div>
+			<div class="wrap">
+	
+			<table id = "con_tab" style="position: relative;  " >  
+			
+<tbody>
+ <c:forEach var="data" items="${list}">
+      <tr>
+         <td>${data.CATEGORY}</td>
+         <td>${data.TRAFFIC_CARD}</td>
+         <td>${data.D_TRAFFIC_CARD}</td>
+        
+      </tr>
+   </c:forEach>
+
+</tbody>
+</table>
+	</div>
+				
+			</div>
+			
+		</div>
+	</div>	
 <div class = "popdiv">
 		<header>
 		<p>역별 시간표</p>
@@ -1271,7 +1315,7 @@ font-family: inherit;
 			<div class = "con_img_clock"> </div>
 			<div class = "con_search_txt">
 			<div class = "box_con_head">열차 시간표</div>
-			<br/> <div>호선,역별 시간표를 알려드립니다.</div>
+			<br/> <div>호선,역별 시간표를 안내합니다.</div>
 			</div>
 			</div>
 			<div name = "charge_guide"class = "charge_guide">
@@ -1288,7 +1332,7 @@ font-family: inherit;
 			<div class = "con_img_escalator"> </div>
 			<div class = "con_cov_txt">
 			<div class = "box_con_head">편의시설 안내</div>
-		<br/><div>역사내,외의 편의시설을 안내해드립니다.</div>
+		<br/><div>역사내,외의 편의시설을 안내합니다.</div>
 			
 			</div>
 			</div>
@@ -1296,7 +1340,7 @@ font-family: inherit;
 			<div class = "con_img_map"> </div>
 			<div class = "con_map_txt">
 			<div class = "box_con_head">노선도</div>
-			<br/> <div>노선도및 열차정보를 안내해드립니다.</div>
+			<br/> <div>노선도및 열차정보를 안내합니다.</div>
 			</div>
 			</div>
 			
@@ -1304,57 +1348,27 @@ font-family: inherit;
 			
 			</div>
 		<div class = "box4">
-		<div class = "news">
-		<table id = "newstab"">
-		<thead>
-		<tr>
-		<th>지하철 뉴스<th/>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		</tbody>
-		</table>
-		</div>
-		<br/>
+		<div class = "timeguide">
+		 <div class = "con_img_colling"> </div>
+			<div class = "con_search_txt2">
+			<div class = "box_con_head2">냉방상태 안내</div>
+			<br/> <div>호선별 약냉방칸을 안내합니다.</div>
+			</div>
+			</div>
 		
-		<div class = "board">
-		<table id = "boardtab">
-		<thead>
-		<tr> <th>게시판</th></tr>
-		</thead>
-		<tbody>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr>
-		<tr>
-		<td>내용</td>
-		</tr><tr>
-		<td>내용</td>
-		</tr><tr>
-		<td>내용</td>
-		</tr><tr>
 		
-	  </tbody>
-		</table>
-		</div>	
+		<div class = "timeguide">
+		 
+			
+			</div>
+		<div class = "timeguide">
+		 
+			
+			</div>	
+		<div class = "timeguide">
+		 
+			
+			</div>
 
 </div>
 </div>
