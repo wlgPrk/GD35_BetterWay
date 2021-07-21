@@ -7,8 +7,7 @@
 <title>건의게시판</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript">
-</script>
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
 
 <style type="text/css">
 
@@ -412,6 +411,8 @@ cursor:pointer;
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
+		src="resources/script/popup/envinfoGuide.js?after"></script>
+<script type="text/javascript" 
 src="resources/script/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -448,7 +449,7 @@ $(document).ready(function(){
 	
 	//실내공기정보제공
 	$("#air").on("click",function(){
-		location.href="BetterWay_envinfoGuide"
+		envinfoGuide();
 	});
 	
 	//차량별 냉방상태

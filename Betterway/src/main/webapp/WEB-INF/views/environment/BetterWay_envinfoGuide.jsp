@@ -12,7 +12,7 @@ body {
 	font-size: 18px;
 
 }
-header {
+.header_envi {
     top: 0;
     left: 0;
     right: 0;
@@ -25,21 +25,7 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-footer{
-   top: 0;
-    left: 0;
-    right: 0;
-    height: 75px;
-	padding-left:20px;
-    color: white;
-    background: #023459;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.con {
+.con_envi {
 	width: 100%;
 	height: 100%;
 }
@@ -47,7 +33,7 @@ footer{
 
 
 
-.wrap {
+.wrap_envi {
 	width: 460px;
     margin: 0px auto;
     margin-top: 45px;
@@ -55,7 +41,7 @@ footer{
 	background-color: #fff;
 }
 
-.station_title {
+.station_title_envi {
 	font-size: 14px;
 	font-weight:bold;
     height: 26px;
@@ -66,19 +52,19 @@ footer{
 
 }
 
-a {
+.a_envi {
 		text-decoration: none;
 		color: #fff;
 	}
 
- .box{
+ .box_envi{
   font-size: 20px;
   border-radius: 5px 5px 5px 5px;
   margin-left: 5px;
   }
 
   
-.sub_con {
+.sub_con_envi {
 	display: flex;
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -112,11 +98,11 @@ a {
 	text-align: right;
 }
 
-.val_box{
+.val_box_envi{
     flex: 1;
     padding:30px 30px 30px 30px;
 }
-table, td {
+.table_envi, .td_envi {
   width:300px;
   height:30px;
   border-collapse : collapse;
@@ -127,7 +113,7 @@ table, td {
 
 };
 
-#val{
+#val_envi{
 width:30px;
   height:30px;
   background-color: #fff;
@@ -137,7 +123,7 @@ width:30px;
 font-size:13px;
 margin-top: 5px;
 }
-#val_table{
+#val_table_envi{
 
 margin-top: 60px;
 margin-left:50px;
@@ -145,19 +131,19 @@ margin-left:50px;
 #air_guide_btn:hover{
 text-decoration: underline;
 }
-#select_station,#sName{
+#select_station_envi,#sName_envi{
 width:165px;
  height: 30px;
 }
-#val,#vals{
+#val_envi,#vals_envi{
 font-size: 15px;
 
 }
-#vals{
+#vals_envi{
 height:140px;
 font-size:15px;
 }
-#air_search{
+#air_search_envi{
 background-color: #82b2da;
 color:white;
     width: 50px;
@@ -166,7 +152,7 @@ color:white;
     color: white;
 
 }
-label{
+.label_envi{
 font-size:15px;
 font-weight: bold;
 }
@@ -176,10 +162,10 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 $(document).ready(function(){
 
 	
-	$("#sName").on("change", function() {
+	$("#sName_envi").on("change", function() {
 		var html="";
-		var params = $("#SearchForm").serialize();	
-		console.log(st);
+		var params = $("#SearchForm_envi").serialize();	
+
 		$.ajax({
 			url:"envinfoGuide",
 			type:"post", //전송방식(get,post)
@@ -191,11 +177,11 @@ $(document).ready(function(){
 				for(var d of res.data) {
 					//html += "<option id=\"select_station\"  name=\"subway_station_name\">"+d.SUBWAY_STATION_NAME+"</option>";
 
-					html += "<option id=\"select_station\">"+d.SUBWAY_STATION_NAME+"</option>";
+					html += "<option id=\"select_station_envi\">"+d.SUBWAY_STATION_NAME+"</option>";
 					
 				}
 		
-				$("#select_station").html(html);//두번째셀렉트옵션에 걸러진 값인 역들을 넣어줌
+				$("#select_station_envi").html(html);//두번째셀렉트옵션에 걸러진 값인 역들을 넣어줌
 			
 	
 				},
@@ -207,11 +193,10 @@ $(document).ready(function(){
 	
 
 	//검색버튼
-	$("#air_search").on("click", function() {
+	$("#air_search_envi").on("click", function() {
 		var html="";
-		$("#sn").val($("#sName").val());
-		$("#st").val($("#select_station").val());
-		console.log(st);
+		$("#sn_envi").val($("#sName_envi").val());
+		$("#st_envi").val($("#select_station_envi").val());
 		$.ajax({
 			/* http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/요청시작/요청종료 ->(259개 데이터 불러오기) */
 			url:"http://openapi.seoul.go.kr:8088/48766550483131313131334b6d6e6666/xml/airPolutionInfo/1/259",
@@ -233,17 +218,17 @@ $(document).ready(function(){
 					
 					var html = "";
 					//$("#api_data").append(VIEW_TEXT);//데이터보려고 둠
-					if($("#sn").val()==LINE&&$("#st").val()==AREA_NM){
+					if($("#sn_envi").val()==LINE&&$("#st_envi").val()==AREA_NM){
 						console.log("aaaa");
 				
-						html += "<div id=\"val\"><b>호선:</b>"+sn.value+"호선 </br></br>";
-						html += "<b>역:</b>"+st.value+"역 </br></br>";
+						html += "<div id=\"val\"><b>호선:</b>"+sn_envi.value+"호선 </br></br>";
+						html += "<b>역:</b>"+st_envi.value+"역 </br></br>";
 						html += "<b>초미세먼지 농도:</b>"+PMq +" ㎍/㎥</br></br>";
 						html += "<b>측정시간:</b>"+CHECKDATE+"</div>";	
-						$("#val").html(html);
+						$("#val_envi").html(html);
 					}
 				//	$("#vals").hide(html);
-					  document.getElementById("vals").style.display ='none';
+					  document.getElementById("vals_envi").style.display ='none';
 				});
 			
 			},
@@ -260,24 +245,24 @@ $(document).ready(function(){
 
 </head>
 <body>
-<header>
-<a>실내 공기질 정보 안내</a>
+<header class="header_envi">
+<a class="a_envi">실내 공기질 정보 안내</a>
 </header>
-		<div class="con">
-			 <div class="box_title">
+		<div class="con_envi">
+			 <div class="box_title_envi">
         
-		        <div class="img_cover">
+		        <div class="img_cover_envi">
 		      
-		                  <div class="img_cover_con">
+		                  <div class="img_cover_con_envi">
 		                  	홈>환경정보 안내>실내 공기질 정보 &nbsp;
 		                  </div>
 		         </div>
     		</div>	
-			<div class="wrap">
-			<div class="top_title" >
-				<form action="#" id="SearchForm" method="post" >
-				 <label>호선</label>
-			        <select id="sName" name="sName">
+			<div class="wrap_envi">
+			<div class="top_title_envi" >
+				<form action="#" id="SearchForm_envi" method="post" >
+				 <label class="label_envi_envi">호선</label>
+			        <select id="sName_envi" name="sName">
 			            <option>--호선을 선택하세요--</option>
 			            <option value="1">1호선</option>
 			            <option value="2">2호선</option>
@@ -290,38 +275,39 @@ $(document).ready(function(){
 			  
 			        </select>
 			     <!--쿼리 받아 뿌려줄거임 -->
-			        <label>역</label>
-			        <select id="select_station" name="station">
+			        <label class="label_envi">역</label>
+			        <select id="select_station_envi" name="station">
 			        <option>--역을 선택하세요--</option>
 			        </select>
-				<input type="button" id="air_search"value="검색">
-					<input type="hidden" id="sn" name="sName" />
-					<input type="hidden" id="st" name="select_station" />
+				<input type="button" id="air_search_envi"value="검색">
+					<input type="hidden" id="sn_envi" name="sName" />
+					<input type="hidden" id="st_envi" name="select_station" />
 
 				</form>
 			</div>
 		
 		
-			<div class="sub_con" >
-			    <div class="val_box" style="border:1px solid #B2A59F;">
+			<div class="sub_con_envi" >
+			    <div class="val_box_envi" style="border:1px solid #B2A59F;">
 					
-					<div id="val" >
+					<div id="val_envi" >
 					
 					</div>
-					<div id="vals">
+					<div id="vals_envi">
 
 					**실내공기질 측정기가 설치되어 있는 역사의<br/> 실내공기질 측정 정보를 매시간 단위로 제공합니다.
 					</div>
 					
-					<table id="val_table">
+					<table id="val_table_envi" class="table_envi">
 						<tr>
-							<td style="background: #4641D9; color:#fff;">좋음</td>
-							<td style="background: #47C83E; color:#fff;">보통</td>
-							<td style="background: #CCA63D; color:#fff;">나쁨</td>
-							<td style="background: #CC3D3D; color:#fff;">매우나쁨</td>
+							<td class="td_envi" style="background: #4641D9; color:#fff;">좋음</td>
+							<td class="td_envi" style="background: #47C83E; color:#fff;">보통</td>
+							<td class="td_envi" style="background: #CCA63D; color:#fff;">나쁨</td>
+							<td class="td_envi" style="background: #CC3D3D; color:#fff;">매우나쁨</td>
 						</tr>
 						<tr><th colspan="4" style="font-weight:normal; font-size:8px; padding-top:5px;">	
-						*0~30㎍/m³'좋음' 31~80㎍/m³'보통'<br/> 81~150㎍/m³'나쁨' 151㎍/㎥ 초과 '매우 나쁨'<br/><br/><a id="air_guide_btn"href="BetterWay_envinfoGuide2" style="font-size: 15px; color:#000;">▷ 실내 공기질 유지 기준 안내 보러가기</a></th></tr>
+						*0~30㎍/m³'좋음' 31~80㎍/m³'보통'<br/> 81~150㎍/m³'나쁨' 151㎍/㎥ 초과 '매우 나쁨'<br/><br/><a  class="a_envi" id="air_guide_btn"href="BetterWay_envinfoGuide2" style="font-size: 15px; color:#000;">
+						▷ 실내 공기질 유지 기준 안내 보러가기</a></th></tr>
 					</table>			
 			    </div>
 			</div><!-- sub_con end -->
