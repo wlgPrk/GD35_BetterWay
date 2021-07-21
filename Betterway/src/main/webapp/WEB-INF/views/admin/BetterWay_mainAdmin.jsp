@@ -83,9 +83,8 @@ $(document).ready(function(){
 
 	//로그아웃
 	$(".logoutBtn").on("click",function(){
-		console.log("작동");
 		location.href = "BetterWay_logoutAdmin";
-	});//logout btn end
+	});
 	
 	
 //편의시설관리

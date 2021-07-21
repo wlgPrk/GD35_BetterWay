@@ -27,7 +27,11 @@ public class CommonAOP {
 	@Pointcut("execution(* com.gdj35.betterway..Admin_Controller.*(..))"
 			+"&& !execution(* com.gdj35.betterway..Admin_Controller.BetterWay_login*(..))"
 			+"&& !execution(* com.gdj35.betterway..Admin_Controller.BerrerWay_logout*(..))"
-			+"&& !execution(* com.gdj35.betterway..Admin_Controller.*s(..))")
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.*s(..))"
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.BetterWay_menuPerAdmin(..))" 
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.infoAdmin_List(..))"
+			+"&& !execution(* com.gdj35.betterway..Admin_Controller.infoAdminguide_List(..))" )
+	
 	public void testAOP() {}
 	
 

@@ -45,7 +45,7 @@ body{
 }
 /*본문 메뉴 큰틀*/
 .con_box{
-margin-top:140px;
+
 margin-left:100px;
 display:inline-block;
 vertical-align:top;
@@ -247,7 +247,22 @@ table tr td:nth-child(3){
 cursor:pointer;
 
 }
+.logoutBtn{
+position: relative;
+left:1000px;
+width:100px;
+height:30px;
+background-color: f0f0f5;
+border-radius: 5px;
+border: none;
+}
 
+#right_sub span{
+position: relative;
+left:1000px;
+
+
+}
 
 
 </style>
@@ -261,6 +276,11 @@ cursor:pointer;
 $(document).ready(function(){
 	
 
+	//로그아웃
+	$(".logoutBtn").on("click",function(){
+		location.href = "BetterWay_logoutAdmin";
+	});
+	
 	//유저 txt유지 
 		if("${param.userSearchTxt}" != ""){
 	$("#userSearchTxt").val("${param.userSearchTxt}");
@@ -723,13 +743,12 @@ function noticeCheckDel(){
 
 	<div id="left">
 		<div id="left_sub">
-		<div>편의시설관리</div>
-		<div>차량별냉방상태 관리</div>
-		<div>건의게시판 관리</div>
-		<div>역정보 관리</div>
-		<div>호선 관리</div>
+
 		</div>
 	</div>
+	
+			<div id ="right_sub">		<span>${sID}</span>
+		<input type="button" class="logoutBtn" value="로그아웃"/></div>
 	<div id="right">
 	<form action="#" id="actionForm" method="post">
 <div class="con_box">
@@ -940,7 +959,8 @@ function noticeCheckDel(){
 </div><!-- con_box end -->
 	</form>
 	</div>
-		<div id ="right_sub"></div>
+		
+
 	
 </body>
 </html>

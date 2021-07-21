@@ -7,9 +7,10 @@ function per(){
 		dataType: "json",
 		success: function(res) {
 			menuList(res.per);
+		
 		},
 		error: function(request, status, error) {
-			console.log(error);
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});//ajax end
 }//perList end
@@ -29,8 +30,12 @@ function menuList(per){
 	}
 	}
 	
+	 
+
+	
 	$("a").css("color","black");
 	$("a").css("text-decoration","none");
 	
-}
+	
+};
 //--------권한끝------

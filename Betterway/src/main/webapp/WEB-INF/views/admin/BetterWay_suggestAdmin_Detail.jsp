@@ -193,7 +193,21 @@ position: absolute;
 left:1020px;
 }
 
+.logoutBtn{
+position: relative;
+left:1000px;
+width:100px;
+height:30px;
+background-color: f0f0f5;
+border-radius: 5px;
+border: none;
+}
 
+#right_sub span{
+position: relative;
+left:1000px;
+font-size:15px;
+}
 
 
 
@@ -204,7 +218,10 @@ left:1020px;
 		src="resources/script/popup/per.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	//로그아웃
+	$(".logoutBtn").on("click",function(){
+		location.href = "BetterWay_logoutAdmin";
+	});
 	
 	
 //삭제된글일시 답변버튼없에기
@@ -354,6 +371,9 @@ function commDels(){
 		<div>호선 관리</div>
 		</div>
 	</div>
+	
+				<div id ="right_sub">		<span>${sID}</span>
+		<input type="button" class="logoutBtn" value="로그아웃"/></div>
 	<div id="right">
 <div class="con_box">
 <div class="title_box_1">
@@ -407,7 +427,7 @@ function commDels(){
 	<input type="hidden" id="userPage" name="userPage" value="${param.userPage}"/>
 	<input type="hidden" id="comm_no" name="comm_no" >
 	</form>
-		<div id ="right_sub"></div>
+	
 	</div>
 </body>
 </html>

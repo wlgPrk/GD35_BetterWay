@@ -52,6 +52,7 @@ body{
 	border: none;
 	padding : 6px;
 	border-radius: 5pt;	
+	
 }
 #right_sub2A{
 
@@ -72,13 +73,12 @@ body{
 	margin-top:10px;
 	padding: 10px;
 }
-#right_sub2A > input{
+#right_sub2A input{
 	font-size: 15pt;
 	border: none;
 	padding : 6px;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: 5px;
 	margin-top:10px;
 	padding: 10px;
 }
@@ -109,6 +109,17 @@ float:left;
 width:50%;
 float:left;
 }
+
+.logoutBtn{
+position: relative;
+
+left:1200px;
+}
+
+#right_sub2A span{
+position: relative;
+left:1200px;
+}
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
@@ -117,6 +128,11 @@ float:left;
 <script type="text/javascript">
 $(document).ready(function(){
 	per();
+	
+	//·Î±×¾Æ¿ô
+	$(".logoutBtn").on("click",function(){
+		location.href = "BetterWay_logoutAdmin";
+	});
 	
 	reloadList();
 	$("#writeBtnA").on("click",function(){
@@ -224,7 +240,9 @@ function reloadList(){
 			<form action="#" id="actionFormA" method="post">
 			<input type="hidden" id="weak_cooling_car_no" name="weak_cooling_car_no"/>
 			<input type="button" id="writeBtnA" value="¾à³Ã¹æÄ­ÇàÃß°¡" />
+			<span>${sID}</span><input type="button" class="logoutBtn" value="·Î±×¾Æ¿ô">
 			</form>		
+			
 		</div>
 		
 		<div id ="right_sub2B">

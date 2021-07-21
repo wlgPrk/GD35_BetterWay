@@ -16,14 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.betterway.common.bean.PagingBean;
 import com.gdj35.betterway.common.service.IPagingService;
-import com.gdj35.betterway.web.subwayNews.Service.ApiNewsService;
+import com.gdj35.betterway.web.subwayNews.Service.NewsService;
 
 @Controller
 public class subwayNews_Controller {
 	
 	
 	@Autowired
-	ApiNewsService newsService;
+	NewsService newsService;
 	
 	@Autowired
 	IPagingService iPagingService;
@@ -51,7 +51,7 @@ public class subwayNews_Controller {
 	
 	
 	//지하철뉴스 목록
-	@RequestMapping(value="/BetterWay_subWayNewss",
+	@RequestMapping(value="/BetterWay_subWayNewsLists",
 			method = RequestMethod.POST,
 			produces = "text/json;charset=UTF-8")
 	@ResponseBody
@@ -67,6 +67,9 @@ public class subwayNews_Controller {
 		//현재페이지
 		int page = Integer.parseInt(params.get("page"));
 		
+		//기사몇개 가져오는지 
+		int load= 10;
+		
 		//총게시글수
 		int cnt = 300;
 		
@@ -81,7 +84,7 @@ public class subwayNews_Controller {
 		String pMax =Integer.toString(pb.getMaxPcount());
 		
 		//목록취득
-		List<HashMap<String, String>> list=newsService.newsApi(start);
+		List<HashMap<String, String>> list=newsService.newsApi(start,load);
 	
 		
 		

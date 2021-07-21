@@ -125,6 +125,10 @@ src="resources/script/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	$(".logoutBtn").on("click",function(){
+		location.href = "BetterWay_logoutAdmin";
+	});
+	
 	CKEDITOR.replace("con",{ //아이디 찾음 
 		resize_enabled : false,
 		language :"ko",
@@ -194,6 +198,9 @@ $(document).ready(function(){
 		<div>호선 관리</div>
 		</div>
 	</div>
+	
+						<div id ="right_sub">		<span>${sID}</span>
+		<input type="button" class="logoutBtn" value="로그아웃"/></div>
 	<div id="right">
 	<form action="#" id="addForm" method="post">
 <div class="con_box">
@@ -218,7 +225,6 @@ $(document).ready(function(){
 	<input type="hidden" id="userPage" name="userPage" value="${param.userPage}"/>
 
 	</form>
-		<div id ="right_sub"></div>
 	</div>
 </body>
 </html>

@@ -17,15 +17,15 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 @Service
-public class ApiNewsService   {
+public class NewsService   {
 
-    public List<HashMap<String, String>> newsApi(String start) throws ParseException {
+    public List<HashMap<String, String>> newsApi(String start,int load) throws ParseException {
         String clientId = "mrLDqNvTCwR8fIu2D0b2"; //애플리케이션 클라이언트 아이디값"
         String clientSecret = "p7BZTVCNdp"; //애플리케이션 클라이언트 시크릿값"
 
         String text = "";
         try {
-            text = URLEncoder.encode("지하철", "UTF-8") +"&display=11&start="+ start +"&sort=date";
+            text = URLEncoder.encode("지하철", "UTF-8") +"&display="+ load +"&start="+ start +"&sort=date";
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("검색어 인코딩 실패",e);
         }
@@ -42,14 +42,7 @@ public class ApiNewsService   {
 		
 		JSONObject univ = (JSONObject)parser.parse(responseBody);
 		
-		//테스트출력
-		//System.out.println(univ.toJSONString());
-		
 		JSONArray arr = (JSONArray)univ.get("items");
-		
-		//테스트출력
-		//System.out.println(arr.toJSONString());
-		
 		
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		for(int i=0;i<arr.size();i++){

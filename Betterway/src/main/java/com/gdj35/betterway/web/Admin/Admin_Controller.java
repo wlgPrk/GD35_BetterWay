@@ -72,6 +72,7 @@ public class Admin_Controller {
 			params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			List<HashMap<String, String>> data= iAdmin_Service.getPer(params);
 			modelMap.put("per",data);
+			System.out.println(data +"작동ㅇㅇㅇㅇㅇ");
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception

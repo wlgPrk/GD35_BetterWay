@@ -157,6 +157,24 @@ color:black;
 text-decoration: none;
 }
 
+.logoutBtn{
+position: relative;
+left:1000px;
+width:100px;
+height:30px;
+background-color: f0f0f5;
+border-radius: 5px;
+border: none;
+}
+
+#right_sub span{
+position: relative;
+left:1000px;
+font-size:15px;
+
+
+}
+
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -166,7 +184,9 @@ text-decoration: none;
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	
+	$(".logoutBtn").on("click",function(){
+		location.href = "BetterWay_logoutAdmin";
+	});
 	
 	CKEDITOR.replace("con",{ //아이디 찾음 
 		resize_enabled : false,
@@ -236,6 +256,8 @@ $(document).ready(function(){
 		<div>호선 관리</div>
 		</div>
 	</div>
+					<div id ="right_sub">		<span>${sID}</span>
+		<input type="button" class="logoutBtn" value="로그아웃"/></div>
 	<div id="right">
 	
 		
@@ -284,7 +306,6 @@ $(document).ready(function(){
 	
 	
 	
-		<div id ="right_sub"></div>
 	</div>
 </body>
 </html>

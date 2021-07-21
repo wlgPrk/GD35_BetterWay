@@ -38,6 +38,7 @@ $(document).ready(function(){
 		$("#goForm").attr("action", "BetterWay_cycleAdmin");
 	    $("#goForm").submit();
 	});
+	
 
 	//$("#updateBtn").on("click",function(){
 	//	$("#goForm").attr("action", "BetterWay_cycleAdmin_Update");

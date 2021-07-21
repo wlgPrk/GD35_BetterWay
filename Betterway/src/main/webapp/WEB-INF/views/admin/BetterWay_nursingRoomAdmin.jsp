@@ -87,6 +87,16 @@ th{
 	background-color: #e0e0eb;
 }
 
+.logoutBtn{
+position: relative;
+left:850px;
+}
+
+#right_sub span{
+position: relative;
+left:850px;
+}
+
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
@@ -97,6 +107,12 @@ $(document).ready(function(){
 	per();
 	
 	reloadList();
+	
+	//로그아웃
+	$(".logoutBtn").on("click",function(){
+		location.href = "BetterWay_logoutAdmin";
+	});
+	
 	//상단 버튼 페이지이동
 	$("#happyAdmin").on("click",function(){
 		$("#actionForm").attr("action","BetterWay_happyAdmin");
@@ -182,6 +198,8 @@ function reloadList(){
 			<input type="button" id="cycleAdmin" value="자전거보관함" />
 			<input type="button" id="wheelchairAdmin" value="연단간격" />
 			<input type="button" id="" value="화장실" />
+			<span>${sID}</span>
+			<input type="button" class="logoutBtn" value="로그아웃" />
 		</div>
 		<div id ="right_sub2">
 			<form action="#" id="actionForm" method="post">

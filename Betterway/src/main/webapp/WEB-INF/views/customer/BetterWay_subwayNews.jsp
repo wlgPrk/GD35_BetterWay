@@ -463,7 +463,7 @@ function reloadList(){
 
 	//ajax
 	$.ajax({
-		url: "BetterWay_subWayNewss", 
+		url: "BetterWay_subWayNewsLists", 
 		type: "post", 
 		dataType: "json",
 		data: params, 
