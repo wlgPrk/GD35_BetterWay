@@ -40,6 +40,11 @@ public class subLineInfo_Controller {
 		mav.setViewName("traffic/BetterWay_subLineBusstation");
 		return mav;
 	}
+	@RequestMapping(value="/testtest")
+	public ModelAndView testtest(ModelAndView mav) {
+		mav.setViewName("traffic/testtest");
+		return mav;
+	}
 
 	/*
 	 * @RequestMapping(value="/BetterWay_subLineBusstation") public ModelAndView

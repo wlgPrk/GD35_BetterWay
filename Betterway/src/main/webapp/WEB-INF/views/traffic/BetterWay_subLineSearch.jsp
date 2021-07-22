@@ -228,6 +228,7 @@ a{
     width: 275px;
     height: 29.7px;
 }
+
 table{
 /* width:250px;
 height:200px; */
@@ -255,7 +256,7 @@ width:50px;
 	<script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
-	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f7722bc2ddde46bcdead0ff30caa3358"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f7722bc2ddde46bcdead0ff30caa3358"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
@@ -264,28 +265,25 @@ width:50px;
 	
 	$(document).ready(function(){
 		
+		var selS="${param.selS}";
+		console.log(selS);
+		var selE="${param.selE}";
+		console.log(selE);
+	
 		$("#select_LatLngD").select2();
 		$("#select_LatLngA").select2();
+		$("#weatherIcon").hide();
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(37.5647, 126.9771), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };
 
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		
-		$("#weatherIcon").hide();
-		$("img[name='subway']").imagezoomsl({
-			zoomrange: [1, 12],
-			zoomstart: 4, //시작 줌
-			innerzoom: true, //이미지 내 줌으로 전환
-			magnifierborder: "none" //두께 없음
-		});
-		
+	
 		$("#realtime_search").on("click",function(){
-			
+		
 			var html="";
 			var params = $("#SearchForm").serialize();	
 			$("#sD").val($("#select_LatLngD").val()); //출발역	
@@ -294,7 +292,11 @@ width:50px;
 			$("#sA").val($("#select_LatLngA").val()); //도착역
 			var endX;
 			var endY;
-			
+			/* if(selS!="null"){
+				$("#sD").val("${param.selS}".val()); //출발역	
+				$("#sA").val("${param.selE}".val()); //도착역
+				console.log("AAA");
+			} */
 			
 			$.ajax({
 					url:"getLatLngD",
@@ -369,7 +371,14 @@ width:50px;
 														$("#route").html(html);
 													
 													 }); 	
+												 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+												    mapOption = { 
+												        center: new kakao.maps.LatLng(endY, endX), // 지도의 중심좌표
+												        level: 3 // 지도의 확대 레벨
+												    };
 
+												// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+												var map = new kakao.maps.Map(mapContainer, mapOption); 
 												 getWeather();
 												 },
 												error:function(requet,status,error){
@@ -401,10 +410,10 @@ width:50px;
 													}
 												});
 											}
-
+									
 											//날씨 아작스 불러오기
 										
-								
+											
 								},//success end 도착역
 							error:function(request,status,error){//실패시 다음 함수 실행
 								console.log(error);
@@ -453,15 +462,16 @@ width:50px;
 				  <input type="hidden" id="sD" name="select_LatLngD"/>  
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
 		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD">
-				 <option selected="selected">출발역</option>
+				 <option selected="selected">출발역 </option>
 				   <c:forEach items="${SubwayList}" var="t">
-		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}"/></option>
+				   
+		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}(${t.SUBLINE_NO}호선)"/></option>
 		   		   </c:forEach>
 				 </select> 
-			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD">
-			 <option selected="selected">도착역</option>
+			  <select class="realtime" id="select_LatLngA"  name="select_LatLngA">
+			 <option selected="selected">도착역  </option>
 			   <c:forEach items="${SubwayList}" var="ts">
-	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}"/></option>
+	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}(${ts.SUBLINE_NO}호선)"/></option>
 	   		   </c:forEach>
 			 </select> 
 			</div>
@@ -479,12 +489,7 @@ width:50px;
 	</div><!-- wrap end -->
 	
 	<div class="box_upndown">
-		<div class="box_sub">
 		
-			<input type="text" class="realtime" placeholder="실시간 위치"/>
-			<a class="realtime_search" href="#">검색</a>
-		
-		</div>
 
 	    <div class="box_up">
 	
