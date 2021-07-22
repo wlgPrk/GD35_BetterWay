@@ -383,7 +383,10 @@ display: inline-block;
 
 
 }
+.admin{
 
+cursor: pointer;
+}
 </style>
 <script type="text/javascript" 
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -392,7 +395,9 @@ $(document).ready(function(){
 	
 	reloadList();
 
-
+	$(".admin").on("click", function(){
+		location.href = "BetterWay_loginAdmin";
+	});
 
 $("#search").on("click",function(){
 var params = $("#actionForm").serialize();
@@ -467,31 +472,25 @@ var params = $("#actionForm").serialize();
   <a class="main" href="BetterWay_main">BetterWay</a>
 <div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
-			<ul>
-				<li><a href="zoom.html">사이버스테이션</a></li>
-				<li><a href="#">실시간 열차정보</a></li>
-				<li><a href="#">역주변 버스정류장 연계</a></li>
-				<li><a href="#">역 내외 시설</a></li>
+				<li><a href="#">교통안내</a>
+					<ul>
+						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
+						<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
+						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
+						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
+					</ul></li>
+				<li><a href="#">환경정보안내</a>
+					<ul>
+						<li><a href="BetterWay_envinfoGuide">실내 공기질 정보 제공</a></li>
+						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+					</ul></li>
+				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
+				<li><a href="BetterWay_suggestList">고객의 소리</a>
+					<ul>
+						<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
+						<li><a href="BetterWay_suggestList">건의 게시판</a></li>
+					</ul></li>
 			</ul>
-		</li>
-		<li><a href="#">환경정보안내</a>
-			<ul>
-				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
-				<li><a href="conditionInfo.html">차량 별 냉방상태</a></li>
-			</ul>
-		</li>
-		<li><a href="#">지하철 뉴스</a>
-			
-		</li>
-		<li><a href="#">고객의 소리</a>
-			<ul>
-				<li><a href="#">유실물 조회</a></li>
-				<li><a href="#">건의 게시판</a></li>
-			</ul>
-		</li>
-
-	</ul>
 </div>
 </header>
 <body>
@@ -508,10 +507,11 @@ var params = $("#actionForm").serialize();
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                    		<a href="BetterWay_baby">수유실</a>
+                    		<a href="BetterWay_nursingRoom2">수유실</a>
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
                     		<a href="BetterWay_happy">행복지대</a>
+                    		<a href="BetterWay_toilet">화장실 안내</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
@@ -638,7 +638,9 @@ var params = $("#actionForm").serialize();
     	
  </article>
 </section>
-
+<footer>
+		<div class = "admin">관리자 로그인</div>
+	</footer>
 
 </body>
 </html>

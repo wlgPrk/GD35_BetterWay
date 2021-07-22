@@ -100,16 +100,17 @@ nav ul {
 article { /* 섹션 안 큰내용, 가운데정렬 */
 	background-color: #fff;
 	height: 100%;
+	 min-height:1400px;
 	margin: 0px auto;
 	width: 1440px;
-	background: orange;
+	
 }
 
 section:after { /* 뒷배경 */
 	content: "";
 	display: table;
 	clear: both;
-	background: orange;
+	
 }
 
 /* 
@@ -174,6 +175,84 @@ section:after { /* 뒷배경 */
 	border-radius: 15px 15px 15px 15px;
 }
 
+#side_menu_sub{
+text-align: center;
+font-size: 20pt;
+font-weight:bold;
+border-bottom:1px solid #82B2DA;
+height:100px;
+padding-top: 30px;
+}
+.nav{
+    overflow: hidden;
+	border-bottom:1px solid #82B2DA;
+}
+.btn{
+    display: block;
+    background-color: #fff;
+    color: black;
+    position: relative;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 100px;
+    padding-top: 30px;
+
+}
+.btn:hover{
+background: #B2A59F;
+}
+#side_sub_menu:hover{
+background: #B2A59F;
+}
+.side_menu_sub{
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+.side_menu_sub_down{
+    background: #fff;
+    overflow: hidden;
+    transition: max-height 0.7s;
+    max-height: 0;
+}
+.side_menu_sub_down a{
+    display: block;
+    padding: 15px 20px;
+    color: #222;
+    font-size: 16px;
+   /* border-bottom: 1px solid #e0e0eb;*/
+    position: relative;
+    
+}
+.side_menu_sub_down a:after{
+    content: '';
+    opacity: 0;
+    transition: opacity 0.3s;
+
+}
+.side_menu_sub_down a:hover{
+    background: #B2A59F;
+   	transition: all 0.3s;
+    border-bottom: 1px solid #c8c8c8;
+}
+.side_menu_sub_down a:last-child{
+    border:none;
+}
+.nav:target .side_menu_sub_down{
+    max-height: 16em;
+}
+
+#side_menu_sub{
+text-align: center;
+font-size: 20pt;
+font-weight:bold;
+border-bottom:1px solid #82B2DA;
+height:100px;
+padding-top: 30px;
+}
+#side_sub_menu:hover{
+background: #B2A59F;
+}
 #box_con_txt {
 	margin-top: 30px;
 	font-weight: bold;
@@ -248,6 +327,18 @@ p {
 	width: 1080px;
 	height: 150px;
 }
+footer {
+	background-color: #777;
+	padding: 10px;
+	text-align: right;
+	color: white;
+	
+}
+
+.admin{
+
+cursor: pointer;
+}
 </style>
 <script type="text/javascript"
 	src="resources/script/jquery/jquery-1.12.4.min.js"></script>
@@ -256,7 +347,9 @@ $(document).ready(function(){
 	
 	reloadList();
 
-
+	$(".admin").on("click", function(){
+		location.href = "BetterWay_loginAdmin";
+	});
 
 $("#search").on("click",function(){
 var params = $("#actionForm").serialize();
@@ -313,15 +406,15 @@ function drawList(list) {
 		html += "<strong>  입니다.  </strong> <br/>";
 		if(line_num == 1){
 			
-			html+="<img alt=\"1호선\" src=\"resources/images/line/line_map/line_1.png\"/>"
+			html+="<img alt=\"1호선\" src=\"resources/images/line/line_map/line_1.png\"style=\"width: 800px; height: auto;\"/>"
 		}
 		else if(line_num == 2){
 			
-			html+="<img alt=\"2호선\" src=\"resources/images/line/line_map/line_2.png\"/>"
+			html+="<img alt=\"2호선\" src=\"resources/images/line/line_map/line_2.png\"style=\"width: 800px; height: auto;\"/>"
 		}
 		else if(line_num == 3){
 			
-			html+="<img alt=\"3호선\" src=\"resources/images/line/line_map/line_3.png\"/>"
+			html+="<img alt=\"3호선\" src=\"resources/images/line/line_map/line_3.png\"style=\"width: 800px; height: auto;\"/>"
 		}
 		else if(line_num == 4){
 	
@@ -363,23 +456,22 @@ function drawList(list) {
 			<ul>
 				<li><a href="#">교통안내</a>
 					<ul>
-						<li><a href="zoom.html">사이버스테이션</a></li>
-						<li><a href="#">실시간 열차정보</a></li>
-						<li><a href="#">역주변 버스정류장 연계</a></li>
-						<li><a href="#">역 내외 시설</a></li>
+						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
+						<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
+						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
+						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 					</ul></li>
 				<li><a href="#">환경정보안내</a>
 					<ul>
-						<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
-						<li><a href="conditionInfo.html">차량 별 냉방상태</a></li>
+						<li><a href="BetterWay_envinfoGuide">실내 공기질 정보 제공</a></li>
+						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
 					</ul></li>
-				<li><a href="#">지하철 뉴스</a></li>
-				<li><a href="#">고객의 소리</a>
+				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
+				<li><a href="BetterWay_suggestList">고객의 소리</a>
 					<ul>
-						<li><a href="#">유실물 조회</a></li>
-						<li><a href="#">건의 게시판</a></li>
+						<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
+						<li><a href="BetterWay_suggestList">건의 게시판</a></li>
 					</ul></li>
-
 			</ul>
 		</div>
 	</header>
@@ -389,13 +481,24 @@ function drawList(list) {
 		<article>
 			<div id="sidebar">
 				<div id="sidebar_top">역 내외 시설</div>
+				
 				<div id="side_menu">
-					<div id="side_sub_menu">
-						<a href="#">내부 편의시설</a>
-					</div>
-					<div id="side_sub_menu">
-						<a href="#">외부 시설</a>
-					</div>
+					<ul class="side_menu_sub">
+           			 <li class="nav" id="inside_esta">
+               		 <a href="#inside_esta" class="btn">내부 편의시설</a>
+                		<div class="side_menu_sub_down">
+                    		<a href="BetterWay_nursingRoom2">수유실</a>
+                    		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
+                    		<a href="BetterWay_cycle">자전거 보관함</a>
+                    		<a href="BetterWay_happy">행복지대</a>
+                		</div>
+           			 </li>
+           		 <li class="nav" id="outside_esta">
+                <a href="BetterWay_esta_out" class="btn">외부시설</a>
+                	<div class="side_menu_sub_down">
+                	</div>
+            		</li>
+       			 </ul>
 				</div>
 			</div>
 			<div id="box_top">
@@ -471,6 +574,8 @@ function drawList(list) {
 		</article>
 	</section>
 
-
+<footer>
+		<div class = "admin">관리자 로그인</div>
+	</footer>
 </body>
 </html>
