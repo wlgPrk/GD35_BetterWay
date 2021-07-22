@@ -481,6 +481,11 @@ width:50px;
 				 </select> 
 			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD">
 			 <option selected="selected">도착역</option>
+			  <c:forEach items="${SubwayList}" var="ts">
+				   
+		    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}(${ts.SUBLINE_NO}호선)"/></option>
+		   		   </c:forEach>
+			 
 			  <c:choose>
 	   		    <c:when test="${param.selE !=null}">
 		   		   <option value="${param.selE}" selected ="selected"><c:out value="${param.selE}"/></option>
