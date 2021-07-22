@@ -554,18 +554,9 @@ th,td{
 				</table>
 			</div>
 							
-				
-    	
     	</div>
     	<br/>
     	</div>
-    	
-    	
-    	
- 	
-		
-    	
-    	
     	
  </article>
 </section>
