@@ -310,6 +310,7 @@ p {
 .con_box {
 	width: 1080px;
 	margin: auto;
+	border: 1px solid #82b2da;
 }
 
 .tab_box {
@@ -339,6 +340,7 @@ footer {
 
 cursor: pointer;
 }
+
 </style>
 <script type="text/javascript"
 	src="resources/script/jquery/jquery-1.12.4.min.js"></script>

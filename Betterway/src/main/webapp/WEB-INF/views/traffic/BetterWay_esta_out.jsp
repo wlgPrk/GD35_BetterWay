@@ -36,7 +36,7 @@ $(document).ready(function() {
 		var c = $("#selstation option:selected").attr("value2");
 		 var d = String(c);
 		
-	   var b= a*1 + 50;
+	   var b= a*1 + 300;
 	   var html= "";
 	//	http://openapi.seoul.go.kr:8088/72717a744e70626237346774787358/json/SeoulMetroStArea/1/5/
 		$.ajax({
@@ -60,9 +60,10 @@ $(document).ready(function() {
 					html +="<td>" +area + "</td>";
 					html +="</tr>";
 				}
-			
+				
 				$("#con_tab tbody").html(html);
 			}
+				
 		},
 		error: function(request, status, error) { // 실패 시 다음 함수 실행
 			console.log(request);
@@ -165,7 +166,7 @@ nav ul {
 article {/* 섹션 안 큰내용, 가운데정렬 */
   background-color: #fff;
     height: 100%;
-    min-height:1400px;
+   
   margin: 0px auto;
     width:1440px;
     
@@ -179,15 +180,23 @@ section:after { /* 뒷배경 */
   clear: both;
  
 }
+section{
+overflow:auto;
+height: 853px;
+}
 
 footer {
+
 	background-color: #777;
 	padding: 10px;
 	text-align: right;
 	color: white;
 	
 }
-
+.test{
+width: 100%;
+height: 100px;
+}
 .admin{
 
 cursor: pointer;
@@ -342,7 +351,7 @@ border-radius: 15px 15px 15px 15px;
 #box_con{
 width: 100%;
 
-
+overflow:auto;
 }
 
 
@@ -407,12 +416,15 @@ font-weight: bold;
 .tab_box{
 	width:100%;
 	border-top:2px solid #82b2da;
+	
 }
 #con_tab{
 	width : 100%;
 	border-collapse:collapse;
 	border-spacing:0px;
+	
 }
+
 thead{
 	display: table-header-group;
 	vertical-align: middle;
@@ -550,7 +562,7 @@ th,td{
     	
     	
     	
-    	
+ 	
 		
     	
     	
@@ -559,7 +571,6 @@ th,td{
 </section>
 <footer>
 		<div class = "admin">관리자 로그인</div>
-	</footer>
-
+	</footer>  
 </body>
 </html>
