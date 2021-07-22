@@ -25,9 +25,7 @@ function BetterWay_subLineRealtime(){
 
 </script>
 <style>
-*{
-overflow: hidden;
-}
+
 	div{
 float:left;
 width:100%;
@@ -234,19 +232,25 @@ padding-top:25px;
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="resources/script/jquery/zoomsl-3.0.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f7722bc2ddde46bcdead0ff30caa3358"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("img[name='subway']").imagezoomsl({
-		zoomrange: [1, 12],
-		zoomstart: 4, //시작 줌
-		innerzoom: true, //이미지 내 줌으로 전환
-		magnifierborder: "none" //두께 없음
-	});
+	
+	
+	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.5647, 126.9771), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	//$("#select_station").select2();
+
 	
 	$("#realtime_search").on("click",function(){
 		var html="";
@@ -254,6 +258,8 @@ $(document).ready(function(){
 		var stationid;
 		$("#st").val($("#select_station").val());
 		console.log(st);
+		var startX;
+		var startY;
 
 				$.ajax({
 					url:"getsIdsName",
@@ -265,9 +271,20 @@ $(document).ready(function(){
 								 for(var d of res.data){						
 									if(st.value==d.SUBWAY_STATION_NAME){														
 										var stationid=d.SUBWAYSTATIONID;
+										var startX =d.LNG;
+										var startY =d.LAT;
 										//console.log(stationid);
+										console.log(startX);
 									}
 								} 
+								 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+								    mapOption = { 
+								        center: new kakao.maps.LatLng(startY, startX), // 지도의 중심좌표
+								        level: 3 // 지도의 확대 레벨
+								    };
+
+								// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+								var map = new kakao.maps.Map(mapContainer, mapOption); 
 					$.ajax({
 						
 						////url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300",
@@ -330,7 +347,7 @@ $(document).ready(function(){
 											}
 									}
 						    }
-							
+						   
 							/* for(i=0;i<=Array.from(EXIT).length-1;i++){
 								
 								html +="<tr>";	
@@ -394,13 +411,29 @@ $(document).ready(function(){
 	<div class="wrap">
 		<div id="title">출발 도착 역검색</div>
 <div id="dep_arr">
-		<div id="deparr_search">
-			<div class="dep"><input id="dep" type="text"placeholder="출발역"></div>
-			<div class="arr"><input id="arr"type="text" placeholder="도착역"></div>
-		</div>
-		<div id="deparr_btn">
-			<input type="button" id="deparr_search_btn" value="검색" style="background: none;"/>
-		</div>
+		<form action="#" id="SearchForm" method="post" >
+			<div id="deparr_search">
+			
+			<!-- <div class="dep"><input type="text"  id="select_LatLngD" name="select_LatLngD"placeholder="출발역"></div>
+			<div class="arr"><input type="text"  id="select_LatLngA" name="select_LatLngA" placeholder="도착역"></div> -->
+				
+				  <input type="hidden" id="sD" name="select_LatLngD"/>  
+				 <input type="hidden" id="sA" name="select_LatLngA"/>  
+		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD">
+				 <option selected="selected">출발역 ${param.selS}</option>
+				   <c:forEach items="${SubwayList}" var="t">
+		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}(${t.SUBLINE_NO}호선)"/></option>
+		   		   </c:forEach>
+				 </select> 
+			  <select class="realtime" id="select_LatLngA"  name="select_LatLngA">
+			 <option selected="selected">도착역   ${param.selE}</option>
+			   <c:forEach items="${SubwayList}" var="ts">
+	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}(${ts.SUBLINE_NO}호선)"/></option>
+	   		   </c:forEach>
+			 </select> 
+			</div>
+			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색" style="margin-left: 10px;"/>
+		  </form>
 	</div>	  
 	<div class="subbtn_box">
 		<div class="subbtn_realtime">
@@ -452,11 +485,7 @@ $(document).ready(function(){
 
 
 
-<div class="subline_img"><span class='zoom' id='zooming'>
-		<img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>
-		<p>마우스를 올려 확대해보세요.</p>
-	</span>
-</div>
+<div id="map" style="width: 75%;height: 1080px;"></div>
 
 </body>
 

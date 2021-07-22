@@ -5,7 +5,7 @@
 
 
 <select id="getsIdsName" parameterType="hashmap" resultType="hashmap">
-SELECT SUBWAY_STATION_NAME, SUBWAYSTATIONID
+SELECT SUBWAY_STATION_NAME, SUBWAYSTATIONID,LAT,LNG
 FROM SUBWAY_STATION
 </select>
 
