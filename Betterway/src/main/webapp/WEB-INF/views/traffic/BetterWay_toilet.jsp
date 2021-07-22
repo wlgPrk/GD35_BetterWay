@@ -310,7 +310,7 @@ p {
 .con_box {
 	width: 1080px;
 	margin: auto;
-	border: 1px solid #82b2da;
+
 }
 
 .tab_box {
