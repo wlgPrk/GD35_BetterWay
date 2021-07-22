@@ -430,7 +430,6 @@ width:50px;
 			
 			console.log("${param.selS}");
 			console.log("${param.selE}");
-
 		});//onclick 이벤트 end
 			
 });	//end	
