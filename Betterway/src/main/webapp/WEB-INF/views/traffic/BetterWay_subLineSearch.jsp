@@ -418,8 +418,9 @@ width:50px;
 		
 			
 				
-				
-				
+			
+			console.log("${param.selS}");
+			console.log("${param.selE}");
 
 		});//onclick 이벤트 end
 			
@@ -454,15 +455,29 @@ width:50px;
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
 		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD">
 				 <option selected="selected">출발역</option>
-				   <c:forEach items="${SubwayList}" var="t">
-		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}"/></option>
-		   		   </c:forEach>
+				   <c:choose>
+	   		    <c:when test="${param.selS !=null}">
+		   		   <option value="${param.selS}" selected ="selected"><c:out value="${param.selS}"/></option>
+		   		   </c:when>
+		   		   <c:otherwise>
+			   <c:forEach items="${SubwayList}" var="t">
+	    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}"/></option>
+	   		   </c:forEach>
+	   		   </c:otherwise>
+			  </c:choose>
 				 </select> 
 			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD">
 			 <option selected="selected">도착역</option>
+			  <c:choose>
+	   		    <c:when test="${param.selE !=null}">
+		   		   <option value="${param.selE}" selected ="selected"><c:out value="${param.selE}"/></option>
+		   		   </c:when>
+		   		   <c:otherwise>
 			   <c:forEach items="${SubwayList}" var="ts">
 	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}"/></option>
 	   		   </c:forEach>
+	   		   </c:otherwise>
+			  </c:choose>
 			 </select> 
 			</div>
 			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색" style="margin-left: 10px;"/>
