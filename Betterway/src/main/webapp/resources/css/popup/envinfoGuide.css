@@ -73,7 +73,7 @@
 
   
 .sub_con_envi {
-	display: flex;
+
 	margin-top: 20px;
 	margin-bottom: 20px;
 	width: 100%; height: 375px;;
@@ -93,16 +93,15 @@
 
 
 .img_cover_envi{
-	backdrop-filter: blur(5px);
-	padding-top:60px;
-	height: 28px;
-	background: #023459;
+    backdrop-filter: blur(5px);
+    padding-top: 60px;
+    height: 28px;
 
  
 }
 .img_cover_con_envi{/* 어디로 왔능가  */
 	font-size: 15px;
-
+background: rgba(52, 75, 22, 0.63);
 	color: #fff;
 	text-align: right;
 }
@@ -164,4 +163,21 @@ color:white;
 .label_envi{
 font-size:15px;
 font-weight: bold;
+}
+
+.btn_box_envi{
+	display:inline-block;
+	width:100%;
+	height :50px;
+	margin-top:25px;
+	text-align: center;
+}
+
+.btn_envi{
+	background-color: #82b2da;
+    color: white;
+    width: 50px;
+    height: 30px;
+    border: #fff;
+    color: white;
 }

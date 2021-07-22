@@ -8,7 +8,7 @@
 	
 	
 	
-html += "<div class=\"popup_div_envi\">                                            ";   
+html += "<div class=\"popup_div_envi\">                                            "; 
 html += "<header class=\"header_envi\"><a class=\"a_envi\">실내 공기질 정보 안내</a></header>";
 html+="	<div class=\"con_envi\">     ";                                                                                                          
 html+="	 <div class=\"box_title_envi\">         ";                                                                                                                                                                                                                           
@@ -20,8 +20,8 @@ html+="        </div>                                             ";
 html+="	</div>	                                                  ";                                                                             
 html+="	<div class=\"wrap_envi\">                                 ";                                                                             
 html+="	<div class=\"top_title_envi\" >                                ";                                                                        
-html+="		<form action=\"#\" id=\"SearchForm_envi\" method=\"post\" >   ";                                                                     
-html+="		 <label class=\"label_envi_envi\">호선</label>            ";                                                                         
+html+="		<form action=\"#\" id=\"SearchForm_envi\" method=\"post\" >   ";  
+html+="		 <label class=\"label_envi\">호선</label>            "; 
 html+="	        <select id=\"sName_envi\" name=\"sName\">             ";                                                                         
 html+="	            <option>--호선을 선택하세요--</option>                 ";                                                                    
 html+="	            <option value=\"1\">1호선</option>                 ";                                                                        
@@ -62,12 +62,13 @@ html+="				*0~30㎍/m³\'좋음\' 31~80㎍/m³\'보통\'<br/> 81~150㎍/m³\'나
 html+="<br/><a  class=\"a_envi\" id=\"air_guide_btn\"href=\"BetterWay_envinfoGuide2\" style=\"font-size: 15px; color:#000;\">      ";            
 html+="				▷ 실내 공기질 유지 기준 안내 보러가기</a></th></tr>                                  ";                                     
 html+="			</table>			                                    ";                                                                       
-html+="	    </div>                                             ";                                                                                
+html+="	    </div>                                             "; 
+html+= "<div class=\"btn_box_envi\"><input type=\"button\" class=\"btn_envi\"  value=\"닫기\"></div>      ";
 html+="	</div><!-- sub_con end -->                          ";                                                                                   
 html+="	<div id=\"api_data\"></div>                       ";                                                                                     
 html+="</div><!--wrap end  -->                         ";                                                                                        
-html+="</div>                                           ";                                                                                       
-html += "</div>                      ";
+html+="</div>                                           "; 
+html+= "</div>                      ";
 	
 	
 	
@@ -76,13 +77,23 @@ html += "</div>                      ";
 	
 	$(".btn_ok").focus();
 	
-	$(".popup_div").hide();
+	$(".popup_div_envi").hide();
 	
-	$(".popup_div").fadeIn();
+	$(".popup_div_envi").fadeIn();
 	
 	
-	$(".btn_ok").off("click");
-	$(".btn_ok").on("click", function(){
+
+	$("#sName_envi").on("change", function() {
+		sNameEnvi();
+	});
+	
+	
+	$("#air_search_envi").on("click", function() {
+		searchEnvi();
+	});
+	
+	$(".btn_envi").off("click");
+	$(".btn_envi").on("click", function(){
 		closePopup();
 	});
 }
@@ -90,15 +101,14 @@ html += "</div>                      ";
 function closePopup() {
 
 	
-	$(".popup_div").fadeOut(function(){
-		$(".popup_div").remove();
+	$(".popup_div_envi").fadeOut(function(){
+		$(".popup_div_envi").remove();
 	});
 }
 
 
 
-$("#sName_envi").on("change", function() {
-
+function sNameEnvi(){
 	var html="";
 	var params = $("#SearchForm_envi").serialize();	
 
@@ -125,11 +135,14 @@ $("#sName_envi").on("change", function() {
 			console.log(error);
 		}
 	});
-});//첫번째 셀렉트값이 바뀌었을 때
+}
 
 
-//검색버튼
-$("#air_search_envi").on("click", function() {
+
+
+
+function searchEnvi(){
+	
 	var html="";
 	$("#sn_envi").val($("#sName_envi").val());
 	$("#st_envi").val($("#select_station_envi").val());
@@ -174,5 +187,4 @@ $("#air_search_envi").on("click", function() {
 		}
 	});//ajax로 데이터 불러옴
 	
-
-});
+}

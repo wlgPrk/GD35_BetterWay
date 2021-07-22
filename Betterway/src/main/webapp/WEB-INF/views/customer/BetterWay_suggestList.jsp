@@ -7,7 +7,7 @@
 <title>건의게시판</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+
 
 <style type="text/css">
 
@@ -410,16 +410,31 @@ cursor:pointer;
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
 <script type="text/javascript" 
-		src="resources/script/popup/envinfoGuide.js?after"></script>
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript" 
 src="resources/script/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
-
+	//실내공기정보제공
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
+	
 
 	
+	$(".top_title_envi").on("change","select",function() {
+// 		sNameEnvi();
+		console.log("동작1");
+		
+	});
+	
+	$(".top_title_envi").on("click","input", function() {
+// 		searchEnvi();
+		console.log("동작2");
+	});
 	
 	
 	//사이버스테이션
@@ -447,11 +462,7 @@ $(document).ready(function(){
 		location.href="BetterWay_esta_main"
 	});
 	
-	//실내공기정보제공
-	$("#air").on("click",function(){
-		envinfoGuide();
-	});
-	
+
 	//차량별 냉방상태
 	$("#cool").on("click",function(){
 		location.href="BetterWay_cooling"
@@ -525,6 +536,8 @@ $(document).ready(function(){
 	
 	
 }); // document end
+
+
 //목록,페이징가져오기
 function reloadList(){
 	var params = $("#actionForm").serialize();
@@ -630,6 +643,8 @@ function drawPaging(pb){
 }//drawPaging end
 
 </script>
+
+
 </head>
 <body>
 
@@ -790,6 +805,7 @@ function drawPaging(pb){
 
 
 	</div>
+	
 <form action="#" id="actionForm" method="post">
 <select class="search_type" name="searchGbn">
 					<option value="0">제목</option>

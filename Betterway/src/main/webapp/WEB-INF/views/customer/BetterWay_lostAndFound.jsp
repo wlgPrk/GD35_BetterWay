@@ -311,8 +311,16 @@ cursor: pointer;
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	//실내공기정보제공
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
 	
 	
 	//사이버스테이션
@@ -340,10 +348,7 @@ $(document).ready(function(){
 		location.href="BetterWay_esta_main"
 	});
 	
-	//실내공기정보제공
-	$("#air").on("click",function(){
-		location.href="BetterWay_envinfoGuide"
-	});
+
 	
 	//차량별 냉방상태
 	$("#cool").on("click",function(){
