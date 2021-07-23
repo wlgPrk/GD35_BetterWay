@@ -677,7 +677,7 @@ $(document).ready(function(){
 
 function chart(){
 	var html="";
-	html += "<canvas id=\"congestion_chart\" width=\"800\" height=\"600\"></canvas>"
+	html += "<canvas id=\"congestion_chart\" width=\"800\" height=\"500\"></canvas>"
 	$("#chart").html(html);
 }
 
