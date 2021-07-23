@@ -166,7 +166,7 @@ nav ul {
 article {/* 섹션 안 큰내용, 가운데정렬 */
   background-color: #fff;
     height: 100%;
-   
+  
   margin: 0px auto;
     width:1440px;
     
@@ -180,10 +180,7 @@ section:after { /* 뒷배경 */
   clear: both;
  
 }
-section{
-overflow:auto;
-height: 853px;
-}
+
 
 footer {
 
@@ -412,6 +409,8 @@ font-weight: bold;
 .con_box{
 	width : 1080px;
 	margin : auto;
+	
+	
 }
 .tab_box{
 	width:100%;
@@ -422,6 +421,8 @@ font-weight: bold;
 	width : 100%;
 	border-collapse:collapse;
 	border-spacing:0px;
+	
+	
 	
 }
 
@@ -554,23 +555,14 @@ th,td{
 				</table>
 			</div>
 							
-				
-    	
     	</div>
     	<br/>
     	</div>
     	
-    	
-    	
- 	
-		
-    	
-    	
-    	
  </article>
 </section>
-<footer>
-		<div class = "admin">관리자 로그인</div>
-	</footer>  
+ 
+ 
+  
 </body>
 </html>
