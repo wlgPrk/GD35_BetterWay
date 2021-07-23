@@ -283,7 +283,7 @@ border-top: 2px solid #82b2da;
 }
 /* 테이블 헤드 */
 .table th{
-background-color: #f0f0f5;
+background-color: #e0e0eb;
 }
 
 
@@ -291,7 +291,7 @@ background-color: #f0f0f5;
 .table td, th{
 text-align:center;
 
- border: 1px solid #e0e0eb;
+ border-bottom: 2px solid #e0e0eb;
 }
 
 
@@ -578,8 +578,7 @@ if(d.REQ_NO !=0){
 	
 		
 	}
-	html = "<div class=\"footer\"></div>";
-	$(".con_box").append(html);
+
 	
 }//drawlist end
 
