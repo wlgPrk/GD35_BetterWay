@@ -19,5 +19,5 @@ public interface IEstaService {
 
 	public List<HashMap<String, String>> SubwayLine(HashMap<String, String> params)throws Throwable;
 
-
+	public List<HashMap<String, String>> StationList(HashMap<String, String> params)throws Throwable;
 }

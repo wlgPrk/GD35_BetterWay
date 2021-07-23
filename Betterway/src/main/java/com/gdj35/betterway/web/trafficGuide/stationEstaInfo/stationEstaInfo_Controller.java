@@ -230,9 +230,9 @@ public class stationEstaInfo_Controller {
 			ModelAndView mav) throws Throwable {
 		try {
 			List<HashMap<String, String>> SubwayList
-	         = iMainService.SubwayList(params);
+	         = iEstaService.StationList(params);
 			 
-			 mav.addObject("SubwayList",SubwayList);
+			 mav.addObject("StationList",SubwayList);
 			 
 			 mav.setViewName("traffic/BetterWay_congestion");
 		} catch (Exception e) {

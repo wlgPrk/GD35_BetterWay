@@ -54,6 +54,12 @@ WHERE ES.CYCLE_EXIST = 1
 ORDER BY SUBWAY_STATION_INCODE ASC
 </select>
 
+<select id="StationList" resultType="hashmap">
+SELECT DISTINCT SUBWAY_STATION_NAME
+FROM SUBWAY_STATION
+ORDER BY SUBWAY_STATION_NAME
+</select>
+
 <select id="SubwayLine" resultType="hashmap" parameterType="hashmap">
 SELECT SUBLINE_NO
 FROM SUBWAY_STATION

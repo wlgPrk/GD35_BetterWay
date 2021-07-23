@@ -506,7 +506,7 @@ $(document).ready(function(){
 							yAxes: [{
 								ticks: {
 									min: 0,
-									max: 120
+									max: 135
 								}
 							}]
 						},
@@ -652,7 +652,7 @@ $(document).ready(function(){
 								yAxes: [{
 									ticks: {
 										min: 0,
-										max: 120
+										max: 135
 									}
 								}]
 							},
@@ -677,7 +677,7 @@ $(document).ready(function(){
 
 function chart(){
 	var html="";
-	html += "<canvas id=\"congestion_chart\" width=\"800\" height=\"450\"></canvas>"
+	html += "<canvas id=\"congestion_chart\" width=\"800\" height=\"600\"></canvas>"
 	$("#chart").html(html);
 }
 
@@ -777,9 +777,9 @@ function changeL(data){
 			<div class="table_box">
 				<select id = "selstation">
     				<option selected="selected">역</option>
-    					<c:forEach items="${SubwayList}" var = "t1">
+    					<c:forEach items="${StationList}" var = "t1">
     						<option value="${t1.SUBWAY_STATION_NAME}">
-    						<c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
+    						<c:out value="${t1.SUBWAY_STATION_NAME}"/> </option>
    						</c:forEach>
    				</select>
    				<select id = "selsubLine">
