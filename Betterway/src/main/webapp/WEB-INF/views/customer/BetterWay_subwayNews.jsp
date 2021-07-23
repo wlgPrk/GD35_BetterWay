@@ -248,7 +248,6 @@ height : 60px;
 
 
 .con_box{
-
 	width: 1200px;
 }
 
@@ -287,15 +286,14 @@ border-top: 2px solid #82b2da;
 }
 /* 테이블 헤드 */
 .table th{
-background-color: #f0f0f5;
+background-color: #e0e0eb;
 }
 
 
 /* 테이블 칸속성 */
 .table td, th{
 text-align:center;
-
- border: 1px solid #e0e0eb;
+ border-bottom: 2px solid #e0e0eb;
 }
 
 
@@ -491,9 +489,9 @@ function drawList(list){
 	for(var i=0; i<list.length; i++){       
 		                                
 	html+="	<tr>";
-	html+="	<td><a href=\""+list[i].link+"\">"+list[i].title+"</a></td>      ";
-	html+="	<td><a href=\""+list[i].link+"\">"+list[i].desc+"</a></td>       ";
-	html+="	<td><a href=\""+list[i].link+"\">"+list[i].date+"</a></td>      ";
+	html+="	<td><a href=\""+list[i].link+"\" target=\"_BLANK\">"+list[i].title+"</a></td>      ";
+	html+="	<td><a href=\""+list[i].link+"\" target=\"_BLANK\">"+list[i].desc+"</a></td>       ";
+	html+="	<td><a href=\""+list[i].link+"\" target=\"_BLANK\">"+list[i].date+"</a></td>      ";
 	html+="	</tr>                       ";
 		$("tbody").html(html);
 	}

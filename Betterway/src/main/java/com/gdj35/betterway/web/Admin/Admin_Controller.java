@@ -73,7 +73,6 @@ public class Admin_Controller {
 			params.put("sNO", String.valueOf(session.getAttribute("sNO")));
 			List<HashMap<String, String>> data= iAdmin_Service.getPer(params);
 			modelMap.put("per",data);
-			System.out.println(data +"작동ㅇㅇㅇㅇㅇ");
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
@@ -1382,13 +1381,190 @@ public class Admin_Controller {
 			 
 			 
 		 //화장실정보
-		  @RequestMapping(value="BetterWay_estaAdmin")
-		  public ModelAndView BetterWay_estaAdmin(ModelAndView mav) {
-		  
-		  mav.setViewName("admin/BetterWay_estaAdmin");
+		  @RequestMapping(value="BetterWay_toiletAdmin")
+		  public ModelAndView BetterWay_estaAdmin(ModelAndView mav,
+				  @RequestParam HashMap<String, String> params) {
+		  try {
+			int page =1;
+			
+			if(params.get("page") !=null) {
+				page=Integer.parseInt(params.get("page"));
+			}
+			
+			mav.addObject("page",page);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			  
+			  
+			  
+		  mav.setViewName("admin/BetterWay_toiletAdmin");
 				   
 		  return mav;
 		 }
+	
+			//화장실정보 리스트
+			 @RequestMapping(value = "/BetterWay_toiletAdmins",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_toiletAdmins(
+				 @RequestParam HashMap<String, String>params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 int page =Integer.parseInt(params.get("page"));
+				 
+				 int cnt = iAdmin_Service.getToiletCnt();
+				 
+				 PagingBean pb = iPagingService.getPagingBean(page, cnt);
+				 
+				 params.put("startCnt", Integer.toString(pb.getStartCount()));
+				 params.put("endCnt", Integer.toString(pb.getEndCount()));
+				  
+				 List<HashMap<String, String>> list = iAdmin_Service.getToilet(params);
+				 
+				 
+					modelMap.put("list",list);
+					modelMap.put("pb", pb);
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
 			 
 			 
+			 //화장실추가
+			  @RequestMapping(value="BetterWay_toiletAdmin_Write")
+			  public ModelAndView BetterWay_toiletAdmin_Write(ModelAndView mav) {
+		
+				  
+			  mav.setViewName("admin/BetterWay_toiletAdmin_Write");
+					   
+			  return mav;
+			 }
+			  
+			//화장실정보추가완료
+			 @RequestMapping(value = "/BetterWay_toiletAdmin_Writes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_toiletAdmin_Writes(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.insertToilet(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+			
+			 
+			 
+				//화장실정보 상세보기
+			 @RequestMapping(value="BetterWay_toiletAdmin_Detail")
+			   public ModelAndView  BetterWay_toiletAdmin_Detail(ModelAndView mav,
+					   @RequestParam HashMap<String, String> params) throws Throwable {
+				 try {
+					 HashMap<String,String> data = iAdmin_Service.getToiletDetail(params);
+					
+					 
+					mav.addObject("data", data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				   
+				   mav.setViewName("admin/BetterWay_toiletAdmin_Detail");
+				   
+				   return mav;
+			   }
+			 
+			 
+				//화장실정보 수정
+			 @RequestMapping(value="BetterWay_toiletAdmin_Update")
+			   public ModelAndView  BetterWay_toiletAdmin_Update(ModelAndView mav,
+					   @RequestParam HashMap<String, String> params) throws Throwable {
+				 try {
+					 HashMap<String,String> data = iAdmin_Service.getToiletDetail(params);
+					
+					 
+					mav.addObject("data", data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				   
+				   mav.setViewName("admin/BetterWay_toiletAdmin_Update");
+				   
+				   return mav;
+			   }
+			 
+			 
+				//화장실수정완료
+			 @RequestMapping(value = "/BetterWay_toiletAdmin_Updates",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_toiletAdmin_Updates(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.updateToilet(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+			
+			 
+			 
+				//호선삭제
+			 @RequestMapping(value = "/BetterWay_toiletAdmin_Deletes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String  BetterWay_toiletAdmin_Deletes(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.deleteToilet(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
 }

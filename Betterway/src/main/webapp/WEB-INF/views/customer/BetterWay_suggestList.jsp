@@ -283,7 +283,7 @@ border-top: 2px solid #82b2da;
 }
 /* 테이블 헤드 */
 .table th{
-background-color: #f0f0f5;
+background-color: #e0e0eb;
 }
 
 
@@ -291,7 +291,7 @@ background-color: #f0f0f5;
 .table td, th{
 text-align:center;
 
- border: 1px solid #e0e0eb;
+ border-bottom: 2px solid #e0e0eb;
 }
 
 
@@ -423,19 +423,6 @@ $(document).ready(function(){
 		envinfoGuide();
 	});
 	
-
-	
-	$(".top_title_envi").on("change","select",function() {
-// 		sNameEnvi();
-		console.log("동작1");
-		
-	});
-	
-	$(".top_title_envi").on("click","input", function() {
-// 		searchEnvi();
-		console.log("동작2");
-	});
-	
 	
 	//사이버스테이션
 	$("#cyber").on("click",function(){
@@ -512,7 +499,6 @@ $(document).ready(function(){
 	$(".arrow_box").on("click","div",function(){
 		$("#page").val($(this).attr("page"));
 		$("#searchTxt").val($("#searchOldTxt").val());
-		
 		reloadList();
 	});//paging wrap end
 	
@@ -555,9 +541,9 @@ function reloadList(){
 				$(".arrow_box").html("<input type=\"button\" value=\"글쓰기\" class=\"write_btn\">");
 				
 			}else{
-			drawList(res.list);
+			drawList(res.list, res.data);
 			drawPaging(res.pb);
-			drawNotice(res.data);}
+		}
 		},
 		error: function(request, status, error) {
 			console.log(error);
@@ -566,14 +552,28 @@ function reloadList(){
 }//reload List end
 
 //목록그리기
-function drawList(list){
+function drawList(list,data){
 	var html ="";
-	for(var d of list){       
+	
+	for(var d of data){
+		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
+		html+=	"<td><img alt=\"공지\" src=\"resources/images/notice.png\" class=\"img\"></td>";
+		html+=	"<td>" +d.TITLE + "</td>   "   ;
+		html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
+		html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
+		html+=	"<td>" +d.INQ_COUNT + "</td>               "   ;
+		html+=	"<td>" +d.PUSH_COUNT + "</td>                "   ;
+		html+=	"</tr>                     "   ;
+		}
+	
+	
+	for(var d of list){  
+		
 		
 		html += "<tr sug_no=\"" + d.SUG_NO + "\">";
 		html+=	"<td>" +d.SUG_NO+ "</td>           "   ;
 if(d.REQ_NO !=0){
-	html+=	"<td>↳ re: " +d.TITLE + "</td>   "   ;
+	html+=	"<td>↳  " +d.TITLE + "</td>   "   ;
 	html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
 	}else{
 	html+=	"<td>" +d.TITLE + "</td>   "   ;
@@ -585,37 +585,14 @@ if(d.REQ_NO !=0){
 	html+=	"</tr>                     "   ;
 		                               
 		
-		$("tbody").html(html);
-		
-		
-	
-		
 	}
-	html = "<div class=\"footer\"></div>";
-	$(".con_box").append(html);
+	
+	$("tbody").html(html);
+
 	
 }//drawlist end
 
-//공지가져오기
-function drawNotice(data){
-	var html="";
-	for(var d of data){
-	html += "<tr sug_no=\"" + d.SUG_NO + "\">";
-	html+=	"<td><img alt=\"공지\" src=\"resources/images/notice.png\" class=\"img\"></td>";
-	html+=	"<td>" +d.TITLE + "</td>   "   ;
-	html+=	"<td>" +d.ADMIN_ID + "</td>             "   ;
-	html+=	"<td>" +d.WRITE_DATE + "</td>         "   ;
-	html+=	"<td>" +d.INQ_COUNT + "</td>               "   ;
-	html+=	"<td>" +d.PUSH_COUNT + "</td>                "   ;
-	html+=	"</tr>                     "   ;
-	}
-	
-	
-	
-	
-	$("tbody").prepend(html);
-	
-}
+
 
 //페이징그리기
 function drawPaging(pb){

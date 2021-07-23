@@ -40,26 +40,20 @@
 		});
 		
 		$("#updateBtn").on("click",function(){
-			if($.trim($("#subline_name").val())==""){
-				alert("호선명을 입력해주세요.");
-				$("#subline_name").focus();
-			}else if($.trim($("#color_code").val())==""){
-				alert("차량색상을 입력해주세요.");
-				$("#color_code").focus();
-			}else if($.trim($("#car_count").val())==""){
-				alert("차량대수를 입력해주세요.");
-				$("#car_count").focus();
+			if($.trim($("#subway_station_incode").val())==""){
+				alert("지하철역명을 입력해주세요.");
+				$("#subway_station_incode").focus();
 			}else{
 				var params = $("#updateForm").serialize();
 			
 				$.ajax({
-					url :"BetterWay_sublineAdmin_Updates",
+					url :"BetterWay_toiletAdmin_Updates",
 					type : "post",
 					dataType : "json",
 					data : params,
 					success : function(res){
 						if(res.msg=="success"){
-							$("#updateForm").attr("action","BetterWay_sublineAdmin");
+							$("#updateForm").attr("action","BetterWay_toiletAdmin");
 							$("#updateForm").submit();
 						}else if(res.msg == "failed"){
 							alert("수정 실패")
@@ -81,13 +75,10 @@
 <body>
 <form action="#" id="goForm" method="post"></form>
 <form action="#" id="updateForm" method="post">
-	<input type="hidden" id="subline_no" name="subline_no" value="${data.SUBLINE_NO}"/>
+	<input type="hidden" id="toilet_no" name="toilet_no" value="${data.TOILET_NO}"/>
+	<input type="hidden" id="page" name="page" value="${param.page}"/>
 <div id="main">
-
-<b>호선명 :</b> <input type="text" id="subline_name" name="subline_name" value="${data.SUBLINE_NAME}"/><br/>
-<b>차량색상 :</b> <input type="text"id="color_code" name="color_code" value="${data.COLOR_CODE}"/><br/>
-<b>차량대수 :</b> <input type="text" id="car_count" name="car_count" value="${data.CAR_COUNT}"/><br/>
-
+<b>지하철역코드 :</b> <input type="text"id="subway_station_incode" name="subway_station_incode" value="${data.SUBWAY_STATION_INCODE}"/><br/>
 	<div id="main_btn">
 		<input type="button" value="수정완료" id="updateBtn"/>
 		<input type="button" value="목록으로" id="listBtn"/>

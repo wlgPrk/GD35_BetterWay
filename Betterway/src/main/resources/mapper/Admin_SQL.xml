@@ -499,5 +499,52 @@ WHERE
 SUBWAY_STATION_INCODE = #{subway_station_incode}
 
 </delete>
+
+
+<!-- 화장실리스트 -->
+<select id="getToilet" parameterType="hashMap" resultType="hashMap">
+SELECT TOILET_NO, SUBWAY_STATION_INCODE,ADMIN_NO,DEL_STATUS
+FROM(
+SELECT TOILET_NO, SUBWAY_STATION_INCODE,ADMIN_NO,DEL_STATUS,
+ROW_NUMBER() OVER(ORDER BY TOILET_NO DESC) AS RNUM
+FROM TOILET)
+WHERE RNUM BETWEEN #{startCnt} AND #{endCnt}
+</select>
+
+
+<!-- 화장실갯수 -->
+<select id="getToiletCnt" resultType="Integer">
+SELECT COUNT(*)
+FROM TOILET
+</select>
+
+<!-- 화장실추가 -->
+<insert id="insertToilet" parameterType="hashMap">
+INSERT INTO TOILET
+VALUES(TOILET_SEQ.nextval,#{subway_station_incode},#{sNO},1)
+</insert>
+
+
+<!--화장실 상세보기 -->
+<select id="getToiletDetail" parameterType="hashMap" resultType="hashMap">
+SELECT TOILET_NO, ADMIN_NO, SUBWAY_STATION_INCODE, DEL_STATUS
+FROM TOILET
+WHERE TOILET_NO =#{toilet_no}
+</select>
+
+
+<!-- 화장실 수정 -->
+<update id="updateToilet" parameterType="hashMap">
+UPDATE TOILET
+SET SUBWAY_STATION_INCODE=#{subway_station_incode},ADMIN_NO=#{sNO}
+WHERE TOILET_NO=#{toilet_no}
+</update>
+
+<!-- 화장실 삭제 -->
+<update id="deleteToilet" parameterType="hashMap">
+UPDATE TOILET
+SET DEL_STATUS=0,ADMIN_NO=#{sNO}
+WHERE TOILET_NO=#{toilet_no}
+</update>
 		
 </mapper>

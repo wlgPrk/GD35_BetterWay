@@ -44,7 +44,7 @@ body{
 	margin-left: 120px;
 	margin-top: 15px;
 }
-#right_sub input:nth-child(1){
+#right_sub input:nth-child(5){
 	background-color: #82b2da;
 }
 #right_sub > input{
@@ -56,7 +56,7 @@ body{
 #right_sub2{
 	height:15%;
 	width:100%;
-	margin-left: 900px;
+	margin-left: 480px;
 }
 #writeBtn{
 	font-size: 15pt;
@@ -97,6 +97,40 @@ position: relative;
 left:850px;
 }
 
+/*화살표 */
+.arrow{
+cursor:pointer;
+display:inline-block;
+width: 50px;
+font-size: 20px;
+height : 40px;
+
+border-radius:10px;
+line-height:2;
+background-color: #f0f0f5;
+margin-left: 5px;
+vertical-align: top;
+
+}
+
+.arrow:hover{background-color: #e0e0eb;
+}
+
+/* 화살표틀 */
+.arrow_box{
+
+
+display: inline-block;
+width : 800px;
+height :50px;
+margin-top:20px;
+text-align: center;
+}
+#on{
+background-color: #82b2da;
+
+}
+
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
@@ -131,32 +165,40 @@ $(document).ready(function(){
 		$("#actionForm").attr("action","BetterWay_wheelchairAdmin");
 		$("#actionForm").submit();
 	});
+	
+	$("#toiletAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_toiletAdmin");
+		$("#actionForm").submit();
+	});
 	//-----------------------------------------------------------------
 	
 	$("#writeBtn").on("click",function(){
-		$("#actionForm").attr("action","BetterWay_happyAdmin_Write");
+		$("#actionForm").attr("action","BetterWay_toiletAdmin_Write");
 		$("#actionForm").submit();
 	});
 	
 	$(".list_wrap tbody").on("click","tr",function(){
-		$("#happy_no").val($(this).attr("happy_no"));
+		$("#toilet_no").val($(this).attr("toilet_no"));
 		
-		$("#actionForm").attr("action","BetterWay_happyAdmin_Detail");
+		$("#actionForm").attr("action","BetterWay_toiletAdmin_Detail");
 		$("#actionForm").submit();
 	});
-});
+	
+	
+	//페이징 
+	$(".arrow_box").on("click","div",function(){
+		$("#page").val($(this).attr("page"));
+		reloadList();
+	});//paging wrap end
+	
+});//document end
 function drawList(list){
 	   var html = "";
 	   
 	   for(var d of list){
-		  html += "<tr happy_no =\"" + d.HAPPY_NO +"\">";
-	      html += "<td>" + d.HAPPY_NO + "</td>";
+		  html += "<tr toilet_no =\"" + d.TOILET_NO +"\">";
+	      html += "<td>" + d.TOILET_NO + "</td>";
 	      html += "<td>" + d.SUBWAY_STATION_INCODE + "</td>";
-	      html += "<td>" + d.SUBWAY_STATION_NAME + "</td>";
-	      html += "<td>" + d.LOCATION + "</td>";
-	      html += "<td>" + d.AREA + "</td>";
-	      html += "<td>" + d.OPERATING_AGENCY + "</td>";
-	      html += "<td>" + d.PHONE_NUM + "</td>";
 	      html += "<td>" + d.DEL_STATUS + "</td>";
 	      html += "</tr>";
 	   }
@@ -164,16 +206,53 @@ function drawList(list){
 	   $(".list_wrap tbody").html(html);
 	}
 	
+	
+//페이징그리기
+function drawPaging(pb){
+	var html="";
+	
+	
+	
+	html+= "<div page=\"1\" type=\"button\" class=\"arrow\">처음</div>";
+	if($("page").val() =="1"){
+	html+= "<div page=\"1\" type=\"button\" class=\"arrow\"><</div>";
+	}else{
+	html+= "<div page=\""+ ($("#page").val() -1) +"\" type=\"button\" class=\"arrow\"><</div>";
+	}
+	
+	
+	for(var i=pb.startPcount; i<=pb.endPcount; i++){
+	if($("#page").val() ==i){
+	html+="<div page=\""+ i +"\" type=\"button\" class=\"arrow\" id=\"on\"> "+i+"</div>";
+	}else{
+	html+="<div page=\""+ i + "\" type=\"button\"  class=\"arrow\"> "+i+"</div>";
+	}
+	}
+	
+	
+	if($("#page").val() == pb.maxPcount){
+	html+= "<div page=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">></div>";
+	}else {
+	html+= "<div page=\""+ ($("#page").val() * 1 + 1) +"\" type=\"button\" class=\"arrow\">></div>";
+	}
+	html+= "<div page=\""+pb.maxPcount+"\" type=\"button\" class=\"arrow\">끝</div>";
+	
+	$(".arrow_box").html(html);
+	
+}//drawPaging end
+	
+	
 function reloadList(){
 	var params = $("#actionForm").serialize();
 	
 	 $.ajax({
-         url : "happy_List",//stationEstaInfo컨트롤러에 있음
+         url : "BetterWay_toiletAdmins",//stationEstaInfo컨트롤러에 있음
          type : "post",  
          dataType :"json", 
          data : params,
          success : function(res){
              drawList(res.list); 
+             drawPaging(res.pb);
          },
          error : function(request,status,error){
             console.log(error);
@@ -200,38 +279,31 @@ function reloadList(){
 			<input type="button" id="nursingRoomAdmin" value="수유실" />
 			<input type="button" id="cycleAdmin" value="자전거보관함" />
 			<input type="button" id="wheelchairAdmin" value="연단간격" />
-			<input type="button" id="" value="화장실" />
+			<input type="button" id="toiletAdmin" value="화장실" />
 			<span>${sID}</span>
 				<input type="button" class="logoutBtn" value="로그아웃" />
 		</div>
 		<div id ="right_sub2">
 			<form action="#" id="actionForm" method="post">
-				<input type="hidden" id="happy_no" name="happy_no"/> 
+			<input type="hidden" id="page" name="page" value="${page}"/>
+				<input type="hidden" id="toilet_no" name="toilet_no"/> 
 				<input type="button" id="writeBtn"  value="행추가" />
 			</form>
 		</div>
 		<div class ="list_wrap">
 			<table>
 				<colgroup>
-					<col width="10%">
-					<col width="12.5%">
-					<col width="15%">
-					<col width="12.5%">
-					<col width="12.5%">
-					<col width="12.5%">
-					<col width="12.5%">
-					<col width="12.5%">
+					<col width="200px">
+					<col width="200px">
+					<col width="200px">
+
 				</colgroup>
 				<thead>
 					<tr>
-						<th>행복지대번호</th>
+						<th>화장실번호</th>
 						<th>지하철역코드</th>
-						<th>역이름</th>
-						<th>위치</th>
-						<th>면적(㎡)</th>
-						<th>운영기관</th>
-						<th>전화번호</th>
 						<th>삭제여부</th>
+			
 					</tr>
 				</thead>
 					
@@ -240,15 +312,12 @@ function reloadList(){
 						<td>1</td>
 						<td>1</td>
 						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
 					</tr>
 				</tbody>				
 			</table>
 		</div>
+		<div class="arrow_box"></div>
+		
 		<div id ="right_sub"></div>
 	</div>
 </body>

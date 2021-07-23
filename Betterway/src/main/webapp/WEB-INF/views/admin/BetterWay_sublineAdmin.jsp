@@ -84,12 +84,12 @@ th{
 
 .logoutBtn{
 position: relative;
-left:850px;
+left:1340px;
 }
 
 #right_sub span{
 position: relative;
-left:850px;
+left:1340px;
 }
 
 </style>
@@ -167,7 +167,8 @@ function reloadList(){
 	</div>
 	<div id="right">
 		<div id ="right_sub">
-	
+				<span>${sID}</span>
+				<input type="button" class="logoutBtn" value="로그아웃" />
 		</div>
 		<div id ="right_sub2">
 			<form action="#" id="actionForm" method="post">
