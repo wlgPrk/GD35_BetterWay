@@ -443,7 +443,7 @@ function reloadList(){
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>내부 편의시설>행복지대 &nbsp;
+		                  	홈>교통정보안내>역 내외 시설>내부 편의시설>행복지대 &nbsp;
 		                  	</div>
 		            </div>
     	</div>

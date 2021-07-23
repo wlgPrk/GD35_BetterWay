@@ -888,7 +888,7 @@ function reloadList(){
 		 <div class="box_title">
 		        <div class="img_cov">
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>내부 편의시설>휠체어 이용 승·하차 안내 &nbsp;
+		                  	홈>교통정보안내>역 내외 시설>내부 편의시설>휠체어 이용 승·하차 안내 &nbsp;
 		                  	</div>
 		        </div>
     	</div>

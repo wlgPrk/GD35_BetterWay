@@ -371,6 +371,7 @@ $(document).ready(function(){
 	 	var params = $("#SearchForm").serialize();
 	 	//console.log($("#SearchForm").serialize());
 	
+	
 	$.ajax({
 		url:"congestions",
 		type:"post",
@@ -379,10 +380,11 @@ $(document).ready(function(){
 		success:function(res){	
 			
 			changeL(res.data);
-			
-			$("#selsubLine").change(function(){ 
-			//console.log($("#selsubLine").val());//1호선은 맨첨에 누르면 안눌리는 거 있음
-			
+		},
+		error:function(requet,status,error){
+			console.log(error);
+			}
+		});
 			/*상행*/
 			$("#upLine_btn").on("click",function(){
 						
@@ -397,7 +399,7 @@ $(document).ready(function(){
 				dataType:"json",
 				success:function(res){
 					var html = "";
-					//console.log(res);
+					console.log(res);
 			
 					for(var d of res.data){
 						//console.log(d.역명);
@@ -411,7 +413,6 @@ $(document).ready(function(){
 						//console.log(d);
 							if(d.방향=="상선" || d.방향=="내선"){
 								if(d.요일=="평일"){
-								     //console.log(d['5:30~ (%)']);
 									 a = d['5:30~ (%)'];
 									 b = d['6:30~ (%)'];
 									 c = d['7:30~ (%)'];
@@ -432,6 +433,7 @@ $(document).ready(function(){
 									 s = d['22:30~ (%)'];
 									 t = d['23:30~ (%)'];
 									 u = d['24:30~ (%)'];
+									 console.log(a);
 								}else if(d.요일=="토요일"){
 									 a1 = d['5:30~ (%)'];
 									 b1 = d['6:30~ (%)'];
@@ -453,6 +455,7 @@ $(document).ready(function(){
 									 s1 = d['22:30~ (%)'];
 									 t1 = d['23:30~ (%)'];
 									 u1 = d['24:30~ (%)'];
+									 console.log(a1);
 								}else if(d.요일=="일요일"){
 									 a2 = d['5:30~ (%)'];
 									 b2 = d['6:30~ (%)'];
@@ -474,8 +477,10 @@ $(document).ready(function(){
 									 s2 = d['22:30~ (%)'];
 									 t2 = d['23:30~ (%)'];
 									 u2 = d['24:30~ (%)'];
+									 console.log(a2);
 								}
 							}
+							
 			$("#chart_title").hide();	
 			chart();//캔버스 그리는 함수 ->이렇게 안하면 이전데이터가 자꾸 겹쳐나옴
 			new Chart(document.getElementById("congestion_chart"), {
@@ -527,7 +532,6 @@ $(document).ready(function(){
 				});//ajax로 데이터 불러옴
 				
 			  });//상행버튼 눌렀을때
-			  
 			 
 			  
 			  /*하행*/
@@ -669,20 +673,16 @@ $(document).ready(function(){
 					},
 					error:function(requet,status,error){
 						console.log(error);
-						}
+						} 
 					});//ajax로 데이터 불러옴
 					
 				  });//하행버튼 눌렀을때
-				 
-			});//$("#selstation").change 함수
-		},
+		/* },
 		error:function(requet,status,error){
 			console.log(error);
 			}
-		});//congestions ajax끝
+		}); *///congestions ajax끝
 				
-	});//$("#selstation").change 함수 끝
-	
 });
 
 function chart(){
@@ -770,12 +770,12 @@ function changeL(data){
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>혼잡도 &nbsp;
+		                  	홈>교통정보안내>혼잡도 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
 		<div id="box_con">
-			<img id="box_con_img" src="resources/images/쉼터검.png"/>
+			<img id="box_con_img" src="resources/images/crowd.png"/>
 			<div id="box_con_text">
 			혼잡도
 			</div>

@@ -387,7 +387,7 @@ background: #B2A59F;
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>역 내외 시설>내부 편의시설>자전거 보관함 &nbsp;
+		                  	홈>교통정보안내>역 내외 시설>내부 편의시설>자전거 보관함 &nbsp;
 		                  	</div>
 		            </div>
     	</div>
