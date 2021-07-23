@@ -7,6 +7,10 @@
 <title>Better Way Main</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
+
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
@@ -20,6 +24,10 @@ $(document).ready(function(){
 		$(".popCharge").show();
 	
 	});
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
+
 	$(".admin").on("click", function(){
 		location.href = "BetterWay_loginAdmin";
 	});
@@ -1220,7 +1228,9 @@ width: 60px;
         z-index:1002;
         overflow: auto;
 }
-
+#air{
+cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -1241,7 +1251,7 @@ width: 60px;
 					</ul></li>
 				<li><a href="#">환경정보안내</a>
 					<ul>
-						<li><a href="BetterWay_envinfoGuide">실내 공기질 정보 제공</a></li>
+						<li id = "air">실내 공기질 정보 제공</li>
 						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
 					</ul></li>
 				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
