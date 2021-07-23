@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>자전거보관함</title>
-</head>
-<script type="text/javascript">
-function popup(){
-	window.open('BetterWay_envinfoGuide','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
-}
-</script>
 
 <style type="text/css">
 * {
@@ -319,8 +313,28 @@ background: #B2A59F;
 #box_con_img{
 	width:65px;
 }
+li{
+cursor: pointer;
+}
 </style>
+
+<script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
+</script>
+
+<!-- 실내공기질 팝업 스크립트 -->
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+		src="resources/script/popup/envinfoGuide.js?after"></script>
+		
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
+});
+</script>
 </head>
+
 <body>
 
 <header>
@@ -337,8 +351,9 @@ background: #B2A59F;
 		</li>
 		<li><a href="#">환경정보안내</a>
 			<ul>
-				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
+				<li id="air">실내 공기질 정보 제공</li>
 				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
 			</ul>
 		</li>
 		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
@@ -371,10 +386,11 @@ background: #B2A59F;
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
                     		<a href="BetterWay_happy">행복지대</a>
+                    		<a href="BetterWay_toilet">화장실 안내</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
-                <a href="#outside_esta" class="btn">외부시설</a>
+                <a href="BetterWay_esta_out" class="btn">외부시설</a>
             		</li>
        			 </ul>
 			</div>

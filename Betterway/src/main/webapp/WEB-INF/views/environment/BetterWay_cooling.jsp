@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>차량별 냉방상태</title>
 
 <style>
 * {
@@ -363,7 +363,8 @@ function cooling(){
 			</div>
 			<div id="side_menu">
 			<div id="side_sub_menu"><a href="javascript:popup();">실내 공기질 정보안내</a></div>
-			<div id="side_sub_menu"><a href="#">차량별 냉방상태</a></div>
+			<div id="side_sub_menu"><a href="BetterWay_cooling">차량별 냉방상태</a></div>
+			<div id="side_sub_menu"><a href="BetterWay_congestion">혼잡도</a></div>
 			</div>
 		</div>
 		<div id="box_top">

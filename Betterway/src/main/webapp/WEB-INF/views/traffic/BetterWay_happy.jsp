@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>행복지대</title>
-</head>
-<script type="text/javascript">
-function popup(){
-	window.open('BetterWay_envinfoGuide','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
-}
-</script>
 
 <style type="text/css">
 * {
@@ -92,28 +86,20 @@ nav ul {
 	color:white;
 	text-decoration : none;
 	font-size: 30px;
-
 }
-
-	
-
 article {/* 섹션 안 큰내용, 가운데정렬 */
   background-color: #fff;
     height: 100%;
   margin: 0px auto;
     width:1440px;
     background: orange;
-  
 }
-
 section:after { /* 뒷배경 */
   content: "";
   display: table;
-
   clear: both;
   background: orange;
 }
-
 
 /* 
 @media (max-width: 600px) {
@@ -154,7 +140,6 @@ color: #fff;
 
   }
 
-
 .img_cov{
  backdrop-filter: blur(5px);
    height:216px;
@@ -168,8 +153,6 @@ font-size: 20pt;
 background:rgba(52, 75, 22, 0.63);
     color: #fff;
     text-align: right;
-   
-
 }
 .img_cov_context{
 font-weight: bold;
@@ -178,8 +161,6 @@ color:#fff;
 width:170px;
 text-align:center;
 border-radius: 15px 15px 15px 15px;
-
-
 }
 
 #box_con_text{
@@ -199,8 +180,6 @@ height:30px;
 text-decoration:underline;
 }
 
-
-
 .scroll {
 text-align:center;
 margin-left: 10px;
@@ -217,7 +196,6 @@ padding-top: 30px;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
-
 }
 
 p{
@@ -335,11 +313,24 @@ background: #B2A59F;
 	width:50px;
 	margin-bottom: -10px;
 }
+li{
+cursor: pointer;
+}
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.12.4.min.js">
 </script>
+
+<!-- 실내공기질 팝업 스크립트 -->
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+		src="resources/script/popup/envinfoGuide.js?after"></script>
+		
 <script type="text/javascript">
 $(document).ready(function(){
+	//실내공기질
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
 	
 	reloadList();
 });
@@ -393,8 +384,9 @@ function reloadList(){
 		</li>
 		<li><a href="#">환경정보안내</a>
 			<ul>
-				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
+				<li id="air">실내 공기질 정보 제공</li>
 				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
 			</ul>
 		</li>
 		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
@@ -427,10 +419,11 @@ function reloadList(){
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
                     		<a href="BetterWay_happy">행복지대</a>
+                    		<a href="BetterWay_toilet">화장실 안내</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
-                <a href="#outside_esta" class="btn">외부시설</a>
+                <a href="BetterWay_esta_out" class="btn">외부시설</a>
             		</li>
        			 </ul>
 			</div>
