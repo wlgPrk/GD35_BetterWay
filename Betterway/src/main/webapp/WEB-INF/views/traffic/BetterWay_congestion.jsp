@@ -1,8 +1,3 @@
-SELECT DISTINCT SUBWAY_STATION_NAME
-FROM SUBWAY_STATION
-ORDER BY SUBWAY_STATION_NAME;
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -364,9 +359,6 @@ $(document).ready(function(){
 	$("#selsubLine").select2();
 	
 	$("#selstation").change(function(){
-		//var selectS = $("#selstation").val();
-		//console.log(selectS);
-	
 		$("#subway_station_name").val($("#selstation").val());
 		//console.log($("#subway_station_name").val());
 		
@@ -386,7 +378,8 @@ $(document).ready(function(){
 			console.log(error);
 			}
 		});//congestions ajax끝
-		
+	});//$("#selstation").change 함수 끝
+	
 			/*상행*/
 			$("#upLine_btn").on("click",function(){
 						
@@ -680,8 +673,6 @@ $(document).ready(function(){
 					
 				  });//하행버튼 눌렀을때
 				
-	});//$("#selstation").change 함수 끝
-	
 });
 
 function chart(){
