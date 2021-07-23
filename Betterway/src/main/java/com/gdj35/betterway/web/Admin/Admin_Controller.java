@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -1066,4 +1067,328 @@ public class Admin_Controller {
 			}
 			 return mapper.writeValueAsString(modelMap);
 			}
+			 
+			 
+			 
+			//호선정보
+			 @RequestMapping(value="BetterWay_sublineAdmin")
+			   public ModelAndView BetterWay_sublineAdmin(ModelAndView mav) {
+				   
+				   mav.setViewName("admin/BetterWay_sublineAdmin");
+				   
+				   return mav;
+			   }
+			 
+			 
+			//호선정보 리스트
+			 @RequestMapping(value = "/BetterWay_sublineAdmins",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_sublineAdmins(
+				 @RequestParam HashMap<String, String>params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 List<HashMap<String, String>> list = iAdmin_Service.getSubline(params);
+				 modelMap.put("list", list);
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			//호선추가
+			 @RequestMapping(value="BetterWay_sublineAdmin_Write")
+			   public ModelAndView BetterWay_sublineAdmin_Write(ModelAndView mav) {
+				
+				   mav.setViewName("admin/BetterWay_sublineAdmin_Write");
+				   
+				   return mav;
+			   }
+			 
+			 
+			//호선추가완료
+			 @RequestMapping(value = "/BetterWay_sublineAdmin_Writes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_sublineAdmin_Writes(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.insertSubline(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+			 
+			//호선상세보기
+			 @RequestMapping(value="BetterWay_sublineAdmin_Detail")
+			   public ModelAndView BetterWay_sublineAdmin_Detail(ModelAndView mav,
+					   @RequestParam HashMap<String, String> params) throws Throwable {
+				 try {
+					 HashMap<String,String> data = iAdmin_Service.getSublineDetail(params);
+					
+					 
+					mav.addObject("data", data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				   
+				   mav.setViewName("admin/BetterWay_sublineAdmin_Detail");
+				   
+				   return mav;
+			   }
+			 
+			 
+				//호선수정
+			 @RequestMapping(value="BetterWay_sublineAdmin_Update")
+			   public ModelAndView BetterWay_sublineAdmin_Update(ModelAndView mav,
+					   @RequestParam HashMap<String, String> params) throws Throwable {
+				 try {
+					 HashMap<String,String> data = iAdmin_Service.getSublineDetail(params);
+					
+					 
+					mav.addObject("data", data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				   
+				   mav.setViewName("admin/BetterWay_sublineAdmin_Update");
+				   
+				   return mav;
+			   }
+			 
+			 
+			 
+				//호선수정완료
+			 @RequestMapping(value = "/BetterWay_sublineAdmin_Updates",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_sublineAdmin_Updates(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.updateSubline(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+				//호선삭제
+			 @RequestMapping(value = "/BetterWay_sublineAdmin_Deletes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_sublineAdmin_Deletes(
+				@RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				int cnt = iAdmin_Service.deleteSubline(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+			//역정보
+			 @RequestMapping(value="BetterWay_stationAdmin")
+			   public ModelAndView BetterWay_stationAdmin(ModelAndView mav) {
+				   
+				   mav.setViewName("admin/BetterWay_stationAdmin");
+				   
+				   return mav;
+			   }
+			 
+			 
+			 
+				//역정보 리스트
+			 @RequestMapping(value = "/BetterWay_stationAdmins",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_subwayAdmins(
+				 @RequestParam HashMap<String, String>params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 List<HashMap<String, String>> list = iAdmin_Service.getSubway(params);
+				 modelMap.put("list", list);
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+				//역정보 추가
+			 @RequestMapping(value="BetterWay_stationAdmin_Write")
+			   public ModelAndView BetterWay_stationAdmin_Write(ModelAndView mav) {
+				   
+				   mav.setViewName("admin/BetterWay_stationAdmin_Write");
+				   
+				   return mav;
+			   } 
+			 
+				//역정보추가완료
+			 @RequestMapping(value = "/BetterWay_stationAdmin_Writes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_stationAdmin_Writes(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.insertStation(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+			//역상세보기
+			 @RequestMapping(value="BetterWay_stationAdmin_Detail")
+			   public ModelAndView BetterWay_stationAdmin_Detail(ModelAndView mav,
+					   @RequestParam HashMap<String, String> params) throws Throwable {
+				 try {
+					 HashMap<String,String> data = iAdmin_Service.getStationDetail(params);
+					
+					 
+					mav.addObject("data", data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				   
+				   mav.setViewName("admin/BetterWay_stationAdmin_Detail");
+				   
+				   return mav;
+			   }
+			 
+				//역수정
+			 @RequestMapping(value="BetterWay_stationAdmin_Update")
+			   public ModelAndView BetterWay_stationAdmin_Update(ModelAndView mav,
+					   @RequestParam HashMap<String, String> params) throws Throwable {
+				 try {
+					 HashMap<String,String> data = iAdmin_Service.getStationDetail(params);
+					
+					 
+					mav.addObject("data", data);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				   
+				   mav.setViewName("admin/BetterWay_stationAdmin_Update");
+				   
+				   return mav;
+			   }
+			 
+				//역수정완료
+			 @RequestMapping(value = "/BetterWay_stationAdmin_Updates",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_stationAdmin_Updates(
+				@RequestParam HashMap<String, String> params,HttpSession session) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				 params.put("sNO",String.valueOf(session.getAttribute("sNO")));
+				int cnt = iAdmin_Service.updateStation(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			//호선삭제
+			 @RequestMapping(value = "/BetterWay_stationAdmin_Deletes",
+			 		 method = RequestMethod.POST,
+			 		 produces = "text/json;charset=UTF-8")
+			@ResponseBody
+			public String BetterWay_stationAdmin_Deletes(
+				@RequestParam HashMap<String, String> params) throws Throwable{
+			 ObjectMapper mapper = new ObjectMapper();
+			 Map<String, Object> modelMap = new HashMap<String, Object>();
+			 
+			 try {
+				int cnt = iAdmin_Service.deleteStation(params);
+				if(cnt != 0) {
+					 modelMap.put("msg", "success");
+				}else {
+					 modelMap.put("msg", "failed");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				modelMap.put("msg", "error");
+			}
+			 return mapper.writeValueAsString(modelMap);
+			}
+			 
+			 
+			 
+		 //화장실정보
+		  @RequestMapping(value="BetterWay_estaAdmin")
+		  public ModelAndView BetterWay_estaAdmin(ModelAndView mav) {
+		  
+		  mav.setViewName("admin/BetterWay_estaAdmin");
+				   
+		  return mav;
+		 }
+			 
+			 
 }

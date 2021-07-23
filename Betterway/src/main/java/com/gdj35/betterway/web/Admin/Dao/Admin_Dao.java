@@ -217,6 +217,66 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.selectList("admin.getPer",params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.getSubline",params);
+	}
+
+	@Override
+	public int insertSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.insertSubline",params);
+	}
+
+	@Override
+	public HashMap<String, String> getSublineDetail(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getSublineDetail",params);
+	}
+
+	@Override
+	public int updateSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateSubline",params);
+	}
+
+	@Override
+	public int deleteSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("admin.deleteSubline",params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getSubway(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.getSubway",params);
+	}
+
+	@Override
+	public int insertStation(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.insertStation",params);
+	}
+
+	@Override
+	public HashMap<String, String> getStationDetail(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getStationDetail",params);
+	}
+
+	@Override
+	public int updateStation(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateStation",params);
+	}
+
+	@Override
+	public int deleteStation(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("admin.deleteStation",params);
+	}
+
 
 
 

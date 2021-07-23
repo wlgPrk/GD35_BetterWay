@@ -77,6 +77,26 @@ public interface IAdmin_Service {
 
 	public List<HashMap<String, String>> getPer(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> getSubline(HashMap<String, String> params) throws Throwable;
+
+	public int insertSubline(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getSublineDetail(HashMap<String, String> params) throws Throwable;
+
+	public int updateSubline(HashMap<String, String> params) throws Throwable;
+
+	public int deleteSubline(HashMap<String, String> params) throws Throwable;
+
+	public List<HashMap<String, String>> getSubway(HashMap<String, String> params) throws Throwable;
+
+	public int insertStation(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getStationDetail(HashMap<String, String> params) throws Throwable;
+
+	public int updateStation(HashMap<String, String> params) throws Throwable;
+
+	public int deleteStation(HashMap<String, String> params) throws Throwable;
+
 
 	
 }

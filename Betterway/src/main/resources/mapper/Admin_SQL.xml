@@ -429,13 +429,75 @@ WHERE A.ADMIN_NO=${sNO} AND M.PER_TYPE_CODE!=0
 </select>
 		
 
+<!-- 호선정보리스트 -->
+<select id="getSubline" parameterType="hashMap" resultType="hashMap">
+SELECT SUBLINE_NO, SUBLINE_NAME, COLOR_CODE, CAR_COUNT
+FROM SUBLINE
+</select>
 		
+<!-- 호선추가 -->
+<insert id="insertSubline" parameterType="hashMap">
+INSERT INTO SUBLINE
+VALUES(SUB_SEQ.nextval,#{sNO},#{subline_name},#{color_code},#{car_count})
+</insert>
+
+<!--호선 상세보기 -->
+<select id="getSublineDetail" parameterType="hashMap" resultType="hashMap">
+SELECT SUBLINE_NO, ADMIN_NO, SUBLINE_NAME, COLOR_CODE, CAR_COUNT
+FROM SUBLINE
+WHERE SUBLINE_NO =#{subline_no}
+</select>
 		
+<!-- 호선수정 -->
+<update id="updateSubline" parameterType="hashMap">
+UPDATE SUBLINE
+SET SUBLINE_NAME=#{subline_name},COLOR_CODE=#{color_code},CAR_COUNT=#{car_count}
+WHERE SUBLINE_NO=#{sNO}
+
+</update>
+
+<!-- 호선삭제 -->
+<delete id="deleteSubline" parameterType="hashMap">
+DELETE FROM SUBLINE
+WHERE
+SUBLINE_NO = #{subline_no}
+
+</delete>
 		
-		
-		
-		
-		
-		
+<!-- 역정보리스트 -->
+<select id="getSubway" parameterType="hashMap" resultType="hashMap">
+SELECT SUBWAY_STATION_INCODE,SUBLINE_NO,SUBWAY_STATION_NAME,MAIN_PHONE_NUM,SUBWAY_STATION_OCODE,LAT,LNG,STR_INCODE,START_NO,SUBWAYSTATIONID
+FROM SUBWAY_STATION
+WHERE SUBLINE_NO = #{select_no}
+</select>
+
+<!-- 역정보추가 -->
+<insert id="insertStation" parameterType="hashMap">
+INSERT INTO SUBWAY_STATION 
+VALUES(#{subway_station_incode},#{subline_no},#{sNO},#{subway_station_name},#{main_phone_num},#{subway_station_ocode},#{lat},#{lng},#{str_incode},#{start_no},#{subwaystationid})
+</insert>
+
+<!--역 상세보기 -->
+<select id="getStationDetail" parameterType="hashMap" resultType="hashMap">
+SELECT SUBWAY_STATION_INCODE,SUBLINE_NO,ADMIN_NO,
+SUBWAY_STATION_NAME,MAIN_PHONE_NUM,SUBWAY_STATION_OCODE,LAT,LNG,STR_INCODE,START_NO,SUBWAYSTATIONID
+FROM SUBWAY_STATION
+WHERE SUBWAY_STATION_INCODE = #{subway_station_incode}
+</select>
+
+<!-- 역 수정 -->
+<update id="updateStation" parameterType="hashMap">
+UPDATE SUBWAY_STATION SET  SUBWAY_STATION_INCODE =#{subway_station_incode},SUBLINE_NO=#{subline_no},ADMIN_NO=#{sNO},
+SUBWAY_STATION_NAME=#{subway_station_name},MAIN_PHONE_NUM=#{main_phone_num},SUBWAY_STATION_OCODE=#{subway_station_ocode},LAT=#{lat},LNG=#{lng},STR_INCODE=#{str_incode},START_NO=#{start_no},SUBWAYSTATIONID=#{subwaystationid}
+WHERE SUBWAY_STATION_INCODE= #{subway_station_incode}
+</update>
+
+<!-- 역 삭제 -->
+<delete id="deleteStation" parameterType="hashMap">
+DELETE FROM SUBWAY_STATION
+WHERE
+SUBWAY_STATION_INCODE = #{subway_station_incode}
+
+</delete>
 		
 </mapper>

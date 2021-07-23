@@ -233,17 +233,17 @@ font-weight: bold;
 }
 
 .footer{
-position: absolute;
-top:240%;
+position: relative;
+top:10%;
 background-color: #023459;
 width :100%;
-height : 60px;
+height : 20px;
+margin: 20px;
 
 }
 
 
 .con_box{
-
 	width: 1100px;
 }
 
@@ -586,7 +586,13 @@ if(d.REQ_NO !=0){
 		                               
 		
 		$("tbody").html(html);
+		
+		
+	
+		
 	}
+	html = "<div class=\"footer\"></div>";
+	$(".con_box").append(html);
 	
 }//drawlist end
 
@@ -603,6 +609,10 @@ function drawNotice(data){
 	html+=	"<td>" +d.PUSH_COUNT + "</td>                "   ;
 	html+=	"</tr>                     "   ;
 	}
+	
+	
+	
+	
 	$("tbody").prepend(html);
 	
 }
@@ -836,7 +846,7 @@ function drawPaging(pb){
 			
 			
     	</div>
-    	
+    
     	
     	
     	</div>
@@ -847,6 +857,6 @@ function drawPaging(pb){
  </article>
 </section>
 
-<div class="footer"></div>
+
 </body>
 </html>

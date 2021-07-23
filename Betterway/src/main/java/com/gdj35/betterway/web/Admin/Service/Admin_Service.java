@@ -222,6 +222,66 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.getPer(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getSubline(params);
+	}
+
+	@Override
+	public int insertSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.insertSubline(params);
+	}
+
+	@Override
+	public HashMap<String, String> getSublineDetail(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getSublineDetail(params);
+	}
+
+	@Override
+	public int updateSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateSubline(params);
+	}
+
+	@Override
+	public int deleteSubline(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.deleteSubline(params);
+	}
+
+	@Override
+	public List<HashMap<String, String>> getSubway(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getSubway(params);
+	}
+
+	@Override
+	public int insertStation(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.insertStation(params);
+	}
+
+	@Override
+	public HashMap<String, String> getStationDetail(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getStationDetail(params);
+	}
+
+	@Override
+	public int updateStation(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateStation(params);
+	}
+
+	@Override
+	public int deleteStation(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.deleteStation(params);
+	}
+
 
 	
 	

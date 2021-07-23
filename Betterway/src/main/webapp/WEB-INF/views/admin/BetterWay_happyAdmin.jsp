@@ -131,6 +131,11 @@ $(document).ready(function(){
 		$("#actionForm").attr("action","BetterWay_wheelchairAdmin");
 		$("#actionForm").submit();
 	});
+
+	$("#estaAdmin").on("click",function(){
+		$("#actionForm").attr("action","BetterWay_estaAdmin");
+		$("#actionForm").submit();
+	});
 	//-----------------------------------------------------------------
 	
 	$("#writeBtn").on("click",function(){
@@ -200,7 +205,7 @@ function reloadList(){
 			<input type="button" id="nursingRoomAdmin" value="수유실" />
 			<input type="button" id="cycleAdmin" value="자전거보관함" />
 			<input type="button" id="wheelchairAdmin" value="연단간격" />
-			<input type="button" id="" value="화장실" />
+			<input type="button" id="estaAdmin" value="화장실" />
 			<span>${sID}</span>
 				<input type="button" class="logoutBtn" value="로그아웃" />
 		</div>
