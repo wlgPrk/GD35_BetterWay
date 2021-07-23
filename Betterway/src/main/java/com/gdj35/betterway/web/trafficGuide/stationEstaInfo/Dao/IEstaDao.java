@@ -18,4 +18,6 @@ public interface IEstaDao {
 	public List<HashMap<String, String>> cycleList(HashMap<String, String> params)throws Throwable;
 
 	public List<HashMap<String, String>> SubwayLine(HashMap<String, String> params)throws Throwable;
+
+	public List<HashMap<String, String>> StationList(HashMap<String, String> params)throws Throwable;
 }

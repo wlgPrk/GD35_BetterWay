@@ -47,4 +47,9 @@ public class EstaDao implements IEstaDao {
 	public List<HashMap<String, String>> SubwayLine(HashMap<String, String> params) throws Throwable {
 		return sqlSession.selectList("E.SubwayLine",params);
 	}
+
+	@Override
+	public List<HashMap<String, String>> StationList(HashMap<String, String> params) throws Throwable {
+		return sqlSession.selectList("E.StationList",params);
+	}
 }

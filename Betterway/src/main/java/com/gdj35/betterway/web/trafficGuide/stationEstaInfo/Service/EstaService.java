@@ -49,4 +49,9 @@ public class EstaService implements IEstaService{
 		return iEstaDao.SubwayLine(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> StationList(HashMap<String, String> params) throws Throwable {
+		return iEstaDao.StationList(params);
+	}
+
 }
