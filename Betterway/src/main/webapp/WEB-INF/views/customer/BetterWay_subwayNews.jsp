@@ -491,8 +491,8 @@ function drawList(list){
 	for(var i=0; i<list.length; i++){       
 		                                
 	html+="	<tr>";
-	html+="	<td><a href=\""+list[i].link+"\">"+list[i].title+"</a></td>      ";
-	html+="	<td><a href=\""+list[i].link+"\">"+list[i].desc+"</a></td>       ";
+	html+="	<td><a href=\""+list[i].link+"\" >"+list[i].title+"</a></td>      ";
+	html+="	<td><a href=\""+list[i].link+"\" target=\"_BLANK\">"+list[i].desc+"</a></td>       ";
 	html+="	<td><a href=\""+list[i].link+"\">"+list[i].date+"</a></td>      ";
 	html+="	</tr>                       ";
 		$("tbody").html(html);

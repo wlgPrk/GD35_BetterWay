@@ -344,6 +344,7 @@ background: #B2A59F;
 				<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
 			</ul>
 		</li>
 		<li><a href="#">환경정보안내</a>
