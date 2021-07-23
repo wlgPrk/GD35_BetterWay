@@ -1,3 +1,8 @@
+SELECT DISTINCT SUBWAY_STATION_NAME
+FROM SUBWAY_STATION
+ORDER BY SUBWAY_STATION_NAME;
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -102,16 +107,13 @@ article {/* 섹션 안 큰내용, 가운데정렬 */
     height: 100%;
   margin: 0px auto;
     width:1440px;
-    background: orange;
   
 }
 
 section:after { /* 뒷배경 */
   content: "";
   display: table;
-
   clear: both;
-  background: orange;
 }
 
 /* 사이드랑 박스  가로*/
@@ -362,7 +364,7 @@ $(document).ready(function(){
 	$("#selsubLine").select2();
 	
 	$("#selstation").change(function(){
-		var selectS = $("#selstation").val();
+		//var selectS = $("#selstation").val();
 		//console.log(selectS);
 	
 		$("#subway_station_name").val($("#selstation").val());
@@ -370,7 +372,6 @@ $(document).ready(function(){
 		
 	 	var params = $("#SearchForm").serialize();
 	 	//console.log($("#SearchForm").serialize());
-	
 	
 	$.ajax({
 		url:"congestions",
@@ -384,7 +385,8 @@ $(document).ready(function(){
 		error:function(requet,status,error){
 			console.log(error);
 			}
-		});
+		});//congestions ajax끝
+		
 			/*상행*/
 			$("#upLine_btn").on("click",function(){
 						
@@ -673,16 +675,13 @@ $(document).ready(function(){
 					},
 					error:function(requet,status,error){
 						console.log(error);
-						} 
+						}
 					});//ajax로 데이터 불러옴
 					
 				  });//하행버튼 눌렀을때
-		/* },
-		error:function(requet,status,error){
-			console.log(error);
-			}
-		}); *///congestions ajax끝
 				
+	});//$("#selstation").change 함수 끝
+	
 });
 
 function chart(){
