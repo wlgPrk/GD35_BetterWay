@@ -97,6 +97,18 @@ public interface IAdmin_Service {
 
 	public int deleteStation(HashMap<String, String> params) throws Throwable;
 
+	public List<HashMap<String, String>> getToilet(HashMap<String, String> params) throws Throwable;
+
+	public int getToiletCnt() throws Throwable;
+
+	public int insertToilet(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getToiletDetail(HashMap<String, String> params) throws Throwable;
+
+	public int updateToilet(HashMap<String, String> params) throws Throwable;
+
+	public int deleteToilet(HashMap<String, String> params) throws Throwable;
+
 
 	
 }

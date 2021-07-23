@@ -282,6 +282,42 @@ public class Admin_Service implements IAdmin_Service{
 		return iAdmin_Dao.deleteStation(params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getToilet(params);
+	}
+
+	@Override
+	public int getToiletCnt() throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getToiletCnt();
+	}
+
+	@Override
+	public int insertToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.insertToilet(params);
+	}
+
+	@Override
+	public HashMap<String, String> getToiletDetail(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.getToiletDetail(params);
+	}
+
+	@Override
+	public int updateToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.updateToilet(params);
+	}
+
+	@Override
+	public int deleteToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iAdmin_Dao.deleteToilet(params);
+	}
+
 
 	
 	

@@ -423,19 +423,6 @@ $(document).ready(function(){
 		envinfoGuide();
 	});
 	
-
-	
-	$(".top_title_envi").on("change","select",function() {
-// 		sNameEnvi();
-		console.log("동작1");
-		
-	});
-	
-	$(".top_title_envi").on("click","input", function() {
-// 		searchEnvi();
-		console.log("동작2");
-	});
-	
 	
 	//사이버스테이션
 	$("#cyber").on("click",function(){

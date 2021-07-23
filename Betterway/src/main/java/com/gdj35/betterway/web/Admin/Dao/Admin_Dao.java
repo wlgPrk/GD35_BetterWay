@@ -277,6 +277,42 @@ public class Admin_Dao implements IAdmin_Dao{
 		return sqlSession.delete("admin.deleteStation",params);
 	}
 
+	@Override
+	public List<HashMap<String, String>> getToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.getToilet",params);
+	}
+
+	@Override
+	public int getToiletCnt() throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getToiletCnt");
+	}
+
+	@Override
+	public int insertToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.insertToilet",params);
+	}
+
+	@Override
+	public HashMap<String, String> getToiletDetail(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.getToiletDetail", params);
+	}
+
+	@Override
+	public int updateToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateToilet",params);
+	}
+
+	@Override
+	public int deleteToilet(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.deleteToilet",params);
+	}
+
 
 
 
