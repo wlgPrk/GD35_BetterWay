@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -252,7 +253,9 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	
+
+	$("#selS").select2();
+	$("#selE").select2();
 	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.5647, 126.9771), // 지도의 중심좌표
@@ -261,8 +264,20 @@ $(document).ready(function(){
 
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	//$("#select_station").select2();
-
+	
+	$("#realtime_search").on("click", function(){
+		var Start = $("#selS option:selected").val();
+		var end = $("#selE option:selected").val();
+		if(Start == "출발 역" || end == "도착 역"){
+			alert("출발역과 도착역을 입력해 주세요.");
+			
+		}
+		else{	$("#SearchForm").attr("action", "http://127.0.0.1:8090/betterway/BetterWay_subLineSearch");
+		$("#SearchForm").submit();
+		console.log(Start);
+		console.log(end);
+		}
+	});
 	
 	$("#searchBtn").on("click",function(){
 		var html="";
@@ -419,18 +434,22 @@ $(document).ready(function(){
 				
 				  <input type="hidden" id="sD" name="select_LatLngD"/>  
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
-		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD">
-				 <option selected="selected">출발역 ${param.selS}</option>
-				   <c:forEach items="${SubwayList}" var="t">
-		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}(${t.SUBLINE_NO}호선)"/></option>
-		   		   </c:forEach>
-				 </select> 
-			  <select class="realtime" id="select_LatLngA"  name="select_LatLngA">
-			 <option selected="selected">도착역   ${param.selE}</option>
-			   <c:forEach items="${SubwayList}" var="ts">
-	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}(${ts.SUBLINE_NO}호선)"/></option>
-	   		   </c:forEach>
-			 </select> 
+		 	<select id="selS" name = "selS" style=" width: 200px;height: 30px;font-size: 15px;">
+						<option selected="selected">출발 역</option>
+						<c:forEach items="${SubwayList}" var="START">
+							<option value="${START.SUBWAY_STATION_NAME}"><c:out
+									value="${START.SUBWAY_STATION_NAME}(${START.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+					</select>
+			 <select id="selE" name = "selE" style=" width: 200px;height: 30px;font-size: 15px;">
+						<option selected="selected">도착 역</option>
+						<c:forEach items="${SubwayList}" var="END">
+							<option value="${END.SUBWAY_STATION_NAME}"><c:out
+									value="${END.SUBWAY_STATION_NAME}(${END.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+					</select>
 			</div>
 			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색"/>
 		  </form>
