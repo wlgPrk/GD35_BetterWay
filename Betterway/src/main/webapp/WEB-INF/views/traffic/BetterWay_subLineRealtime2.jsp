@@ -249,13 +249,12 @@ a {
 
 #deparr_search {
 	width: 270px;
-    height: 90px;
-    float: left;
-    box-sizing: border-box;
+	float: left;
+	box-sizing: border-box;
 }
 
 #deparr_btn, #bus_search_btn {
-	width: 38px;
+	width: 30px;
 	float: right;
 	box-sizing: border-box;
 	height: 65px;
@@ -275,34 +274,20 @@ a {
 	color: white;
 	background: #B2A59F;
 } 
-.search_route_box{
-	position: relative;
-	top: -38px;
-	left: 25px;
-	display: inline-block;
-	text-align: center;
-	vertical-align:middle;
-	height: 150px;
-	width: 250px;
-	font-size: 20px;
-	font-weight: bold;
-}
-
 </style>
 
 <script type="text/javascript"
 	src="resources/script/jquery/jquery-1.12.4.min.js"></script>
-	
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>	
-	
 <script type="text/javascript"
 	src="resources/script/jquery/zoomsl-3.0.min.js"></script>
 	
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#selS").select2();
-		$("#selE").select2();
+		//$("#selS").select2();
+		//$("#selE").select2();
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
@@ -310,7 +295,7 @@ a {
 						
 				$.ajax({
 					/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
-					url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"",
+					url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"", //api에 데이터 없는 새벽이후엔 오류날 수 있음
 					type:"get",
 					dataType:"json",
 					success:function(res){
@@ -363,6 +348,21 @@ a {
 			});//ajax로 데이터 불러옴
 			
 			});
+		
+		
+		$("#deparr_search_btn").on("click", function(){
+			var Start = $("#selS option:selected").val();
+			var end = $("#selE option:selected").val();
+			if(Start == "출발 역" || end == "도착 역"){
+				alert("출발역과 도착역을 입력해 주세요.");
+				
+			}
+			else{	$("#SearchForm2").attr("action", "http://127.0.0.1:8088/betterway/BetterWay_subLineSearch");
+			$("#SearchForm2").submit();
+			console.log(Start+":"+"출발역");
+			console.log(end+":"+"도착역");
+			}
+		});
 		});
 		
 	</script>
@@ -380,33 +380,31 @@ a {
 		<div class="wrap">
 			<div id="title">출발 도착 역검색</div>
 			<div id="dep_arr">
+				<form action="#" id="SearchForm2" method="post">
 				<div id="deparr_search">
-					<div class="search_route_box">
-					 <br />
-					 <br /> 
-						<select id="selS" name = "selS" style=" width: 230px;height: 30px;">
+		 	<select id="selS" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
 						<option selected="selected">출발 역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
 									value="${START.SUBWAY_STATION_NAME}(${START.SUBLINE_NO}호선)" />
 							</option>
 						</c:forEach>
-						</select>
-						
-						<select id="selE" name = "selE" style=" width: 230px;height: 30px;">
+					</select>
+			 <select id="selE" name = "selE" style=" width: 230px;height: 30px;font-size: 15px;">
 						<option selected="selected">도착 역</option>
 						<c:forEach items="${SubwayList}" var="END">
 							<option value="${END.SUBWAY_STATION_NAME}"><c:out
 									value="${END.SUBWAY_STATION_NAME}(${END.SUBLINE_NO}호선)" />
 							</option>
 						</c:forEach>
-						</select>
+					</select>
 				</div>
-				</div>
+				
 				<div id="deparr_btn">
 					<input type="button" id="deparr_search_btn" value="검색"
 						style="background: none;" />
 				</div>
+				</form>
 			</div>
 			<div class="subbtn_box">
 				<div class="subbtn_realtime">
@@ -448,6 +446,8 @@ a {
 	</div>
 
 	<div id="subline_map">
+		<!-- <img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>-->
+		<!--  <p>마우스를 올려 확대해보세요.</p>-->
 	</div>
 	
 	<script type="text/javascript">/*여기에 넣지않으면 style오류남*/
