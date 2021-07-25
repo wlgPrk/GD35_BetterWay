@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -248,12 +249,13 @@ a {
 
 #deparr_search {
 	width: 270px;
-	float: left;
-	box-sizing: border-box;
+    height: 90px;
+    float: left;
+    box-sizing: border-box;
 }
 
 #deparr_btn, #bus_search_btn {
-	width: 30px;
+	width: 38px;
 	float: right;
 	box-sizing: border-box;
 	height: 65px;
@@ -273,25 +275,34 @@ a {
 	color: white;
 	background: #B2A59F;
 } 
+.search_route_box{
+	position: relative;
+	top: -38px;
+	left: 25px;
+	display: inline-block;
+	text-align: center;
+	vertical-align:middle;
+	height: 150px;
+	width: 250px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
 </style>
 
 <script type="text/javascript"
 	src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+	
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>	
+	
 <script type="text/javascript"
 	src="resources/script/jquery/zoomsl-3.0.min.js"></script>
+	
 <script type="text/javascript">
 	$(document).ready(function(){
-		/* $("#subbtn_realtime").on("click",function(){
-		$(".subbtn_realtime").css("background-Color","black");
-		$("#subbtn_realtime").css("background-Color","black"); */
-		
-		/*$("img[name='subway']").imagezoomsl({
-			zoomrange: [1, 12],
-			zoomstart: 4, //시작 줌
-			innerzoom: true, //이미지 내 줌으로 전환
-			magnifierborder: "none" //두께 없음
-		});*/
-		
+		$("#selS").select2();
+		$("#selE").select2();
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
@@ -370,12 +381,27 @@ a {
 			<div id="title">출발 도착 역검색</div>
 			<div id="dep_arr">
 				<div id="deparr_search">
-					<div class="dep">
-						<input id="dep" type="text" placeholder="출발역">
-					</div>
-					<div class="arr">
-						<input id="arr" type="text" placeholder="도착역">
-					</div>
+					<div class="search_route_box">
+					 <br />
+					 <br /> 
+						<select id="selS" name = "selS" style=" width: 230px;height: 30px;">
+						<option selected="selected">출발 역</option>
+						<c:forEach items="${SubwayList}" var="START">
+							<option value="${START.SUBWAY_STATION_NAME}"><c:out
+									value="${START.SUBWAY_STATION_NAME}(${START.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+						</select>
+						
+						<select id="selE" name = "selE" style=" width: 230px;height: 30px;">
+						<option selected="selected">도착 역</option>
+						<c:forEach items="${SubwayList}" var="END">
+							<option value="${END.SUBWAY_STATION_NAME}"><c:out
+									value="${END.SUBWAY_STATION_NAME}(${END.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+						</select>
+				</div>
 				</div>
 				<div id="deparr_btn">
 					<input type="button" id="deparr_search_btn" value="검색"
@@ -422,8 +448,6 @@ a {
 	</div>
 
 	<div id="subline_map">
-		<!-- <img src= "resources/images/노선도.jpg" name="subway" id ="subway" width='100%' height='100%'/>-->
-		<!--  <p>마우스를 올려 확대해보세요.</p>-->
 	</div>
 	
 	<script type="text/javascript">/*여기에 넣지않으면 style오류남*/
