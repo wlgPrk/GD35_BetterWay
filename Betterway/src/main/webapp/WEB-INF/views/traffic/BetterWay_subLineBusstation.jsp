@@ -156,7 +156,7 @@ font-size: 15px;
     .box_table {
       background-color: #f2f2f2;
       width: 300px;
-      height: 580px;
+      height: 380px;
       padding:10px 5px ;
 	border:1px;
  	  margin-top:10px;
@@ -173,7 +173,7 @@ font-size: 15px;
     
 }
 table{
-text-align:center;
+
 margin:0 auto;
 border:1px solid;
 }
@@ -227,6 +227,18 @@ padding-top:25px;
  th, td {
     border: 1px solid  #B2A59F;
   }
+  #searchBtn{
+  background:  #82B2DA;
+  height:30px;
+ color: white;
+     cursor: pointer;
+  }
+  #realtime_search{
+  background:  #82B2DA;
+  height:60px;
+ color: white;    
+ cursor: pointer;
+  }
 
 	</style>
 <script type="text/javascript"
@@ -252,7 +264,7 @@ $(document).ready(function(){
 	//$("#select_station").select2();
 
 	
-	$("#realtime_search").on("click",function(){
+	$("#searchBtn").on("click",function(){
 		var html="";
 		var params = $("#SearchForm").serialize();	
 		var stationid;
@@ -285,6 +297,8 @@ $(document).ready(function(){
 
 								// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 								var map = new kakao.maps.Map(mapContainer, mapOption); 
+								let target = [];
+								
 					$.ajax({
 						
 						////url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300",
@@ -299,8 +313,9 @@ $(document).ready(function(){
 							//안에서 비교해가면서 버스번호 뽑기
 					 	 	var busRouteNo =$(res).find("busRouteNo").text();	
 							var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호	
-							var EXIT = new Set(table_exitNo);//1234
+							var EXIT = new Set(table_exitNo);//1234-->1/0,1/1,1/2 번출구를 못가져옴
 							console.log(busRouteNo); 
+
 		
 							var html="";
 							
@@ -310,75 +325,60 @@ $(document).ready(function(){
 							var EXIT = new Set(table_exitNo);//1234
 							var html = "";
 							//html += "<tr><td name=\"05상\" id=\"05상\"></td><th>05</th><td name=\"05하\" id=\"05하\"></td></tr>";
-
-							for(i=0;i<=Array.from(EXIT).length-1;i++){
-								html +="<tr>";	
-								html +="<td id=\""+Array.from(EXIT)[i]+"\" name=\"get"+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td><td id=\"busNo\" name=\"busNo"+Array.from(EXIT)[i]+"\"></td>";
-								html +="</tr>";
-								
-								
-							}console.log(Array.from(EXIT).length);
-							$("tbody").html(html);  
-							   
+							
+							
 							 $(res).find('item').each(function(){
 								 var busRouteNo = $(this).find("busRouteNo").text(); 	
 									var exitNo = $(this).find("exitNo").text();	
 									var exitNos = $(this).find("exitNo").text();
 									html +="<tr>";	
-									//html +="<td id=\""+exitNo+"\" name=\""+exitNo+"\">"+exitNo+"</td><td id=\""+busRouteNo+"\" name=\""+busRouteNo+"\">"+busRouteNo+"</td>";
-									//1 751
-									//1 571
-									html +="<td id=\""+exitNo+"\" name=\""+busRouteNo+"\"></td><td id=\""+busRouteNo+"\" name=\""+busRouteNo+"\"></td>";
-									
+									html +="<td id=\""+exitNo+"\"class=\"exit\" name=\""+exitNo+"\"></td><td id=\""+busRouteNo+"\" class=\"busnum\"name=\""+busRouteNo+"\"></td>";
 									html +="</tr>";
-									$("#tmp_table_body").html(html);
+									$("#hide").html(html);
 									
-									 
-								 });  //tbody에출구번호그림	 */ 	
-							 var rows = document.getElementById("tmp_table_body").getElementsByTagName("tr");
-							
-						    for(var r=Array.from(EXIT).length; r<=rows.length; r++ ){//로우수만큼 돌면서
-						      var cells = rows[r].getElementsByTagName("td");
-									console.log(cells);//tr 하나씩
-									console.log(cells[1].id);
-									for(i=0;i<=Array.from(EXIT).length;i++){
-											if(cells[0].id==i){
-												  $('td[name=busNo'+i+']').prepend(cells[1].id+" ");
-											}
-									}
-						    }
-						   
-							/* for(i=0;i<=Array.from(EXIT).length-1;i++){
-								
-								html +="<tr>";	
-								html +="<td id=\""+Array.from(EXIT)[i]+"\" name=\""+Array.from(EXIT)[i]+"\">"+Array.from(EXIT)[i]+"</td><td id=\"busNo\" name=\"busNo\"></td>";
-								html +="</tr>";
-								
-								$("tbody").html(html);
-								if(Array.from(EXIT)[i]>0){
-									console.log("aaaaaa");
-									$(res).find('item').each(function(){
-										 var busRouteNo = $(this).find("busRouteNo").text(); 	
-											var exitNo = $(this).find("exitNo").text();	
-											var exitNos = $(this).find("exitNo").text();	
-											
-											if(exitNo == Array.from(EXIT)[i]){
-												console.log(exitNo);
-												console.log(Array.from(EXIT)[i]);
-												  $('td[name="busNo"]').prepend(busRouteNo);
-												
-												}
-										 }); 
+								 });///id랑 name만 있음 껍데기 --> 테이블 따ㅗㄹ 뻬서 히든으로 감추면 비교 못할까,,ㅣㅏ러ㅣ허	
+									var text = $("#hide tr:last td:first-child").eq(0).attr('id');
+									console.log(text);//강남->12 구산->4
 									
-									}
-						 };   */
-						
+							// var rows = document.getElementById("tmp_table_body").getElementsByTagName("tr");
+							 var rows = document.getElementById("hide").getElementsByClassName("exit");
+							 console.log($(res).find('item').length);
 							 
+							 
+							 if($(res).find('item').length==0){
+							
+									 alert("해당 역은 버스안내를 제공하지 않습니다.");
+							 }
+							console.log(rows.length);
+				
+							console.log(rows);
 						
-						
-									 
-
-						
+							console.log($(Array.from(rows)[6]).attr("id"));
+							
+							var busnum = document.getElementById("hide").getElementsByClassName("busnum");
+							console.log(busnum);
+							console.log($(Array.from(busnum)[6]).attr("id"));
+							//출구번호 먼저그리기
+							 exit="";
+							 for(i=1;i<=text;i++){//1-4 | //1-12
+							
+								exit +="<tr>";	
+								exit +="<td id=\""+i+"\" name=\"get"+i+"\">"+i+"</td><td id=\"busNo\" name=\"busNo"+i+"\"></td>";
+								exit +="</tr>";
+								
+								$("#tmp_table_body").html(exit);//출구번호 그림   
+								
+							 }
+							 for(i=1;i<=text;i++){
+								for(r=0;r<=busnum.length;r++){
+									 if($(Array.from(rows)[r]).attr("id")==i){
+									
+											  $('td[name=busNo'+i+']').prepend($(Array.from(busnum)[r]).attr("id")+" ");
+										}
+								}
+					
+							 }
+					
 							
 						},
 						error:function(requet,status,error){
@@ -432,7 +432,7 @@ $(document).ready(function(){
 	   		   </c:forEach>
 			 </select> 
 			</div>
-			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색" style="margin-left: 10px;"/>
+			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색"/>
 		  </form>
 	</div>	  
 	<div class="subbtn_box">
@@ -448,7 +448,7 @@ $(document).ready(function(){
 		<div class="box_sub">
 		 <form action="#" id="SearchForm" method="post" >
 		 <input type="text"  class="realtime" id="select_station"/>
-		 <input type="button" id="realtime_search"value="검색">
+		 <input type="button" id="searchBtn"value="검색">
 		  <input type="hidden" id="st" name="select_station"/>  
 		 
 <%-- 	 <select class="realtime" id="select_station">
@@ -466,7 +466,7 @@ $(document).ready(function(){
 
 	    <div class="box_table">
 	    
-								<table>
+	  						    <table >
 								<thead></thead>
 								<tbody id="tmp_table_body">
 				
@@ -474,7 +474,20 @@ $(document).ready(function(){
 								
 								</table>
 								
+								<table style="display: none;">
+								<thead></thead>
+								<tbody id="hide">
+				
+								</tbody>
 								
+								</table>
+								
+								
+								
+								
+								
+								
+															
 							
 								
 	</div>
@@ -490,3 +503,7 @@ $(document).ready(function(){
 </body>
 
 </html>
+
+
+	
+									
