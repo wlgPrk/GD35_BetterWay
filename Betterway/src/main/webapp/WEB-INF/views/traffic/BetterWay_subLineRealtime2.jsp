@@ -254,7 +254,7 @@ a {
 }
 
 #deparr_btn, #bus_search_btn {
-	width: 30px;
+	width: 35px;
 	float: right;
 	box-sizing: border-box;
 	height: 65px;
@@ -287,7 +287,7 @@ a {
 <script type="text/javascript">
 	$(document).ready(function(){
 		//$("#selS").select2();
-		//$("#selE").select2();
+		//$("#selE").select2(); //이거하면 리스트가 안뜸 
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
