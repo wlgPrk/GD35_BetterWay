@@ -10,7 +10,7 @@
 
 function main(){
 	/* 수정수정 */
-		location.href="BetterWay_cooling.html";
+		location.href="BetterWay_main.html";
 	}
 
 function BetterWay_subLineRealtime(){
@@ -287,9 +287,11 @@ width:50px;
 			var html="";
 			var params = $("#SearchForm").serialize();	
 			$("#sD").val($("#select_LatLngD").val()); //출발역	
+
 			var startX;
 			var startY;
 			$("#sA").val($("#select_LatLngA").val()); //도착역
+	
 			var endX;
 			var endY;
 			/* if(selS!="null"){
@@ -379,14 +381,6 @@ width:50px;
 
 												// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 												var map = new kakao.maps.Map(mapContainer, mapOption); 
-												 getWeather();
-												 },
-												error:function(requet,status,error){
-													console.log(error);
-												}
-												
-											});//ajax로 데이터 불러옴
-											function getWeather() {
 												$.ajax({
 													//https://api.openweathermap.org/data/2.5/weather?lat=37.61137&lon=126.9172&appid=44c6ec52a93219e25d17ecf7fed82606&units=metric
 													url: "http://api.openweathermap.org/data/2.5/weather", // 접속 주소
@@ -397,19 +391,27 @@ width:50px;
 														console.log(res);
 														console.log(res.main.temp);
 														console.log(res.weather[0].icon);
-														$("#weatherIcon").attr("src", 
-																"http://openweathermap.org/img/wn/" 
-																				+ res.weather[0].icon + "@2x.png");
+														$("#weatherIcon").attr("src", "http://openweathermap.org/img/wn/"+ res.weather[0].icon + "@2x.png");
 														$("#temp").html(res.main.temp + "℃ - " + res.weather[0].description);
 														$("#weatherIcon").show();
+													
 													},
 													error: function(request, status, error) { // 실패 시 다음 함수 실행
+														
 														console.log(request);
 														console.log(status);
 														console.log(error);
 													}
 												});
-											}
+												 },
+												error:function(requet,status,error){
+													console.log(error);
+												}
+												
+											});//ajax로 데이터 불러옴
+									
+											
+											
 									
 											//날씨 아작스 불러오기
 										
