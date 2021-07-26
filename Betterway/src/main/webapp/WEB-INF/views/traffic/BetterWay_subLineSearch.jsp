@@ -130,6 +130,9 @@ padding:5px 0px 5px 0px;
     height: 20px;
      color: white;background:#82B2DA; padding-top:5px;padding-bottom:5px;padding-right:5px;
 }
+.realtime_search:hover{  
+	cursor: pointer;
+}
 a{
 	text-decoration: none;
 	font-size: 15px;
@@ -238,12 +241,14 @@ margin-left: 25px;
 }
 .deparr_search_btn{
 float:right;
-width: 30px;
 
+color:white;
 	box-sizing: border-box;
-	height:65px;
+	height:60px;
 	background-color: #82B2DA;
 }
+.deparr_search_btn:hover{
+cursor: pointer;}
 #weatherWrap{
 width:100%;
 height:180px;
