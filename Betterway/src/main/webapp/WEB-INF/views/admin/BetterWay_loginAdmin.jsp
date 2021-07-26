@@ -92,6 +92,7 @@ nav ul {
 	color:white;
 	text-decoration : none;
 	font-size: 30px;
+	cursor:pointer
 
 }
 
@@ -207,7 +208,9 @@ height :50px;
 
 
 
-
+li{
+cursor:pointer;
+}
 
 
 
@@ -219,11 +222,77 @@ height :50px;
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" 
 		src="resources/script/popup/popup.js?after"></script>
-
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	//사이버스테이션
+	$("#cyber").on("click",function(){
+		location.href="BetterWay_subLineSearch"
+	});
+	
+	//실내공기정보제공
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
+	
+	
+	//실시간열차정보
+	$("#subinfo").on("click",function(){
+		location.href="BetterWay_subLineRealtime2"
+	});
+	
+	//역주변 버스정류장 연계
+	$("#bus").on("click",function(){
+		location.href="BetterWay_subLineBusstation"
+	});
+	
+	//역내외 시설
+	$("#esta").on("click",function(){
+		location.href="BetterWay_esta_main"
+	});
+	
 
+	
+	//차량별 냉방상태
+	$("#cool").on("click",function(){
+		location.href="BetterWay_cooling"
+	});
+	
+	//유실물조회
+	$("#news").on("click",function(){
+		location.href="BetterWay_subwayNews"
+	});
+	
+	
+	//유실물조회
+	$("#lost").on("click",function(){
+		location.href="BetterWay_lostAndFound"
+	});
+	
+	//건의
+	$("#sug").on("click",function(){
+		location.href="BetterWay_suggestList"
+	});
+	
+	//유실물조회
+	$(".side_lost").on("click",function(){
+		location.href="BetterWay_lostAndFound"
+	});
+	
+	//건의
+	$(".side_sug").on("click",function(){
+		location.href="BetterWay_suggestList"
+	});
+	
+	
+	
+	//메인
+	$(".main").on("click",function(){
+		location.href="BetterWay_main"
+	});
 	
 	
 	
@@ -266,30 +335,30 @@ $(document).ready(function(){
 <body>
 
 <header>
-  <a class="main" href="menu.html">BetterWay</a>
+  <span class="main">BetterWay</span>
 <div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
+		<li>교통안내
 			<ul>
-				<li><a href="zoom.html">사이버스테이션</a></li>
-				<li><a href="#">실시간 열차정보</a></li>
-				<li><a href="#">역주변 버스정류장 연계</a></li>
-				<li><a href="#">역 내외 시설</a></li>
+				<li id="cyber">노선 정보</li>
+				<li id="subinfo">실시간 열차정보</li>
+				<li id="bus">역주변 버스정류장 연계</li>
+				<li id="esta">역 내외 시설</li>
 			</ul>
 		</li>
-		<li><a href="#">환경정보안내</a>
+		<li>환경정보안내
 			<ul>
-				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
-				<li><a href="conditionInfo.html">차량 별 냉방상태</a></li>
+				<li id="air">실내 공기질 정보 제공</li>
+				<li id="cool">차량 별 냉방상태</li>
 			</ul>
 		</li>
-		<li><a href="#">지하철 뉴스</a>
+		<li id="news">지하철 뉴스
 			
 		</li>
-		<li><a href="#">고객의 소리</a>
+		<li>고객의 소리
 			<ul>
-				<li><a href="#">유실물 조회</a></li>
-				<li><a href="#">건의 게시판</a></li>
+				<li class="side_lost">유실물 조회</li>
+				<li class="side_sug">건의 게시판</li>
 			</ul>
 		</li>
 

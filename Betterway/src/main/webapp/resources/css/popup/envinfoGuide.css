@@ -139,9 +139,14 @@ margin-left:50px;
 #air_guide_btn:hover{
 text-decoration: underline;
 }
+
+#air_guide_btn{
+cursor:pointer;
+}
 #select_station_envi,#sName_envi{
 width:165px;
  height: 30px;
+ cursor:pointer;
 }
 #val_envi,#vals_envi{
 font-size: 15px;
@@ -158,6 +163,7 @@ color:white;
     height: 30px;
     border: #fff;
     color: white;
+    cursor:pointer;
 
 }
 .label_envi{
@@ -180,6 +186,7 @@ font-weight: bold;
     height: 30px;
     border: #fff;
     color: white;
+    cursor:pointer;
 }
 
 
@@ -313,6 +320,7 @@ text-align: left;
     height: 30px;
     border: #fff;
     color: white;
+     cursor:pointer;
 }
 
 
