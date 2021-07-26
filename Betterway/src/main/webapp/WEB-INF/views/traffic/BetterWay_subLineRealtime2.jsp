@@ -23,9 +23,6 @@ function BetterWay_subLineBusstation(){
 }
 </script>
 <style>
-* {
-	overflow: hidden;
-}
 
 div {
 	float: left;
@@ -289,8 +286,8 @@ a {
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		//$("#selSt").select2();
-		//$("#selE").select2(); //이거하면 리스트가 안뜸 
+		$("#selS").select2();
+		$("#selE").select2(); //이거하면 리스트가 안뜸 
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
@@ -354,7 +351,7 @@ a {
 		
 		
 		$("#deparr_search_btn").on("click", function(){
-			var Start = $("#selSt option:selected").val();
+			var Start = $("#selS option:selected").val();
 			var end = $("#selE option:selected").val();
 			if(Start == "출발 역" || end == "도착 역"){
 				alert("출발역과 도착역을 입력해 주세요.");
@@ -384,7 +381,7 @@ a {
 			<div id="dep_arr">
 				<form action="#" id="SearchForm2" method="post">
 				<div id="deparr_search">
-		 	<select id="selSt" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
+		 	<select id="selS" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
 						<option selected="selected">출발 역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
