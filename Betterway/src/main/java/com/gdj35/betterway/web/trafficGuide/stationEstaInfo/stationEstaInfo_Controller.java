@@ -224,40 +224,5 @@ public class stationEstaInfo_Controller {
 		 return mapper.writeValueAsString(modelMap);
 	}
 	
-	@RequestMapping(value="/BetterWay_congestion")
-	public ModelAndView BetterWay_congestion(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) throws Throwable {
-		try {
-			List<HashMap<String, String>> SubwayList
-	         = iEstaService.StationList(params);
-			 
-			 mav.addObject("StationList",SubwayList);
-			 
-			 mav.setViewName("traffic/BetterWay_congestion");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return mav;
-	}
-	
-	
-	  @RequestMapping(value="/congestions", method=RequestMethod.POST,
-	  produces="text/json;charset=UTF-8")
-	  
-	  @ResponseBody public String congestions(
-	  
-	  @RequestParam HashMap<String, String> params) throws Throwable{
-	  
-	  ObjectMapper mapper = new ObjectMapper(); Map<String, Object> modelMap = new
-	  HashMap<String, Object>(); 
-	  try {
-	  List<HashMap<String, String>> data = iEstaService.SubwayLine(params);
-	  modelMap.put("data",data); } 
-	  catch (Exception e) { 
-		  e.printStackTrace(); 
-		  }
-	  return mapper.writeValueAsString(modelMap); }
-	 
 	
 }
