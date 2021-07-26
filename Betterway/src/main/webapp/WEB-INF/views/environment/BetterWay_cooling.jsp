@@ -192,7 +192,8 @@ margin-left: 10px;
 
 }
 
-#side_sub_menu{
+
+#side_sub_menu,#side_sub_menu_air{
 text-align: center;
 font-size: 20pt;
 font-weight:bold;
@@ -200,11 +201,13 @@ border-bottom:1px solid #82B2DA;
 height:100px;
 padding-top: 30px;
 }
-#side_sub_menu:hover{
+#side_sub_menu:hover,#side_sub_menu_air:hover{
 background: #B2A59F;
 
 }
-
+#side_sub_menu_air {
+    cursor: pointer;
+}
 p{
 margin-top: 30px;
 margin-bottom:30px;
@@ -239,6 +242,8 @@ border: #82b2da;
 color:white;
 margin-left:15px;
 }
+#DoIt:hover{
+cursor: pointer;}
 
 #img img {
 	width: 100px;
@@ -247,12 +252,27 @@ margin-left:15px;
 #show img{
 width:500px;
 }
+#air:hover{
+cursor: pointer;}
 </style>
 <script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<!-- 실내공기질 팝업 스크립트 -->
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+		src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 
-$(document).ready(function(){ 
+$(document).ready(function(){
+	//실내공기질
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
+	
+	$("#side_sub_menu_air").on("click",function(){
+		envinfoGuide();
+	});
+	
 	$("#DoIt").on("click",function(){
 		var params = $("#actionForm").serialize();
 		$.ajax({
@@ -291,23 +311,11 @@ $(document).ready(function(){
 				
 			}
 		});
-		
-	
+
 	});
-}); 
+});
 
-function popup(){
-	window.open('BetterWay_envinfoGuide.html','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
 
-}
-function sublinieInfo(){
-	window.open('BetterWay_subLineSearch.html');
-
-}
-function cooling(){
-	window.open('BetterWay_cooling.html');
-
-}
 
 
 
@@ -328,15 +336,16 @@ function cooling(){
 		<li><a href="#">교통정보안내</a>
 			<ul>
 				<li><a href="BetterWay_subLineSearch">노선도</a></li>
-				<li><a href="BetterWay_subLineRealtime">실시간 열차정보</a></li>
+				<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>
 		</li>
 		<li><a href="#">환경정보안내</a>
 			<ul>
-				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
+				<li id="air">실내 공기질 정보 제공</li>
 				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
 			</ul>
 		</li>
 		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
@@ -362,7 +371,7 @@ function cooling(){
 			환경정보 안내
 			</div>
 			<div id="side_menu">
-			<div id="side_sub_menu"><a href="javascript:popup();">실내 공기질 정보안내</a></div>
+			<div id="side_sub_menu_air">실내 공기질 정보안내</div>
 			<div id="side_sub_menu"><a href="BetterWay_cooling">차량별 냉방상태</a></div>
 			<div id="side_sub_menu"><a href="BetterWay_congestion">혼잡도</a></div>
 			</div>
