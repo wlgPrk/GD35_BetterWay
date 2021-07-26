@@ -550,7 +550,7 @@ function drawPaging(pStart, pEnd, pMax){
 <body>
 
 <header>
-  <a class="main" href="menu.html">BetterWay</a>
+  <span class="main">BetterWay</span>
 <div id="menu">
 	<ul>
 		<li><a href="#">교통안내</a>
