@@ -97,6 +97,7 @@ nav ul {
 	color:white;
 	text-decoration : none;
 	font-size: 30px;
+	cursor:pointer;
 
 }
 
@@ -225,6 +226,7 @@ font-weight:bold;
 border-bottom:1px solid #82B2DA;
 height:100px;
 padding-top: 30px;
+cursor:poiner;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
@@ -396,6 +398,11 @@ word-break:break-all;
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	//메인
+	$(".main").on("click",function(){
+		location.href="BetterWay_main"
+	});
+	
 	//실내공기정보제공
 	$("#air").on("click",function(){
 		envinfoGuide();
@@ -409,7 +416,7 @@ $(document).ready(function(){
 	
 	//실시간열차정보
 	$("#subinfo").on("click",function(){
-		location.href="BetterWay_subLineRealtime"
+		location.href="BetterWay_subLineRealtime2"
 	});
 	
 	//역주변 버스정류장 연계
@@ -548,7 +555,7 @@ function drawPaging(pStart, pEnd, pMax){
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li id="cyber">사이버스테이션</li>
+				<li id="cyber">노선 정보</li>
 				<li id="subinfo">실시간 열차정보</li>
 				<li id="bus">역주변 버스정류장 연계</li>
 				<li id="esta">역 내외 시설</li>
@@ -577,7 +584,7 @@ function drawPaging(pStart, pEnd, pMax){
   <article>
 		<div id="sidebar">
 			<div id="sidebar_top">
-			역 내외 시설
+			지하철뉴스
 			</div>
 			<div id="side_menu">
 			<div id="side_sub_menu"><a href="#">지하철뉴스</a></div>
