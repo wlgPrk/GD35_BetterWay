@@ -82,7 +82,6 @@ th{
 	border: none;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: 5px;
 	margin-top:10px;
 	padding: 10px;
 }
