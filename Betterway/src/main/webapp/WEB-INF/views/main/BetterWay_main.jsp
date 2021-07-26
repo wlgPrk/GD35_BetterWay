@@ -1376,7 +1376,7 @@ cursor: pointer;
 				<div class="search_route_box">
 					 <br />
 					<br /> 
-						<select id="selS" name = "selS" style=" width: 200px;height: 30px;font-size: 15px;">
+						<select id="selS" name = "selS" style="width: 200px;height: 30px;font-size: 15px;">
 						<option selected="selected">출발 역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
