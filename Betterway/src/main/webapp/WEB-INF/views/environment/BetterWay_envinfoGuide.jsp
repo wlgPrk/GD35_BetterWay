@@ -158,6 +158,10 @@ font-weight: bold;
 }
 </style><script type="text/javascript"
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<!-- 실내공기질 팝업 스크립트 -->
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+		src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 
