@@ -280,13 +280,16 @@ a {
 	src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="resources/script/jquery/zoomsl-3.0.min.js"></script>
+
+<!-- 네이버지도  API-->
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rsi2kulw78"></script> 
 	
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		//$("#selS").select2();
+		//$("#selSt").select2();
 		//$("#selE").select2(); //이거하면 리스트가 안뜸 
 		
 		$(".realtime_search").on("click",function(){
@@ -351,7 +354,7 @@ a {
 		
 		
 		$("#deparr_search_btn").on("click", function(){
-			var Start = $("#selS option:selected").val();
+			var Start = $("#selSt option:selected").val();
 			var end = $("#selE option:selected").val();
 			if(Start == "출발 역" || end == "도착 역"){
 				alert("출발역과 도착역을 입력해 주세요.");
@@ -363,12 +366,11 @@ a {
 			console.log(end+":"+"도착역");
 			}
 		});
+		
 		});
 		
 	</script>
 	
-	<!-- 네이버지도  API-->
-	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rsi2kulw78"></script> 
 </head>
 <body>
 
@@ -382,7 +384,7 @@ a {
 			<div id="dep_arr">
 				<form action="#" id="SearchForm2" method="post">
 				<div id="deparr_search">
-		 	<select id="selS" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
+		 	<select id="selSt" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
 						<option selected="selected">출발 역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
@@ -468,7 +470,8 @@ a {
 			var a = $(".realtime").val();
 			var params = $("#SearchForm").serialize();
 			
-			console.log($(".realtime").val());
+			//console.log($(".realtime").val());
+			//console.log(a);
 			
 		$.ajax({
 				url:"getLatLngSubWay",
@@ -476,17 +479,19 @@ a {
 				dataType:"json",
 				data:params,
 				success:function(res){	
+					var flag = false;
 							 for(var d of res.data){						
 								if(a == d.SUBWAY_STATION_NAME){	
-									if(d.LAT != null || d.LAT != ""){
-									Y = d.LAT;
-									X = d.LNG;
-									console.log(Y,X);
-									}else{
-										alert("지원하지 않는 역입니다.");
-									}
+										Y = d.LAT;
+										X = d.LNG;
+										console.log(Y,X);
+										flag = true;
 								}
 							}
+							if(!flag){
+								alert("지도를 지원하지 않는 역입니다.");
+							}
+							
 										
 					var map = new naver.maps.Map('subline_map',{
 						center : new naver.maps.LatLng(Y,X), zoom:15,//37.554648,126.972559 서울역 좌표
