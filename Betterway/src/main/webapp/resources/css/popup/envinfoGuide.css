@@ -181,3 +181,138 @@ font-weight: bold;
     border: #fff;
     color: white;
 }
+
+
+
+
+
+
+
+.popup_div_envi2 {
+	font-size:20px;
+	display: inline-block;
+	width: 600px;
+	height: 780px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -350px;
+	margin-left: -300px;
+	background-color: #FFFFFF;
+	border: 2px solid #e0e0eb;
+	z-index: 1200;
+	box-shadow: 1px 1px 3px grey;
+}
+
+.header_envi2 {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+	padding-left:20px;
+    color: white;
+    background: #023459;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.con_envi2 {
+	width: 100%;
+	height: 100%;
+}
+.wrap_envi2 {
+	width: 460px;
+    margin: 0px auto;
+    margin-top: 45px;
+    margin-bottom: 50px;
+	background-color: #fff;
+	text-align: center;
+}
+
+
+.a_envi2 {
+		text-decoration: none;
+		color: black;
+	}
+
+.box_envi2{
+  font-size: 20pt;
+  border-radius: 5px 5px 5px 5px;
+  margin-left: 5px;
+  }
+  
+
+
+.box_title_envi2{
+	position: relative;
+	background-image:url("images/handleimg.png");             
+	height:88px;
+
+  }
+
+.img_cover_envi2{
+	backdrop-filter: blur(5px);
+	padding-top:60px;
+	height: 28px;
+
+ 
+}
+.img_cover_con_envi2{/* 어디로 왔능가  */
+
+font-size: 15px;
+background:rgba(52, 75, 22, 0.63);
+color: #fff;
+text-align: right;
+}
+.table_envi2 {
+	border-collapse : collapse;
+	text-align: center;
+	font-size: 10pt;
+	width: 460px;
+
+}
+
+.th_envi2, .td_envi2{
+font-size: 8pt;
+width:50px;
+padding: 3px;
+}
+.td_envi2{
+border:1px solid #e0e0eb;
+}
+#tr_title_envi2{
+background-color:#f0f0f5;
+border-top:1px solid #82B2DA; 
+border-left:1px solid #e0e0eb; 
+border-right:1px solid #e0e0eb;
+}
+.con_wrap_envi2{
+margin-top:20px;
+}
+
+#sub_con_envi2{
+font-size: 13px;
+text-align: left;
+}
+
+
+
+.btn_box_envi2{
+	display:inline-block;
+	width:100%;
+	height :50px;
+	margin-top:25px;
+	text-align: center;
+}
+
+.btn_envi2{
+	background-color: #82b2da;
+    color: white;
+    width: 50px;
+    height: 30px;
+    border: #fff;
+    color: white;
+}
+
+

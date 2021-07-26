@@ -35,8 +35,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#listBtn").on("click",function(){
-		$("#updateForm").attr("action","BetterWay_toiletAdmin");
-		$("#updateForm").submit();
+		$("#addForm").attr("action","BetterWay_toiletAdmin");
+		$("#addForm").submit();
 	});
 	
 	$("#addBtn").on("click",function(){

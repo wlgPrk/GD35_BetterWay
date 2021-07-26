@@ -699,7 +699,7 @@ $(document).ready(function(){
 	});
 	
 	//댓글수정버튼클릭시 비밀번호체크
-	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(2)",function(){
+	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(3)",function(){
 		$("#comm_no").val($(this).attr("comm_no"));
 	
 		commPwPopup("비밀번호를 입력하시오" ,"","닫기");
@@ -712,7 +712,7 @@ $(document).ready(function(){
 	});
 	
 	//댓글삭제버튼클릭시 비밀번호체크
-	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(3)",function(){
+	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(4)",function(){
 		$("#comm_no").val($(this).attr("comm_no"));
 		
 		commPwDelPopup("비밀번호를 입력하시오" ,"","닫기");
