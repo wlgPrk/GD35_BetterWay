@@ -6,13 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>지하철 혼잡도</title>
-</head>
-<script type="text/javascript">
-function popup(){
-	window.open('BetterWay_envinfoGuide','팝업창',"width=700,height=1000,top="+(screen.availHeight/2-500)+",left="+(screen.availWidth/2-350)+"");
-}
-</script>
-
 <style type="text/css">
 * {
   box-sizing: border-box;
@@ -186,7 +179,7 @@ margin-left: 10px;
 
 }
 
-#side_sub_menu{
+#side_sub_menu,#side_sub_menu_air{
 text-align: center;
 font-size: 20pt;
 font-weight:bold;
@@ -194,7 +187,7 @@ border-bottom:1px solid #82B2DA;
 height:100px;
 padding-top: 30px;
 }
-#side_sub_menu:hover{
+#side_sub_menu:hover,#side_sub_menu_air:hover{
 background: #B2A59F;
 
 }
@@ -219,7 +212,7 @@ font-weight: bold;
 .table_box{
 	width:100%;
 	border-top:2px solid #82b2da;
-	margin-top: 16px;
+	margin-top: 15px;
 }
 #con_table{
 	border-collapse:collapse;
@@ -316,6 +309,7 @@ background: #B2A59F;
 }
 #congestion_chart{
 	margin-top: 100px;
+	margin-left: 15px;
 }
 #upLine_btn,#downLine_btn{
 	font-size: 12pt;
@@ -337,6 +331,12 @@ background: #B2A59F;
     margin-top: -475px;
     margin-left: -40px;
 }
+li{
+cursor: pointer;
+}
+#side_sub_menu_air{
+cursor: pointer;
+}
 
 </style>
 
@@ -348,6 +348,11 @@ background: #B2A59F;
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
+<!-- 실내공기질 팝업 스크립트 -->
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+		src="resources/script/popup/envinfoGuide.js?after"></script>
+
 <script type="text/javascript">
 //stationEstainfo 컨트롤러에 있음
 
@@ -355,6 +360,16 @@ background: #B2A59F;
 //2.검색내용을 API에 보내서 관련내용 차트에 받기
 //3.차트에 표현하기
 $(document).ready(function(){
+	//실내공기질
+	$("#air").on("click",function(){
+		envinfoGuide();
+	});
+	
+	$("#side_sub_menu_air").on("click",function(){
+		envinfoGuide();
+	});
+	
+	
 	$("#selstation").select2();
 	$("#selsubLine").select2();
 	
@@ -710,8 +725,9 @@ function changeL(data){
 		</li>
 		<li><a href="#">환경정보안내</a>
 			<ul>
-				<li><a href="javascript:popup();">실내 공기질 정보 제공</a></li>
+				<li id="air">실내 공기질 정보 제공</li>
 				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
 			</ul>
 		</li>
 		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
@@ -732,24 +748,13 @@ function changeL(data){
   <article>
 		<div id="sidebar">
 			<div id="sidebar_top">
-			역 내외 시설
+			환경정보 안내
 			</div>
-			
+		 	
 			<div id="side_menu">
-				 <ul class="side_menu_sub">
-           			 <li class="nav" id="inside_esta">
-               		 <a href="#inside_esta" class="btn">내부 편의시설</a>
-                		<div class="side_menu_sub_down">
-                    		<a href="BetterWay_nursingRoom2">수유실</a>
-                    		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
-                    		<a href="BetterWay_cycle">자전거 보관함</a>
-                    		<a href="BetterWay_happy">행복지대</a>
-                		</div>
-           			 </li>
-           		 <li class="nav" id="outside_esta">
-                <a href="#outside_esta" class="btn">외부시설</a>
-            		</li>
-       			 </ul>
+			<div id="side_sub_menu_air">실내 공기질 정보안내</div>
+			<div id="side_sub_menu"><a href="BetterWay_cooling">차량별 냉방상태</a></div>
+			<div id="side_sub_menu"><a href="BetterWay_congestion">혼잡도</a></div>
 			</div>
 			
 		</div>
@@ -760,7 +765,7 @@ function changeL(data){
 		        <div class="img_cov">
 		      
 		                  <div class="img_cov_con">
-		                  	홈>교통정보안내>혼잡도 &nbsp;
+		                  	홈>환경정보안내>혼잡도 &nbsp;
 		                  	</div>
 		            </div>
     	</div>

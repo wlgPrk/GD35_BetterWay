@@ -61,12 +61,17 @@ public class subLineInfo_Controller {
 	 * }
 	 */
 	@RequestMapping(value="/BetterWay_subLineRealtime2")
-	public ModelAndView BetterWay_subLineRealtime2(	ModelAndView mav) throws Throwable {
-		try {
-			 mav.setViewName("traffic/BetterWay_subLineRealtime2");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public ModelAndView BetterWay_subLineRealtime2(
+		@RequestParam HashMap<String, String> params,
+		ModelAndView mav)throws Throwable {
+	 try {
+		 List<HashMap<String, String>> SubwayList
+	     = iSubLineService.SubwayList(params);
+		 mav.addObject("SubwayList",SubwayList);
+		 mav.setViewName("traffic/BetterWay_subLineRealtime2");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 		return mav;
 	}
 	

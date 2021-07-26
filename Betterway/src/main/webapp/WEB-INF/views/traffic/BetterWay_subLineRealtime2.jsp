@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -253,7 +254,7 @@ a {
 }
 
 #deparr_btn, #bus_search_btn {
-	width: 30px;
+	width: 35px;
 	float: right;
 	box-sizing: border-box;
 	height: 65px;
@@ -279,19 +280,14 @@ a {
 	src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="resources/script/jquery/zoomsl-3.0.min.js"></script>
+	
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
-		/* $("#subbtn_realtime").on("click",function(){
-		$(".subbtn_realtime").css("background-Color","black");
-		$("#subbtn_realtime").css("background-Color","black"); */
-		
-		/*$("img[name='subway']").imagezoomsl({
-			zoomrange: [1, 12],
-			zoomstart: 4, //시작 줌
-			innerzoom: true, //이미지 내 줌으로 전환
-			magnifierborder: "none" //두께 없음
-		});*/
-		
+		//$("#selS").select2();
+		//$("#selE").select2(); //이거하면 리스트가 안뜸 
 		
 		$(".realtime_search").on("click",function(){
 			var html = "";
@@ -299,7 +295,7 @@ a {
 						
 				$.ajax({
 					/*http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8 ->(데이터 불러오기) */
-					url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"",
+					url:"http://swopenapi.seoul.go.kr/api/subway/51586e4544706f6f3130376b4d6a6e57/json/realtimeStationArrival/0/100/"+ a +"", //api에 데이터 없는 새벽이후엔 오류날 수 있음
 					type:"get",
 					dataType:"json",
 					success:function(res){
@@ -352,6 +348,21 @@ a {
 			});//ajax로 데이터 불러옴
 			
 			});
+		
+		
+		$("#deparr_search_btn").on("click", function(){
+			var Start = $("#selS option:selected").val();
+			var end = $("#selE option:selected").val();
+			if(Start == "출발 역" || end == "도착 역"){
+				alert("출발역과 도착역을 입력해 주세요.");
+				
+			}
+			else{	$("#SearchForm2").attr("action", "http://127.0.0.1:8088/betterway/BetterWay_subLineSearch");
+			$("#SearchForm2").submit();
+			console.log(Start+":"+"출발역");
+			console.log(end+":"+"도착역");
+			}
+		});
 		});
 		
 	</script>
@@ -369,18 +380,31 @@ a {
 		<div class="wrap">
 			<div id="title">출발 도착 역검색</div>
 			<div id="dep_arr">
+				<form action="#" id="SearchForm2" method="post">
 				<div id="deparr_search">
-					<div class="dep">
-						<input id="dep" type="text" placeholder="출발역">
-					</div>
-					<div class="arr">
-						<input id="arr" type="text" placeholder="도착역">
-					</div>
+		 	<select id="selS" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
+						<option selected="selected">출발 역</option>
+						<c:forEach items="${SubwayList}" var="START">
+							<option value="${START.SUBWAY_STATION_NAME}"><c:out
+									value="${START.SUBWAY_STATION_NAME}(${START.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+					</select>
+			 <select id="selE" name = "selE" style=" width: 230px;height: 30px;font-size: 15px;">
+						<option selected="selected">도착 역</option>
+						<c:forEach items="${SubwayList}" var="END">
+							<option value="${END.SUBWAY_STATION_NAME}"><c:out
+									value="${END.SUBWAY_STATION_NAME}(${END.SUBLINE_NO}호선)" />
+							</option>
+						</c:forEach>
+					</select>
 				</div>
+				
 				<div id="deparr_btn">
 					<input type="button" id="deparr_search_btn" value="검색"
 						style="background: none;" />
 				</div>
+				</form>
 			</div>
 			<div class="subbtn_box">
 				<div class="subbtn_realtime">
