@@ -381,7 +381,7 @@ a {
 			<div id="dep_arr">
 				<form action="#" id="SearchForm2" method="post">
 				<div id="deparr_search">
-		 	<select id="selS" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
+		 	<select id="selS" name = "selS" style=" width: 260px;height: 30px;font-size: 15px;">
 						<option selected="selected">출발 역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
@@ -389,7 +389,7 @@ a {
 							</option>
 						</c:forEach>
 					</select>
-			 <select id="selE" name = "selE" style=" width: 230px;height: 30px;font-size: 15px;">
+			 <select id="selE" name = "selE" style=" width: 260px;height: 30px;font-size: 15px;">
 						<option selected="selected">도착 역</option>
 						<c:forEach items="${SubwayList}" var="END">
 							<option value="${END.SUBWAY_STATION_NAME}"><c:out
