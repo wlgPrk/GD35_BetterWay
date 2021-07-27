@@ -513,7 +513,7 @@ th,td{
     	
     	
     	<div id="box_con">
-			<div id="box_con_img">●</div>
+			<div id="box_con_img"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"></div>
 			<div id="box_con_txt">
 			역 외부 주요시설 현황
 			</div>

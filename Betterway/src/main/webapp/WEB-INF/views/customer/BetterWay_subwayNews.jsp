@@ -196,7 +196,7 @@ font-weight :bold;
 font-size: 30pt;
 
 }
-#box_con_cir{
+#box_con_img{
 padding:5px;
 
 
@@ -604,7 +604,7 @@ function drawPaging(pStart, pEnd, pMax){
     	
     	
     	<div id="box_con">
-			<div id="box_con_cir"><img alt="지하철뉴스" src="resources/images/newstitle.png" width="50px" height="50px"> </div>
+			<div id="box_con_img"><img alt="지하철뉴스" src="resources/images/newstitle.png" width="50px" height="50px"> </div>
 			<div id="box_con_txt">
 			지하철뉴스
 			</div>

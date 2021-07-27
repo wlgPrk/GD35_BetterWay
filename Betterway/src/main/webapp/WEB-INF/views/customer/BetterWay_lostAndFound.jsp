@@ -193,7 +193,7 @@ font-weight :bold;
 font-size: 30pt;
 
 }
-#box_con_cir{
+#box_con_img{
 padding:5px;
 
 
@@ -452,7 +452,7 @@ $(document).ready(function(){
     	
     	
     	<div id="box_con">
-			<div id="box_con_cir"><img alt="유실물조회" src="resources/images/lost.png" width="50px" height="50px"> </div>
+			<div id="box_con_img"><img alt="유실물조회" src="resources/images/lost.png" width="50px" height="50px"> </div>
 			<div id="box_con_txt">
 			유실물 조회
 			</div>

@@ -128,7 +128,7 @@ $(document).ready(function(){
 		console.log(b);
 	});
 
-	$("#test1").on("click",function() {
+	$("#searchStation").on("click",function() {
 						var a = $("#selstation option:selected").val();
 						
 						draw();
@@ -1321,7 +1321,7 @@ cursor: pointer;
 			<div class="wrap">
 
 				<div>
-					<input type="button" id="test1" name="test1" value="검색"> <strong>요일과
+					<input type="button" id="searchStation" name="searchStation" value="검색"> <strong>요일과
 						역을 선택후 버튼을 눌러주세요.</strong>
 				</div>
 
