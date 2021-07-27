@@ -434,16 +434,16 @@ $(document).ready(function(){
 				
 				  <input type="hidden" id="sD" name="select_LatLngD"/>  
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
-		 	<select id="selS" name = "selS" style=" width: 200px;height: 30px;font-size: 15px;">
-						<option selected="selected">출발 역</option>
+		 	<select id="selS" name = "selS"  style="width: 260px;height: 30px;font-size: 15px;">
+						<option selected="selected">출발역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
 									value="${START.SUBWAY_STATION_NAME}(${START.SUBLINE_NO}호선)" />
 							</option>
 						</c:forEach>
 					</select>
-			 <select id="selE" name = "selE" style=" width: 200px;height: 30px;font-size: 15px;">
-						<option selected="selected">도착 역</option>
+			 <select id="selE" name = "selE" style="width: 260px;height: 30px;font-size: 15px;">
+						<option selected="selected">도착역</option>
 						<c:forEach items="${SubwayList}" var="END">
 							<option value="${END.SUBWAY_STATION_NAME}"><c:out
 									value="${END.SUBWAY_STATION_NAME}(${END.SUBLINE_NO}호선)" />

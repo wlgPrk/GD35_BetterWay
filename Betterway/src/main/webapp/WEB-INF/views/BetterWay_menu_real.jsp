@@ -397,6 +397,7 @@ $(document).ready(function(){
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
                     		<a href="BetterWay_happy">행복지대</a>
+                    		<a href="BetterWay_toilet">화장실 안내</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">

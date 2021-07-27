@@ -101,6 +101,7 @@ nav ul {
 	color:white;
 	text-decoration : none;
 	font-size: 30px;
+	cursor:pointer;
 
 }
 
@@ -229,6 +230,7 @@ font-weight:bold;
 border-bottom:1px solid #82B2DA;
 height:100px;
 padding-top: 30px;
+cursor:pointer;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
@@ -585,6 +587,11 @@ src="resources/script/ckeditor/ckeditor.js"></script>
 
 $(document).ready(function(){
 	
+	//메인
+	$(".main").on("click",function(){
+		location.href="BetterWay_main"
+	});
+	
 	//실내공기정보제공
 	$("#air").on("click",function(){
 		envinfoGuide();
@@ -598,7 +605,7 @@ $(document).ready(function(){
 	
 	//실시간열차정보
 	$("#subinfo").on("click",function(){
-		location.href="BetterWay_subLineRealtime"
+		location.href="BetterWay_subLineRealtime2"
 	});
 	
 	//역주변 버스정류장 연계
@@ -699,7 +706,7 @@ $(document).ready(function(){
 	});
 	
 	//댓글수정버튼클릭시 비밀번호체크
-	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(2)",function(){
+	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(3)",function(){
 		$("#comm_no").val($(this).attr("comm_no"));
 	
 		commPwPopup("비밀번호를 입력하시오" ,"","닫기");
@@ -712,7 +719,7 @@ $(document).ready(function(){
 	});
 	
 	//댓글삭제버튼클릭시 비밀번호체크
-	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(3)",function(){
+	$(".comm_table").on("click","tr td:nth-child(2) span:nth-child(4)",function(){
 		$("#comm_no").val($(this).attr("comm_no"));
 		
 		commPwDelPopup("비밀번호를 입력하시오" ,"","닫기");
@@ -1062,7 +1069,7 @@ function pushUpdates(){
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li id="cyber">사이버스테이션</li>
+				<li id="cyber">노선 정보</li>
 				<li id="subinfo">실시간 열차정보</li>
 				<li id="bus">역주변 버스정류장 연계</li>
 				<li id="esta">역 내외 시설</li>

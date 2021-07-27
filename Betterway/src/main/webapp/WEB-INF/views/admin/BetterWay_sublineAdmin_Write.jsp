@@ -35,8 +35,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#listBtn").on("click",function(){
-		$("#updateForm").attr("action","BetterWay_sublineAdmin");
-		$("#updateForm").submit();
+		$("#addForm").attr("action","BetterWay_sublineAdmin");
+		$("#addForm").submit();
 	});
 	
 	$("#addBtn").on("click",function(){

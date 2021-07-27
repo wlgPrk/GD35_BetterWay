@@ -30,6 +30,7 @@ public class envginfoGuide_Controller {
 		mav.setViewName("environment/BetterWay_envinfoGuide2");
 		return mav;
 	}
+
 	
 	@RequestMapping(value="/envinfoGuide",
 			method=RequestMethod.POST, produces="text/json;charset=UTF-8")

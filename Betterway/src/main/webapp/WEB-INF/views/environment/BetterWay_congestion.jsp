@@ -331,11 +331,17 @@ background: #B2A59F;
     margin-top: -475px;
     margin-left: -40px;
 }
+}
 li{
 cursor: pointer;
 }
 #side_sub_menu_air{
 cursor: pointer;
+}
+#chart_sub_title{
+	margin-left: 700px;
+    margin-top: -410px;
+    font-size: 10pt;
 }
 
 </style>
@@ -369,6 +375,7 @@ $(document).ready(function(){
 		envinfoGuide();
 	});
 	
+	$("#chart_sub_title").hide();
 	
 	$("#selstation").select2();
 	$("#selsubLine").select2();
@@ -492,6 +499,7 @@ $(document).ready(function(){
 							}
 							
 			$("#chart_title").hide();	
+			$("#chart_sub_title").show();
 			chart();//캔버스 그리는 함수 ->이렇게 안하면 이전데이터가 자꾸 겹쳐나옴
 			new Chart(document.getElementById("congestion_chart"), {
 				 type: 'line',
@@ -527,7 +535,7 @@ $(document).ready(function(){
 						},
 				    title: {
 				      display: true,
-				      text: $("#selstation").val()+"역 상행",
+				      text: $("#selstation").val()+"("+$("#selsubLine").val()+"호선"+")"+"역 상행",
 				      		fontSize : 16
 				    }
 				  }
@@ -637,7 +645,8 @@ $(document).ready(function(){
 									}
 								}
 				
-				$("#chart_title").hide();	
+				$("#chart_title").hide();
+				$("#chart_sub_title").show();
 				chart();//캔버스 그리는 함수
 				new Chart(document.getElementById("congestion_chart"), {
 					 type: 'line',
@@ -673,7 +682,7 @@ $(document).ready(function(){
 							},
 					    title: {
 					      display: true,
-					      text: $("#selstation").val()+"역 하행",
+					      text: $("#selstation").val()+"("+$("#selsubLine").val()+"호선"+")"+"역 하행",
 					      		fontSize : 16
 					    }
 					  }
@@ -794,6 +803,8 @@ function changeL(data){
    				<input id="downLine_btn" type="button" value="하행" />
    				
    				<div id="chart"></div>
+   				
+   				<div id="chart_sub_title">각  요일 클릭 시 그래프를 껐다 켰다 할 수 있습니다.</div>
    				<div id="chart_title">아래 빈칸은 차트가 그려질 곳입니다.</div>
     		</div>
     		</form>

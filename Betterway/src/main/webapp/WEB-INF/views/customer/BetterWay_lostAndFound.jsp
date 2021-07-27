@@ -94,6 +94,7 @@ nav ul {
 	color:white;
 	text-decoration : none;
 	font-size: 30px;
+	cursor:pointer;
 
 }
 
@@ -222,6 +223,7 @@ font-weight:bold;
 border-bottom:1px solid #82B2DA;
 height:100px;
 padding-top: 30px;
+cursor:pointer;
 }
 #side_sub_menu:hover{
 background: #B2A59F;
@@ -317,6 +319,11 @@ cursor: pointer;
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	//메인
+	$(".main").on("click",function(){
+		location.href="BetterWay_main"
+	});
+	
 	//실내공기정보제공
 	$("#air").on("click",function(){
 		envinfoGuide();
@@ -330,7 +337,7 @@ $(document).ready(function(){
 	
 	//실시간열차정보
 	$("#subinfo").on("click",function(){
-		location.href="BetterWay_subLineRealtime"
+		location.href="BetterWay_subLineRealtime2"
 	});
 	
 	//역주변 버스정류장 연계

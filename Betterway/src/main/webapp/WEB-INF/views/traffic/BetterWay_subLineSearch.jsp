@@ -10,7 +10,7 @@
 
 function main(){
 	/* 수정수정 */
-		location.href="BetterWay_main.html";
+		location.href="BetterWay_main";
 	}
 
 function BetterWay_subLineRealtime(){
@@ -130,6 +130,9 @@ padding:5px 0px 5px 0px;
     height: 20px;
      color: white;background:#82B2DA; padding-top:5px;padding-bottom:5px;padding-right:5px;
 }
+.realtime_search:hover{  
+	cursor: pointer;
+}
 a{
 	text-decoration: none;
 	font-size: 15px;
@@ -238,12 +241,14 @@ margin-left: 25px;
 }
 .deparr_search_btn{
 float:right;
-width: 30px;
 
+color:white;
 	box-sizing: border-box;
-	height:65px;
+	height:60px;
 	background-color: #82B2DA;
 }
+.deparr_search_btn:hover{
+cursor: pointer;}
 #weatherWrap{
 width:100%;
 height:180px;
@@ -266,9 +271,9 @@ width:50px;
 	$(document).ready(function(){
 		
 		var selS="${param.selS}";
-		console.log(selS);
+		
 		var selE="${param.selE}";
-		console.log(selE);
+
 	
 		$("#select_LatLngD").select2();
 		$("#select_LatLngA").select2();
@@ -285,21 +290,16 @@ width:50px;
 		$("#realtime_search").on("click",function(){
 		
 			var html="";
-			var params = $("#SearchForm").serialize();	
 			$("#sD").val($("#select_LatLngD").val()); //출발역	
 
 			var startX;
 			var startY;
 			$("#sA").val($("#select_LatLngA").val()); //도착역
 	
+			var params = $("#SearchForm").serialize();	
 			var endX;
 			var endY;
-			/* if(selS!="null"){
-				$("#sD").val("${param.selS}".val()); //출발역	
-				$("#sA").val("${param.selE}".val()); //도착역
-				console.log("AAA");
-			} */
-			
+
 			$.ajax({
 					url:"getLatLngD",
 					type:"post",
@@ -312,7 +312,8 @@ width:50px;
 										var startX=d.LNG;
 									}
 								} 
-									 
+								console.log(startX);	
+								console.log(startY);	
 							 $.ajax({
 							url:"getLatLngA",
 							type:"post", //전송방식(get,post)
@@ -326,6 +327,8 @@ width:50px;
 												var endX=d.LNG;
 											}
 										}
+										 console.log(endX);	
+											console.log(endY);	
 											$.ajax({
 												
 											//http://ws.bus.go.kr/api/rest/pathinfo/getPathInfoBySubway?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&startX=126.91373&startY=37.54946&endX=126.9172&endY=37.61137
@@ -333,6 +336,7 @@ width:50px;
 												type:"get",
 												dataType:"xml",
 												success:function(res){
+													console.log(startX);
 												var html ="";
 												console.log(res);
 												var time ="";
@@ -381,28 +385,7 @@ width:50px;
 
 												// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 												var map = new kakao.maps.Map(mapContainer, mapOption); 
-												$.ajax({
-													//https://api.openweathermap.org/data/2.5/weather?lat=37.61137&lon=126.9172&appid=44c6ec52a93219e25d17ecf7fed82606&units=metric
-													url: "http://api.openweathermap.org/data/2.5/weather", // 접속 주소
-													type: "get", // 전송방식 : get, post
-													dataType: "json", // 받아올 데이터 형식
-													data: "lat="+endY+"&lon="+endX+"&appid=44c6ec52a93219e25d17ecf7fed82606&lang=kr&units=metric", //보낼 데이터(문자열형태)
-													success: function(res) { // 성공 시 다음 함수 실행 res->받아오는 데이터를 인자로 받음 
-														console.log(res);
-														console.log(res.main.temp);
-														console.log(res.weather[0].icon);
-														$("#weatherIcon").attr("src", "http://openweathermap.org/img/wn/"+ res.weather[0].icon + "@2x.png");
-														$("#temp").html(res.main.temp + "℃ - " + res.weather[0].description);
-														$("#weatherIcon").show();
-													
-													},
-													error: function(request, status, error) { // 실패 시 다음 함수 실행
-														
-														console.log(request);
-														console.log(status);
-														console.log(error);
-													}
-												});
+											
 												 },
 												error:function(requet,status,error){
 													console.log(error);
@@ -412,7 +395,28 @@ width:50px;
 									
 											
 											
-									
+											$.ajax({
+												//https://api.openweathermap.org/data/2.5/weather?lat=37.61137&lon=126.9172&appid=44c6ec52a93219e25d17ecf7fed82606&units=metric
+												url: "http://api.openweathermap.org/data/2.5/weather", // 접속 주소
+												type: "get", // 전송방식 : get, post
+												dataType: "json", // 받아올 데이터 형식
+												data: "lat="+endY+"&lon="+endX+"&appid=44c6ec52a93219e25d17ecf7fed82606&lang=kr&units=metric", //보낼 데이터(문자열형태)
+												success: function(res) { // 성공 시 다음 함수 실행 res->받아오는 데이터를 인자로 받음 
+													//console.log(res);
+													console.log(res.main.temp);
+													console.log(res.weather[0].icon);
+													$("#weatherIcon").attr("src", "http://openweathermap.org/img/wn/"+ res.weather[0].icon + "@2x.png");
+													$("#temp").html(res.main.temp + "℃ - " + res.weather[0].description);
+													$("#weatherIcon").show();
+												
+												},
+												error: function(request, status, error) { // 실패 시 다음 함수 실행
+													
+													console.log(request);
+													console.log(status);
+													console.log(error);
+												}
+											});
 											//날씨 아작스 불러오기
 										
 											
@@ -426,12 +430,7 @@ width:50px;
 					console.log(error);
 				}
 			});//db에서 좌표 가져와 변수로 담기
-		
-			
-				
-			
-			console.log("${param.selS}");
-			console.log("${param.selE}");
+
 		});//onclick 이벤트 end
 			
 });	//end	
@@ -465,7 +464,7 @@ width:50px;
 				
 				  <input type="hidden" id="sD" name="select_LatLngD"/>  
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
-		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD">
+		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD" style="width: 260px;height: 30px;font-size: 15px;">
 				 <option selected="selected">출발역</option>
 				   <c:forEach items="${SubwayList}" var="t">
 				   
@@ -482,7 +481,7 @@ width:50px;
 	   		   </c:otherwise>
 			  </c:choose>
 				 </select> 
-			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD">
+			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD" style="width: 260px;height: 30px;font-size: 15px;">
 			 <option selected="selected">도착역</option>
 			  <c:forEach items="${SubwayList}" var="ts">
 				   
@@ -501,7 +500,7 @@ width:50px;
 			  </c:choose>
 			 </select> 
 			</div>
-			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색" style="margin-left: 10px;"/>
+			<input type="button"id="realtime_search" class="deparr_search_btn" value="검색" />
 		  </form>
 		
 		

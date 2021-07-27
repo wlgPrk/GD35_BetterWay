@@ -63,7 +63,7 @@ body{
 	border: none;
 	border-radius: 5pt;	
 	background-color: #82b2da;
-	margin-left: -196px;
+	margin-left: -200px;
 	margin-top:10px;
 	padding: 10px;
 }
