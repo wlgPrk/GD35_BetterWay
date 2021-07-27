@@ -93,7 +93,7 @@ footer {
 
 .box_tit {
 	position: relative;
-	background-image: url("resources/images/sub.png");
+	background-image: url("../../images/sub.png");
 	background-size: cover;
 	height: 88px;
 }

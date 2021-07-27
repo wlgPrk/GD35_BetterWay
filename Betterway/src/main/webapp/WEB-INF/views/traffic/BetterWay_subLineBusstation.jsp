@@ -466,7 +466,7 @@ $(document).ready(function(){
 		 
 		<div class="box_sub">
 		 <form action="#" id="SearchForm" method="post" >
-		 <input type="text"  class="realtime" id="select_station"/>
+		 <input type="text"  class="realtime" id="select_station" placeholder="역 이름을 입력해주세요."/>
 		 <input type="button" id="searchBtn"value="검색">
 		  <input type="hidden" id="st" name="select_station"/>  
 		 
