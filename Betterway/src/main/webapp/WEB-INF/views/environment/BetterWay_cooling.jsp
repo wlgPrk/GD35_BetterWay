@@ -234,7 +234,7 @@ margin-right:5px;
 width:20px;
 
 }
-#DoIt{
+#SearchBtn{
 background-color: #82b2da;
 width:50px;
 height:30px;
@@ -242,7 +242,7 @@ border: #82b2da;
 color:white;
 margin-left:15px;
 }
-#DoIt:hover{
+#SearchBtn:hover{
 cursor: pointer;}
 
 #img img {
@@ -273,7 +273,7 @@ $(document).ready(function(){
 		envinfoGuide();
 	});
 	
-	$("#DoIt").on("click",function(){
+	$("#SearchBtn").on("click",function(){
 		var params = $("#actionForm").serialize();
 		$.ajax({
 			url:"cooling",
@@ -407,7 +407,7 @@ $(document).ready(function(){
 				<input type="radio" name="sName" id="chkLine8" value="8호선" class="chkLine"><img class="Lineimg" alt="Line8" src="resources/images/line/line8.png">8호선
 				<input type="radio" name="sName" id="chkLine9" value="9호선" class="chkLine"><img class="Lineimg" alt="Line9" src="resources/images/line/line9.png">9호선
 			
-				<input type="button" id="DoIt" value="검색" >
+				<input type="button" id="SearchBtn" value="검색" >
 			</div>
 								
 						   

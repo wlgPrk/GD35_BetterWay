@@ -466,26 +466,26 @@ width:50px;
 				 <input type="hidden" id="sA" name="select_LatLngA"/>  
 		 	 <select class="realtime" id="select_LatLngD" name="select_LatLngD" style="width: 260px;height: 30px;font-size: 15px;">
 				 <option selected="selected">출발역</option>
-				   <c:forEach items="${SubwayList}" var="t">
+				   <c:forEach items="${SubwayList}" var="start">
 				   
-		    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}(${t.SUBLINE_NO}호선)"/></option>
+		    			<option value="${start.SUBWAY_STATION_NAME}"><c:out value="${start.SUBWAY_STATION_NAME}(${start.SUBLINE_NO}호선)"/></option>
 		   		   </c:forEach>
 				   <c:choose>
 	   		    <c:when test="${param.selS !=null}">
 		   		   <option value="${param.selS}" selected ="selected"><c:out value="${param.selS}"/></option>
 		   		   </c:when>
 		   		   <c:otherwise>
-			   <c:forEach items="${SubwayList}" var="t">
-	    			<option value="${t.SUBWAY_STATION_NAME}"><c:out value="${t.SUBWAY_STATION_NAME}"/></option>
+			   <c:forEach items="${SubwayList}" var="start">
+	    			<option value="${start.SUBWAY_STATION_NAME}"><c:out value="${start.SUBWAY_STATION_NAME}"/></option>
 	   		   </c:forEach>
 	   		   </c:otherwise>
 			  </c:choose>
 				 </select> 
 			  <select class="realtime" id="select_LatLngA"  name="select_LatLngD" style="width: 260px;height: 30px;font-size: 15px;">
 			 <option selected="selected">도착역</option>
-			  <c:forEach items="${SubwayList}" var="ts">
+			  <c:forEach items="${SubwayList}" var="end">
 				   
-		    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}(${ts.SUBLINE_NO}호선)"/></option>
+		    			<option value="${end.SUBWAY_STATION_NAME}"><c:out value="${end.SUBWAY_STATION_NAME}(${end.SUBLINE_NO}호선)"/></option>
 		   		   </c:forEach>
 			 
 			  <c:choose>
@@ -493,8 +493,8 @@ width:50px;
 		   		   <option value="${param.selE}" selected ="selected"><c:out value="${param.selE}"/></option>
 		   		   </c:when>
 		   		   <c:otherwise>
-			   <c:forEach items="${SubwayList}" var="ts">
-	    			<option value="${ts.SUBWAY_STATION_NAME}"><c:out value="${ts.SUBWAY_STATION_NAME}"/></option>
+			   <c:forEach items="${SubwayList}" var="end">
+	    			<option value="${end.SUBWAY_STATION_NAME}"><c:out value="${end.SUBWAY_STATION_NAME}"/></option>
 	   		   </c:forEach>
 	   		   </c:otherwise>
 			  </c:choose>

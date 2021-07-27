@@ -13,11 +13,12 @@
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#selS").select2();
 	var a = $("#selstation option:selected").val();
 	
 	$(".charge_guide").on("click", function(){
@@ -100,7 +101,7 @@ $(document).ready(function(){
 	});
 	
 	$("#selstation").select2();
-	$("#selS").select2();
+	
 	$("#selE").select2();
 	
 	$("#dateBtn1").on("click", function() {
@@ -127,7 +128,7 @@ $(document).ready(function(){
 		console.log(b);
 	});
 
-	$("#test1").on("click",function() {
+	$("#searchStation").on("click",function() {
 						var a = $("#selstation option:selected").val();
 						
 						draw();
@@ -1320,7 +1321,7 @@ cursor: pointer;
 			<div class="wrap">
 
 				<div>
-					<input type="button" id="test1" name="test1" value="검색"> <strong>요일과
+					<input type="button" id="searchStation" name="searchStation" value="검색"> <strong>요일과
 						역을 선택후 버튼을 눌러주세요.</strong>
 				</div>
 

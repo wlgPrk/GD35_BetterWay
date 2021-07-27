@@ -372,7 +372,7 @@ display: inline-block;
 height: 100%;
 top:46px;
 }
-#box_con_cir{
+#box_con_img{
 position: relative;
 display: inline-block;
 
@@ -538,7 +538,7 @@ var params = $("#actionForm").serialize();
     	
     	<div id="box_con">
     	<div id = "sub_box">
-			<div id="box_con_cir"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </div>
+			<div id="box_con_img"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </div>
 			<div id="box_con_txt" style="font: 20px;">
 			역 내부 편의시설 현황
 			</div>
