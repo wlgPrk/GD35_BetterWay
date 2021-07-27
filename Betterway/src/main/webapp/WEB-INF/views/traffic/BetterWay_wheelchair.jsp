@@ -382,7 +382,7 @@ function drawList(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 1){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -397,7 +397,8 @@ function drawList(list){
 				html += "</tr>"
 			}
 			count++;
-		}else if(i<44){
+			nowSub = list[i].SUBLINE_NO;
+		} else if(i<44){
 			if(count % 2 == 0){
 				html += "<tr>"
 				html += 	"<td rowspan=\"2\"></td>"  
@@ -411,8 +412,8 @@ function drawList(list){
 				html += "</tr>"
 			}
 			count++;
-		}
-		nowSub = list[i].SUBLINE_NO;
+		} 
+		
 	} 
 	   $(".table_box1").html(html);
 	}
@@ -421,7 +422,7 @@ function drawList2(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 2;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -441,7 +442,7 @@ function drawList2(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 2){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -457,7 +458,6 @@ function drawList2(list){
 			}
 			count++;
 		}
-		nowSub = list[i].SUBLINE_NO;
 	} 
 	   $(".table_box2").html(html);
 	}
@@ -466,7 +466,7 @@ function drawList3(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 3;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -486,7 +486,7 @@ function drawList3(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 3){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -501,7 +501,7 @@ function drawList3(list){
 				html += "</tr>"
 			}
 			count++;
-		}else if(i>56&&i<101){
+		}else if(i>56&&i<100){
 			if(count % 2 == 0){
 				html += "<tr>"
 				html += 	"<td rowspan=\"2\"></td>"  
@@ -516,7 +516,6 @@ function drawList3(list){
 			}
 			count++;
 		}
-		nowSub = list[i].SUBLINE_NO;
 	} 
 	   $(".table_box3").html(html);
 	}
@@ -525,7 +524,7 @@ function drawList4(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 4;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -545,7 +544,7 @@ function drawList4(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 4){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -575,7 +574,6 @@ function drawList4(list){
 			}
 			count++;
 		}
-		nowSub = list[i].SUBLINE_NO;
 	} 
 	   $(".table_box4").html(html);
 	}
@@ -584,7 +582,7 @@ function drawList5(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 5;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -604,7 +602,7 @@ function drawList5(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 5){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -620,7 +618,6 @@ function drawList5(list){
 			}
 			count++;
 		}
-		nowSub = list[i].SUBLINE_NO;
 	} 
 	   $(".table_box5").html(html);
 	}
@@ -629,7 +626,7 @@ function drawList6(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 6;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -649,7 +646,7 @@ function drawList6(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 6){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -679,7 +676,6 @@ function drawList6(list){
 			}
 			count++;
 		}
-		nowSub = list[i].SUBLINE_NO;
 	} 
 	   $(".table_box6").html(html);
 	}
@@ -688,7 +684,7 @@ function drawList7(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 7;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -708,7 +704,7 @@ function drawList7(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 7){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(nowSub);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -740,7 +736,6 @@ function drawList7(list){
 			count++;
 			}
 		}
-		nowSub = list[i].SUBLINE_NO;
 	} 
 	   $(".table_box7").html(html);
 	}
@@ -749,7 +744,7 @@ function drawList8(list){
 	   var html = "";
 	   var count = 0;
 	   
-	   var nowSub = list[0].SUBLINE_NO;
+	   var nowSub = 8;
 	   //시작 그리기 <tbody>까지
 	html += "<table id=\"con_subLine_table\">"
 	html +=	"<colgroup>"            
@@ -769,7 +764,7 @@ function drawList8(list){
 	html +=	"<tbody>"
 	
 	for(var i = 0; i < list.length; i++){
-		if(nowSub == 8){
+		if(nowSub == list[i].SUBLINE_NO){
 				console.log(i);
 			if(count % 2 == 0){
 				html += "<tr>"
@@ -785,8 +780,7 @@ function drawList8(list){
 			}
 			count++;
 		}
-		nowSub = list[i].SUBLINE_NO;
-	}for(var j = 0; j<31; j++){
+	}for(var j = 0; j<30; j++){
 				if(count % 2 == 0){
 					html += "<tr>"
 					html += 	"<td rowspan=\"2\"></td>"  
@@ -840,7 +834,7 @@ function reloadList(){
 		<li><a href="#">교통정보안내</a>
 			<ul>
 				<li><a href="BetterWay_subLineSearch">노선도</a></li>
-				<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
+				<li><a href="http://127.0.0.1:8088/betterway/BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>

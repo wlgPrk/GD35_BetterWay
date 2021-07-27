@@ -153,13 +153,12 @@ p {
 }
 
 .realtime_search {
-	padding-left: 5px;
-	height: 20px;
-	color: white;
-	background: #82B2DA;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-right: 5px;
+    height: 30px;
+    width: 26.67px;
+    color: white;
+    background: #82B2DA;
+    padding-top: 5px;
+    padding-bottom: 6px;
 }
 
 a {
@@ -251,15 +250,11 @@ a {
 }
 
 #deparr_btn, #bus_search_btn {
-	width: 35px;
-	float: right;
-	box-sizing: border-box;
-	height: 65px;
-	background-color: #82B2DA;
-}
-
-#deparr_search_btn {
-	margin-top: 20px;
+	width: 26.67px;
+    float: right;
+    box-sizing: border-box;
+    height: 60px;
+    background-color: #82B2DA;
 }
 
 #subbtn_realtime {
@@ -270,7 +265,13 @@ a {
 #subbtn_busstation {
 	color: white;
 	background: #B2A59F;
-} 
+}
+#realtime_search{
+  background:  #82B2DA;
+  height:60px;
+ color: white;    
+ cursor: pointer;
+  }
 </style>
 
 <script type="text/javascript"
@@ -350,7 +351,7 @@ a {
 			});
 		
 		
-		$("#deparr_search_btn").on("click", function(){
+		$(".deparr_search_btn").on("click", function(){
 			var Start = $("#selS option:selected").val();
 			var end = $("#selE option:selected").val();
 			if(Start == "출발 역" || end == "도착 역"){
@@ -381,7 +382,7 @@ a {
 			<div id="dep_arr">
 				<form action="#" id="SearchForm2" method="post">
 				<div id="deparr_search">
-		 	<select id="selS" name = "selS" style=" width: 230px;height: 30px;font-size: 15px;">
+		 	<select id="selS" name = "selS" style=" width: 260px;height: 30px;font-size: 15px;">
 						<option selected="selected">출발 역</option>
 						<c:forEach items="${SubwayList}" var="START">
 							<option value="${START.SUBWAY_STATION_NAME}"><c:out
@@ -389,7 +390,7 @@ a {
 							</option>
 						</c:forEach>
 					</select>
-			 <select id="selE" name = "selE" style=" width: 230px;height: 30px;font-size: 15px;">
+			 <select id="selE" name = "selE" style=" width: 260px;height: 30px;font-size: 15px;">
 						<option selected="selected">도착 역</option>
 						<c:forEach items="${SubwayList}" var="END">
 							<option value="${END.SUBWAY_STATION_NAME}"><c:out
@@ -400,7 +401,7 @@ a {
 				</div>
 				
 				<div id="deparr_btn">
-					<input type="button" id="deparr_search_btn" value="검색"
+					<input type="button" id="realtime_search" class="deparr_search_btn" value="검색"
 						style="background: none;" />
 				</div>
 				</form>
