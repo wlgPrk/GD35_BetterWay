@@ -31,7 +31,7 @@ $(document).ready(function() {
 	console.log(b);
 	console.log(c);
 	
-	$("#test1").on("click",function(){
+	$("#searchBtn").on("click",function(){
 		var a=	$("#selstation option:selected").val();
 		var c = $("#selstation option:selected").attr("value2");
 		 var d = String(c);
@@ -530,7 +530,7 @@ th,td{
     	<option value="${t1.START_NO}" value2 = "${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
     </c:forEach>
     </select>
-    <input type="button" id="test1" name="test1" value="검색">
+    <input type="button" id="searchBtn" name="searchBtn" value="검색">
     </div>
 			</div>
 			<br/>

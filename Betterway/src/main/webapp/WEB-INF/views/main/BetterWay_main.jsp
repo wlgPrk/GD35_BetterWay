@@ -13,11 +13,12 @@
 
 <script type="text/javascript" 
 		src="resources/script/jquery/jquery-1.12.4.min.js"></script>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#selS").select2();
 	var a = $("#selstation option:selected").val();
 	
 	$(".charge_guide").on("click", function(){
@@ -100,7 +101,7 @@ $(document).ready(function(){
 	});
 	
 	$("#selstation").select2();
-	$("#selS").select2();
+	
 	$("#selE").select2();
 	
 	$("#dateBtn1").on("click", function() {
