@@ -372,7 +372,7 @@ function drawList(list){
 	html +=	"</colgroup>"           
 	html +=	"<thead>"
 	html +=	"	<tr>"
-	html +=	"   <th scope=\"col\" colspan=\"3\">1호선(6역)</th>"
+	html +=	"   <th scope=\"col\" colspan=\"3\">1호선(7역)</th>"
 	html +=	"	</tr>"
 	html +=	"	<tr>"
 	html +=	"		<th scope=\"col\">역명</th>"
