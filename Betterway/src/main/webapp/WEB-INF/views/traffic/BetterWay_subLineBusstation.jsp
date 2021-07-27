@@ -351,7 +351,7 @@ $(document).ready(function(){
 									html +="</tr>";
 									$("#hide").html(html);
 									
-								 });///id랑 name만 있음 껍데기 --> 테이블 따ㅗㄹ 뻬서 히든으로 감추면 비교 못할까,,ㅣㅏ러ㅣ허	
+								 });
 									var text = $("#hide tr:last td:first-child").eq(0).attr('id');
 									console.log(text);//강남->12 구산->4
 									
