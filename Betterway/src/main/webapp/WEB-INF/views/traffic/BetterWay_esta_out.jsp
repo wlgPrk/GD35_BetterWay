@@ -521,7 +521,7 @@ th,td{
 			<div class="con_box">
 			<hr id = "hr"/>
 			<p>편의 시설에 대한 자세한 정보는 좌측 메뉴에서 확인 할 수있습니다.</p> 
-			<div id = staName></div>
+			<div ></div>
 			<div  style="float: right; position: relative; top: -50px; right: 50px">
 			원하시는 역의 이름을 검색하세요&nbsp;
 			 <select id= "selstation">
