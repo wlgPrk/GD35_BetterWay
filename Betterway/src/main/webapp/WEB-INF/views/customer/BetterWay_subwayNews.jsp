@@ -154,7 +154,7 @@ color: #fff;
 
   .box_tit{
     position: relative;
- background-image:url("resources/images/서브타이틀_배경.png");       
+ background-image: url("resources/images/sub.png");     
                        
   height:216px;
 
@@ -163,7 +163,7 @@ color: #fff;
 
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("resources/images/sub.png");
+
  background-size:cover;
    height:216px;
    padding-top: 160px;
