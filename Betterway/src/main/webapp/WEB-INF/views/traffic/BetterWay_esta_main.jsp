@@ -638,9 +638,6 @@ var params = $("#actionForm").serialize();
     	
  </article>
 </section>
-<footer>
-		<div class = "admin">관리자 로그인</div>
-	</footer>
 
 </body>
 </html>
