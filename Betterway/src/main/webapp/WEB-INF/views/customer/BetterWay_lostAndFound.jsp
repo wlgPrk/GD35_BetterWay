@@ -402,7 +402,7 @@ $(document).ready(function(){
 	<ul>
 		<li><a href="#">교통안내</a>
 			<ul>
-				<li id="cyber">사이버스테이션</li>
+				<li id="cyber">노선도</li>
 				<li id="subinfo">실시간 열차정보</li>
 				<li id="bus">역주변 버스정류장 연계</li>
 				<li id="esta">역 내외 시설</li>
