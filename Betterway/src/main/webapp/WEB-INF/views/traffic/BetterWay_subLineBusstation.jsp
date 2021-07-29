@@ -284,7 +284,9 @@ $(document).ready(function(){
 		var params = $("#SearchForm").serialize();	
 		var stationid;
 		$("#st").val($("#select_station").val());
+		
 		console.log(st);
+		
 		var startX;
 		var startY;
 
@@ -297,13 +299,18 @@ $(document).ready(function(){
 					//console.log(res);
 								 for(var d of res.data){						
 									if(st.value==d.SUBWAY_STATION_NAME){														
-										var stationid=d.SUBWAYSTATIONID;
+										var stationid=d.SUBWAYSTATIONID;//이름으로 받아와서 지하철 아이디로 api검색
 										var startX =d.LNG;
 										var startY =d.LAT;
 										//console.log(stationid);
 										console.log(startX);
+										
 									}
 								} 
+								$("#stationid").val(d.SUBWAYSTATIONID);
+								console.log(stationid);
+								var params = $("#apiForm").serialize();
+								console.log(params);
 								 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 								    mapOption = { 
 								        center: new kakao.maps.LatLng(startY, startX), // 지도의 중심좌표
@@ -316,12 +323,19 @@ $(document).ready(function(){
 								
 					$.ajax({
 						
-						////url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300",
-						url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300&pageNo=1",
-						type:"get",
-						dataType:"xml",				
-						success:function(res){
-							console.log(res);
+						//url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300",
+						//url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300&pageNo=1",
+						//type:"get",
+						// dataType:"xml",				
+						//success:function(res){
+						//	console.log(res); 
+						url: "busapi", 
+						type: "post", 
+						dataType: "json",
+						data: params, 
+						success: function(res) {
+							console.log(res.data);
+						
 						
 							//출구번호를 밖에서 변수로 만들어 놓고
 							//먼저 그려놓음 ?
@@ -360,11 +374,7 @@ $(document).ready(function(){
 							 console.log($(res).find('item').length);
 							 
 							 
-							 if($(res).find('item').length==0){
 							
-									 alert("해당 역은 버스안내를 제공하지 않습니다.");
-							 }
-							console.log(rows.length);
 				
 							console.log(rows);
 						
@@ -403,7 +413,11 @@ $(document).ready(function(){
 						
 					});//api에서 가져올 id에 따른 출구번호, 버스번호
 			
-						},//success end
+						},
+						
+						
+						
+						
 					error:function(request,status,error){//실패시 다음 함수 실행
 						console.log(error);
 					}
@@ -465,19 +479,15 @@ $(document).ready(function(){
 		<div id="dep_arr">
 		 
 		<div class="box_sub">
-		 <form action="#" id="SearchForm" method="post" >
-		 <input type="text"  class="realtime" id="select_station" placeholder="역 이름을 입력해주세요."/>
-		 <input type="button" id="searchBtn"value="검색">
-		  <input type="hidden" id="st" name="select_station"/>  
-		 
-<%-- 	 <select class="realtime" id="select_station">
-		 <option selected="selected">역</option>
-		   <c:forEach items="${SubwayList}">
-    			<option value="${SUBWAY_STATION_NAME}"><c:out value="${SUBWAY_STATION_NAME}"/></option>
-   		   </c:forEach>
-		 </select> --%>
-			
-		  </form>
+<form action="#" id="SearchForm" method="post" >
+<input type="text"  class="realtime" id="select_station" placeholder="역 이름을 입력해주세요."/>
+<input type="button" id="searchBtn"value="검색">
+<input type="hidden" id="st" name="select_station"/>  
+</form>
+
+<form action="#" id="apiForm" method="post" >
+<input type="hidden" id="stationid" name="stationid">
+</form>
 			
 		</div>
 

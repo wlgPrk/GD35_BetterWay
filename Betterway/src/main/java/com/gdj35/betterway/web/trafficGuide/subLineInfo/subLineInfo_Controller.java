@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.betterway.web.evginfoGuide.airInfo.Service.IEnvService;
 import com.gdj35.betterway.web.trafficGuide.subLineInfo.Service.APIService;
+import com.gdj35.betterway.web.trafficGuide.subLineInfo.Service.BusService;
 import com.gdj35.betterway.web.trafficGuide.subLineInfo.Service.ISubLineService;
 import com.gdj35.betterway.web.main.Service.IMainService;
 
@@ -32,6 +33,9 @@ public class subLineInfo_Controller {
 	  
 	  @Autowired
 	  public APIService apiService;
+	  
+	  @Autowired
+	  public BusService busService;
 	  
 	@RequestMapping(value="/BetterWay_subLineSearch")
 	public ModelAndView BetterWay_subLineSearch(
@@ -204,6 +208,29 @@ public class subLineInfo_Controller {
 				String endY =params.get("endY");
 
 				String data= apiService.api(startX, startY, endX, endY);
+			
+				
+				modelMap.put("data",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	//역아이디
+	@RequestMapping(value="/busapi",
+			method=RequestMethod.POST, produces="text/json;charset=UTF-8")
+	@ResponseBody
+	public String busapi(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			try {
+				String stationid =params.get("stationid");
+				
+
+				String data= busService.busapi(stationid);
 			
 				
 				modelMap.put("data",data);
