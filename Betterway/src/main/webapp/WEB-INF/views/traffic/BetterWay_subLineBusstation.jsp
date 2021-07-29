@@ -372,11 +372,15 @@ $(document).ready(function(){
 							// var rows = document.getElementById("tmp_table_body").getElementsByTagName("tr");
 							 var rows = document.getElementById("hide").getElementsByClassName("exit");
 							 console.log($(res).find('item').length);
-							 
+							console.log(text);
 							 
 							
 				
 							console.log(rows);
+							if(rows.length==0){
+								alert("해당 역은 버스안내를 제공하지 않습니다.");
+								}
+							
 						
 							console.log($(Array.from(rows)[6]).attr("id"));
 							
