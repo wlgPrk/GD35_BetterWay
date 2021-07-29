@@ -324,7 +324,7 @@ $(document).ready(function(){
 					$.ajax({
 						
 						//url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300",
-						//url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300&pageNo=1",
+						////url:"http://openapi.tago.go.kr/openapi/service/SubwayInfoService/getSubwaySttnExitAcctoBusRouteList?serviceKey=cexG3uY6lBddZH4UqdhsVWCJaGgUx%2BjRRCl7qbAZnA17YxlK3sZAtI1er2P7Z78KZdkHVRhO%2FL21j8%2F3LR7CLw%3D%3D&subwayStationId="+stationid+"&numOfRows=300&pageNo=1",
 						//type:"get",
 						// dataType:"xml",				
 						//success:function(res){
@@ -340,8 +340,8 @@ $(document).ready(function(){
 							//출구번호를 밖에서 변수로 만들어 놓고
 							//먼저 그려놓음 ?
 							//안에서 비교해가면서 버스번호 뽑기
-					 	 	var busRouteNo =$(res).find("busRouteNo").text();	
-							var table_exitNo =$(res).find("exitNo").text();//출구번호출구번호	
+					 	 	var busRouteNo =$(res.data).find("busRouteNo").text();	
+							var table_exitNo =$(res.data).find("exitNo").text();//출구번호출구번호	
 							var EXIT = new Set(table_exitNo);//1234-->1/0,1/1,1/2 번출구를 못가져옴
 							console.log(busRouteNo); 
 
@@ -356,7 +356,7 @@ $(document).ready(function(){
 							//html += "<tr><td name=\"05상\" id=\"05상\"></td><th>05</th><td name=\"05하\" id=\"05하\"></td></tr>";
 							
 							
-							 $(res).find('item').each(function(){
+							 $(res.data).find('item').each(function(){
 								 var busRouteNo = $(this).find("busRouteNo").text(); 	
 									var exitNo = $(this).find("exitNo").text();	
 									var exitNos = $(this).find("exitNo").text();
