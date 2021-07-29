@@ -308,19 +308,16 @@ background: #B2A59F;
 	height: 645px; /* 임의 지정 */
 }
 
-  .box_tit{
+ .box_tit{
     position: relative;
- background-image:url("resources/images/서브타이틀_배경.png");       
-                       
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
+    background-size : cover;               
   height:216px;
 
   }
 
-
 .img_cov{
  backdrop-filter: blur(5px);
- background-image: url("resources/images/sub.png");
- background-size:cover;
    height:216px;
    padding-top: 160px;
  
@@ -345,24 +342,20 @@ border-radius: 15px 15px 15px 15px;
 
 
 }
-#box_con{
-width: 100%;
 
-overflow:auto;
-}
 
 
 #box_con_txt{
 margin-top: 30px;
 font-weight :bold;
-font-size: 18pt;
+font-size: 30pt;
+display: inline-block;
 
 }
 #box_con_img{
 
-padding:5px;
-font-size: 25pt;
-float: left;
+	width:50px;
+	margin-bottom: -10px;
 }
 .line_sel_bar{
 border-bottom:2px solid #E0E0EB;
@@ -513,7 +506,7 @@ th,td{
     	
     	
     	<div id="box_con">
-			<div id="box_con_img"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"></div>
+			<span id="box_con_img"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"></span>
 			<div id="box_con_txt">
 			역 외부 주요시설 현황
 			</div>

@@ -723,6 +723,19 @@ section:after {
 	
 	
 }
+.box_tit{
+    position: relative;
+ 	background-image: url("resources/images/서브타이틀_배경.png");
+ background-size:cover;                      
+  height:88px;
+
+  }
+  .img_cov{
+ backdrop-filter: blur(5px);
+ 
+  height:88px;
+  
+ }
 section{
 background-image :url("resources/images/main.jpg");
  border: 0;
@@ -1206,11 +1219,11 @@ width: 60px;
         display:none;
         position: absolute;
         top: 10%;
-        left: 35%;
+        left: 31%;
         width: 40%;
         height: 90%;
         
-        border: 6px solid black;
+        border: 4px solid white;
         background-color: white;
         z-index:1002;
         overflow: auto;
@@ -1220,11 +1233,11 @@ width: 60px;
         display:none;
         position: absolute;
         top: 10%;
-        left: 35%;
+         left: 31%;
         width: 40%;
         height: 90%;
         
-        border: 6px solid black;
+        border: 4px solid white;
         background-color: white;
         z-index:1002;
         overflow: auto;
@@ -1240,29 +1253,36 @@ cursor: pointer;
 
 
 	<header>
-		<a class="main" href="main">BetterWay</a>
-		<div id="top_menu">
+		  <a class="main" href="BetterWay_main">BetterWay</a>
+	<div id="top_menu">
+	<ul>
+		<li><a href="#">교통정보안내</a>
 			<ul>
-				<li><a href="#">교통안내</a>
-					<ul>
-						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
-						<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
-						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
-						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
-					</ul></li>
-				<li><a href="#">환경정보안내</a>
-					<ul>
-						<li id = "air">실내 공기질 정보 제공</li>
-						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
-					</ul></li>
-				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
-				<li><a href="BetterWay_suggestList">고객의 소리</a>
-					<ul>
-						<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
-						<li><a href="BetterWay_suggestList">건의 게시판</a></li>
-					</ul></li>
+				<li><a href="BetterWay_subLineSearch">노선도</a></li>
+				<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
+				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
+				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>
-		</div>
+		</li>
+		<li><a href="#">환경정보안내</a>
+			<ul>
+				<li id="air">실내 공기질 정보 제공</li>
+				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
+			</ul>
+		</li>
+		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
+			
+		</li>
+		<li><a href="BetterWay_suggestList">고객의 소리</a>
+			<ul>
+				<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
+				<li><a href="BetterWay_suggestList">건의 게시판</a></li>
+			</ul>
+		</li>
+
+	</ul>
+</div>
 		
 	</header>
 	
@@ -1313,7 +1333,7 @@ cursor: pointer;
 	</header>
 	<div class="bg">
 		<div class="popup">
-			<div class="box_tit">
+			<div class="box_tit" >
 				<div class="img_cov">
 					<div class="img_cov_con">홈>시간표 안내 &nbsp;</div>
 				</div>

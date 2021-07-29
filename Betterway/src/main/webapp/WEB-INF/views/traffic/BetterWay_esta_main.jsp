@@ -145,17 +145,17 @@ color: #fff;
 	height: 645px; /* 임의 지정 */
 }
 
- /* .box_title{
+  .box_tit{
     position: relative;
- 	background-image:url("resources/images/sub.png");       
-    background-size : cover;                     
+ 	background-image:url("resources/images/서브타이틀_배경.png");       
+    background-size : cover;               
   height:216px;
 
-  }*/
+  }
 
 .img_cov{
  backdrop-filter: blur(5px);
-background-image:url("resources/images/sub.png");       
+ 
    height:216px;
    padding-top: 160px;
  
@@ -181,16 +181,17 @@ border-radius: 15px 15px 15px 15px;
 
 }
 
-#box_con_text{
+#box_con_txt{
 margin-top: 30px;
 font-weight :bold;
 font-size: 30pt;
+display: inline-block;
 
 }
 #box_con_img{
 
-font-size: 25pt;
-float: left;
+	width:50px;
+	margin-bottom: -10px;
 }
 .line_sel_bar{
 border-bottom:2px solid #E0E0EB;
@@ -372,17 +373,7 @@ display: inline-block;
 height: 100%;
 top:46px;
 }
-#box_con_img{
-position: relative;
-display: inline-block;
 
-}
-#box_con_txt{
-position: relative;
-display: inline-block;
-
-
-}
 .admin{
 
 cursor: pointer;
@@ -538,8 +529,8 @@ var params = $("#actionForm").serialize();
     	
     	<div id="box_con">
     	<div id = "sub_box">
-			<div id="box_con_img"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </div>
-			<div id="box_con_txt" style="font: 20px;">
+			<span id="box_con_img"><img alt="편의시설" src="resources/images/eleva.png" width="50px" height="50px"> </span>
+			<div id="box_con_txt" >
 			역 내부 편의시설 현황
 			</div>
 			</div>

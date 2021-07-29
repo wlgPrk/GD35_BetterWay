@@ -1,15 +1,10 @@
 @CHARSET "UTF-8";
- .box_tit{
-    position: relative;
- background-image:url("resources/images/sub.png");       
- background-size:cover;                      
-  height:88px;
-
-  }
+ 
 
 
 .img_cov{
  backdrop-filter: blur(5px);
+ 	background-image: url("resources/images/서브타이틀_배경.png");
  padding-top:60px;
 height: 28px;
 

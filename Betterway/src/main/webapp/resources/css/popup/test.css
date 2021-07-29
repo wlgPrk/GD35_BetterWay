@@ -91,15 +91,11 @@ footer {
 	display: flex;
 }
 
-.box_tit {
-	position: relative;
-	background-image: url("../../images/sub.png");
-	background-size: cover;
-	height: 88px;
-}
+
 
 .img_cov {
 	backdrop-filter: blur(5px);
+	background-size: cover;
 	padding-top: 60px;
 	height: 28px;
 }
