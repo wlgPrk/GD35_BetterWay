@@ -522,6 +522,7 @@ th,td{
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
+                		<a href="BetterWay_esta_main">내부 편의시설 안내</a>ㄴ
                     		<a href="BetterWay_nursingRoom2">수유실</a>
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
