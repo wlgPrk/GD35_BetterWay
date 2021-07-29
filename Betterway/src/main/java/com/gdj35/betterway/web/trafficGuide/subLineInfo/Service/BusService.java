@@ -37,6 +37,7 @@ public class BusService {
         while ((line = rd.readLine()) != null) {
             sb.append(line);
         }
+      
         rd.close();
         conn.disconnect();
         System.out.println(sb.toString());

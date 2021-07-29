@@ -307,7 +307,7 @@ $(document).ready(function(){
 										
 									}
 								} 
-								$("#stationid").val(d.SUBWAYSTATIONID);
+								$("#stationid").val(stationid);
 								console.log(stationid);
 								var params = $("#apiForm").serialize();
 								console.log(params);
