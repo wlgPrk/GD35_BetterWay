@@ -155,7 +155,7 @@ color: #fff;
   .box_tit{
     position: relative;
  background-image: url("resources/images/sub.png");     
-                       
+          background-size:1100px;               
   height:216px;
 
   }
