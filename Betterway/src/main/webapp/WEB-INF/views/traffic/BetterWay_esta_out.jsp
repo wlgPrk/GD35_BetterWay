@@ -17,6 +17,43 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 
 $(document).ready(function() {
 	
+	 var html= "";
+	
+	$.ajax({
+		
+		
+		url: "http://openapi.seoul.go.kr:8088/72717a744e70626237346774787358/json/SeoulMetroStArea/1/150/", // 접속 주소
+		type: "get", // 전송방식 : get, post
+		dataType: "json",
+		success: function(res) { // 
+			for(var i=0; i<res.SeoulMetroStArea.row.length; i++){
+				var sId = res.SeoulMetroStArea.row[i].STATION_ID;
+				var exno = res.SeoulMetroStArea.row[i].EXIT_NO;
+				var area = res.SeoulMetroStArea.row[i].AREA_NAME;
+				
+			if(sId == "0150"){
+				console.log(sId);
+				console.log(exno);
+				console.log(area);
+				html += "<tr>";
+				html +="<td>" + exno + "</td>";
+				html +="<td>" +area + "</td>";
+				html +="</tr>";
+			}
+			
+			$("#con_tab tbody").html(html);
+		}
+			
+	},
+	error: function(request, status, error) { // 실패 시 다음 함수 실행
+		console.log(request);
+		console.log(status);
+		console.log(error);
+	}
+});
+	
+	
+	
 	$(".admin").on("click", function(){
 		location.href = "BetterWay_loginAdmin";
 	});
@@ -441,28 +478,35 @@ th,td{
 <body>
 
 <header>
-  <a class="main" href="menu.html">BetterWay</a>
-<div id="menu">
+  <a class="main" href="BetterWay_main">BetterWay</a>
+	<div id="menu">
 	<ul>
-				<li><a href="#">교통안내</a>
-					<ul>
-						<li><a href="BetterWay_subLineSearch">노선 정보</a></li>
-						<li><a href="BetterWay_subLineRealtime2">실시간 열차정보</a></li>
-						<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
-						<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
-					</ul></li>
-				<li><a href="#">환경정보안내</a>
-					<ul>
-						<li><a href="BetterWay_envinfoGuide">실내 공기질 정보 제공</a></li>
-						<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
-					</ul></li>
-				<li><a href="BetterWay_subwayNews">지하철 뉴스</a></li>
-				<li><a href="BetterWay_suggestList">고객의 소리</a>
-					<ul>
-						<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
-						<li><a href="BetterWay_suggestList">건의 게시판</a></li>
-					</ul></li>
+		<li><a href="#">교통정보안내</a>
+			<ul>
+				<li><a href="BetterWay_subLineSearch">노선도</a></li>
+				<li><a href="http://127.0.0.1:8090/betterway/BetterWay_subLineRealtime2">실시간 열차정보</a></li>
+				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
+				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
 			</ul>
+		</li>
+		<li><a href="#">환경정보안내</a>
+			<ul>
+				<li id="air">실내 공기질 정보 제공</li>
+				<li><a href="BetterWay_cooling">차량 별 냉방상태</a></li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
+			</ul>
+		</li>
+		<li><a href="BetterWay_subwayNews">지하철 뉴스</a>
+			
+		</li>
+		<li><a href="BetterWay_suggestList">고객의 소리</a>
+			<ul>
+				<li><a href="BetterWay_lostAndFound">유실물 조회</a></li>
+				<li><a href="BetterWay_suggestList">건의 게시판</a></li>
+			</ul>
+		</li>
+
+	</ul>
 </div>
 </header>
 <body>
@@ -474,7 +518,7 @@ th,td{
 			역 내외 시설
 			</div>
 			<div id="side_menu">
-			<ul class="side_menu_sub">
+				 <ul class="side_menu_sub">
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
@@ -482,6 +526,7 @@ th,td{
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
                     		<a href="BetterWay_happy">행복지대</a>
+                    		<a href="BetterWay_toilet">화장실 안내</a>
                 		</div>
            			 </li>
            		 <li class="nav" id="outside_esta">
@@ -518,7 +563,7 @@ th,td{
 			<div  style="float: right; position: relative; top: -50px; right: 50px">
 			원하시는 역의 이름을 검색하세요&nbsp;
 			 <select id= "selstation">
-    <option selected="selected" value="0" value2 = "q">역</option>
+    <option selected="selected" value="0" value2 = "q">역 검색</option>
     <c:forEach items="${SubwayList}" var = "t1">
     	<option value="${t1.START_NO}" value2 = "${t1.STR_INCODE}"><c:out value="${t1.SUBWAY_STATION_NAME}(${t1.SUBLINE_NO}호선)"/> </option>
     </c:forEach>

@@ -271,8 +271,9 @@ width:50px;
 	$(document).ready(function(){
 		
 		var selS="${param.selS}";
-		
 		var selE="${param.selE}";
+		
+		
 
 	
 		$("#select_LatLngD").select2();
@@ -286,6 +287,9 @@ width:50px;
 
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	
+
 	
 		$("#realtime_search").on("click",function(){
 		
@@ -442,7 +446,7 @@ width:50px;
 			});//db에서 좌표 가져와 변수로 담기
 
 		});//onclick 이벤트 end
-			
+		$("#realtime_search").trigger("click");		
 });	//end	
 </script>
 	
