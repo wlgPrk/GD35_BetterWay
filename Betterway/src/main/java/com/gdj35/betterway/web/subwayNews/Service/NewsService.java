@@ -25,6 +25,7 @@ public class NewsService   {
 
         String text = "";
         try {
+        	
             text = URLEncoder.encode("지하철", "UTF-8") +"&display="+ load +"&start="+ start +"&sort=date";
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("검색어 인코딩 실패",e);

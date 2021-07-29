@@ -14,8 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gdj35.betterway.web.evginfoGuide.airInfo.Service.IEnvService;
+import com.gdj35.betterway.web.trafficGuide.subLineInfo.Service.APIService;
 import com.gdj35.betterway.web.trafficGuide.subLineInfo.Service.ISubLineService;
-import com.gdj35.betterway.web.main.Service.IMainService;;
+import com.gdj35.betterway.web.main.Service.IMainService;
+
+
+
+
 
 @Controller
 public class subLineInfo_Controller {
@@ -24,6 +29,9 @@ public class subLineInfo_Controller {
 	  
 	  @Autowired
 	   public IMainService iMainService;
+	  
+	  @Autowired
+	  public APIService apiService;
 	  
 	@RequestMapping(value="/BetterWay_subLineSearch")
 	public ModelAndView BetterWay_subLineSearch(
@@ -154,4 +162,59 @@ public class subLineInfo_Controller {
 		}
 		return mapper.writeValueAsString(modelMap);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="/BetterWay_subLineSearch2")
+	public ModelAndView BetterWay_subLineSearch2(
+			@RequestParam HashMap<String, String> params,
+			ModelAndView mav)throws Throwable {
+		 List<HashMap<String, String>> SubwayList
+         = iSubLineService.SubwayList(params);
+		 mav.addObject("SubwayList",SubwayList);
+		mav.setViewName("traffic/BetterWay_subLineSearch2");
+		return mav;
+	}
+	
+	
+	
+	//도착역 좌표 가져오기
+	@RequestMapping(value="/api",
+			method=RequestMethod.POST, produces="text/json;charset=UTF-8")
+	@ResponseBody
+	public String api(
+			@RequestParam HashMap<String, String> params) throws Throwable{
+		
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			try {
+				String startX =params.get("startX");
+				String startY =params.get("startY");
+				String endX =params.get("endX");
+				String endY =params.get("endY");
+
+				String data= apiService.api(startX, startY, endX, endY);
+			
+				
+				modelMap.put("data",data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mapper.writeValueAsString(modelMap);
+	}
+	
+	
+
+	
+	
 }
