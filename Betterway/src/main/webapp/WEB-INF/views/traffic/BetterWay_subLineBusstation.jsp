@@ -374,7 +374,8 @@ $(document).ready(function(){
 							 var rows = document.getElementById("hide").getElementsByClassName("exit");
 							 console.log($(res).find('item').length);
 							console.log(text);
-							 
+						
+							 console.log($(res.data).find('totalCount'));
 							
 				
 							console.log(rows);
@@ -388,6 +389,7 @@ $(document).ready(function(){
 							var busnum = document.getElementById("hide").getElementsByClassName("busnum");
 							console.log(busnum);
 							console.log($(Array.from(busnum)[6]).attr("id"));
+							
 							//출구번호 먼저그리기
 							 exit="";
 							 for(i=1;i<=text;i++){//1-4 | //1-12
@@ -399,6 +401,8 @@ $(document).ready(function(){
 								$("#tmp_table_body").html(exit);//출구번호 그림   
 								
 							 }
+							 
+							 //표 그림
 							 for(i=1;i<=text;i++){
 								for(r=0;r<=busnum.length;r++){
 									 if($(Array.from(rows)[r]).attr("id")==i){

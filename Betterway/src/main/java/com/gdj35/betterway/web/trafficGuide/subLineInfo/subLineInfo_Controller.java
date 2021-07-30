@@ -49,11 +49,11 @@ public class subLineInfo_Controller {
 	}
 	@RequestMapping(value="/BetterWay_subLineBusstation")
 	public ModelAndView BetterWay_subLineBusstation(
-			@RequestParam HashMap<String, String> params,
-			ModelAndView mav) throws Throwable{
-		 List<HashMap<String, String>> SubwayList
-         = iSubLineService.SubwayList(params);
+			@RequestParam HashMap<String, String> params,ModelAndView mav) throws Throwable{
+		 List<HashMap<String, String>> SubwayList= iSubLineService.SubwayList(params);
+		 List<HashMap<String, String>> getsIdsName= iSubLineService.getsIdsName(params);//추가
 		 mav.addObject("SubwayList",SubwayList);
+		 mav.addObject("getsIdsName",getsIdsName);//추가
 		mav.setViewName("traffic/BetterWay_subLineBusstation");
 		return mav;
 	}
