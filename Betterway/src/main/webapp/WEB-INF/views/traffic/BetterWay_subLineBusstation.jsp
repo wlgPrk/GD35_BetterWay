@@ -365,6 +365,7 @@ $(document).ready(function(){
 									html +="</tr>";
 									$("#hide").html(html);
 									
+									
 								 });
 									var text = $("#hide tr:last td:first-child").eq(0).attr('id');
 									console.log(text);//강남->12 구산->4
