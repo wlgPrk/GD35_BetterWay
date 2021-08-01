@@ -358,7 +358,7 @@ a {
 				alert("출발역과 도착역을 입력해 주세요.");
 				
 			}
-			else{	$("#SearchForm2").attr("action", "http://127.0.0.1:8090/betterway/BetterWay_subLineSearch");
+			else{	$("#SearchForm2").attr("action", "http://127.0.0.1:8090/betterway/BetterWay_subLineSearch2");
 			$("#SearchForm2").submit();
 			console.log(Start+":"+"출발역");
 			console.log(end+":"+"도착역");
