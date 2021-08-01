@@ -1466,8 +1466,8 @@ cursor: pointer;
 			<div class = "map_guide">
 			<div class = "con_img_map"> </div>
 			<div class = "con_map_txt">
-			<div class = "box_con_head">노선도</div>
-			<br/> <div>노선도및 열차정보를 안내합니다.</div>
+			<div class = "box_con_head">경로검색</div>
+			<br/> <div>지도및 경로정보를 안내합니다.</div>
 			</div>
 			</div>
 			
