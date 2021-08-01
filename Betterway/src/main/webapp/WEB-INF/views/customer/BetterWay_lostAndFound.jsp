@@ -400,7 +400,7 @@ $(document).ready(function(){
   <span class="main">BetterWay</span>
 <div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
+		<li><a href="#">교통정보안내</a>
 			<ul>
 				<li id="cyber">경로 검색</li>
 				<li id="subinfo">실시간 열차정보</li>
