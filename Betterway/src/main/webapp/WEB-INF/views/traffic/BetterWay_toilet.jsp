@@ -329,12 +329,11 @@ p {
 	width: 1080px;
 	height: 150px;
 }
-footer {
-	background-color: #777;
-	padding: 10px;
-	text-align: right;
-	color: white;
+#footer{
+	width:100%;
+	height:75px;
 	
+	background: #023459;
 }
 
 .admin{
@@ -586,8 +585,6 @@ function drawList(list) {
 		</article>
 	</section>
 
-<footer>
-		
-	</footer>
+<footer id = "footer"></footer>
 </body>
 </html>
