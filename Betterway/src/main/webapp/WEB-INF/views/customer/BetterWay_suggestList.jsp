@@ -658,6 +658,7 @@ function drawPaging(pb){
 			<ul>
 				<li id="air">실내 공기질 정보 제공</li>
 				<li id="cool">차량 별 냉방상태</li>
+				<li><a href="BetterWay_congestion">혼잡도</a></li>
 			</ul>
 		</li>
 		<li id="news">지하철 뉴스</li>
