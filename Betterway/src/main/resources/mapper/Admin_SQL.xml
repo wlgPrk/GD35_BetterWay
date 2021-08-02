@@ -28,13 +28,13 @@
 	
 	<update id="updateHT">
 	UPDATE HAPPY SET SUBWAY_STATION_INCODE = #{subway_station_incode}, 
-				 LOCATION = #{location}, AREA = #{area}, ADMIN_NO=#{sNO} 
+				 LOCATION = #{location}, AREA = #{area}, ADMIN_NO=#{sNO} ,
                  OPERATING_AGENCY = #{operating_agency}, PHONE_NUM = #{phone_num}
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
 	
 	<update id="deleteHT" parameterType="hashmap">
-	UPDATE HAPPY SET DEL_STATUS = 0 ,ADMIN_ID=#{sNO}
+	UPDATE HAPPY SET DEL_STATUS = 0 ,ADMIN_NO=#{sNO}
 	WHERE HAPPY_NO = #{happy_no}
 	</update>
 	<!-- 행복지대 끝 -->

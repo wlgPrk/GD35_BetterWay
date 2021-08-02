@@ -139,6 +139,7 @@ public class Admin_Controller {
 			   @RequestParam HashMap<String, String> params,
 			   ModelAndView mav)throws Throwable{
 		   try {
+			   
 			   HashMap<String, String> data = iAdmin_Service.getHDetail(params);
 			   
 			   mav.addObject("data",data);
