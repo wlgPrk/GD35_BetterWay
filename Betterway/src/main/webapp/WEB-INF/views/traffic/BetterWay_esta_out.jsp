@@ -435,7 +435,7 @@ margin-bottom:30px;
 font-weight: bold;
 }
 #hr{
-	margin-top :25px;
+	margin-top :16px;
 }
 
 #sub_tit{
@@ -448,6 +448,7 @@ font-weight: bold;
 	
 }
 .tab_box{
+	margin-top:20px;
 	width:100%;
 	border-top:2px solid #82b2da;
 	
