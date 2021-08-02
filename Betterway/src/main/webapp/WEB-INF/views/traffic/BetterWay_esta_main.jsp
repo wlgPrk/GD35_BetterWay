@@ -333,6 +333,7 @@ background: #B2A59F;
 
 #sub_tit{
 	font-size: 15pt;
+	margin-left: 3px;
 }
 .con_box{
 	width : 1080px;
