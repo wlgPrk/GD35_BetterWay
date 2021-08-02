@@ -301,7 +301,7 @@ p {
 }
 
 #hr {
-	margin-top: 15px;
+	margin-top: 16px;
 }
 
 #sub_tit {
