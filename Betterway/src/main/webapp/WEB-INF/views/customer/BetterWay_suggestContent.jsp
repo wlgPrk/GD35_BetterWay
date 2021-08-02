@@ -1065,7 +1065,7 @@ function pushUpdates(){
 <body>
 
 <header>
-  <a class="main" href="menu.html">BetterWay</a>
+  <span class="main">BetterWay</span>
 <div id="menu">
 	<ul>
 		<li><a href="#">교통정보안내</a>
