@@ -601,7 +601,7 @@ $(document).ready(function(){
 	
 	//사이버스테이션
 	$("#cyber").on("click",function(){
-		location.href="BetterWay_subLineSearch"
+		location.href="BetterWay_subLineSearch2"
 	});
 	
 	//실시간열차정보
