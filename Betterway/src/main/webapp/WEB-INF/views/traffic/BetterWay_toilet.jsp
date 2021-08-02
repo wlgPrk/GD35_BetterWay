@@ -6,6 +6,9 @@
 <title>화장실 위치</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 </script>
 
@@ -339,6 +342,8 @@ p {
 .admin{
 
 cursor: pointer;
+}#air{
+cursor: pointer;
 }
 
 </style>
@@ -348,7 +353,9 @@ cursor: pointer;
 $(document).ready(function(){
 	
 	reloadList();
-
+	 $("#air").on("click",function(){
+			envinfoGuide();
+		});
 	$(".admin").on("click", function(){
 		location.href = "BetterWay_loginAdmin";
 	});

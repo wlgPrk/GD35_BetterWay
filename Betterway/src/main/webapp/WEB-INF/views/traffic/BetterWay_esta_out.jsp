@@ -12,13 +12,17 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
 	
 	 var html= "";
-	
+	 $("#air").on("click",function(){
+			envinfoGuide();
+		});
 	$.ajax({
 		
 		
@@ -186,6 +190,7 @@ nav {
   background: #ccc;
   padding: 20px;
 }
+
 
 nav ul {
   list-style-type: none;
@@ -475,7 +480,9 @@ th,td{
 #inside_esta{
 	height:
 }
-
+#air{
+cursor: pointer;
+}
 </style>
 </head>
 <body>

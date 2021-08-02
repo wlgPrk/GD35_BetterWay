@@ -378,9 +378,15 @@ top:46px;
 
 cursor: pointer;
 }
+#air{
+cursor: pointer;
+}
 </style>
 <script type="text/javascript" 
 src="resources/script/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -388,6 +394,9 @@ $(document).ready(function(){
 
 	$(".admin").on("click", function(){
 		location.href = "BetterWay_loginAdmin";
+	});
+	$("#air").on("click",function(){
+		envinfoGuide();
 	});
 
 $("#search").on("click",function(){
