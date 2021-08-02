@@ -12,13 +12,17 @@ src="resources/script/jquery/jquery-1.12.4.min.js"></script>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
 	
 	 var html= "";
-	
+	 $("#air").on("click",function(){
+			envinfoGuide();
+		});
 	$.ajax({
 		
 		
@@ -187,6 +191,7 @@ nav {
   padding: 20px;
 }
 
+
 nav ul {
   list-style-type: none;
   padding: 0;
@@ -324,7 +329,7 @@ background: #B2A59F;
     border:none;
 }
 .nav:target .side_menu_sub_down{
-    max-height: 16em;
+    max-height: 20em;
 }
 
 #side_menu_sub{
@@ -430,7 +435,7 @@ margin-bottom:30px;
 font-weight: bold;
 }
 #hr{
-	margin-top :25px;
+	margin-top :16px;
 }
 
 #sub_tit{
@@ -443,6 +448,7 @@ font-weight: bold;
 	
 }
 .tab_box{
+	margin-top:20px;
 	width:100%;
 	border-top:2px solid #82b2da;
 	
@@ -472,7 +478,12 @@ th,td{
 	width:1080px;
 	height:150px;
 }
-
+#inside_esta{
+	height:
+}
+#air{
+cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -483,7 +494,7 @@ th,td{
 	<ul>
 		<li><a href="#">교통정보안내</a>
 			<ul>
-				<li><a href="BetterWay_subLineSearch">노선도</a></li>
+				<li><a href="BetterWay_subLineSearch">경로 검색</a></li>
 				<li><a href="http://127.0.0.1:8090/betterway/BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
@@ -522,7 +533,7 @@ th,td{
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                		<a href="BetterWay_esta_main">내부 편의시설 안내</a>ㄴ
+                			<a href="BetterWay_esta_main">내부 편의시설 메인</a>
                     		<a href="BetterWay_nursingRoom2">수유실</a>
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>

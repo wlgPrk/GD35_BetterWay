@@ -6,6 +6,9 @@
 <title>화장실 위치</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/css/popup/envinfoGuide.css?after" />
+<script type="text/javascript" 
+	src="resources/script/popup/envinfoGuide.js?after"></script>
 <script type="text/javascript">
 </script>
 
@@ -240,7 +243,7 @@ background: #B2A59F;
     border:none;
 }
 .nav:target .side_menu_sub_down{
-    max-height: 16em;
+    max-height: 20em;
 }
 
 #side_menu_sub{
@@ -301,7 +304,7 @@ p {
 }
 
 #hr {
-	margin-top: 15px;
+	margin-top: 16px;
 }
 
 #sub_tit {
@@ -329,16 +332,17 @@ p {
 	width: 1080px;
 	height: 150px;
 }
-footer {
-	background-color: #777;
-	padding: 10px;
-	text-align: right;
-	color: white;
+#footer{
+	width:100%;
+	height:75px;
 	
+	background: #023459;
 }
 
 .admin{
 
+cursor: pointer;
+}#air{
 cursor: pointer;
 }
 
@@ -349,7 +353,9 @@ cursor: pointer;
 $(document).ready(function(){
 	
 	reloadList();
-
+	 $("#air").on("click",function(){
+			envinfoGuide();
+		});
 	$(".admin").on("click", function(){
 		location.href = "BetterWay_loginAdmin";
 	});
@@ -459,7 +465,7 @@ function drawList(list) {
 	<ul>
 		<li><a href="#">교통정보안내</a>
 			<ul>
-				<li><a href="BetterWay_subLineSearch">노선도</a></li>
+				<li><a href="BetterWay_subLineSearch">경로 검색</a></li>
 				<li><a href="http://127.0.0.1:8090/betterway/BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
@@ -497,7 +503,7 @@ function drawList(list) {
            			 <li class="nav" id="inside_esta">
                		 <a href="#inside_esta" class="btn">내부 편의시설</a>
                 		<div class="side_menu_sub_down">
-                		<a href="BetterWay_esta_main">내부 편의시설 안내</a>
+                		    <a href="BetterWay_esta_main">내부 편의시설 메인</a>
                     		<a href="BetterWay_nursingRoom2">수유실</a>
                     		<a href="BetterWay_wheelchair">휠체어 이용 승·하차 안내</a>
                     		<a href="BetterWay_cycle">자전거 보관함</a>
@@ -586,8 +592,6 @@ function drawList(list) {
 		</article>
 	</section>
 
-<footer>
-		<div class = "admin">관리자 로그인</div>
-	</footer>
+<footer id = "footer"></footer>
 </body>
 </html>

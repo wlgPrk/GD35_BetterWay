@@ -1068,9 +1068,9 @@ function pushUpdates(){
   <a class="main" href="menu.html">BetterWay</a>
 <div id="menu">
 	<ul>
-		<li><a href="#">교통안내</a>
+		<li><a href="#">교통정보안내</a>
 			<ul>
-				<li id="cyber">노선 정보</li>
+				<li id="cyber">경로 검색</li>
 				<li id="subinfo">실시간 열차정보</li>
 				<li id="bus">역주변 버스정류장 연계</li>
 				<li id="esta">역 내외 시설</li>
