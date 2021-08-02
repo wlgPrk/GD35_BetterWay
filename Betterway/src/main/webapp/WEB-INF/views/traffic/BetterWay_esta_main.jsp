@@ -228,7 +228,7 @@ margin-bottom:30px;
 font-weight: bold;
 }
 #hr{
-	margin-top :46px;
+	margin-top :16px;
 }
 
 #sub_title{
@@ -371,7 +371,7 @@ position: relative;
 display: inline-block;
 
 height: 100%;
-top:46px;
+/*top:46px;*/
 }
 
 .admin{
