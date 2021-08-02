@@ -376,7 +376,7 @@ function reloadList(){
 	<ul>
 		<li><a href="#">교통정보안내</a>
 			<ul>
-				<li><a href="BetterWay_subLineSearch">경로 검색</a></li>
+				<li><a href="BetterWay_subLineSearch2">경로 검색</a></li>
 				<li><a href="http://127.0.0.1:8090/betterway/BetterWay_subLineRealtime2">실시간 열차정보</a></li>
 				<li><a href="BetterWay_subLineBusstation">역주변 버스정류장 연계</a></li>
 				<li><a href="BetterWay_esta_main">역 내외 시설</a></li>
